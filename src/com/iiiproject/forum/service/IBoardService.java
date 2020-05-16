@@ -20,4 +20,5 @@ public interface IBoardService {
 
 	List<Board> queryAllBoardStatus1();
 
+
 }

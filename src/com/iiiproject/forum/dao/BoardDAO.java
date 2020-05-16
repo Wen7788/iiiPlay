@@ -93,4 +93,8 @@ public class BoardDAO implements IBoardDAO {
 		query.setParameter(1, 1);
 		return query.list();
 	}
+
+	
+	
+	
 }

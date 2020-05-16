@@ -46,7 +46,7 @@
 				<div class="col-lg-12">
 					<nav class="navbar navbar-expand-lg navbar-light">
 						<a class="navbar-brand" href="${pageContext.request.contextPath}">
-							<img src="img/logo.png" alt="logo">
+							<img src="${pageContext.request.contextPath}/img/logo.png" alt="logo">
 						</a>
 						<button class="navbar-toggler" type="button"
 							data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -92,9 +92,9 @@
 										<a class="dropdown-item" href="blog.html"> blog</a> <a
 											class="dropdown-item" href="single-blog.html">Single blog</a>
 									</div></li>
-								<li class="nav-item">
-                                    <a class="nav-link" href="contact.html">backend</a>
-                                </li>
+<!-- 								<li class="nav-item"> -->
+<!--                                     <a class="nav-link" href="forum/showAllBoard">backend</a> -->
+<!--                                 </li> -->
 
 							</ul>
 						</div>

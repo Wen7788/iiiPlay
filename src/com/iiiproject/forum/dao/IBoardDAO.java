@@ -19,5 +19,5 @@ public interface IBoardDAO {
 	List<Board> queryAllBoard();
 	
 	List<Board> queryAllBoardStatus1();
-
+	
 }

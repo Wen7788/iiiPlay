@@ -58,4 +58,6 @@ public class BoardService implements IBoardService {
 		List<Board> blist1 = boardDao.queryAllBoardStatus1();
 		return blist1;
 	}
+
+	
 }

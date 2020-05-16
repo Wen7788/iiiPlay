@@ -1,16 +1,26 @@
 package com.iiiproject.forum.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.sql.Blob;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,23 +36,42 @@ public class BoardController {
 
 	@Autowired
 	IBoardService iBService;
-
+	
+	@Autowired
+	ServletContext context;
+	
+	
+	@GetMapping("/showBoards")
+	public String showBoards(Model model) {
+		List<Board> boardSt1 = iBService.queryAllBoardStatus1();
+		model.addAttribute("boardSt1",boardSt1);
+		return "forum/boardList";
+	}
+	
+	
+	
+	
+	
 	@GetMapping("/showAllBoard")
 	public String showBoardList(Model model) {
-		model.addAttribute("boards", iBService.queryAllBoard());
+		List<Board> boards = iBService.queryAllBoard();
+		model.addAttribute("boards", boards);
 		return "forum/boardListMaintain";
 	}
 
 	@PostMapping("/board")
 	public String add(@RequestParam("boardName") String boardName,
 			@RequestParam("boardImg") MultipartFile multipartFile, 
-			@RequestParam("status") Integer status) {
+			@RequestParam("status") Integer status, ServletRequest req) {
+		
+		
 		Board bBean = new Board();
 //		System.out.println(boardName);
 		bBean.setBoardName(boardName);
 //		System.out.println(status);
 		bBean.setStatus(status);
-
+		
+		
 		String imgName = multipartFile.getOriginalFilename();
 //		System.out.println("imgName:"+imgName);
 		if (imgName.length() > 0 && imgName.lastIndexOf(".") > -1) {
@@ -113,5 +142,51 @@ public class BoardController {
 	public String delete(@PathVariable("boardId") Integer boardId) {
 		iBService.deleteBoard(boardId);
 		return "redirect:/forum/showAllBoard";
+	}
+	
+	@GetMapping("/loadImg/{boardId}")
+	public ResponseEntity<byte[]> loadImg(@PathVariable Integer boardId) {
+		byte[] body = null;
+		ResponseEntity<byte[]> re = null;
+		MediaType mediaType = null;
+		HttpHeaders headers = new HttpHeaders();
+		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+		
+		Board board = iBService.queryBoard(boardId);
+		if (board == null) {
+			return new ResponseEntity<byte[]>(HttpStatus.NOT_FOUND);
+		}
+		String imgName = board.getImgName();
+		if (imgName != null) {
+			if (imgName.toLowerCase().endsWith("jfif")) {
+				mediaType = MediaType.valueOf(context.getMimeType("dummy.jpeg"));
+			} else {
+				mediaType = MediaType.valueOf(context.getMimeType(imgName));
+				headers.setContentType(mediaType);
+			}
+		}
+		
+		Blob blob = board.getBoardImg();
+		if (blob != null) {
+			body = blobToByteArray(blob);
+		}
+		re = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
+		return re;
+	
+	}
+	
+	public byte[] blobToByteArray(Blob blob) {
+		byte[] result = null;
+		try (InputStream is = blob.getBinaryStream(); ByteArrayOutputStream baos = new ByteArrayOutputStream();) {
+			byte[] b = new byte[819200];
+			int len = 0;
+			while ((len = is.read(b)) != -1) {
+				baos.write(b, 0, len);
+			}
+			result = baos.toByteArray();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

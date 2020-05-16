@@ -56,7 +56,7 @@
 					<td>${board.boardName}</td>
 					<td>瀏覽次數未完成</td>
 					<td>看板文章數未完成</td>
-					<td>${board.boardImg}</td>
+					<td><img width='80' height='40' src='loadImg/${board.boardId}' /></td>
 					<td><c:choose>
 							<c:when test="${board.status==1}">正常開版</c:when>
 							<c:otherwise>看板維護</c:otherwise>
@@ -104,16 +104,16 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<form method="post" action='board' enctype="multipart/form-data">
+					<form name="form" method="post" action='board' enctype="multipart/form-data">
 						<div class="form-group">
 							<label for="exampleFormControlInput1">新增看板名稱為:</label> <input
-								type="text" class="form-control" id="exampleFormControlInput1"
-								name="boardName">
+								type="text" class="form-control" id="boardName" name="boardName"> 
+							<font id="errorBoardName" color='red' size='-1'></font>
 						</div>
 						<div class="form-group">
 							<label for="exampleFormControlFile1">新增看板圖為:</label> <input
-								type="file" class="form-control-file"
-								id="exampleFormControlFile1" name="boardImg">
+								type="file" class="form-control-file" id="boardImg"
+								name="boardImg">
 						</div>
 						<div class="form-check form-check-inline">
 							<input class="form-check-input" type="radio" name="status"
@@ -127,7 +127,8 @@
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
-							<button type="submit" class="btn btn-outline-success">送出</button>
+							<button type="submit" id="btn" class="btn btn-outline-success"
+								onclick="return false">送出</button>
 						</div>
 					</form>
 				</div>
@@ -139,6 +140,18 @@
 		function onWarning() {
 			event.returnValue = confirm("確定真的要刪除???");
 		}
+
+ 		$(document).ready(function(){
+    		$("#btn").click(function(){
+        		if($("#boardName").val()==""){
+        			document.getElementById("errorBoardName").innerHTML = "看板名稱還沒填寫!";
+            		eval("document.form['boardName'].focus()");
+        		}else{
+                    document.form.submit();
+                }
+            })
+         })
+		
 	</script>
 
 
