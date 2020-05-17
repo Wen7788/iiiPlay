@@ -89,7 +89,7 @@
 									id="navbarDropdown_2" role="button" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false"> forum </a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-										<a class="dropdown-item" href="blog.html"> blog</a> <a
+										<a class="dropdown-item" href="forum/showBoards"> Forum-List</a> <a
 											class="dropdown-item" href="single-blog.html">Single blog</a>
 									</div></li>
 <!-- 								<li class="nav-item"> -->

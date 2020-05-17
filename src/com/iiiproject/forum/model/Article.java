@@ -42,7 +42,7 @@ public class Article implements Serializable {
 	private Timestamp publishTime;
 	
 	@Column(name = "status")
-	private Boolean status;
+	private Integer status;
 	
 	@Column(name = "boardid")
 	private Integer boardId;
@@ -50,7 +50,7 @@ public class Article implements Serializable {
 	public Article() {
 	}
 
-	public Article(String title, String author, String category, String detail, Timestamp publishTime, Boolean status, Integer boardId) {
+	public Article(String title, String author, String category, String detail, Timestamp publishTime, Integer status, Integer boardId) {
 		this.title = title;
 		this.name = author;
 		this.category = category;
@@ -68,11 +68,13 @@ public class Article implements Serializable {
 		this.boardId = boardId;
 	}
 
-	public Boolean isStatus() {
+	
+
+	public Integer getStatus() {
 		return status;
 	}
 
-	public void setStatus(Boolean status) {
+	public void setStatus(Integer status) {
 		this.status = status;
 	}
 

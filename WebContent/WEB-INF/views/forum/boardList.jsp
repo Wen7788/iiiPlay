@@ -6,8 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>iiiPlay-Forum</title>
-<link rel="icon"
-	href="${pageContext.request.contextPath}/img/favicon.png">
+<link rel="icon" href="<c:url value='/img/favicon.png'/>">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/top.jsp" />
@@ -22,8 +21,9 @@
 						<c:forEach items='${boardSt1}' var='board' varStatus='vs'>
 							<article class="blog_item">
 								<div class="blog_item_img">
-									<img class="card-img rounded-0" src="loadImg/${board.boardId}"
-										alt=""> 
+									<a href=""> <img class="card-img rounded-0"
+										src="loadImg/${board.boardId}" alt="">
+									</a>
 								</div>
 
 
@@ -34,10 +34,10 @@
 									<a class="d-inline-block" href="single-blog.html">
 										<h2>${board.boardName}</h2>
 									</a>
-									<p>用來顯示文章內容</p>
+									<p>用來顯示看板內文章</p>
 									<ul class="blog-info-link">
-										<li><a href="#"><i class="far fa-user"></i> 瀏覽數</a></li>
-										<li><a href="#"><i class="far fa-comments"></i> 文章數</a></li>
+										<li><i class="far fa-user"></i> 瀏覽數</li>
+										<li><i class="far fa-comments"></i> 文章數</li>
 									</ul>
 								</div>
 							</article>
@@ -47,6 +47,30 @@
 
 				<div class="col-lg-4">
 					<div class="blog_right_sidebar">
+					
+					
+						<aside class="single_sidebar_widget search_widget">
+							<form action="#">
+								<div class="form-group">
+									<div class="input-group mb-3">
+										<input type="text" class="form-control"
+											placeholder='Search Keyword' onfocus="this.placeholder = ''"
+											onblur="this.placeholder = 'Search Keyword'">
+										<div class="input-group-append">
+											<button class="btn" type="button">
+												<i class="ti-search"></i>
+											</button>
+										</div>
+									</div>
+								</div>
+								<button
+									class="button rounded-0 primary-bg text-white w-100 btn_1"
+									type="submit">Search</button>
+							</form>
+						</aside>
+
+
+
 						<aside class="single_sidebar_widget popular_post_widget">
 							<h3 class="widget_title">Recent Post</h3>
 							<div class="media post_item">
@@ -58,9 +82,9 @@
 									<p>January 12, 2019</p>
 								</div>
 							</div>
-							
-							
-							
+
+
+
 						</aside>
 					</div>
 				</div>

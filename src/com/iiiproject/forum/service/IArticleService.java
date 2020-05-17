@@ -1,11 +1,11 @@
-package com.iiiproject.forum.dao;
+package com.iiiproject.forum.service;
 
 import java.util.List;
 
 import com.iiiproject.forum.model.Article;
 import com.iiiproject.forum.model.ArticleListView;
 
-public interface IArticleDAO {
+public interface IArticleService {
 
 	Article insertArticle(Article aBean);
 
@@ -19,6 +19,8 @@ public interface IArticleDAO {
 
 	List<ArticleListView> queryAllArticle();
 
+	List<ArticleListView> queryAllArticleStatus1();
+
 	List<ArticleListView> queryOwnArticle(Integer id);
 
 	List<ArticleListView> queryArticleOfBoard(Integer boardId);
@@ -28,7 +30,5 @@ public interface IArticleDAO {
 	int getOwnArticleCounts(Integer id);
 
 	int getArticleOfBoardCounts(Integer boardId);
-
-	List<ArticleListView> queryAllArticleStatus1();
 
 }

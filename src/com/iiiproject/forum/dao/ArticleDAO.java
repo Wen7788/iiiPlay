@@ -21,11 +21,11 @@ public class ArticleDAO implements IArticleDAO {
 	@Override
 	public Article insertArticle(Article aBean) {
 		Session session = sessionFactory.getCurrentSession();
-		Article resultBean = session.get(Article.class, aBean.getArticleId());
+//		Article resultBean = session.get(Article.class, aBean.getArticleId());
 	
-		if (resultBean == null) {
+//		if (resultBean == null) {
 			session.save(aBean);	
-		}
+//		}
 		return aBean;
 	}
 	
@@ -42,13 +42,19 @@ public class ArticleDAO implements IArticleDAO {
 	}
 	
 	@Override
-	public Article hideArticle(Integer articleId, Boolean status) {
+	public Article hideArticle(Integer articleId) {
 		Session session = sessionFactory.getCurrentSession();
 		Article resultBean = session.get(Article.class, articleId);
 
 		if (resultBean != null) {
-			resultBean.setStatus(false);
-			session.update(resultBean);
+			if (resultBean.getStatus()==1) {
+				resultBean.setStatus(0);
+				session.update(resultBean);
+			}
+			else{
+				resultBean.setStatus(1);
+				session.update(resultBean);
+			}
 		}
 		return resultBean;
 	}
@@ -59,6 +65,7 @@ public class ArticleDAO implements IArticleDAO {
 		Article resultBean = session.get(Article.class, aBean.getArticleId());
 
 		if (resultBean != null) {
+			resultBean.setArticleId(aBean.getArticleId());
 			resultBean.setTitle(aBean.getTitle());
 			resultBean.setName(aBean.getName());
 			resultBean.setCategory(aBean.getCategory());
@@ -78,6 +85,14 @@ public class ArticleDAO implements IArticleDAO {
 	public List<ArticleListView> queryAllArticle() {
 		Session session = sessionFactory.getCurrentSession();
 		Query<ArticleListView> query = session.createQuery("FROM ArticleListView ORDER BY publishtime DESC", ArticleListView.class);
+		return query.list();
+	}
+	
+	@Override
+	public List<ArticleListView> queryAllArticleStatus1(){
+		Session session = sessionFactory.getCurrentSession();
+		Query<ArticleListView> query = session.createQuery("From Article WHERE status =?1 ORDER BY articleid", ArticleListView.class);
+		query.setParameter(1, 1);
 		return query.list();
 	}
 	
