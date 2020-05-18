@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.iiiproject.forum.dao.IArticleDAO;
 import com.iiiproject.forum.model.Article;
 import com.iiiproject.forum.model.ArticleListView;
 
 @Service("articleService")
+@Transactional
 public class ArticleService implements IArticleService {
 
 	@Autowired @Qualifier("articleDao")
@@ -53,8 +55,8 @@ public class ArticleService implements IArticleService {
 	}
 	
 	@Override
-	public List<ArticleListView> queryAllArticleStatus1(){
-		List<ArticleListView> allArticleSt1 = articleDao.queryAllArticleStatus1();
+	public List<ArticleListView> queryArticleOfBoardStatus1(Integer boardId){
+		List<ArticleListView> allArticleSt1 = articleDao.queryArticleOfBoardStatus1(boardId);
 		return allArticleSt1;
 	}
 	

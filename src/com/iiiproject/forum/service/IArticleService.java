@@ -19,7 +19,7 @@ public interface IArticleService {
 
 	List<ArticleListView> queryAllArticle();
 
-	List<ArticleListView> queryAllArticleStatus1();
+	List<ArticleListView> queryArticleOfBoardStatus1(Integer boardId);
 
 	List<ArticleListView> queryOwnArticle(Integer id);
 

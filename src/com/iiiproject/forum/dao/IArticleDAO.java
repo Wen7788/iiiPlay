@@ -29,6 +29,6 @@ public interface IArticleDAO {
 
 	int getArticleOfBoardCounts(Integer boardId);
 
-	List<ArticleListView> queryAllArticleStatus1();
+	List<ArticleListView> queryArticleOfBoardStatus1(Integer boardId);
 
 }

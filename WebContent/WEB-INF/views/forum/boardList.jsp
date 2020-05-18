@@ -21,7 +21,7 @@
 						<c:forEach items='${boardSt1}' var='board' varStatus='vs'>
 							<article class="blog_item">
 								<div class="blog_item_img">
-									<a href=""> <img class="card-img rounded-0"
+									<a href="showAofB/${board.boardId}"> <img class="card-img rounded-0"
 										src="loadImg/${board.boardId}" alt="">
 									</a>
 								</div>

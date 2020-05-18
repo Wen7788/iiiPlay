@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iiiproject.forum.model.Board;
+import com.iiiproject.forum.service.IArticleService;
 import com.iiiproject.forum.service.IBoardService;
 
 @Controller
@@ -39,7 +40,9 @@ public class BoardController {
 	
 	@Autowired
 	ServletContext context;
-	
+
+	@Autowired
+	IArticleService iAService;
 	
 	@GetMapping("/showBoards")
 	public String showBoards(Model model) {
@@ -189,4 +192,6 @@ public class BoardController {
 		}
 		return result;
 	}
+	
+	
 }

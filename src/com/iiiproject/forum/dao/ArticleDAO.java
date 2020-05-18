@@ -88,13 +88,7 @@ public class ArticleDAO implements IArticleDAO {
 		return query.list();
 	}
 	
-	@Override
-	public List<ArticleListView> queryAllArticleStatus1(){
-		Session session = sessionFactory.getCurrentSession();
-		Query<ArticleListView> query = session.createQuery("From Article WHERE status =?1 ORDER BY articleid", ArticleListView.class);
-		query.setParameter(1, 1);
-		return query.list();
-	}
+	
 	
 	@Override
 	public List<ArticleListView> queryOwnArticle(Integer id) {
@@ -109,6 +103,15 @@ public class ArticleDAO implements IArticleDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Query<ArticleListView> query = session.createQuery("FROM ArticleListView WHERE boardid =?1 ORDER BY publishtime DESC", ArticleListView.class);
 		query.setParameter(1, boardId);
+		return query.list();
+	}
+	
+	@Override
+	public List<ArticleListView> queryArticleOfBoardStatus1(Integer boardId) {
+		Session session = sessionFactory.getCurrentSession();
+		Query<ArticleListView> query = session.createQuery("FROM ArticleListView WHERE boardid =?1 and status =?2 ORDER BY publishtime DESC", ArticleListView.class);
+		query.setParameter(1, boardId);
+		query.setParameter(2, 1);		
 		return query.list();
 	}
 	
