@@ -65,7 +65,7 @@ public class BoardController {
 	@PostMapping("/board")
 	public String add(@RequestParam("boardName") String boardName,
 			@RequestParam("boardImg") MultipartFile multipartFile, 
-			@RequestParam("status") Integer status, ServletRequest req) {
+			@RequestParam("status") Integer status) {
 		
 		
 		Board bBean = new Board();

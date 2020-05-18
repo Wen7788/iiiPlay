@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>iiiPlay</title>
-<link rel="icon" href="${pageContext.request.contextPath}/img/favicon.png">
+<link rel="icon" href="<c:url value='/img/favicon.png'/>">
 </head>
 <body>
 	

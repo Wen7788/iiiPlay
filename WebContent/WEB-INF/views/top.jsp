@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,34 +9,24 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>iiiPlay</title>
-<link rel="icon"
-	href="${pageContext.request.contextPath}/img/favicon.png">
+<link rel="icon" href="<c:url value='/img/favicon.png'/>">
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+<link rel="stylesheet" href="<c:url value='/css/bootstrap.min.css'/>">
 <!-- animate CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/animate.css">
+<link rel="stylesheet" href="<c:url value='/css/animate.css'/>">
 <!-- owl carousel CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/owl.carousel.min.css">
+<link rel="stylesheet" href="<c:url value='/css/owl.carousel.min.css'/>">
 <!-- font awesome CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/all.css">
+<link rel="stylesheet" href="<c:url value='/css/all.css'/>">
 <!-- flaticon CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/flaticon.css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/themify-icons.css">
+<link rel="stylesheet" href="<c:url value='/css/flaticon.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/themify-icons.css'/>">
 <!-- font awesome CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/magnific-popup.css">
+<link rel="stylesheet" href="<c:url value='/css/magnific-popup.css'/>">
 <!-- swiper CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/slick.css">
+<link rel="stylesheet" href="<c:url value='/css/slick.css'/>">
 <!-- style CSS -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style.css">
+<link rel="stylesheet" href="<c:url value='/css/style.css'/>">
 </head>
 
 <body>
@@ -46,8 +36,8 @@
 			<div class="row align-items-center">
 				<div class="col-lg-12">
 					<nav class="navbar navbar-expand-lg navbar-light">
-						<a class="navbar-brand" href="${pageContext.request.contextPath}">
-							<img src="${pageContext.request.contextPath}/img/logo.png" alt="logo">
+						<a class="navbar-brand" href="<c:url value='/'/>"> <img
+							src="<c:url value='/img/logo.png'/>" alt="logo">
 						</a>
 						<button class="navbar-toggler" type="button"
 							data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -60,7 +50,7 @@
 							id="navbarSupportedContent">
 							<ul class="navbar-nav">
 								<li class="nav-item"><a class="nav-link"
-									href="${pageContext.request.contextPath}">Home</a></li>
+									href="<c:url value='/'/>">Home</a></li>
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle" href="blog.html"
 									id="navbarDropdown_3" role="button" data-toggle="dropdown"
@@ -90,12 +80,13 @@
 									id="navbarDropdown_2" role="button" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false"> forum </a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-										<a class="dropdown-item" href="<c:url value='forum/showBoards'/>"> Forum-List</a> <a
+										<a class="dropdown-item"
+											href="<c:url value='/forum/showBoards'/>"> Forum-List</a> <a
 											class="dropdown-item" href="single-blog.html">Single blog</a>
 									</div></li>
-<!-- 								<li class="nav-item"> -->
-<!--                                     <a class="nav-link" href="forum/showAllBoard">backend</a> -->
-<!--                                 </li> -->
+								<!-- 								<li class="nav-item"> -->
+								<!--                                     <a class="nav-link" href="forum/showAllBoard">backend</a> -->
+								<!--                                 </li> -->
 
 							</ul>
 						</div>
@@ -134,36 +125,30 @@
 
 
 	<!-- jquery plugins here-->
-	<script
-		src="${pageContext.request.contextPath}/js/jquery-1.12.1.min.js"></script>
+	<script src="<c:url value='/js/jquery-1.12.1.min.js'/>"></script>
 	<!-- popper js -->
-	<script src="${pageContext.request.contextPath}/js/popper.min.js"></script>
+	<script src="<c:url value='/js/popper.min.js'/>"></script>
 	<!-- bootstrap js -->
-	<script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+	<script src="<c:url value='/js/bootstrap.min.js'/>"></script>
 	<!-- easing js -->
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.magnific-popup.js"></script>
+	<script src="<c:url value='/js/jquery.magnific-popup.js'/>"></script>
 	<!-- swiper js -->
-	<script src="${pageContext.request.contextPath}/js/swiper.min.js"></script>
+	<script src="<c:url value='/js/swiper.min.js'/>"></script>
 	<!-- swiper js -->
-	<script src="${pageContext.request.contextPath}/js/masonry.pkgd.js"></script>
+	<script src="<c:url value='/js/masonry.pkgd.js'/>"></script>
 	<!-- particles js -->
-	<script src="${pageContext.request.contextPath}/js/owl.carousel.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.nice-select.min.js"></script>
+	<script src="<c:url value='/js/owl.carousel.min.js'/>"></script>
+	<script src="<c:url value='/js/jquery.nice-select.min.js'/>"></script>
 	<!-- slick js -->
-	<script src="${pageContext.request.contextPath}/js/slick.min.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.counterup.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/waypoints.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/contact.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.ajaxchimp.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/jquery.form.js"></script>
-	<script
-		src="${pageContext.request.contextPath}/js/jquery.validate.min.js"></script>
-	<script src="${pageContext.request.contextPath}/js/mail-script.js"></script>
+	<script src="<c:url value='/js/slick.min.js'/>"></script>
+	<script src="<c:url value='/js/jquery.counterup.min.js'/>"></script>
+	<script src="<c:url value='/js/waypoints.min.js'/>"></script>
+	<script src="<c:url value='/js/contact.js'/>"></script>
+	<script src="<c:url value='/js/jquery.ajaxchimp.min.js'/>"></script>
+	<script src="<c:url value='/js/jquery.form.js'/>"></script>
+	<script src="<c:url value='/js/jquery.validate.min.js'/>"></script>
+	<script src="<c:url value='/js/mail-script.js'/>"></script>
 	<!-- custom js -->
-	<script src="${pageContext.request.contextPath}/js/custom.js"></script>
+	<script src="<c:url value='/js/custom.js'/>"></script>
 </body>
 </html>

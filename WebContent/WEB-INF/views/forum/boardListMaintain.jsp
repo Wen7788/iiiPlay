@@ -125,6 +125,7 @@
 								id="inlineRadio2" value="0"> <label
 								class="form-check-label" for="inlineRadio2">下架</label>
 						</div>
+						
 						<div class="modal-footer">
 							<button type="button" class="btn btn-light" data-dismiss="modal">取消</button>
 							<button type="submit" id="btn" class="btn btn-outline-success"
