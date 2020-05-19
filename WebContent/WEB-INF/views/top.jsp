@@ -50,11 +50,11 @@
 							id="navbarSupportedContent">
 							<ul class="navbar-nav">
 								<li class="nav-item"><a class="nav-link"
-									href="<c:url value='/'/>">Home</a></li>
+									href="<c:url value='/'/>">首頁</a></li>
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle" href="blog.html"
 									id="navbarDropdown_3" role="button" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false"> Users </a>
+									aria-haspopup="true" aria-expanded="false"> Play會員 </a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
 										<a class="dropdown-item" href="login.html"> login</a> <a
 											class="dropdown-item" href="tracking.html">tracking</a> <a
@@ -67,7 +67,7 @@
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle" href="blog.html"
 									id="navbarDropdown_1" role="button" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false"> Shop </a>
+									aria-haspopup="true" aria-expanded="false"> Play購物商城 </a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
 										<a class="dropdown-item" href="category.html"> shop
 											category</a> <a class="dropdown-item" href="single-product.html">product
@@ -78,21 +78,21 @@
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle" href="blog.html"
 									id="navbarDropdown_2" role="button" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false"> forum </a>
+									aria-haspopup="true" aria-expanded="false"> Play論壇 </a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
 										<a class="dropdown-item"
 											href="<c:url value='/forum/showBoards'/>"> Forum-List</a> <a
 											class="dropdown-item" href="single-blog.html">Single blog</a>
 									</div></li>
-								<!-- 								<li class="nav-item"> -->
-								<!--                                     <a class="nav-link" href="forum/showAllBoard">backend</a> -->
-								<!--                                 </li> -->
+								<li class="nav-item">
+								   <a class="nav-link" href="#">後台管理</a>
+								</li>
 
 							</ul>
 						</div>
 						<div class="hearer_icon d-flex">
-							<a id="search_1" href="javascript:void(0)"><i
-								class="ti-search"></i></a>
+<!-- 							<a id="search_1" href="javascript:void(0)"><i -->
+<!-- 								class="ti-search"></i></a> -->
 							<!-- 							<div class="dropdown cart"> -->
 							<!-- 								<a class="dropdown-toggle" href="#" id="navbarDropdown3" -->
 							<!-- 									role="button" data-toggle="dropdown" aria-haspopup="true" -->
@@ -110,16 +110,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="search_input" id="search_input_box">
-			<div class="container ">
-				<form class="d-flex justify-content-between search-inner">
-					<input type="text" class="form-control" id="search_input"
-						placeholder="Search Here">
-					<button type="submit" class="btn"></button>
-					<span class="ti-close" id="close_search" title="Close Search"></span>
-				</form>
-			</div>
-		</div>
+		
 	</header>
 	<!-- Header part end-->
 
@@ -132,7 +123,7 @@
 	<script src="<c:url value='/js/bootstrap.min.js'/>"></script>
 	<!-- easing js -->
 	<script src="<c:url value='/js/jquery.magnific-popup.js'/>"></script>
-	<!-- swiper js -->
+ 	<!-- swiper js --> 
 	<script src="<c:url value='/js/swiper.min.js'/>"></script>
 	<!-- swiper js -->
 	<script src="<c:url value='/js/masonry.pkgd.js'/>"></script>
