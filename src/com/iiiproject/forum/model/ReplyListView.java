@@ -18,7 +18,7 @@ public class ReplyListView implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "id")
-	private Integer id;
+	private String id;
 	
 	@Column(name = "name")
 	private String name;
@@ -41,7 +41,7 @@ public class ReplyListView implements Serializable {
 	public ReplyListView() {
 	}
 
-	public ReplyListView(Integer id, String name, Integer articleId, String title, Integer replyId, String replyDetail,
+	public ReplyListView(String id, String name, Integer articleId, String title, Integer replyId, String replyDetail,
 			Timestamp replyTime) {
 		this.id = id;
 		this.name = name;
@@ -52,11 +52,11 @@ public class ReplyListView implements Serializable {
 		this.replyTime = replyTime;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

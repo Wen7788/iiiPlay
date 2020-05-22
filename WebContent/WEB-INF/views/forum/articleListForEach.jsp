@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +65,7 @@
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle" href="blog.html"
 									id="navbarDropdown_1" role="button" data-toggle="dropdown"
-									aria-haspopup="true" aria-expanded="false"> Play購物商城  </a>
+									aria-haspopup="true" aria-expanded="false"> Play購物商城 </a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
 										<a class="dropdown-item" href="category.html"> shop
 											category</a> <a class="dropdown-item" href="single-product.html">product
@@ -81,17 +82,12 @@
 											href="<c:url value='/forum/showBoards'/>"> Forum-List</a> <a
 											class="dropdown-item" href="single-blog.html">Single blog</a>
 									</div></li>
-								<li class="nav-item">
-								   <a class="nav-link" href="#">後台管理</a>
+								<li class="nav-item"><a class="nav-link" href="#">後台管理</a>
 								</li>
 
 							</ul>
 						</div>
-						<div class="hearer_icon d-flex">
-							<!-- 							<a id="search_1" href="javascript:void(0)"><i -->
-							<!-- 								class="ti-search"></i></a> -->
 
-						</div>
 					</nav>
 				</div>
 			</div>
@@ -100,49 +96,94 @@
 	</header>
 	<!-- Header part end-->
 
+	<div class="whole-wrap">
+		<div class="container box_1170">
+			<section class="sample-text-area">
+				<h1>
+					${bBean.boardName}
+					<button type="button" class="genric-btn circle btn_2"
+						data-toggle="modal" data-target="#myModal">
+						<font size="5">發佈文章</font>
+					</button>
+				</h1>
+				<div class="section-top-border">
+					<c:forEach items="${aOfB}" var="article" varStatus="vs">
+<%-- 						<c:if test="${article.status==1|| (MemberBean.status==2 && (article.status==0 || article.status==1)) } "> --%>
+							<div class="col-lg-12">
+								<blockquote class="generic-blockquote">
+									<h1>
+										<a href="#">【${article.category}】${article.title}</a>
+									</h1>
+									<div class="row">
+										<div class="col-md-3">
+											<a href="#"><img
+												src="<c:url value='/img/${article.category}.png'/>" class="img-fluid"></a>
+										</div>
+										<div class="col-md-9 mt-sm-20">
 
+											<c:choose>
+												<c:when test="${fn:length(article.detail)>20}">
+													<p>
+														<font size='5'>${fn:substring(article.detail, 0, 20)}<br>...(<a
+															href="#">繼續閱讀</a>)
+														</font>
+													</p>
+												</c:when>
+												<c:otherwise>
+													<p>
+														<font size='5'>${article.detail}<br>(<a
+															href="#">繼續閱讀</a>)
+														</font>
+													</p>
+												</c:otherwise>
+											</c:choose>
+											<br> <br> <br>
+											<ul class="blog-info-link">
+												<li><font size='3'><i class="fa fa-user">作者:</i>
+														${article.name}</font></li>
+												<li><font size='3'><i class="fa fa-comments">留言:</i>
+														${article.replyCount}</font></li>
+												<li><font size='3'><i class="fas fa-pencil-alt">發文時間:</i>
+														${fn:substring(article.publishTime, 0, 19)}</font></li>
+											</ul>
 
-
-
-	<!-- 	<div class="whole-wrap"> -->
-	<div class="container box_1170">
-		<section class="sample-text-area">
-
-			<h3 class="mb-30">
-				透過session取得當前看板名稱
-				<button type="button" class="genric-btn danger circle"
-					data-toggle="modal" data-target="#myModal">發佈文章</button>
-			</h3>
-			<div class="section-top-border">
-
-				<div class="progress-table">
-
-					<div class="table-head">
-						<div class="country">標題</div>
-
-						<div class="country">作者</div>
-						<div class="visit">互動/人氣</div>
-						<div class="country">發佈時間</div>
-					</div>
-<%-- 					<c:forEach items="${aOfB}" var="article" varStatus="vs"> --%>
-<!-- 						<div class="table-row"> -->
-<!-- 							<div class="country"> -->
-<%-- 								<h3>${article.title}</h3> --%>
-<%-- 								<img src="#" alt="flag"><span>${article.detail}...(<a --%>
-<!-- 									href="#">繼續閱讀</a>) -->
-<!-- 								</span> -->
-<!-- 							</div> -->
-
-<%-- 							<div class="country">${article.name}</div> --%>
-<%-- 							<div class="visit">${article.replyCount}/10</div> --%>
-<%-- 							<div class="country">${article.publishTime}</div> --%>
-<!-- 						</div> -->
-<%-- 					</c:forEach> --%>
+											<c:if test='${MemberBean.status == 2}'>
+												<div class="text-right">
+													<form method="post"
+														action="<c:url value='/forum/articleStatus'/>">
+														<c:choose>
+															<c:when test="${article.status==1}">
+																<input type="hidden" value="${article.articleId}"
+																	name="articleId">
+																<input type="hidden" value="${bBean.boardId}"
+																	name="boardId">
+																<button type="submit" class="genric-btn danger radius">
+																	<font size='3'>隱藏</font>
+																</button>
+															</c:when>
+															<c:otherwise>
+																<input type="hidden" value="${article.articleId}"
+																	name="articleId">
+																<input type="hidden" value="${bBean.boardId}"
+																	name="boardId">
+																<button type="submit" class="genric-btn info radius">
+																	<font size='3'>恢復</font>
+																</button>
+															</c:otherwise>
+														</c:choose>
+													</form>
+												</div>
+											</c:if>
+										</div>
+									</div>
+								</blockquote>
+							</div>
+<%-- 						</c:if> --%>
+					</c:forEach>
 				</div>
-			</div>
-		</section>
+			</section>
+		</div>
 	</div>
-	<!-- 	</div> -->
 
 
 
@@ -163,78 +204,86 @@
 				</div>
 				<div class="modal-body">
 
-					<form name="form" class="row contact_form" method="post" action='article'>
+					<form name="form1" class="row contact_form" method="post"
+						action="<c:url value='/forum/article'/>"
+						onsubmit="return(validate())">
 						<div class="col-md-6 form-group">
-							<label for="name">發文者名稱:</label> <input type="text"
-								class="form-control" id="name" name="name" value=""> <font
-								id="errorName" color='red' size='-1'></font>
-						</div>
-						<div class="col-md-6 form-group">
-							<label for="boardName">發文所在看板:</label> <input type="text"
-								class="form-control" id="boardName" name="boardName" value="">
-							<font id="errorBoardName" color='red' size='-1'></font>
+							<label for="name1"><font color='red'>*</font>發文者名稱:</label> <input
+								type="text" class="form-control" id="name1" name="name1"
+								value="${MemberBean.name}" readonly> <font
+								id="errorName1" color='red' size='-1'></font>
 						</div>
 
 						<div class="col-md-6 form-group">
-							<label for="category">發文分類:</label> <select
-								class="form-control country_select" name="category"
-								id="category">
+							<label for="boardName1"><font color='red'>*</font>發文所在看板:</label>
+							<input type="text" class="form-control" id="boardName1"
+								name="boardName1" value="${bBean.boardName}" readonly><font
+								id="errorBoardName1" color='red' size='-1'></font> <input
+								type="hidden" class="form-control" id="boardId1" name="boardId1"
+								value="${bBean.boardId}">
+						</div>
+
+						<div class="col-md-6 form-group">
+							<label for="category1"><font color='red'>*</font>發文分類:</label> <select
+								class="form-control country_select" name="category1"
+								id="category1">
 								<option selected="selected" disabled="disabled"
 									style='display: none' value=''></option>
 								<option>情報</option>
-								<option>攻略</option>
+								<option>密技</option>
 								<option>問題</option>
 								<option>討論</option>
 								<option>閒聊</option>
+								<option>心得</option>
 								<option>其他</option>
-							</select> <font id="errorCategory" color='red' size='-1'></font>
+							</select> <font id="errorCategory1" color='red' size='-1'></font>
 						</div>
 
 						<div class="col-md-6 form-group">
-							<label for="title">發文標題:</label> <input type="text"
-								class="form-control" id="title" name="title" value=""> <font
-								id="errorTitle" color='red' size='-1'></font>
+							<label for="title1"><font color='red'>*</font>發文標題:</label> <input
+								type="text" class="form-control" id="title1" name="title1"
+								value=""> <font id="errorTitle1" color='red' size='-1'></font>
 						</div>
+
 						<div class="col-md-6 form-group">
-							<input type="hidden" class="form-control" id="status" name="status" value="1"> 
+							<input type="hidden" class="form-control" id="status1"
+								name="status1" value="1">
 						</div>
+
 						<div class="col-md-12 form-group">
-							<label for="detail">發表內文:</label>
-							<textarea class="form-control" name="detail" id="detail" rows="5"></textarea><font
-								id="errorDetail" color='red' size='-1'></font>
+							<label for="detail1"><font color='red'>*</font>發表內文:</label>
+							<textarea class="form-control" name="detail1" id="detail1"
+								rows="5"></textarea>
+							<font id="errorDetail1" color='red' size='-1'></font>
+
 						</div>
 
 						<div class="modal-footer">
-							<button type="submit" id="btn" class="btn btn-outline-success"
-								onclick="return false">文章已填寫好，請讓大家看看吧!</button>
+							<button type="submit" id="btn" class="btn btn-outline-success">文章已填寫好，請讓大家看看吧!</button>
 						</div>
+
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 
+
+
 	<script>
-	$(document).ready(function(){
-		$("#btn").click(function(){
-    		if($("#name").val()==""){
-    			document.getElementById("errorName").innerHTML = "作者名稱還沒填寫!";
-    			console.log("1")
-    		}else if($("#boardName").val()==""){
-    			document.getElementById("errorBoardName").innerHTML = "看板名稱還沒填寫!";	
-        	}else if($("#category").val()==""){
-    			document.getElementById("errorCategory").innerHTML = "文章分類還沒填寫!";	
-        	}else if($("#title").val()==""){
-    			document.getElementById("errorTitle").innerHTML = "文章標題還沒填寫!";	
-        	}else if($("#detail").val()==""){
-    			document.getElementById("errorDetail").innerHTML = "文章內容還沒填寫!";	
-        	}else{
-                document.form.submit();
-            }
-        })
-     })
+		function validate() {
+			if (document.getElementById("category1").value == ""
+					|| document.getElementById("title1").value == ""
+					|| document.getElementById("detail1").value == "") {
+				document.getElementById("errorCategory1").innerHTML = "\"*\"為必填欄位，需進行填寫!";
+				document.getElementById("errorTitle1").innerHTML = "\"*\"為必填欄位，需進行填寫!";
+				document.getElementById("errorDetail1").innerHTML = "\"*\"為必填欄位，需進行填寫!";
+				return false;
+			}
+			return true;
+		}
 	</script>
-	
+
 	<!-- jquery plugins here -->
 	<script src="<c:url value='/js/jquery-1.12.1.min.js'/>"></script>
 	<!-- popper js -->

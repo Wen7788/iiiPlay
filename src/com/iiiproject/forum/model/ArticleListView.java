@@ -17,7 +17,7 @@ public class ArticleListView implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "id")
-	private Integer id;
+	private String id;
 	
 	@Column(name = "name")
 	private String name;
@@ -26,8 +26,14 @@ public class ArticleListView implements Serializable{
 	@Column(name = "articleid")
 	private Integer articleId;
 	
+	@Column(name = "category")
+	private String category;
+	
 	@Column(name = "title")
 	private String title;
+	
+	@Column(name = "detail")
+	private String detail;
 	
 	@Column(name = "publishtime")
 	private Timestamp publishTime;
@@ -38,29 +44,69 @@ public class ArticleListView implements Serializable{
 	@Column(name = "boardname")
 	private String boardName;
 	
+	@Column(name = "status")
+	private Integer status;
+	
 	@Column(name = "replycount")
 	private Integer replyCount;
 
 	public ArticleListView() {
 	}
 
-	public ArticleListView(Integer id, String name, Integer articleId, String title, Timestamp publishTime,
-			Integer boardId, String boardName, Integer replyCount) {
+	public ArticleListView(String id, String name, Integer articleId, String category, String title, String detail, Timestamp publishTime,
+			Integer boardId, String boardName, Integer status, Integer replyCount) {
 		this.id = id;
 		this.name = name;
 		this.articleId = articleId;
+		this.category = category;
 		this.title = title;
+		this.detail = detail;
 		this.publishTime = publishTime;
 		this.boardId = boardId;
 		this.boardName = boardName;
+		this.status = status;
 		this.replyCount = replyCount;
 	}
 
-	public Integer getId() {
+	
+	
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+	public String getDetail() {
+		return detail;
+	}
+
+	public void setDetail(String detail) {
+		this.detail = detail;
+	}
+
+	public Integer getReplyCount() {
+		return replyCount;
+	}
+
+	public void setReplyCount(Integer replyCount) {
+		this.replyCount = replyCount;
+	}
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

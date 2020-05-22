@@ -19,16 +19,18 @@ public interface IArticleDAO {
 
 	List<ArticleListView> queryAllArticle();
 
-	List<ArticleListView> queryOwnArticle(Integer id);
+	List<ArticleListView> queryOwnArticle(String id);
 
 	List<ArticleListView> queryArticleOfBoard(Integer boardId);
 
-	int getAllArticleCounts();
+	Long getAllArticleCounts();
 
-	int getOwnArticleCounts(Integer id);
+	Long getOwnArticleCounts(String id);
 
-	int getArticleOfBoardCounts(Integer boardId);
+	Long getArticleOfBoardCounts(Integer boardId);
 
 	List<ArticleListView> queryArticleOfBoardStatus1(Integer boardId);
+
+	List<ArticleListView> queryLast5Article();
 
 }

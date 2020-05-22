@@ -3,13 +3,12 @@ package com.iiiproject.forum.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.sql.Blob;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.servlet.ServletContext;
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iiiproject.forum.model.Article;
+import com.iiiproject.forum.model.ArticleListView;
 import com.iiiproject.forum.model.Board;
 import com.iiiproject.forum.service.IArticleService;
 import com.iiiproject.forum.service.IBoardService;
@@ -44,14 +45,58 @@ public class BoardController {
 	@Autowired
 	IArticleService iAService;
 	
+	@GetMapping("/randomArticle/{boardId}")
+	public String getRandomArticle(@PathVariable("boardId") Integer boardId) {
+		Long allArticleCounts = iAService.getAllArticleCounts();
+		Integer randomId = Integer.valueOf((int)(Math.random()*allArticleCounts)+1000);
+		List<ArticleListView> aOfB = iAService.queryArticleOfBoard(boardId);
+		for (ArticleListView a : aOfB) {
+			if (a.getArticleId()!=randomId) {
+				randomId = Integer.valueOf((int)(Math.random()*allArticleCounts)+1000);
+			}
+			
+		}
+		return "其中一個看板內文章的內容";
+	}
+	
+	
 	@GetMapping("/showBoards")
 	public String showBoards(Model model) {
 		List<Board> boardSt1 = iBService.queryAllBoardStatus1();
 		model.addAttribute("boardSt1",boardSt1);
+		
+		Integer boardId;
+		for (Board b : boardSt1) {
+			boardId = b.getBoardId();
+			List<ArticleListView> aOfB = iAService.queryArticleOfBoard(boardId);
+			for (ArticleListView a : aOfB) {
+				if (a.getBoardId()==boardId) {
+					model.addAttribute("aBean",a);
+				}
+			}
+		}
+		
+		
+		
+		
 		return "forum/boardList";
 	}
 	
-	
+	@GetMapping("/showArticleCount")
+	public ResponseEntity<List<Long>> showArticleCount(){
+		List<Board> boardSt1 = iBService.queryAllBoardStatus1();
+		Integer boardId = 0;
+		Long aCounts = null;
+		List<Long> clist = new ArrayList<>();
+		for (Board b : boardSt1) {
+			boardId = b.getBoardId();
+			aCounts = iAService.getArticleOfBoardCounts(boardId);
+			System.out.println(boardId+","+aCounts);
+			clist.add(aCounts);
+		}
+		ResponseEntity<List<Long>> re = new ResponseEntity<>(clist, HttpStatus.OK);
+		return re;
+	}
 	
 	
 	
@@ -95,6 +140,10 @@ public class BoardController {
 
 		return "redirect:/forum/showAllBoard";
 	}
+	
+	
+	
+	
 	
 	@GetMapping("/board/{boardId}")
 	public String modifyForm(@PathVariable("boardId") Integer boardId, Model model) {

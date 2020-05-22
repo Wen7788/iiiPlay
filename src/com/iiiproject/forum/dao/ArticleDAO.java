@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import com.iiiproject.forum.model.Article;
 import com.iiiproject.forum.model.ArticleListView;
+import com.iiiproject.forum.service.IArticleService;
 
 @Repository("articleDao")
 public class ArticleDAO implements IArticleDAO {
@@ -91,7 +92,7 @@ public class ArticleDAO implements IArticleDAO {
 	
 	
 	@Override
-	public List<ArticleListView> queryOwnArticle(Integer id) {
+	public List<ArticleListView> queryOwnArticle(String id) {
 		Session session = sessionFactory.getCurrentSession();
 		Query<ArticleListView> query = session.createQuery("FROM ArticleListView WHERE id =?1 ORDER BY publishtime DESC", ArticleListView.class);
 		query.setParameter(1, id);
@@ -116,26 +117,36 @@ public class ArticleDAO implements IArticleDAO {
 	}
 	
 	@Override
-	public int getAllArticleCounts() {
+	public Long getAllArticleCounts() {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("SELECT COUNT(*) FROM ArticleListView");
-		return (int) query.uniqueResult();
+		return (Long) query.uniqueResult();
 	}
 	
 	@Override
-	public int getOwnArticleCounts(Integer id) {
+	public Long getOwnArticleCounts(String id) {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("SELECT COUNT(*) FROM ArticleListView WHERE id =?1");
 		query.setParameter(1, id);
-		return (int) query.uniqueResult();
+		return (Long) query.uniqueResult();
 	}
 	
 	@Override
-	public int getArticleOfBoardCounts(Integer boardId) {
+	public Long getArticleOfBoardCounts(Integer boardId) {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("SELECT COUNT(*) FROM ArticleListView WHERE boardid =?1");
 		query.setParameter(1, boardId);
-		return (int) query.uniqueResult();
+		return (Long) query.uniqueResult();
 	}
+	
+	@Override
+	public List<ArticleListView> queryLast5Article(){
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "select Top(5) * from ArticleListView order by publishtime desc";
+		Query<ArticleListView> query = session.createQuery(hql, ArticleListView.class);
+		return query.list();
+	}
+	
+	
 	
 }

@@ -62,7 +62,7 @@ public class ArticleService implements IArticleService {
 	
 	
 	@Override
-	public List<ArticleListView> queryOwnArticle(Integer id) {
+	public List<ArticleListView> queryOwnArticle(String id) {
 		List<ArticleListView> ownAs = articleDao.queryOwnArticle(id);
 		return ownAs;
 	}
@@ -74,20 +74,26 @@ public class ArticleService implements IArticleService {
 	}
 	
 	@Override
-	public int getAllArticleCounts() {
-		int allCounts = articleDao.getAllArticleCounts();
+	public Long getAllArticleCounts() {
+		Long allCounts = articleDao.getAllArticleCounts();
 		return allCounts;
 	}
 	
 	@Override
-	public int getOwnArticleCounts(Integer id) {
-		int ownCounts = articleDao.getOwnArticleCounts(id);
+	public Long getOwnArticleCounts(String id) {
+		Long ownCounts = articleDao.getOwnArticleCounts(id);
 		return ownCounts;
 	}
 	
 	@Override
-	public int getArticleOfBoardCounts(Integer boardId) {
-		int aOfBCounts = articleDao.getArticleOfBoardCounts(boardId);
+	public Long getArticleOfBoardCounts(Integer boardId) {
+		Long aOfBCounts = articleDao.getArticleOfBoardCounts(boardId);
 		return aOfBCounts;
+	}
+
+	@Override
+	public List<ArticleListView> queryLast5Article() {
+		List<ArticleListView> last5Article = articleDao.queryLast5Article();
+		return last5Article;
 	}
 }

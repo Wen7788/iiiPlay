@@ -1,0 +1,107 @@
+package com.iiiproject.lab02.controller;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.iiiproject.lab02.model.MemberBean;
+import com.iiiproject.lab02.service.IMemberService;
+
+@Controller
+public class MemberUpdateServlet {
+	private static final long serialVersionUID = 1L;
+	@Autowired
+	private IMemberService mService;
+
+	@RequestMapping(value="updateMember.do",method = RequestMethod.POST)
+	protected String doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+
+		System.out.println("hello");
+		HttpSession session1 = request.getSession();
+		Map<String, String> errorMsg = new HashMap<>();
+		session1.setAttribute("error", errorMsg);
+		String modify = request.getParameter("finalDecision");
+		String id = request.getParameter("id");
+		System.out.println("現在的帳號是"+id);
+
+		System.out.println("modify=" + modify);
+
+		int count = 0;
+		if (modify.equalsIgnoreCase("UPDATE")) {
+
+			String password = request.getParameter("password");
+			String name = request.getParameter("name");
+			String email = request.getParameter("email");
+			String gender = request.getParameter("gender");
+			String[] gamesArray = request.getParameterValues("games");
+			String games = String.join(",", gamesArray);
+			System.out.println(games);
+			String ageString = request.getParameter("age");
+			
+			Integer status = 1;
+
+			// 檢查輸入的資料
+			if (id == null || id.trim().length() == 0) {
+				errorMsg.put("id", "帳號不能空白");
+			}
+			if (password == null || password.trim().length() == 0) {
+				errorMsg.put("password", "密碼欄不能空白");
+			} else if (password.trim().length() < 6) {
+				errorMsg.put("password", "密碼至少要6個字元");
+			}
+			if (name == null || name.trim().length() == 0) {
+				errorMsg.put("name", "姓名欄不能空白");
+			}
+			if (email == null || email.trim().length() == 0) {
+				errorMsg.put("email", "請輸入電子信箱地址");
+			}
+			if (ageString == null || ageString.trim().length() == 0) {
+				errorMsg.put("age", "請輸入年齡");
+			}
+			// 如果輸入資料都正確,進行修改動作
+			if (!errorMsg.isEmpty()) {
+				return "member/MemberUpdate";
+			}
+			Integer age = Integer.valueOf(ageString);
+			MemberBean mb = new MemberBean(id, password, name, email, age, gender, games,status);
+			
+			count = mService.updateMember(mb);
+			session1.setAttribute("update", mb);
+			if (count == 1) {
+				session1.setAttribute("modify", "修改成功");
+				return "member/UpdatedSuccess";
+				
+			} else {
+				session1.setAttribute("modify", "修改時發生異常");
+				return "member/MemberUpdate";
+			}
+			
+		} else if (modify.equalsIgnoreCase("DELETE")) {
+			
+			System.out.println(id);
+			count = mService.deleteMember(id);
+			if (count == 1) {
+				session1.setAttribute("modify", "刪除成功");
+				return "login";
+				
+			} else {
+				session1.setAttribute("modify", "刪除時發生異常");
+				session1.removeAttribute("update");
+				return "member/MemberUpdate";
+			}
+		}
+		return "member/MemberUpdate";
+	}
+}

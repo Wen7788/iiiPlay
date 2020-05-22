@@ -1,5 +1,6 @@
 package com.iiiproject.forum.controller;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.iiiproject.forum.model.Article;
 import com.iiiproject.forum.model.ArticleListView;
+import com.iiiproject.forum.model.Board;
 import com.iiiproject.forum.service.IArticleService;
+import com.iiiproject.forum.service.IBoardService;
 
 @Controller
 @RequestMapping("/forum")
@@ -24,30 +25,54 @@ public class ArticleController {
 	@Autowired
 	IArticleService iAService;
 	
+	@Autowired
+	IBoardService iBService;
+	
+	
+	
 	@GetMapping("/showAofB/{boardId}")
 	public String showArticleOfBoard(Model model, @PathVariable Integer boardId) {
-		List<ArticleListView> list = iAService.queryArticleOfBoardStatus1(boardId);
+		List<ArticleListView> list = iAService.queryArticleOfBoard(boardId);
 		model.addAttribute("aOfB", list);
+		Board bBean = iBService.queryBoard(boardId);
+		model.addAttribute("bBean", bBean);
 		
 		return "forum/articleListForEach";
 	}
 	
 	@PostMapping("/article")
-	public String add(@RequestParam("name") String name, 
-			@RequestParam("boardId") Integer boardId,
-			@RequestParam("category") String category, 
-			@RequestParam("title") String title, 
-			@RequestParam("detail") String detail,
-			@RequestParam("status") Integer status) {
+	public String add(@RequestParam("name1") String name, 
+			@RequestParam("boardId1") Integer boardId,
+			@RequestParam("category1") String category, 
+			@RequestParam("title1") String title, 
+			@RequestParam("detail1") String detail,
+			@RequestParam("status1") Integer status) {
 		
+		System.out.println(name);
+		System.out.println(boardId);
+		System.out.println(title);
+		System.out.println(category);
+		System.out.println(detail);
+		System.out.println(status);
+		System.out.println(new Timestamp(System.currentTimeMillis()));
 		Article aBean = new Article();
+		
 		aBean.setName(name);
 		aBean.setCategory(category);
 		aBean.setTitle(title);
 		aBean.setDetail(detail);
 		aBean.setBoardId(boardId);
 		aBean.setStatus(status);
+		aBean.setPublishTime(new Timestamp(System.currentTimeMillis()));
+		iAService.insertArticle(aBean);
 		
-		return "redirect:/forum/showAofB/{boardId}";
+		return "redirect:/forum/showAofB/"+boardId;
+	}
+	
+	@PostMapping("/articleStatus")
+	public String hide(@RequestParam Integer articleId,
+					   @RequestParam Integer boardId) {
+		iAService.hideArticle(articleId);
+		return "redirect:/forum/showAofB/"+boardId;
 	}
 }

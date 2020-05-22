@@ -1,0 +1,101 @@
+package com.iiiproject.lab02.service;
+
+import org.apache.commons.text.RandomStringGenerator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.iiiproject.lab02.dao.MemberDao;
+import com.iiiproject.lab02.model.MemberBean;
+
+@Service (value = "memberService")
+@Transactional
+
+public class MemberService implements IMemberService {
+	@Autowired
+	private MemberDao mDao;
+	
+	public MemberService() {
+		
+	}
+
+
+	@Override
+	public boolean isDup(String id) {
+		
+		return mDao.isDup(id);
+	}
+
+	@Override
+	public int insert(MemberBean mb) {
+		
+		return mDao.insert(mb);
+		
+	}
+	public MemberBean checkIDPassword(String id, String password) {
+		
+		
+		// 透過變數dao，呼叫它的select()方法，要傳入參數 id。將傳回值放入變數
+        // UserBean ub 內。
+		System.out.println(id+password);
+		MemberBean mb = mDao.select(id);
+        // 如果ub不等於 null 而且參數 password等於ub內的password) {
+        if ( mb != null && password.equals(mb.getPassword())) {
+        	// 傳回 ub物件，同時結束本方法
+        	 return mb;
+        }
+		return null;  // 傳回null物件
+	}
+//
+	@Override
+	public int updateMember(MemberBean mb) {
+		
+		return mDao.updateMember(mb);
+		
+	}
+
+
+//	@Override
+//	public List<MemberBean> getAllMembers() {
+//		//MemberHibernateDAO dao  = new MemberHibernateDAO();
+//		MemberDao dao = new MemberJdbcDao();
+//		return dao.getAllMembers();
+//	}
+//
+//	@Override
+//	public MemberBean getMember(int pk) {
+//		//MemberHibernateDAO dao  = new MemberHibernateDAO();
+//		MemberDao dao = new MemberJdbcDao();
+//		return dao.getMember(pk);
+//	}
+//
+	@Override
+	public int deleteMember(String id) {
+		//MemberHibernateDAO dao  = new MemberHibernateDAO();
+		return mDao.deleteMember(id);
+	}
+	
+	public String resetCustomerPassword(String email) {
+	    MemberBean mb = mDao.findByEmail(email);
+	     
+	    char[][] pairs = {{'a','z'},{'A','Z'},{'0','9'}};
+	    int length = 10;
+	    RandomStringGenerator generator = new RandomStringGenerator.Builder().withinRange(pairs).build();
+	    String randomPassword = generator.generate(length);
+	    System.out.println(randomPassword);
+	     
+	    mb.setPassword(randomPassword);
+	    mDao.updateMember(mb);
+	     
+	    return randomPassword;
+	}
+	
+////
+//	@Override
+//	public int updateMember(MemberBean mb) {
+//		//MemberHibernateDAO dao  = new MemberHibernateDAO();
+//		MemberDao dao = new MemberJdbcDao();
+//		return dao.updateMember(mb);
+//	}
+
+}

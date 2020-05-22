@@ -21,8 +21,9 @@
 						<c:forEach items='${boardSt1}' var='board' varStatus='vs'>
 							<article class="blog_item">
 								<div class="blog_item_img">
-									<a href="showAofB/${board.boardId}"> <img class="card-img rounded-0"
-										src="loadImg/${board.boardId}" alt="">
+									<a href="<c:url value='/forum/showAofB/${board.boardId}'/>">
+									<img class="card-img rounded-0"
+										src="<c:url value='/forum/loadImg/${board.boardId}'/>" alt="">
 									</a>
 								</div>
 
@@ -31,14 +32,20 @@
 
 
 								<div class="blog_details">
-									<a class="d-inline-block" href="single-blog.html">
+									<a class="d-inline-block" href="<c:url value='/forum/showAofB/${board.boardId}'/>">
 										<h2>${board.boardName}</h2>
 									</a>
-									<p>用來顯示看板內文章</p>
+<%-- 									<c:if test="${aBean.boardId == board.boardId}"> --%>
+										<a
+											href="<c:url value='/forum/randomArticle/${board.boardId}'/>">
+											<p>【${aBean.category}】${aBean.title}</p>
+										</a>
+<%-- 									</c:if> --%>
 									<ul class="blog-info-link">
-										<li><i class="far fa-user"></i> 瀏覽數</li>
-										<li><i class="far fa-comments"></i> 文章數</li>
+										<li><i class="fa fa-eye">瀏覽數:</i> </li>
+										<li><i class="fa fa-newspaper">文章數:</i></li>
 									</ul>
+									
 								</div>
 							</article>
 						</c:forEach>
@@ -92,7 +99,27 @@
 		</div>
 
 	</section>
-
+<script type="text/javascript">
+	window.onload = function(){
+		var xhr = new XMLHttpRequest();
+		
+		xhr.open("GET", "<c:url value='/forum/showArticleCount'/>", true);
+		xhr.send();
+		xhr.onreadystatechange = function(){
+			
+			if(xhr.readyState == 4 && xhr.status == 200){
+				var listData = JSON.parse(xhr.responseText);
+				
+				for(var i=0; i<listData.length; i++){
+					var count = listData[i];
+					console.log(count);
+					var c = document.getElementsByClassName("fa-newspaper");
+					c[i].innerHTML += ""+count;
+				}
+			}
+		}
+	}
+</script>
 
 
 </body>

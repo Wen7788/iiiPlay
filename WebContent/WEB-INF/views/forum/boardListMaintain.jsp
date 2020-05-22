@@ -58,7 +58,7 @@
 							<c:otherwise>看板維護</c:otherwise>
 						</c:choose></td>
 					<td><a
-						href="${pageContext.request.contextPath}/forum/board/${board.boardId}">
+						href="<c:url value='/forum/board/${board.boardId}'/>">
 							<button type="button" class="btn btn-light">修改</button>
 					</a></td>
 					<td>
@@ -77,7 +77,7 @@
 					</td>
 
 					<td><a class='deletelink'
-						href="${pageContext.request.contextPath}/forum/boardDelete/${board.boardId}">
+						href="<c:url value='/forum/boardDelete/${board.boardId}'/>">
 							<button type="button" class="btn btn-light" onclick="onWarning()">徹底刪除</button>
 					</a></td>
 				</tr>
