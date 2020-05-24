@@ -106,79 +106,93 @@
 						<font size="5">發佈文章</font>
 					</button>
 				</h1>
+
 				<div class="section-top-border">
 					<c:forEach items="${aOfB}" var="article" varStatus="vs">
-<%-- 						<c:if test="${article.status==1|| (MemberBean.status==2 && (article.status==0 || article.status==1)) } "> --%>
-							<div class="col-lg-12">
-								<blockquote class="generic-blockquote">
-									<h1>
-										<a href="#">【${article.category}】${article.title}</a>
-									</h1>
-									<div class="row">
-										<div class="col-md-3">
-											<a href="#"><img
-												src="<c:url value='/img/${article.category}.png'/>" class="img-fluid"></a>
-										</div>
-										<div class="col-md-9 mt-sm-20">
 
-											<c:choose>
-												<c:when test="${fn:length(article.detail)>20}">
-													<p>
-														<font size='5'>${fn:substring(article.detail, 0, 20)}<br>...(<a
-															href="#">繼續閱讀</a>)
-														</font>
-													</p>
-												</c:when>
-												<c:otherwise>
-													<p>
-														<font size='5'>${article.detail}<br>(<a
-															href="#">繼續閱讀</a>)
-														</font>
-													</p>
-												</c:otherwise>
-											</c:choose>
-											<br> <br> <br>
-											<ul class="blog-info-link">
-												<li><font size='3'><i class="fa fa-user">作者:</i>
-														${article.name}</font></li>
-												<li><font size='3'><i class="fa fa-comments">留言:</i>
-														${article.replyCount}</font></li>
-												<li><font size='3'><i class="fas fa-pencil-alt">發文時間:</i>
-														${fn:substring(article.publishTime, 0, 19)}</font></li>
-											</ul>
-
-											<c:if test='${MemberBean.status == 2}'>
-												<div class="text-right">
-													<form method="post"
-														action="<c:url value='/forum/articleStatus'/>">
-														<c:choose>
-															<c:when test="${article.status==1}">
-																<input type="hidden" value="${article.articleId}"
-																	name="articleId">
-																<input type="hidden" value="${bBean.boardId}"
-																	name="boardId">
-																<button type="submit" class="genric-btn danger radius">
-																	<font size='3'>隱藏</font>
-																</button>
-															</c:when>
-															<c:otherwise>
-																<input type="hidden" value="${article.articleId}"
-																	name="articleId">
-																<input type="hidden" value="${bBean.boardId}"
-																	name="boardId">
-																<button type="submit" class="genric-btn info radius">
-																	<font size='3'>恢復</font>
-																</button>
-															</c:otherwise>
-														</c:choose>
-													</form>
-												</div>
-											</c:if>
-										</div>
+						<%-- 						<c:if test="${MemberBean.status!=2 && article.status==1 || MemberBean.status==2} "> --%>
+						<div class="col-lg-12">
+							<blockquote class="generic-blockquote">
+								<h1>
+									<a
+										href="<c:url value='/forum/articleAndReply/${article.articleId}'/>">【${article.category}】${article.title}</a>
+								</h1>
+								<div class="row">
+									<div class="col-md-3">
+										<a
+											href="<c:url value='/forum/articleAndReply/${article.articleId}'/>"><img
+											src="<c:url value='/img/${article.category}.png'/>"
+											class="img-fluid"></a>
 									</div>
-								</blockquote>
-							</div>
-<%-- 						</c:if> --%>
+									<div class="col-md-9 mt-sm-20">
+
+										<c:choose>
+											<c:when test="${fn:length(article.detail)>20}">
+												<p>
+													<font size='5'>${fn:substring(article.detail, 0, 20)}<br>...(<a
+														href="<c:url value='/forum/articleAndReply/${article.articleId}'/>">繼續閱讀</a>)
+													</font>
+												</p>
+											</c:when>
+											<c:otherwise>
+												<p>
+													<font size='5'>${article.detail}<br>(<a
+														href="<c:url value='/forum/articleAndReply/${article.articleId}'/>">繼續閱讀</a>)
+													</font>
+												</p>
+											</c:otherwise>
+										</c:choose>
+										<br> <br> <br>
+										<ul class="blog-info-link">
+											<li><font size='3'><i class="fa fa-user">作者:</i>
+													${article.name}</font></li>
+											<li><font size='3'><i class="fa fa-comments">留言:</i>
+													${article.replyCount}</font></li>
+											<li><font size='3'><i class="fas fa-pencil-alt">發文時間:</i>
+													${fn:substring(article.publishTime, 0, 19)}</font></li>
+										</ul>
+
+										<c:if
+											test='${MemberBean.status == 2 || MemberBean.id == article.id}'>
+											<div class="text-right">
+<%-- 												<form method="post" action="<c:url value='#'/>"> --%>
+<%-- 													<input type="hidden" value="${article.articleId}" --%>
+<!-- 														name="articleId"> <input type="hidden" -->
+<%-- 														value="${bBean.boardId}" name="boardId"> --%>
+<!-- 													<button type="submit" class="genric-btn info radius"> -->
+<!-- 														<font size='3'>編輯</font> -->
+<!-- 													</button> -->
+<!-- 												</form> -->
+												<form method="post"
+													action="<c:url value='/forum/articleStatus'/>">
+													<c:choose>
+														<c:when test="${article.status==1}">
+															<input type="hidden" value="${article.articleId}"
+																name="articleId">
+															<input type="hidden" value="${bBean.boardId}"
+																name="boardId">
+															<button type="submit" class="genric-btn danger radius">
+																<font size='3'>隱藏</font>
+															</button>
+														</c:when>
+														<c:otherwise>
+															<input type="hidden" value="${article.articleId}"
+																name="articleId">
+															<input type="hidden" value="${bBean.boardId}"
+																name="boardId">
+															<button type="submit" class="genric-btn info radius">
+																<font size='3'>恢復</font>
+															</button>
+														</c:otherwise>
+													</c:choose>
+												</form>
+											</div>
+										</c:if>
+									</div>
+								</div>
+							</blockquote>
+						</div>
+						<%-- 						</c:if> --%>
 					</c:forEach>
 				</div>
 			</section>
@@ -267,7 +281,11 @@
 			</div>
 		</div>
 	</div>
-
+	
+	<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+	<script type="text/javascript">
+		CKEDITOR.replace('detail1');
+	</script>
 
 
 	<script>
@@ -308,5 +326,6 @@
 	<script src="<c:url value='/js/jquery.form.js'/>"></script>
 	<script src="<c:url value='/js/jquery.validate.min.js'/>"></script>
 	<script src="<c:url value='/js/mail-script.js'/>"></script>
+	
 </body>
 </html>

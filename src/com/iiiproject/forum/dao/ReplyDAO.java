@@ -13,21 +13,23 @@ import com.iiiproject.forum.model.Reply;
 import com.iiiproject.forum.model.ReplyListView;
 
 @Repository("replyDao")
-public class ReplyDAO {
+public class ReplyDAO implements IReplyDAO{
 	
 	@Autowired @Qualifier("sessionFactory")
 	private SessionFactory sessionFactory;
 	
+	@Override
 	public Reply insertReply(Reply rBean) {
 		Session session = sessionFactory.getCurrentSession();
-		Reply resultBean = session.get(Reply.class, rBean.getReplyId());
-	
-		if (resultBean == null) {
+//		Reply resultBean = session.get(Reply.class, rBean.getReplyId());
+
+//		if (resultBean == null) {
 			session.save(rBean);
-		}
+//		}
 		return rBean;
 	}
 	
+	@Override
 	public Boolean deleteReply(Integer replyId) {
 		Session session = sessionFactory.getCurrentSession();
 		Reply resultBean = session.get(Reply.class, replyId);
@@ -39,6 +41,7 @@ public class ReplyDAO {
 		return false;
 	}
 	
+	@Override
 	public Reply updateReply(Reply rBean) {
 		Session session = sessionFactory.getCurrentSession();
 		Reply resultBean = session.get(Reply.class, rBean.getReplyId());
@@ -52,11 +55,13 @@ public class ReplyDAO {
 		return resultBean;
 	}
 	
+	@Override
 	public Reply queryReply(Integer replyId) {
 		Session session = sessionFactory.getCurrentSession();
 		return session.get(Reply.class, replyId);
 	}
 	
+	@Override
 	public List<ReplyListView> getReplyOfArticle(Integer articleId) {
 		Session session = sessionFactory.getCurrentSession();
 		Query<ReplyListView> query = session.createQuery("FROM ReplyListView WHERE articleid =?1 ORDER BY replytime DESC", ReplyListView.class);
@@ -65,10 +70,11 @@ public class ReplyDAO {
 		
 	}
 	
-	public int getReplyOfArticleCounts(Integer articleId) {
+	@Override
+	public Long getReplyOfArticleCounts(Integer articleId) {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("SELECT COUNT(*) FROM ReplyListView WHERE articleid =?1");
 		query.setParameter(1, articleId);
-		return (int) query.uniqueResult();
+		return (Long) query.uniqueResult();
 	}
 }

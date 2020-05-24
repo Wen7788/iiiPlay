@@ -5,44 +5,52 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.iiiproject.forum.dao.ReplyDAO;
+import com.iiiproject.forum.dao.IReplyDAO;
 import com.iiiproject.forum.model.Reply;
 import com.iiiproject.forum.model.ReplyListView;
 
 @Service("replyService")
-public class ReplyService {
+@Transactional
+public class ReplyService implements IReplyService {
 	
 	@Autowired @Qualifier("replyDao")
-	private ReplyDAO replyDao;
+	private IReplyDAO replyDao;
 	
+	@Override
 	public Reply insertReply(Reply rBean) {
 		Reply insertBean = replyDao.insertReply(rBean);
 		return insertBean;
 	}
 	
+	@Override
 	public Boolean deleteReply(Integer replyId) {
 		Boolean deleteBean = replyDao.deleteReply(replyId);
 		return deleteBean;
 	}
 	
+	@Override
 	public Reply updateReply(Reply rBean) {
 		Reply updateBean = replyDao.updateReply(rBean);
 		return updateBean;
 	}
 	
+	@Override
 	public Reply queryReply(Integer replyId) {
 		Reply queryBean = replyDao.queryReply(replyId);
 		return queryBean;
 	}
 	
+	@Override
 	public List<ReplyListView> getReplyOfArticle(Integer articleId) {
 		List<ReplyListView> rlist = replyDao.getReplyOfArticle(articleId);
 		return rlist;
 	}
 	
-	public int getReplyOfArticleCounts(Integer articleId) {
-		int rCount = replyDao.getReplyOfArticleCounts(articleId);
+	@Override
+	public Long getReplyOfArticleCounts(Integer articleId) {
+		Long rCount = replyDao.getReplyOfArticleCounts(articleId);
 		return rCount;
 	}
 }

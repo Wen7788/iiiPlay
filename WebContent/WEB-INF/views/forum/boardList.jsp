@@ -35,12 +35,11 @@
 									<a class="d-inline-block" href="<c:url value='/forum/showAofB/${board.boardId}'/>">
 										<h2>${board.boardName}</h2>
 									</a>
-<%-- 									<c:if test="${aBean.boardId == board.boardId}"> --%>
-										<a
-											href="<c:url value='/forum/randomArticle/${board.boardId}'/>">
-											<p>【${aBean.category}】${aBean.title}</p>
+<%-- 										<div class='passId' style="display: none;">${board.boardId}</div> --%>
+										<a href="<c:url value='#'/>">
+											<p class='random'>隨機文章</p>
 										</a>
-<%-- 									</c:if> --%>
+								
 									<ul class="blog-info-link">
 										<li><i class="fa fa-eye">瀏覽數:</i> </li>
 										<li><i class="fa fa-newspaper">文章數:</i></li>
@@ -102,11 +101,9 @@
 <script type="text/javascript">
 	window.onload = function(){
 		var xhr = new XMLHttpRequest();
-		
 		xhr.open("GET", "<c:url value='/forum/showArticleCount'/>", true);
 		xhr.send();
 		xhr.onreadystatechange = function(){
-			
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var listData = JSON.parse(xhr.responseText);
 				
@@ -118,6 +115,23 @@
 				}
 			}
 		}
+		
+// 		var xhr2 = new XMLHttpRequest();
+// 		xhr2.open("GET", "<c:url value='/forum/randomArticle'/>", true);
+// 		xhr2.send();
+// 		xhr2.onreadystatechange = function(){
+// 			if(xhr.readyState == 4 && xhr.status == 200){
+// 				var randomAlistData = JSON.parse(xhr2.responseText);
+// 				var random = document.getElementsByClassName("random");
+// 				random.innerHTML += "【";
+				
+// 				for(var j=0; j<randomAlistData.length; j++){
+// 					var aBean = randomAlistData[j];
+// 					var random = document.getElementsByClassName("random");
+// 					random.innerHTML += aBean[j].category + "】" + aBean[j].title;
+// 				}
+// 			}
+// 		}
 	}
 </script>
 

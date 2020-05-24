@@ -38,52 +38,46 @@ public class BoardController {
 
 	@Autowired
 	IBoardService iBService;
-	
+
 	@Autowired
 	ServletContext context;
 
 	@Autowired
 	IArticleService iAService;
-	
-	@GetMapping("/randomArticle/{boardId}")
-	public String getRandomArticle(@PathVariable("boardId") Integer boardId) {
-		Long allArticleCounts = iAService.getAllArticleCounts();
-		Integer randomId = Integer.valueOf((int)(Math.random()*allArticleCounts)+1000);
-		List<ArticleListView> aOfB = iAService.queryArticleOfBoard(boardId);
-		for (ArticleListView a : aOfB) {
-			if (a.getArticleId()!=randomId) {
-				randomId = Integer.valueOf((int)(Math.random()*allArticleCounts)+1000);
-			}
-			
-		}
-		return "其中一個看板內文章的內容";
-	}
-	
-	
-	@GetMapping("/showBoards")
-	public String showBoards(Model model) {
-		List<Board> boardSt1 = iBService.queryAllBoardStatus1();
-		model.addAttribute("boardSt1",boardSt1);
-		
-		Integer boardId;
-		for (Board b : boardSt1) {
-			boardId = b.getBoardId();
-			List<ArticleListView> aOfB = iAService.queryArticleOfBoard(boardId);
-			for (ArticleListView a : aOfB) {
-				if (a.getBoardId()==boardId) {
-					model.addAttribute("aBean",a);
-				}
-			}
-		}
-		
-		
-		
-		
-		return "forum/boardList";
-	}
-	
+
+//	@GetMapping("/randomArticle")
+//	public ResponseEntity<List<Article>> getRandomArticle() {
+//		Long allArticleCounts = iAService.getAllArticleCounts();
+//		System.out.println(allArticleCounts);
+//		Integer randomId = Integer.valueOf((int) (Math.random() * allArticleCounts + 1000));
+//		System.out.println("初取亂數:"+randomId);
+//		List<Board> boardSt1 = iBService.queryAllBoardStatus1();
+//		
+//		List<Article> alist = new ArrayList<>();
+//		Article aBean = null;
+//		for (Board b : boardSt1) {
+//			List<ArticleListView> aOfB = iAService.queryArticleOfBoard(b.getBoardId());
+//			for (ArticleListView a : aOfB) {
+//				while (randomId!= a.getArticleId()) {
+//					randomId = Integer.valueOf((int) (Math.random() * allArticleCounts + 1000));
+//					System.out.println("清單文章ID:"+a.getArticleId());
+//					System.out.println("亂數文章ID:"+randomId);
+//				}
+//				if (randomId == a.getArticleId()) {
+//					aBean = iAService.queryArticle(randomId);
+//					alist.add(aBean);
+//				}
+//			}
+//			randomId = Integer.valueOf((int) (Math.random() * allArticleCounts + 1000));
+//
+//		}
+//		
+//		ResponseEntity<List<Article>> re = new ResponseEntity<>(alist, HttpStatus.OK);
+//		return re;
+//	}
+
 	@GetMapping("/showArticleCount")
-	public ResponseEntity<List<Long>> showArticleCount(){
+	public ResponseEntity<List<Long>> showArticleCount() {
 		List<Board> boardSt1 = iBService.queryAllBoardStatus1();
 		Integer boardId = 0;
 		Long aCounts = null;
@@ -91,15 +85,21 @@ public class BoardController {
 		for (Board b : boardSt1) {
 			boardId = b.getBoardId();
 			aCounts = iAService.getArticleOfBoardCounts(boardId);
-			System.out.println(boardId+","+aCounts);
+//			System.out.println(boardId + "," + aCounts);
 			clist.add(aCounts);
 		}
 		ResponseEntity<List<Long>> re = new ResponseEntity<>(clist, HttpStatus.OK);
 		return re;
 	}
 	
-	
-	
+	@GetMapping("/showBoards")
+	public String showBoards(Model model) {
+		List<Board> boardSt1 = iBService.queryAllBoardStatus1();
+		model.addAttribute("boardSt1", boardSt1);
+
+		return "forum/boardList";
+	}
+
 	@GetMapping("/showAllBoard")
 	public String showBoardList(Model model) {
 		List<Board> boards = iBService.queryAllBoard();
@@ -109,17 +109,14 @@ public class BoardController {
 
 	@PostMapping("/board")
 	public String add(@RequestParam("boardName") String boardName,
-			@RequestParam("boardImg") MultipartFile multipartFile, 
-			@RequestParam("status") Integer status) {
-		
-		
+			@RequestParam("boardImg") MultipartFile multipartFile, @RequestParam("status") Integer status) {
+
 		Board bBean = new Board();
 //		System.out.println(boardName);
 		bBean.setBoardName(boardName);
 //		System.out.println(status);
 		bBean.setStatus(status);
-		
-		
+
 		String imgName = multipartFile.getOriginalFilename();
 //		System.out.println("imgName:"+imgName);
 		if (imgName.length() > 0 && imgName.lastIndexOf(".") > -1) {
@@ -140,32 +137,25 @@ public class BoardController {
 
 		return "redirect:/forum/showAllBoard";
 	}
-	
-	
-	
-	
-	
+
 	@GetMapping("/board/{boardId}")
 	public String modifyForm(@PathVariable("boardId") Integer boardId, Model model) {
 		Board bBean = iBService.queryBoard(boardId);
 		model.addAttribute("bBean", bBean);
 		return "forum/updateBoard";
 	}
-	
-	
-	
+
 	@PostMapping("/board/{boardId}")
 	public String modify(@RequestParam("boardName") String boardName,
-			@RequestParam("boardImg") MultipartFile multipartFile, 
-			@PathVariable Integer boardId) {
+			@RequestParam("boardImg") MultipartFile multipartFile, @PathVariable Integer boardId) {
 		Board bBean = new Board();
-		System.out.println(boardId);
+//		System.out.println(boardId);
 		bBean.setBoardId(boardId);
-		System.out.println(boardName);
+//		System.out.println(boardName);
 		bBean.setBoardName(boardName);
 		String imgName = multipartFile.getOriginalFilename();
-		System.out.println(imgName);
-		
+//		System.out.println(imgName);
+
 		if (imgName.length() > 0 && imgName.lastIndexOf(".") > -1) {
 			bBean.setImgName(imgName);
 		}
@@ -183,19 +173,19 @@ public class BoardController {
 		iBService.updateBoard(bBean);
 		return "redirect:/forum/showAllBoard";
 	}
-	
+
 	@PostMapping("/boardStatus")
 	public String hide(@RequestParam Integer boardId) {
 		iBService.hideBoard(boardId);
 		return "redirect:/forum/showAllBoard";
 	}
-	
+
 	@GetMapping("/boardDelete/{boardId}")
 	public String delete(@PathVariable("boardId") Integer boardId) {
 		iBService.deleteBoard(boardId);
 		return "redirect:/forum/showAllBoard";
 	}
-	
+
 	@GetMapping("/loadImg/{boardId}")
 	public ResponseEntity<byte[]> loadImg(@PathVariable Integer boardId) {
 		byte[] body = null;
@@ -203,7 +193,7 @@ public class BoardController {
 		MediaType mediaType = null;
 		HttpHeaders headers = new HttpHeaders();
 		headers.setCacheControl(CacheControl.noCache().getHeaderValue());
-		
+
 		Board board = iBService.queryBoard(boardId);
 		if (board == null) {
 			return new ResponseEntity<byte[]>(HttpStatus.NOT_FOUND);
@@ -217,16 +207,16 @@ public class BoardController {
 				headers.setContentType(mediaType);
 			}
 		}
-		
+
 		Blob blob = board.getBoardImg();
 		if (blob != null) {
 			body = blobToByteArray(blob);
 		}
 		re = new ResponseEntity<byte[]>(body, headers, HttpStatus.OK);
 		return re;
-	
+
 	}
-	
+
 	public byte[] blobToByteArray(Blob blob) {
 		byte[] result = null;
 		try (InputStream is = blob.getBinaryStream(); ByteArrayOutputStream baos = new ByteArrayOutputStream();) {
@@ -241,6 +231,5 @@ public class BoardController {
 		}
 		return result;
 	}
-	
-	
+
 }

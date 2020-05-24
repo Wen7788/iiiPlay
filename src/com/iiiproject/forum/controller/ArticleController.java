@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.iiiproject.forum.model.Article;
 import com.iiiproject.forum.model.ArticleListView;
 import com.iiiproject.forum.model.Board;
+import com.iiiproject.forum.model.ReplyListView;
 import com.iiiproject.forum.service.IArticleService;
 import com.iiiproject.forum.service.IBoardService;
+import com.iiiproject.forum.service.IReplyService;
 
 @Controller
 @RequestMapping("/forum")
@@ -28,7 +30,17 @@ public class ArticleController {
 	@Autowired
 	IBoardService iBService;
 	
+	@Autowired
+	IReplyService iRService;
 	
+	@GetMapping("/articleAndReply/{articleId}")
+	public String articleAndReply(@PathVariable("articleId") Integer articleId, Model model) {
+		Article aBean = iAService.queryArticle(articleId);
+		model.addAttribute("aBean", aBean);
+		List<ReplyListView> list = iRService.getReplyOfArticle(articleId);
+		model.addAttribute("rOfA", list);
+		return "forum/articleAndReply";
+	}
 	
 	@GetMapping("/showAofB/{boardId}")
 	public String showArticleOfBoard(Model model, @PathVariable Integer boardId) {
@@ -48,13 +60,13 @@ public class ArticleController {
 			@RequestParam("detail1") String detail,
 			@RequestParam("status1") Integer status) {
 		
-		System.out.println(name);
-		System.out.println(boardId);
-		System.out.println(title);
-		System.out.println(category);
-		System.out.println(detail);
-		System.out.println(status);
-		System.out.println(new Timestamp(System.currentTimeMillis()));
+//		System.out.println(name);
+//		System.out.println(boardId);
+//		System.out.println(title);
+//		System.out.println(category);
+//		System.out.println(detail);
+//		System.out.println(status);
+//		System.out.println(new Timestamp(System.currentTimeMillis()));
 		Article aBean = new Article();
 		
 		aBean.setName(name);
