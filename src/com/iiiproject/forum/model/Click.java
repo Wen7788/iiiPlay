@@ -1,6 +1,7 @@
 package com.iiiproject.forum.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -35,10 +36,10 @@ public class Click implements Serializable{
 	private Timestamp updateTime;
 	
 	@Column(name = "recorddate")
-	private Timestamp recordDate;
+	private Date recordDate;
 
 	public Click(Integer clickId, Integer articleId, Integer count, Timestamp createTime, Timestamp updateTime,
-			Timestamp recordDate) {
+			Date recordDate) {
 		this.clickId = clickId;
 		this.articleId = articleId;
 		this.count = count;
@@ -90,11 +91,11 @@ public class Click implements Serializable{
 		this.updateTime = updateTime;
 	}
 
-	public Timestamp getRecordDate() {
+	public Date getRecordDate() {
 		return recordDate;
 	}
 
-	public void setRecordDate(Timestamp recordDate) {
+	public void setRecordDate(Date recordDate) {
 		this.recordDate = recordDate;
 	}
 	

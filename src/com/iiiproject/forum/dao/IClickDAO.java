@@ -1,5 +1,7 @@
 package com.iiiproject.forum.dao;
 
+import java.sql.Date;
+
 import com.iiiproject.forum.model.Click;
 
 public interface IClickDAO {
@@ -8,6 +10,6 @@ public interface IClickDAO {
 
 	Click updateClick(Click cBean);
 
-	Click getClickBean(Integer clickId);
+	Click checkClickForUpdate(Integer articleId, Date recordDate);
 
 }

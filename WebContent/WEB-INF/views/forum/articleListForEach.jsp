@@ -146,6 +146,8 @@
 										<ul class="blog-info-link">
 											<li><font size='3'><i class="fa fa-user">作者:</i>
 													${article.name}</font></li>
+											<li><font size='3'><i class="fa fa-eye">文章瀏覽數:</i>
+													${article.clickSum}</font></li>
 											<li><font size='3'><i class="fa fa-comments">留言:</i>
 													${article.replyCount}</font></li>
 											<li><font size='3'><i class="fas fa-pencil-alt">發文時間:</i>
@@ -155,14 +157,14 @@
 										<c:if
 											test='${MemberBean.status == 2 || MemberBean.id == article.id}'>
 											<div class="text-right">
-<%-- 												<form method="post" action="<c:url value='#'/>"> --%>
-<%-- 													<input type="hidden" value="${article.articleId}" --%>
-<!-- 														name="articleId"> <input type="hidden" -->
-<%-- 														value="${bBean.boardId}" name="boardId"> --%>
-<!-- 													<button type="submit" class="genric-btn info radius"> -->
-<!-- 														<font size='3'>編輯</font> -->
-<!-- 													</button> -->
-<!-- 												</form> -->
+												<%-- 												<form method="post" action="<c:url value='#'/>"> --%>
+												<%-- 													<input type="hidden" value="${article.articleId}" --%>
+												<!-- 														name="articleId"> <input type="hidden" -->
+												<%-- 														value="${bBean.boardId}" name="boardId"> --%>
+												<!-- 													<button type="submit" class="genric-btn info radius"> -->
+												<!-- 														<font size='3'>編輯</font> -->
+												<!-- 													</button> -->
+												<!-- 												</form> -->
 												<form method="post"
 													action="<c:url value='/forum/articleStatus'/>">
 													<c:choose>
@@ -281,13 +283,25 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 	<script type="text/javascript">
 		CKEDITOR.replace('detail1');
 	</script>
-
-
+	
+	<script>
+// 		window.onload = function(){
+// 			var xhr = new XMLHttpRequest();
+// 			xhr.open("GET", " <c:url value='/forum/clickCount'/> ", true)
+// 			xhr.sent();
+// 			xhr.onreadystatechange = function(){
+// 				if(xhr.readyState == 4 && xhr.status == 200){
+// 					var clickCount = JSON.parse(xhr.responseText);
+// 				}
+// 			}
+		
+	</script>
+	
 	<script>
 		function validate() {
 			if (document.getElementById("category1").value == ""
@@ -326,6 +340,6 @@
 	<script src="<c:url value='/js/jquery.form.js'/>"></script>
 	<script src="<c:url value='/js/jquery.validate.min.js'/>"></script>
 	<script src="<c:url value='/js/mail-script.js'/>"></script>
-	
+
 </body>
 </html>

@@ -49,12 +49,15 @@ public class ArticleListView implements Serializable{
 	
 	@Column(name = "replycount")
 	private Integer replyCount;
+	
+	@Column(name = "clicksum")
+	private Integer clickSum;
 
 	public ArticleListView() {
 	}
 
 	public ArticleListView(String id, String name, Integer articleId, String category, String title, String detail, Timestamp publishTime,
-			Integer boardId, String boardName, Integer status, Integer replyCount) {
+			Integer boardId, String boardName, Integer status, Integer replyCount, Integer clickSum) {
 		this.id = id;
 		this.name = name;
 		this.articleId = articleId;
@@ -66,10 +69,19 @@ public class ArticleListView implements Serializable{
 		this.boardName = boardName;
 		this.status = status;
 		this.replyCount = replyCount;
+		this.clickSum = clickSum;
 	}
 
 	
 	
+	public Integer getClickSum() {
+		return clickSum;
+	}
+
+	public void setClickSum(Integer clickSum) {
+		this.clickSum = clickSum;
+	}
+
 	public Integer getStatus() {
 		return status;
 	}
