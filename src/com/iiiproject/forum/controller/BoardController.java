@@ -4,7 +4,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.sql.Blob;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -31,6 +33,7 @@ import com.iiiproject.forum.model.ArticleListView;
 import com.iiiproject.forum.model.Board;
 import com.iiiproject.forum.service.IArticleService;
 import com.iiiproject.forum.service.IBoardService;
+import com.iiiproject.forum.service.IClickService;
 
 @Controller
 @RequestMapping("/forum")
@@ -44,6 +47,8 @@ public class BoardController {
 
 	@Autowired
 	IArticleService iAService;
+	
+	
 
 //	@GetMapping("/randomArticle")
 //	public ResponseEntity<List<Article>> getRandomArticle() {
@@ -76,19 +81,28 @@ public class BoardController {
 //		return re;
 //	}
 
+	
+	
 	@GetMapping("/showArticleCount")
-	public ResponseEntity<List<Long>> showArticleCount() {
+	public ResponseEntity<Map<String,List<?>>> showArticleCount() {
 		List<Board> boardSt1 = iBService.queryAllBoardStatus1();
 		Integer boardId = 0;
 		Long aCounts = null;
+		Integer cCounts = 0;
 		List<Long> clist = new ArrayList<>();
+		List<Integer> clist2 = new ArrayList<>();
+		Map<String, List<?>> map = new HashMap<>();
 		for (Board b : boardSt1) {
 			boardId = b.getBoardId();
 			aCounts = iAService.getArticleOfBoardCounts(boardId);
-//			System.out.println(boardId + "," + aCounts);
+			cCounts = iBService.getBoardClick(boardId);
 			clist.add(aCounts);
+			clist2.add(cCounts);
 		}
-		ResponseEntity<List<Long>> re = new ResponseEntity<>(clist, HttpStatus.OK);
+		map.put("clist", clist);
+		map.put("clist2", clist2);
+		
+		ResponseEntity<Map<String,List<?>>> re = new ResponseEntity<>(map, HttpStatus.OK);
 		return re;
 	}
 	
@@ -96,6 +110,9 @@ public class BoardController {
 	public String showBoards(Model model) {
 		List<Board> boardSt1 = iBService.queryAllBoardStatus1();
 		model.addAttribute("boardSt1", boardSt1);
+		
+		List<ArticleListView> last5Article = iAService.queryLast5Article();
+		model.addAttribute("last5Article", last5Article);
 
 		return "forum/boardList";
 	}

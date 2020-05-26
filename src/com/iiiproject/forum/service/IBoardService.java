@@ -20,5 +20,7 @@ public interface IBoardService {
 
 	List<Board> queryAllBoardStatus1();
 
+	Integer getBoardClick(Integer boardId);
+
 
 }

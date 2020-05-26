@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@  taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -79,15 +80,19 @@
 
 						<aside class="single_sidebar_widget popular_post_widget">
 							<h3 class="widget_title">Recent Post</h3>
+							<c:forEach items="${last5Article}" var='last5Article'>
 							<div class="media post_item">
-								<img src="img/post/post_1.png" alt="post">
+								<a href="<c:url value='/forum/articleAndReply/${last5Article.articleId}'/>">
+								<img src="<c:url value='/img/${last5Article.category}.png'/>" alt="post">
+								</a>
 								<div class="media-body">
-									<a href="single-blog.html">
-										<h3>From life was you fish...</h3>
+									<a href="<c:url value='/forum/articleAndReply/${last5Article.articleId}'/>">
+										<h3>【${last5Article.category}】${last5Article.title}</h3>
 									</a>
-									<p>January 12, 2019</p>
+									<p>${fn:substring(last5Article.publishTime, 0, 19)}</p>
 								</div>
 							</div>
+							</c:forEach>
 
 
 
@@ -105,13 +110,17 @@
 		xhr.send();
 		xhr.onreadystatechange = function(){
 			if(xhr.readyState == 4 && xhr.status == 200){
-				var listData = JSON.parse(xhr.responseText);
-				
-				for(var i=0; i<listData.length; i++){
-					var count = listData[i];
-					console.log(count);
+				var mapData = JSON.parse(xhr.responseText);
+				var clist = mapData.clist
+				var clist2 = mapData.clist2
+				for(var i=0; i<clist.length; i++){
+					var count = clist[i];
+					var count2 = clist2[i];
+					
 					var c = document.getElementsByClassName("fa-newspaper");
+					var c2 = document.getElementsByClassName("fa-eye");
 					c[i].innerHTML += ""+count;
+					c2[i].innerHTML += ""+count2;
 				}
 			}
 		}

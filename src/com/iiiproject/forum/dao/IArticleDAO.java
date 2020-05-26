@@ -33,4 +33,6 @@ public interface IArticleDAO {
 
 	List<ArticleListView> queryLast5Article();
 
+	
+
 }

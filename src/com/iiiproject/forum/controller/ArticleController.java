@@ -42,7 +42,12 @@ public class ArticleController {
 	@Autowired
 	IClickService iCService;
 	
-	
+	@GetMapping("/ownArticle/{id}")
+	public String ownArticle(@PathVariable("id") String id, Model model) {
+		List<ArticleListView> ownArticle = iAService.queryOwnArticle(id);
+		model.addAttribute("ownArticle", ownArticle);
+		return "forum/ownArticle";
+	}
 	
 	@GetMapping("/articleAndReply/{articleId}")
 	public String articleAndReply(@PathVariable("articleId") Integer articleId, Model model) {
@@ -81,13 +86,7 @@ public class ArticleController {
 			@RequestParam("detail1") String detail,
 			@RequestParam("status1") Integer status) {
 		
-//		System.out.println(name);
-//		System.out.println(boardId);
-//		System.out.println(title);
-//		System.out.println(category);
-//		System.out.println(detail);
-//		System.out.println(status);
-//		System.out.println(new Timestamp(System.currentTimeMillis()));
+
 		Article aBean = new Article();
 		
 		aBean.setName(name);

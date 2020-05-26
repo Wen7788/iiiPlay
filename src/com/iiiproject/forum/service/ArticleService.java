@@ -96,4 +96,6 @@ public class ArticleService implements IArticleService {
 		List<ArticleListView> last5Article = articleDao.queryLast5Article();
 		return last5Article;
 	}
+
+	
 }

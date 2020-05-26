@@ -25,7 +25,8 @@
 							<h2>【${aBean.category}】${aBean.title}</h2>
 							<ul class="blog-info-link mt-3 mb-4">
 								<li><i class="far fa-user"></i>${aBean.name}</li>
-								<li><i class="far fa-clock"></i> ${fn:substring(aBean.publishTime, 0, 19)}</li>
+								<li><i class="far fa-clock"></i>
+									${fn:substring(aBean.publishTime, 0, 19)}</li>
 							</ul>
 
 							<div class="quote-wrapper">
@@ -64,7 +65,8 @@
 												</div>
 
 											</div>
-											<c:if test="${MemberBean.id == reply.id || MemberBean.status == 2}">
+											<c:if
+												test="${MemberBean.id == reply.id || MemberBean.status == 2}">
 												<a href="#" class="genric-btn success circle">編輯留言</a>
 												<a href="#" class="genric-btn danger circle">刪除留言</a>
 											</c:if>
@@ -74,12 +76,26 @@
 							</div>
 							<c:set var="count" value="${vs.count}" />
 						</c:forEach>
-						<div class="col-sm-4 text-center my-2 my-sm-0">
-							<h4 class="comment-count">
-								<span class="align-middle"><i class="far fa-comment"></i></span>
-								${count} 則留言
-							</h4>
-						</div>
+						
+						<c:choose>
+							<c:when test="${!empty count}">
+								<div class="col-sm-4 text-center my-2 my-sm-0">
+									<h4 class="comment-count">
+										<span class="align-middle"><i class="far fa-comment"></i></span>
+										${count} 則留言
+									</h4>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="col-sm-4 text-center my-2 my-sm-0">
+									<h4 class="comment-count">
+										
+										目前尚無留言
+									</h4>
+								</div>
+							</c:otherwise>
+						</c:choose>
+
 						<div class="comment-form">
 							<h4>Leave a Reply</h4>
 							<form class="form-contact comment_form"
@@ -117,7 +133,7 @@
 			</div>
 		</div>
 	</section>
-	
+
 	<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 	<script type="text/javascript">
 		CKEDITOR.replace('replyDetail');
@@ -134,6 +150,6 @@
 			return true;
 		}
 	</script>
-	
+
 </body>
 </html>

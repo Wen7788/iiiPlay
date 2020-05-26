@@ -142,8 +142,9 @@ public class ArticleDAO implements IArticleDAO {
 	@Override
 	public List<ArticleListView> queryLast5Article(){
 		Session session = sessionFactory.getCurrentSession();
-		String hql = "select Top(5) * from ArticleListView order by publishtime desc";
+		String hql = "FROM ArticleListView order by publishtime desc";
 		Query<ArticleListView> query = session.createQuery(hql, ArticleListView.class);
+		query.setMaxResults(5);
 		return query.list();
 	}
 	

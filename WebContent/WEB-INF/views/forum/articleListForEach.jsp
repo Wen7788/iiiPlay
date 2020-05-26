@@ -157,14 +157,14 @@
 										<c:if
 											test='${MemberBean.status == 2 || MemberBean.id == article.id}'>
 											<div class="text-right">
-												<%-- 												<form method="post" action="<c:url value='#'/>"> --%>
-												<%-- 													<input type="hidden" value="${article.articleId}" --%>
-												<!-- 														name="articleId"> <input type="hidden" -->
-												<%-- 														value="${bBean.boardId}" name="boardId"> --%>
-												<!-- 													<button type="submit" class="genric-btn info radius"> -->
-												<!-- 														<font size='3'>編輯</font> -->
-												<!-- 													</button> -->
-												<!-- 												</form> -->
+												<%-- 	<form method="post" action="<c:url value='#'/>"> --%>
+												<%-- 	<input type="hidden" value="${article.articleId}" --%>
+												<!-- 	name="articleId"> <input type="hidden" -->
+												<%-- 	value="${bBean.boardId}" name="boardId"> --%>
+												<!-- 	<button type="submit" class="genric-btn info radius"> -->
+												<!-- 	<font size='3'>編輯</font> -->
+												<!-- 	</button> -->
+												<!-- 	</form> -->
 												<form method="post"
 													action="<c:url value='/forum/articleStatus'/>">
 													<c:choose>

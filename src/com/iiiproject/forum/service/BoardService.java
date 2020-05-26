@@ -59,5 +59,9 @@ public class BoardService implements IBoardService {
 		return blist1;
 	}
 
-	
+	@Override
+	public Integer getBoardClick(Integer boardId) {
+		Integer boardClick = boardDao.getBoardClick(boardId);
+		return boardClick;
+	}
 }

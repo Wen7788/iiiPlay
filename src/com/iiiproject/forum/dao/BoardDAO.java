@@ -94,7 +94,13 @@ public class BoardDAO implements IBoardDAO {
 		return query.list();
 	}
 
-	
+	@Override
+	public Integer getBoardClick(Integer boardId) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("SELECT boardClick FROM BoardListView where boardid =?1");
+		query.setParameter(1, boardId);
+		return (Integer) query.uniqueResult();
+	}
 	
 	
 }

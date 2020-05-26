@@ -32,5 +32,7 @@ public interface IArticleService {
 	Long getArticleOfBoardCounts(Integer boardId);
 	
 	List<ArticleListView> queryLast5Article();
+	
+	
 
 }
