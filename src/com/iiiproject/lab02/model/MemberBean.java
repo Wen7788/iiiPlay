@@ -1,6 +1,7 @@
 package com.iiiproject.lab02.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,11 +26,28 @@ public class MemberBean implements Serializable{
 	private String games;
 	private Integer age;
 	private Integer status;
+	private byte[] picture;
+	private Timestamp registerTime;
+	private String googleId;
+	
 	
 	public MemberBean() {
 		
 	}
 	
+	public MemberBean(String id, String password,String name ,String email,Integer age, String gender, String games,Integer status,byte[] picture, Timestamp registerTime) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.name=name;
+		this.email = email;
+		this.gender = gender;
+		this.games = games;
+		this.age= age;
+		this.status=status;
+		this.picture=picture;
+		this.registerTime=registerTime;
+	}
 	public MemberBean(String id, String password,String name ,String email,Integer age, String gender, String games,Integer status) {
 		super();
 		this.id = id;
@@ -40,6 +58,20 @@ public class MemberBean implements Serializable{
 		this.games = games;
 		this.age= age;
 		this.status=status;
+		
+	}
+	public MemberBean(String id, String password,String name ,String email,Integer age, String gender, String games,Integer status,byte[] picture ) {
+		super();
+		this.id = id;
+		this.password = password;
+		this.name=name;
+		this.email = email;
+		this.gender = gender;
+		this.games = games;
+		this.age= age;
+		this.status=status;
+		this.picture=picture;
+		
 	}
 	@Id
 	@Column(name="pk")
@@ -108,5 +140,30 @@ public class MemberBean implements Serializable{
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
+	@Column(name="picture")
+	public byte[] getPicture() {
+		return picture;
+	}
+
+	public void setPicture(byte[] picture) {
+		this.picture = picture;
+	}
+	@Column(name="registerTime")
+	public Timestamp getRegisterTime() {
+		return registerTime;
+	}
+
+	public void setRegisterTime(Timestamp registerTime) {
+		this.registerTime = registerTime;
+	}
+	@Column(name="googleId")
+	public String getGoogleId() {
+		return googleId;
+	}
+
+	public void setGoogleId(String googleId) {
+		this.googleId = googleId;
+	}
+	
 	
 }

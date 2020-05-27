@@ -3,6 +3,40 @@
  <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
+<script>
+window.onload = function() {
+	var alink = document.getElementById("accountCheck");
+	var div = document.getElementById('result0c');
+	alink.onclick = function() {
+		var id = document.getElementById("id").value;
+		if (!id) {
+			div.innerHTML = "<font color='red' size='-1'>請輸入帳號...</font>";
+			return;
+		}
+		var xhr = new XMLHttpRequest();
+		xhr.open("POST", "CheckMemberIdServlet", true);
+		xhr.setRequestHeader("Content-Type",
+				"application/x-www-form-urlencoded");
+		xhr.send("id=" + id);
+		var message = "";
+		xhr.onreadystatechange = function() {
+			// 伺服器請求完成
+			if (xhr.readyState == 4 && xhr.status == 200) {
+				var result = JSON.parse(xhr.responseText);
+
+				if (result== false) {
+					message = "帳號可用";
+				}  else {
+					message = "帳號重複，請重新輸入帳號";
+				}
+				div.innerHTML = "<font color='red' size='-1'>" + message
+						+ "</font>";
+			}
+		}
+	}
+}
+
+</script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,32 +48,55 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body style="background: #f2f2f2" >
-<%@ include file="top.jsp" %>
+<jsp:include page="/WEB-INF/views/top.jsp" />
+	<section class="padding_top">
     <div class="container" >
     <br>
          <H1 style="text-align: center ">加入會員</H1>
-        <form action="insertMember.do"  method='POST' >
+        <form action="insertMember.do"  method='POST' enctype="multipart/form-data" >
             <div class="form-group row">
-                <label for="id" class="col-sm-2 col-form-label">id</label>
+                <label for="id" class="col-sm-2 col-form-label">帳號</label>
                 <div class="col-sm-10">
                   <input type="text" name="id" class="form-control" id="id" placeholder="abc123456" value="${param.id}">
                   <font color='red' size='-1'>${error.id}</font>
                 </div>
               </div>
+              
+              <div style='font-size: 10pt; '>
+							<a href='#' id='accountCheck' style='font-size: 10pt;'>檢查帳號</a>
+						<span id='result0c' style="height: 10px;"></span>
+						</div>
+					
             <div class="form-group row">
-              <label for="password" class="col-sm-2 col-form-label">Password</label>
+              <label for="password" class="col-sm-2 col-form-label">密碼</label>
               
               <div class="col-sm-10">
                 <input type="password" name="password" class="form-control" id="password" placeholder="Password" value="${param.password}" >
                 <font color='red' size='-1'>${error.password}</font>
               </div>
             </div>
+             <div class="form-group row">
+              <label for="password" class="col-sm-2 col-form-label">密碼確認</label>
+              
+              <div class="col-sm-10">
+                <input type="password" name="checkPassword" class="form-control" id="checkPassword" placeholder="Password" value="" >
+                <font color='red' size='-1'>${error.password}</font>
+              </div>
+            </div>
             
+                      
               <div class="form-group row">
-                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                <label for="name" class="col-sm-2 col-form-label">姓名</label>
                 <div class="col-sm-10">
                   <input type="text" name="name" class="form-control" id="name" placeholder="王曉明" value="${param.name}">
                   <font color='red' size='-1'>${error.name}</font>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="picture" class="col-sm-2 col-form-label">大頭貼</label>
+                <div class="col-sm-10">
+                  <input type="file" name="picture" class="form-control" id="picture">
+                  
                 </div>
               </div>
               <div class="form-group row">
@@ -50,7 +107,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="age" class="col-sm-2 col-form-label">Age</label>
+                <label for="age" class="col-sm-2 col-form-label">年齡</label>
                 
                 <div class="col-sm-10">
                   <input type="text" name="age" class="form-control" id="age" placeholder="20" value="${param.age}">
@@ -58,18 +115,18 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="gender" class="col-sm-2 col-form-label">Gender</label>
+                <label for="gender" class="col-sm-2 col-form-label">性別</label>
                 <div class="col-sm-10">
                     <label>
-                        <input type="radio" name="gender" value="male" checked>male
+                        <input type="radio" name="gender" value="male" checked>男
                     </label>
                     <label>
-                        <input type="radio" name="gender" value="female">female
+                        <input type="radio" name="gender" value="female">女
                     </label>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="gender" class="col-sm-2 col-form-label">Games</label>
+                <label for="gender" class="col-sm-2 col-form-label">喜歡的遊戲</label>
                 <div class="col-sm-10">
                     
                     <label>
@@ -96,7 +153,7 @@
             
           </form>
     </div>
-
+	</section>
     
 </body>
 </html>

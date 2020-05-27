@@ -11,6 +11,8 @@ public interface IMemberDao {
 	MemberBean select(String id);
 	
 	MemberBean findByEmail(String email);
+	
+	MemberBean findByGoogleID(String googleId);
 //
 	int updateMember(MemberBean mb);
 	int deleteMember(String id);

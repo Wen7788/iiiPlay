@@ -152,6 +152,8 @@ try {
 				result.setGames(mb.getGames());
 				result.setGender(mb.getGender());
 				
+				result.setPicture(mb.getPicture());
+//				
 				session.update(result);
 				count=1;
 			}
@@ -194,4 +196,31 @@ try {
 				
 					} return mb;
 			}
+
+
+
+	@Override
+	public MemberBean findByGoogleID(String googleId) {
+		try {
+			Session session=factory.getCurrentSession();
+			String hql = "from MemberBean where googleId = :googleId";
+
+			Query<MemberBean> query = session.createQuery(hql, MemberBean.class);
+			query.setParameter("googleId", googleId);
+			MemberBean resultUser = query.uniqueResult();
+			if (resultUser != null) {
+				return resultUser;
+			}
+			return null;
+
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return null;
+		
+	}
+	
+	
+	
+	
 }

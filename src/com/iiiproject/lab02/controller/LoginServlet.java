@@ -1,21 +1,22 @@
 package com.iiiproject.lab02.controller;
 
 import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +24,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.iiiproject.lab02.model.MemberBean;
 import com.iiiproject.lab02.service.IMemberService;
-import com.iiiproject.lab02.service.MemberService;
 
 
 
@@ -33,16 +33,28 @@ public class LoginServlet {
 	private IMemberService mService;
 	private static final long serialVersionUID = 1L;
 	
-	@RequestMapping(value="login.do")
+	@RequestMapping(value={"login.do","forum/login.do"})
+	
 	public String toLogin() {
 		return "member/login";
 	}
+	@RequestMapping(value="MemberUpdate")
+	public String memberUpdate() {
+		return "member/MemberUpdate";
+	}
 	
 	
+	@RequestMapping(value={"logOut","forum/logOut"},method = RequestMethod.GET)
+	protected String logOutAction(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		HttpSession session1 = request.getSession();
+		session1.invalidate();
+		return "index";
 	
+	}
 	
 	@RequestMapping(value="checkLogin.do",method = RequestMethod.POST)
-	protected String doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException {
+	protected String doPost(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
 		request.setCharacterEncoding("UTF-8");
 		
 		
@@ -122,9 +134,24 @@ public class LoginServlet {
 		// 同時將傳回值放入MemberBean型別的變數mb之內。
 		MemberBean mb = mService.checkIDPassword(id, password);
 		
+		
+		
+		
 		// 如果變數mb的值不等於 null,表示資料庫含有userId搭配password的紀錄
 		if (mb != null) {
-			// OK, 將mb物件放入Session範圍內，識別字串為"userBean"，表示此使用者已經登入
+			// OK, 將mb物件放入Session範圍內，識別字串為"MemberBean"，表示此使用者已經登入
+			String codedPassword=mb.getPassword();
+			String key = "kittymickysnoopy"; // 對稱式金鑰
+			
+			byte[] imageBytes = mb.getPicture();
+			if(imageBytes!=null) {
+			String imgb64 = Base64.getEncoder().encodeToString(imageBytes);
+			session1.setAttribute("mbPic", imgb64);
+			}
+			// decryptString(key, cipherText, iv) : 將密文還原為明文
+			String decodedPassword = CipherUtils.decryptString(key, codedPassword);
+			mb.setPassword(decodedPassword);
+			
 			session1.setAttribute("MemberBean", mb);
 		} else {
 			// NG, userid與密碼的組合錯誤，放錯誤訊息"該帳號不存在或密碼錯誤"到 errorMsgMap 之內
@@ -135,7 +162,7 @@ public class LoginServlet {
 		// 如果 errorMsgMap是空的，表示沒有任何錯誤，準備交棒給下一隻程式
 		if (errorMsgMap.isEmpty()&&verify) {
 			
-			return "member/MemberUpdate";
+			return "index";
 		} else {
 			if(verify==false) {
 				errorMsgMap.put("robot", "請點選我不是機器人");

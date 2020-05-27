@@ -5,16 +5,21 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.orm.hibernate5.support.OpenSessionInViewInterceptor;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.iiiproject.lab02.controller.LoginCheckInterceptor;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.iiiproject")
+
 public class WebAppJavaConfig implements WebMvcConfigurer {
 	@Bean
 	public InternalResourceViewResolver viewResolver() {
@@ -47,7 +52,19 @@ public class WebAppJavaConfig implements WebMvcConfigurer {
 	public MessageSource messageSource() {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 		messageSource.setBasenames("MemberMessage", "ValidationMessages");
-		return messageSource;
+		return messageSource; 
 	}
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		LoginCheckInterceptor loginCheckInterceptor= new  LoginCheckInterceptor();
+	    registry.addInterceptor(loginCheckInterceptor).addPathPatterns("");
+	    
+	    
+//	    Register admin interceptor with multiple path patterns  
+//	      registry.addInterceptor(loginCheckInterceptor)
+//	              .addPathPatterns(new String[] { "/admin", "/admin/*" });
+	    
+	}
+	
 	
 }

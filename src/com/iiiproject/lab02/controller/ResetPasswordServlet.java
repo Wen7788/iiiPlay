@@ -37,17 +37,27 @@ public class ResetPasswordServlet{
     @RequestMapping("sendEmail")
     protected String doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String recipient = request.getParameter("email");
+        
+    	
+    	
+    	String recipient = request.getParameter("email");
         String subject = "Your Password has been reset";
- 
+        
+        
+        
         
         String newPassword = mService.resetCustomerPassword(recipient);
+        String message = "";
+        if (newPassword=="error") {
+        	message = "找不到此信箱註冊的帳號，請重新輸入 ";
+        	 request.setAttribute("message", message);
+        			return "member/message";
+        }
  
         String content = "Hi, this is your new password: " + newPassword;
         content += "\nNote: for security reason, "
                 + "you must change your password after logging in.";
  
-        String message = "";
  
         try {
             EmailUtility.sendEmail(host, port, email, name, pass,
@@ -55,7 +65,7 @@ public class ResetPasswordServlet{
             message = "Your password has been reset. Please check your e-mail.";
         } catch (Exception ex) {
             ex.printStackTrace();
-            message = "There were an error: " + ex.getMessage();
+            message = "找不到此信箱註冊的帳號，請重新輸入 " ;
         } finally {
             request.setAttribute("message", message);
                        

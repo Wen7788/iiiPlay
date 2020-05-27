@@ -1,9 +1,17 @@
 package com.iiiproject.lab02.controller;
 
 import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +21,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.iiiproject.lab02.model.MemberBean;
 import com.iiiproject.lab02.service.IMemberService;
@@ -32,7 +42,7 @@ public class InsertMemberServlet  {
 	
 	
 	@RequestMapping(path= "insertMember.do", method = RequestMethod.POST)
-	protected String action(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected String action(@RequestParam("picture") MultipartFile multipartFile,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
 		
 		request.setCharacterEncoding("UTF-8");
 		System.out.println("hello");
@@ -40,7 +50,15 @@ public class InsertMemberServlet  {
 		request.setAttribute("error", errorMsg);
 		//讀取輸入資料
 		String id =request.getParameter("id");
-		String password = request.getParameter("password");
+		String notCodePassword = request.getParameter("password");
+		String checkPassword = request.getParameter("checkPassword");
+		
+		//加密前端網頁傳來的密碼再存入資料庫
+		String key = "kittymickysnoopy"; // 對稱式金鑰
+		String plainText = notCodePassword;
+		String password = CipherUtils.encryptString(key, plainText);
+		System.out.println(password);
+		
 		String name = request.getParameter("name");
 		String email = request.getParameter("email");
 		String gender = request.getParameter("gender");
@@ -51,7 +69,8 @@ public class InsertMemberServlet  {
 		String statusString = request.getParameter("status");
 		Integer status = Integer.valueOf(statusString);
 		System.out.println(status);
-		
+		Timestamp registerTime = new java.sql.Timestamp(System.currentTimeMillis());
+		byte[] picture = multipartFile.getBytes();
 		
 		//進行必要的型態轉換，
 		
@@ -61,11 +80,20 @@ public class InsertMemberServlet  {
 		if(id == null || id.trim().length()==0){
 			errorMsg.put("id","帳號不能空白");			
 		}
-		if(password  == null || password.trim().length()==0){
+		if(notCodePassword  == null || notCodePassword.trim().length()==0){
 			errorMsg.put("password","密碼欄不能空白");			
 		}else if(password.trim().length() < 6){
 			errorMsg.put("password","密碼至少要6個字元");	
 		}
+		
+		if(checkPassword  == null || checkPassword.trim().length()==0){
+			errorMsg.put("password","請輸入確認密碼");			
+		}else if(password!=checkPassword){
+			errorMsg.put("password","密碼與確認密碼不一致");	
+		}
+		
+		
+		
 		if(name ==null || name.trim().length() ==0){
 			errorMsg.put("name", "姓名欄不能空白");
 		}
@@ -90,7 +118,7 @@ public class InsertMemberServlet  {
 		HttpSession session1 = request.getSession();
 		try{
 			//將要寫入的資料裝到Bean內
-			MemberBean mb = new MemberBean(id,password,name, email,age, gender, games,status);
+			MemberBean mb = new MemberBean(id,password,name, email,age, gender, games,status,picture,registerTime);
 			session1.setAttribute("mb", mb);    
 			mService.insert(mb);
 			

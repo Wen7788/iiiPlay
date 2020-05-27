@@ -1,6 +1,13 @@
 package com.iiiproject.lab02.service;
 
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
 
 import com.iiiproject.lab02.model.MemberBean;
 
@@ -12,7 +19,7 @@ public interface IMemberService {
 
 	int insert(MemberBean mb);
 
-	MemberBean checkIDPassword(String id, String password);
+	MemberBean checkIDPassword(String id, String password) throws InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException;
 //
 //	int updateMember(MemberBean mb);
 	
@@ -25,5 +32,8 @@ public interface IMemberService {
 	int deleteMember(String id);
 //
 	int updateMember(MemberBean mb);
+	
+	MemberBean findByGoogleID(String googleId);
+	
 
 }

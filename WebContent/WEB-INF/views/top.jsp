@@ -51,7 +51,18 @@
 							<ul class="navbar-nav">
 								<li class="nav-item"><a class="nav-link"
 									href="<c:url value='/'/>">首頁</a></li>
-								
+								<li class="nav-item dropdown"><a
+									class="nav-link dropdown-toggle" href="blog.html"
+									id="navbarDropdown_3" role="button" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false"> Play會員 </a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+										<a class="dropdown-item" href="login.html"> login</a> <a
+											class="dropdown-item" href="tracking.html">tracking</a> <a
+											class="dropdown-item" href="checkout.html">product
+											checkout</a> <a class="dropdown-item" href="cart.html">shopping
+											cart</a> <a class="dropdown-item" href="confirmation.html">confirmation</a>
+										<a class="dropdown-item" href="elements.html">elements</a>
+									</div></li>
 
 								<li class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle" href="blog.html"
@@ -70,29 +81,69 @@
 									aria-haspopup="true" aria-expanded="false"> Play論壇 </a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
 										<a class="dropdown-item"
-											href="<c:url value='/forum/showBoards'/>"> 討論區</a> 
+											href="<c:url value='/forum/showBoards'/>"> Forum-List</a> <a
+											class="dropdown-item" href="single-blog.html">Single blog</a>
 									</div></li>
 								<li class="nav-item">
 								   <a class="nav-link" href="#">後台管理</a>
 								</li>
 								<c:if test="${empty MemberBean}">
+								<c:if test="${empty googleUser}">
+								
 								<li class="nav-item"><a class="nav-link"
 									href="<c:url value='/login.do'/>">LOG IN/REGISTER</a></li>
 								 </c:if>
+								 </c:if>
 								 <c:if test="${!empty MemberBean}">
 								<li class="nav-item dropdown"><a
-									class="nav-link dropdown-toggle" href="<c:url value='/login.do'/>"
+									class="nav-link dropdown-toggle" href="login.do"
 									id="navbarDropdown_2" role="button" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false"> ${MemberBean.id},Hello! </a>
 								
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
 										<a class="dropdown-item" href="<c:url value='/MemberUpdate'/>"> MemberUpdate</a> 
-										<a class="dropdown-item" href="<c:url value='/forum/ownArticle/${MemberBean.id}'/>"> 我的文章</a> 
 									</div>
+									</li>
+<!-- 								<li class="nav-item"> -->
+<!-- 								<a class="nav-link" -->
+<!-- 									href="logOut"> -->
+<!-- 								<img width='50' height='50' src="data:image/jpg;base64,${mbPic}"> --!>
+<!-- 								</a> -->
+<!-- 								</li> -->
+								<li class="nav-item"><a class="nav-link"
+									href="logOut">Log Out</a></li>
+								 
+								 </c:if>
+								 <c:if test="${!empty googleUser}">
+								<li class="nav-item dropdown"><a
+									class="nav-link dropdown-toggle" href="login.do"
+									id="navbarDropdown_2" role="button" data-toggle="dropdown"
+									aria-haspopup="true" aria-expanded="false"> ${googleUser.name},Hello! </a>
+								
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+										<a class="dropdown-item" href="<c:url value='/googleMember'/>"> MemberUpdate</a> 
+									</div>
+									</li>
+
+								<li class="nav-item">
+								<a class="nav-link"
+									href="<c:url value='/googleLogOut'/>" 
+									onclick="signOut();"  >Log Out</a>
+									
+									<script>
+  function signOut() {
+	  console.log('User signed out????.')
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+    auth2.disconnect();
+  }
+</script>
+									
 									
 									</li>
-								<li class="nav-item"><a class="nav-link"
-									href="<c:url value='/logOut'/>">Log Out</a></li>
+								
 								 
 								 </c:if>
 							</ul>

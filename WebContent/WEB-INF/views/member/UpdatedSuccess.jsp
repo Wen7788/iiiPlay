@@ -66,21 +66,29 @@
   </script>
 </head>
 <body style="background: #f2f2f2" >
-<%@ include file="top.jsp" %>
+<jsp:include page="/WEB-INF/views/top.jsp" />
+    <section class="padding_top">
     <div class="container" >
     <br>
+    
          <H1 style="text-align: center ">資料修改成功</H1>
         <form >
         <input type="hidden" name="id"     value="${update.id}" >
         <input type="hidden" name="finalDecision" value="" > 
             <div class="form-group row">
-                <label for="id" class="col-sm-2 col-form-label">id</label>
+                <label for="id" class="col-sm-2 col-form-label">帳號</label>
                 <div class="col-sm-10" style="font-size:16px">
                   ${MemberBean.id}
                 </div>
               </div>
+              <div class="form-group row">
+					<label for="picture" class="col-sm-2 col-form-label">大頭貼</label>
+					<div class="col-sm-10">
+						<img width='300' src="data:image/jpg;base64,${mbPic}">
+					</div>
+				</div>
             <div class="form-group row">
-              <label for="password" class="col-sm-2 col-form-label">Password</label>
+              <label for="password" class="col-sm-2 col-form-label">密碼</label>
               
               <div class="col-sm-10">
                 <input type="password" name="password" class="form-control" id="password"  value="${update.password}" disabled >
@@ -89,7 +97,7 @@
             </div>
             
               <div class="form-group row">
-                <label for="name" class="col-sm-2 col-form-label">Name</label>
+                <label for="name" class="col-sm-2 col-form-label">姓名</label>
                 <div class="col-sm-10">
                   <input type="text" name="name" class="form-control" id="name"  value="${update.name} " disabled>
                   <font color='red' size='-1'>${error.name}</font>
@@ -103,7 +111,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="age" class="col-sm-2 col-form-label">Age</label>
+                <label for="age" class="col-sm-2 col-form-label">年齡</label>
                 
                 <div class="col-sm-10">
                   <input type="text" name="age" class="form-control" id="age"  value="${update.age} " disabled>
@@ -111,18 +119,18 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="gender" class="col-sm-2 col-form-label">Gender</label>
+                <label for="gender" class="col-sm-2 col-form-label">性別</label>
                 <div class="col-sm-10">
                     <label>
-                        <input type="radio" name="gender" value="male"  id="genderMale" disabled>male
+                        <input type="radio" name="gender" value="male"  id="genderMale" disabled>男
                     </label>
                     <label>
-                        <input type="radio" name="gender" value="female" id="genderFemale" disabled>female
+                        <input type="radio" name="gender" value="female" id="genderFemale" disabled>女
                     </label>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="gender" class="col-sm-2 col-form-label">Games</label>
+                <label for="gender" class="col-sm-2 col-form-label">喜歡的遊戲</label>
                 <div class="col-sm-10">
                     
                     <label>
@@ -141,7 +149,7 @@
                 <br>
                 <div style="margin: auto;">
                 
-                <input type="button" value="返回前頁" class="btn btn-primary" onclick="history.back()"  >
+                <input type="button" value="返回前頁" class="btn btn-primary" onclick="location.href='MemberUpdate'"  >
 
                 
                 
@@ -151,7 +159,7 @@
             
           </form>
     </div>
-    
+    </section>
     
 </body>
 </html>
