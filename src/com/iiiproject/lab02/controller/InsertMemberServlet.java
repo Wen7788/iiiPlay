@@ -44,7 +44,7 @@ public class InsertMemberServlet  {
 	@RequestMapping(path= "insertMember.do", method = RequestMethod.POST)
 	protected String action(@RequestParam("picture") MultipartFile multipartFile,HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
 		
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("UTF-8"); 
 		System.out.println("hello");
 		Map<String, String> errorMsg = new HashMap<String, String>();
 		request.setAttribute("error", errorMsg);
@@ -88,7 +88,9 @@ public class InsertMemberServlet  {
 		
 		if(checkPassword  == null || checkPassword.trim().length()==0){
 			errorMsg.put("password","請輸入確認密碼");			
-		}else if(password!=checkPassword){
+		}else if(!notCodePassword.equals(checkPassword)){
+			System.out.println(notCodePassword);
+			System.out.println(checkPassword);
 			errorMsg.put("password","密碼與確認密碼不一致");	
 		}
 		

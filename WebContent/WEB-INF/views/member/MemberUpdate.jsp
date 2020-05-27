@@ -132,7 +132,7 @@
 					<label for="name" class="col-sm-2 col-form-label">姓名</label>
 					<div class="col-sm-10">
 						<input type="text" name="name" class="form-control" id="name"
-							value="${googleUser.name}${param.name}"> <font
+							value="${MemberBean.name}"> <font
 							color='red' size='-1'>${error.name}</font>
 					</div>
 				</div>
@@ -141,7 +141,7 @@
 					<label for="email" class="col-sm-2 col-form-label">E-mail</label>
 					<div class="col-sm-10">
 						<input type="text" name="email" class="form-control" id="email"
-							value="${MemberBean.email}${param.email}${googleUser.email}">
+							value="${MemberBean.email}">
 						<font color='red' size='-1'>${error.email}</font>
 					</div>
 				</div>
@@ -150,7 +150,7 @@
 
 					<div class="col-sm-10">
 						<input type="text" name="age" class="form-control" id="age"
-							value="${MemberBean.age}${param.age}"> <font color='red'
+							value="${MemberBean.age}"> <font color='red'
 							size='-1'>${error.age}</font>
 					</div>
 				</div>

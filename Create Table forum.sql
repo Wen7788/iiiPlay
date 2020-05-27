@@ -38,27 +38,7 @@ if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'MemberTes
     drop table MemberTest;
 go
 
-Create Table [dbo].[MemberTest](
-	[pk] [int] primary key IDENTITY(1,1) NOT NULL,
-	[id] [nvarchar](50) NOT NULL,
-	[password] [nvarchar](50) NOT NULL,
-	[name] [nvarchar](50) NOT NULL,
-	[email] [nvarchar](50) NULL,
-	[gender] [nvarchar](50) NULL,
-	[games] [nvarchar](255) NULL,
-	[age] [int] NULL,
-	[status] [int] NULL,
-)
-GO
 
-INSERT [dbo].[MemberTest] ([id], [password], [name], [email], [gender], [games], [age], [status]) VALUES (N'tommy654', N'a123456', N'許景翔', N'ericeric406@hotmail.com', N'male', N'LOL,PUBG,CSGO', 23, NULL)
-INSERT [dbo].[MemberTest] ([id], [password], [name], [email], [gender], [games], [age], [status]) VALUES (N'girl1234', N'a123456', N'許景翔', N'ericeric406@hotmail.com', N'male', N'LOL', 18, NULL)
-INSERT [dbo].[MemberTest] ( [id], [password], [name], [email], [gender], [games], [age], [status]) VALUES (N'apple123', N'123456', N'許景翔', N'ericeric406@hotmail.com', N'male', N'LOL', 18, NULL)
-INSERT [dbo].[MemberTest] ( [id], [password], [name], [email], [gender], [games], [age], [status]) VALUES (N'host113', N'test517', N'管理者', N'ericeric406@hotmail.com', N'male', N'LOL,PUBG', 25, 2)
-INSERT [dbo].[MemberTest] ( [id], [password], [name], [email], [gender], [games], [age], [status]) VALUES (N'lin23', N'uHx03waTn1', N'子豪哥', N'ericeric4062@gmail.com', N'male', N'LOL,PUBG,CSGO', 25, 1)
-INSERT [dbo].[MemberTest] ( [id], [password], [name], [email], [gender], [games], [age], [status]) VALUES (N'test456', N'123456', N'測試', N'happy@gmail.com', N'male', N'LOL,PUBG', 25, 1)
-SET IDENTITY_INSERT [dbo].[MemberTest] OFF
-Go
 
 if exists (select * from INFORMATION_SCHEMA.VIEWS where TABLE_NAME = 'BoardListView')
     drop view BoardListView;
