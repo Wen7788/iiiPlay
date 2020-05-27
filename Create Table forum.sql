@@ -34,9 +34,7 @@ Create Table Article(
 )
 go
 
-if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'MemberTest')
-    drop table MemberTest;
-go
+
 
 
 
@@ -110,16 +108,16 @@ create table Game(
 
 go
 
-insert  into  Game (gamename, gametype) values ('­^¶¯Áp·ù', 'MOBA')
-insert  into  Game (gamename, gametype) values ('µ´¦a¨D¥Í', 'BRG')
-insert  into  Game (gamename, gametype) values ('¶Ç»¡¹ï¨M', 'MOBA')
-insert  into  Game (gamename, gametype) values ('°«°}¯S§ğ', 'FPS')
-insert  into  Game (gamename, gametype) values ('·¬¤§¨¦', 'RPG')
-insert  into  Game (gamename, gametype) values ('°Êª«´Ë¤Í·|','SLG')
-insert  into  Game (gamename, gametype) values ('ÃzÃz¤ı', 'ACT')
-insert  into  Game (gamename, gametype) values ('Å]Ã~¥@¬É', 'RPG')
-insert  into  Game (gamename, gametype) values ('¾¤©ú¦º½u', 'SVG')
-insert  into  Game (gamename, gametype) values ('¬Ó«Ç¾Ôª§', 'STG')
+insert  into  Game (gamename, gametype) values ('è‹±é›„è¯ç›Ÿ', 'MOBA')
+insert  into  Game (gamename, gametype) values ('çµ•åœ°æ±‚ç”Ÿ', 'BRG')
+insert  into  Game (gamename, gametype) values ('å‚³èªªå°æ±º', 'MOBA')
+insert  into  Game (gamename, gametype) values ('é¬¥é™£ç‰¹æ”»', 'FPS')
+insert  into  Game (gamename, gametype) values ('æ¥“ä¹‹è°·', 'RPG')
+insert  into  Game (gamename, gametype) values ('å‹•ç‰©æ£®å‹æœƒ','SLG')
+insert  into  Game (gamename, gametype) values ('çˆ†çˆ†ç‹', 'ACT')
+insert  into  Game (gamename, gametype) values ('é­”ç¸ä¸–ç•Œ', 'RPG')
+insert  into  Game (gamename, gametype) values ('é»æ˜æ­»ç·š', 'SVG')
+insert  into  Game (gamename, gametype) values ('çš‡å®¤æˆ°çˆ­', 'STG')
 
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Click')
     drop table Click;
