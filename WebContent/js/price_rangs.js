@@ -148,13 +148,16 @@
     // Core
 
     /**
-     * Main plugin constructor
-     *
-     * @param input {Object} link to base input element
-     * @param options {Object} slider config
-     * @param plugin_count {Number}
-     * @constructor
-     */
+	 * Main plugin constructor
+	 * 
+	 * @param input
+	 *            {Object} link to base input element
+	 * @param options
+	 *            {Object} slider config
+	 * @param plugin_count
+	 *            {Number}
+	 * @constructor
+	 */
     var IonRangeSlider = function (input, options, plugin_count) {
         this.VERSION = "2.1.7";
         this.input = input;
@@ -263,8 +266,8 @@
 
 
         /**
-         * get and validate config
-         */
+		 * get and validate config
+		 */
         var $inp = this.$cache.input,
             val = $inp.prop("value"),
             config, config_from_data, prop;
@@ -462,10 +465,11 @@
     IonRangeSlider.prototype = {
 
         /**
-         * Starts or updates the plugin instance
-         *
-         * @param [is_update] {boolean}
-         */
+		 * Starts or updates the plugin instance
+		 * 
+		 * @param [is_update]
+		 *            {boolean}
+		 */
         init: function (is_update) {
             this.no_diapason = false;
             this.coords.p_step = this.convertToPercent(this.options.step, true);
@@ -494,8 +498,8 @@
         },
 
         /**
-         * Appends slider template to a DOM
-         */
+		 * Appends slider template to a DOM
+		 */
         append: function () {
             var container_html = '<span class="irs js-irs-' + this.plugin_count + '"></span>';
             this.$cache.input.before(container_html);
@@ -554,9 +558,9 @@
         },
 
         /**
-         * Determine which handler has a priority
-         * works only for double slider type
-         */
+		 * Determine which handler has a priority works only for double slider
+		 * type
+		 */
         setTopHandler: function () {
             var min = this.options.min,
                 max = this.options.max,
@@ -571,11 +575,12 @@
         },
 
         /**
-         * Determine which handles was clicked last
-         * and which handler should have hover effect
-         *
-         * @param target {String}
-         */
+		 * Determine which handles was clicked last and which handler should
+		 * have hover effect
+		 * 
+		 * @param target
+		 *            {String}
+		 */
         changeLevel: function (target) {
             switch (target) {
                 case "single":
@@ -603,18 +608,16 @@
         },
 
         /**
-         * Then slider is disabled
-         * appends extra layer with opacity
-         */
+		 * Then slider is disabled appends extra layer with opacity
+		 */
         appendDisableMask: function () {
             this.$cache.cont.append(disable_html);
             this.$cache.cont.addClass("irs-disabled");
         },
 
         /**
-         * Remove slider instance
-         * and ubind all events
-         */
+		 * Remove slider instance and ubind all events
+		 */
         remove: function () {
             this.$cache.cont.remove();
             this.$cache.cont = null;
@@ -642,8 +645,8 @@
         },
 
         /**
-         * bind all slider events
-         */
+		 * bind all slider events
+		 */
         bindEvents: function () {
             if (this.no_diapason) {
                 return;
@@ -705,11 +708,11 @@
         },
 
         /**
-         * Mousemove or touchmove
-         * only for handlers
-         *
-         * @param e {Object} event object
-         */
+		 * Mousemove or touchmove only for handlers
+		 * 
+		 * @param e
+		 *            {Object} event object
+		 */
         pointerMove: function (e) {
             if (!this.dragging) {
                 return;
@@ -722,11 +725,11 @@
         },
 
         /**
-         * Mouseup or touchend
-         * only for handlers
-         *
-         * @param e {Object} event object
-         */
+		 * Mouseup or touchend only for handlers
+		 * 
+		 * @param e
+		 *            {Object} event object
+		 */
         pointerUp: function (e) {
             if (this.current_plugin !== this.plugin_count) {
                 return;
@@ -758,12 +761,13 @@
         },
 
         /**
-         * Mousedown or touchstart
-         * only for handlers
-         *
-         * @param target {String|null}
-         * @param e {Object} event object
-         */
+		 * Mousedown or touchstart only for handlers
+		 * 
+		 * @param target
+		 *            {String|null}
+		 * @param e
+		 *            {Object} event object
+		 */
         pointerDown: function (target, e) {
             e.preventDefault();
             var x = e.pageX || e.originalEvent.touches && e.originalEvent.touches[0].pageX;
@@ -801,12 +805,13 @@
         },
 
         /**
-         * Mousedown or touchstart
-         * for other slider elements, like diapason line
-         *
-         * @param target {String}
-         * @param e {Object} event object
-         */
+		 * Mousedown or touchstart for other slider elements, like diapason line
+		 * 
+		 * @param target
+		 *            {String}
+		 * @param e
+		 *            {Object} event object
+		 */
         pointerClick: function (target, e) {
             e.preventDefault();
             var x = e.pageX || e.originalEvent.touches && e.originalEvent.touches[0].pageX;
@@ -828,12 +833,14 @@
         },
 
         /**
-         * Keyborard controls for focused slider
-         *
-         * @param target {String}
-         * @param e {Object} event object
-         * @returns {boolean|undefined}
-         */
+		 * Keyborard controls for focused slider
+		 * 
+		 * @param target
+		 *            {String}
+		 * @param e
+		 *            {Object} event object
+		 * @returns {boolean|undefined}
+		 */
         key: function (target, e) {
             if (this.current_plugin !== this.plugin_count || e.altKey || e.ctrlKey || e.shiftKey || e.metaKey) {
                 return;
@@ -861,11 +868,13 @@
         },
 
         /**
-         * Move by key. Beta
-         * @todo refactor than have plenty of time
-         *
-         * @param right {boolean} direction to move
-         */
+		 * Move by key. Beta
+		 * 
+		 * @todo refactor than have plenty of time
+		 * 
+		 * @param right
+		 *            {boolean} direction to move
+		 */
         moveByKey: function (right) {
             var p = this.coords.p_pointer;
 
@@ -881,9 +890,8 @@
         },
 
         /**
-         * Set visibility and content
-         * of Min and Max labels
-         */
+		 * Set visibility and content of Min and Max labels
+		 */
         setMinMax: function () {
             if (!this.options) {
                 return;
@@ -908,9 +916,9 @@
         },
 
         /**
-         * Then dragging interval, prevent interval collapsing
-         * using min_interval option
-         */
+		 * Then dragging interval, prevent interval collapsing using
+		 * min_interval option
+		 */
         setTempMinInterval: function () {
             var interval = this.result.to - this.result.from;
 
@@ -922,8 +930,8 @@
         },
 
         /**
-         * Restore min_interval option to original
-         */
+		 * Restore min_interval option to original
+		 */
         restoreOriginalMinInterval: function () {
             if (this.old_min_interval !== null) {
                 this.options.min_interval = this.old_min_interval;
@@ -937,10 +945,11 @@
         // Calculations
 
         /**
-         * All calculations and measures start here
-         *
-         * @param update {boolean=}
-         */
+		 * All calculations and measures start here
+		 * 
+		 * @param update
+		 *            {boolean=}
+		 */
         calc: function (update) {
             if (!this.options) {
                 return;
@@ -1136,8 +1145,8 @@
 
 
         /**
-         * calculates pointer X in percent
-         */
+		 * calculates pointer X in percent
+		 */
         calcPointerPercent: function () {
             if (!this.coords.w_rs) {
                 this.coords.p_pointer = 0;
@@ -1187,11 +1196,12 @@
         },
 
         /**
-         * Find closest handle to pointer click
-         *
-         * @param real_x {Number}
-         * @returns {String}
-         */
+		 * Find closest handle to pointer click
+		 * 
+		 * @param real_x
+		 *            {Number}
+		 * @returns {String}
+		 */
         chooseHandle: function (real_x) {
             if (this.options.type === "single") {
                 return "single";
@@ -1206,8 +1216,8 @@
         },
 
         /**
-         * Measure Min and Max labels width in percent
-         */
+		 * Measure Min and Max labels width in percent
+		 */
         calcMinMax: function () {
             if (!this.coords.w_rs) {
                 return;
@@ -1218,8 +1228,8 @@
         },
 
         /**
-         * Measure labels width and X in percent
-         */
+		 * Measure labels width and X in percent
+		 */
         calcLabels: function () {
             if (!this.coords.w_rs || this.options.hide_from_to) {
                 return;
@@ -1261,9 +1271,8 @@
         // Drawings
 
         /**
-         * Main function called in request animation frame
-         * to update everything
-         */
+		 * Main function called in request animation frame to update everything
+		 */
         updateScene: function () {
             if (this.raf_id) {
                 cancelAnimationFrame(this.raf_id);
@@ -1287,8 +1296,8 @@
         },
 
         /**
-         * Draw handles
-         */
+		 * Draw handles
+		 */
         drawHandles: function () {
             this.coords.w_rs = this.$cache.rs.outerWidth(false);
 
@@ -1379,10 +1388,8 @@
         },
 
         /**
-         * Draw labels
-         * measure labels collisions
-         * collapse close labels
-         */
+		 * Draw labels measure labels collisions collapse close labels
+		 */
         drawLabels: function () {
             if (!this.options) {
                 return;
@@ -1508,8 +1515,8 @@
         },
 
         /**
-         * Draw shadow intervals
-         */
+		 * Draw shadow intervals
+		 */
         drawShadow: function () {
             var o = this.options,
                 c = this.$cache,
@@ -1572,8 +1579,8 @@
 
 
         /**
-         * Write values to input element
-         */
+		 * Write values to input element
+		 */
         writeToInput: function () {
             if (this.options.type === "single") {
                 if (this.options.values.length) {
@@ -1638,12 +1645,14 @@
         },
 
         /**
-         * Convert real value to percent
-         *
-         * @param value {Number} X in real
-         * @param no_min {boolean=} don't use min value
-         * @returns {Number} X in percent
-         */
+		 * Convert real value to percent
+		 * 
+		 * @param value
+		 *            {Number} X in real
+		 * @param no_min
+		 *            {boolean=} don't use min value
+		 * @returns {Number} X in percent
+		 */
         convertToPercent: function (value, no_min) {
             var diapason = this.options.max - this.options.min,
                 one_percent = diapason / 100,
@@ -1666,11 +1675,12 @@
         },
 
         /**
-         * Convert percent to real values
-         *
-         * @param percent {Number} X in percent
-         * @returns {Number} X in real
-         */
+		 * Convert percent to real values
+		 * 
+		 * @param percent
+		 *            {Number} X in percent
+		 * @returns {Number} X in real
+		 */
         convertToValue: function (percent) {
             var min = this.options.min,
                 max = this.options.max,
@@ -1739,11 +1749,12 @@
         },
 
         /**
-         * Round percent value with step
-         *
-         * @param percent {Number}
-         * @returns percent {Number} rounded
-         */
+		 * Round percent value with step
+		 * 
+		 * @param percent
+		 *            {Number}
+		 * @returns percent {Number} rounded
+		 */
         calcWithStep: function (percent) {
             var rounded = Math.round(percent / this.coords.p_step) * this.coords.p_step;
 
@@ -2336,7 +2347,8 @@
     // http://paulirish.com/2011/requestanimationframe-for-smart-animating/
     // http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
 
-    // requestAnimationFrame polyfill by Erik MÃ¶ller. fixes from Paul Irish and Tino Zijdel
+    // requestAnimationFrame polyfill by Erik MÃ¶ller. fixes from Paul Irish and
+	// Tino Zijdel
 
     // MIT license
 
@@ -2374,11 +2386,11 @@
 $(function () {
   
 var $range = $(".js-range-slider"),
-    $inputFrom = $(".js-input-from"),
-    $inputTo = $(".js-input-to"),
+    $inputFrom = $(".js-input-from1"),
+    $inputTo = $(".js-input-to2"),
     instance,
     min = 0,
-    max = 1000,
+    max = 6000,
     from = 10,
     to = 100;
 
@@ -2387,10 +2399,10 @@ $range.ionRangeSlider({
     min: min,
     max: max,
     from: 0,
-    to: 500,
-  prefix: 'tk. ',
-    onStart: updateInputs,
-    onChange: updateInputs,
+    to:0,
+  prefix: '$ ',
+
+    onFinish: updateInputs,
     step: 1,
     prettify_enabled: true,
     prettify_separator: ".",
@@ -2403,12 +2415,119 @@ $range.ionRangeSlider({
 instance = $range.data("ionRangeSlider");
 
 function updateInputs (data) {
+
     from = data.from;
     to = data.to;
     
     $inputFrom.prop("value", from);
     $inputTo.prop("value", to); 
+    
+    $.ajax({
+		url : 	"/iiiPlay/product/price", //請求的url地址
+		dataType : "json", //返回格式為json
+		async : true, //請求是否非同步，預設為非同步，這也是ajax重要特性
+		data : {
+			"price1": from , "price2":to
+			        
+			    
+		}, //引數值
+		
+		
+           
+		type : "GET", //請求方式
+		success : function(req) {
+        
+			var obj= JSON.parse
+
+			var div =document.getElementById("div")
+			div.innerHTML=""
+	
+				var div4=""
+				var div1= "<div class='col-lg-4 col-sm-6'> "               
+				var div2="<div class='single_product_item' > "
+				var div3="<div class='single_product_text'>"
+			for(var i=0; i<req.length; i++){	
+                 pd=req[i].productId
+				 pn=req[i].productName
+				 pc=req[i].price
+			
+				 
+				 div4+=div1+ div2+"<img class='detail1 src' width='150' id='"+pd+"'" +" src='/iiiPlay/product/Images.do/"+pd+"'"+"/>"
+				 +div3
+				 + "<h4 class='detail na' id='"+pd+"'"+">"+pn+ "</h4>"
+	             + "<h3 class='zzz'>"+"$"+pc+"</h3>"
+				 +"<input type='button'  class='btn_3' id='"+pd+"'"+" value='加入購物車'>"
+				 +"</div>"
+				 +"</div>"
+				 +"</div>"
+
+				 div4+= "</div>";
+             	div.innerHTML=div4
+					 
+			}
+			     		     
+			    
+					
+					$(function(){
+						$(".detail").click(function() {
+							
+								var pid = this.id;
+								window.location.href = "/iiiPlay/product/ProductDetail.do/"+ pid;
+								
+						});
+					})
+					$(function(){
+						$(".detail1").click(function() {
+							
+								var pid = this.id;
+								window.location.href = "/iiiPlay/product/ProductDetail.do/"+ pid;
+								
+						});
+					})
+					
+					$(function(){
+	$(".btn_3").click(function() {
+		
+		var pid = this.id;
+           	$.ajax({
+				url : "/iiiPlay/product/ProductDetail.do/Cart.do", //請求的url地址
+				dataType : "json", //返回格式為json
+				async : true, //請求是否非同步，預設為非同步，這也是ajax重要特性
+				data : {
+					"quantity":1  , "pid":pid 
+				}, //引數值
+				type : "GET", //請求方式
+				success : function(req) {
+                alert("確定加入購物車?")
+				
+  
+				},
+				complete : function() {
+					//請求完成的處理
+				},
+				error : function() {
+					console.log("出錯了!")
+				}
+			});
+
+			})
+	})
+					
+					
+					
+
+		},
+		complete : function() {
+			//請求完成的處理
+		},
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+			alert(XMLHttpRequest.status);
+			alert(XMLHttpRequest.readyState);
+			alert(textStatus);
+		}
+	});
 }
+
 
 $inputFrom.on("input", function () {
     var val = $(this).prop("value");

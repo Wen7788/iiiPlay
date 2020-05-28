@@ -15,6 +15,7 @@
 <!-- animate CSS -->
 <link rel="stylesheet" href="<c:url value='/css/animate.css'/>">
 <!-- owl carousel CSS -->
+ <link rel="stylesheet" href="<c:url value='/css/nice-select.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/owl.carousel.min.css'/>">
 <!-- font awesome CSS -->
 <link rel="stylesheet" href="<c:url value='/css/all.css'/>">
@@ -26,8 +27,13 @@
 <!-- swiper CSS -->
 <link rel="stylesheet" href="<c:url value='/css/slick.css'/>">
 <!-- style CSS -->
+<link rel="stylesheet" href="<c:url value='/css/price_rangs.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
 </head>
+
+
+
+
 
 <body>
 	<!--::header part start::-->
@@ -58,9 +64,9 @@
 									id="navbarDropdown_1" role="button" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false"> Play購物商城 </a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-										<a class="dropdown-item" href="category.html"> shop
-											category</a> <a class="dropdown-item" href="single-product.html">product
-											details</a>
+										<a class="dropdown-item" href="${pageContext.request.contextPath}/product/allproducts" > 購物去!</a> <a class="dropdown-item" href="${pageContext.request.contextPath}/product/Cart.do">
+										我的購物車
+											</a>
 
 									</div></li>
 
@@ -170,6 +176,8 @@
 	<script src="<c:url value='/js/jquery.form.js'/>"></script>
 	<script src="<c:url value='/js/jquery.validate.min.js'/>"></script>
 	<script src="<c:url value='/js/mail-script.js'/>"></script>
+	 <script src="${pageContext.request.contextPath}/js/stellar.js"></script>
+	 <script src="${pageContext.request.contextPath}/js/price_rangs.js"></script>
 	<!-- custom js -->
 	<script src="<c:url value='/js/custom.js'/>"></script>
 </body>

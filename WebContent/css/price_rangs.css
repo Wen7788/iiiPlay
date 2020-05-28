@@ -191,7 +191,7 @@
 }
     .irs-bar-edge {
         height: 10px; top: 33px;
-        width: 14px;
+        width: 30px;
         border: 1px solid #428bca;
         border-right: 0;
         background: #428bca;
@@ -247,7 +247,7 @@
 }
 
 .irs-grid {
-    height: 27px;
+    height: 30px;
 }
 .irs-grid-pol {
     opacity: 0.5;
