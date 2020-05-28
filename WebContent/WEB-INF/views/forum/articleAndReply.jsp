@@ -18,8 +18,8 @@
 				<div class="col-lg-8 posts-list">
 					<div class="single-post">
 						<div class="feature-img">
-							<img class="img-fluid"
-								src="<c:url value='/img/blog/single_blog_1.png'/>" alt="">
+<!-- 							<img class="img-fluid" -->
+<%-- 								src="<c:url value='/img/blog/single_blog_1.png'/>" alt=""> --%>
 						</div>
 						<div class="blog_details">
 							<h2>【${aBean.category}】${aBean.title}</h2>
@@ -53,7 +53,7 @@
 								<div class="single-comment justify-content-between d-flex">
 									<div class="user justify-content-between d-flex">
 										<div class="thumb">
-											<img src="<c:url value='/img/comment/comment_1.png'/>" alt="">
+<%-- 											<img src="<c:url value='/img/comment/comment_1.png'/>" alt=""> --%>
 										</div>
 										<div class="desc">
 											<p class="comment">${reply.replyDetail}</p>

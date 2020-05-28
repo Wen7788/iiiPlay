@@ -35,10 +35,11 @@
 
 									<h3>${fn:substring(article.publishTime, 0, 19)}</h3>
 									<div class="row">
-										<form method="post" action="<c:url value='#'/>">
+										<form method="GET" action="<c:url value='/forum//article/${article.articleId}'/>">
 											<input type="hidden" value="${article.articleId}"
-												name="articleId"> <input type="hidden"
-												value="${article.boardId}" name="boardId">
+												name="articleId"> 
+											<input type="hidden" value="${article.boardId}"
+														name="boardId">
 											<button type="submit" class="genric-btn info radius">
 												<font size='3'>編輯</font>
 											</button>
@@ -49,7 +50,7 @@
 												<c:when test="${article.status==1}">
 													<input type="hidden" value="${article.articleId}"
 														name="articleId">
-													<input type="hidden" value="${bBean.boardId}"
+													<input type="hidden" value="${article.boardId}"
 														name="boardId">
 													<button type="submit" class="genric-btn danger radius">
 														<font size='3'>隱藏</font>
@@ -58,7 +59,7 @@
 												<c:otherwise>
 													<input type="hidden" value="${article.articleId}"
 														name="articleId">
-													<input type="hidden" value="${bBean.boardId}"
+													<input type="hidden" value="${article.boardId}"
 														name="boardId">
 													<button type="submit" class="genric-btn info radius">
 														<font size='3'>恢復</font>

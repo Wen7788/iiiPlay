@@ -42,6 +42,8 @@ public class ArticleController {
 	@Autowired
 	IClickService iCService;
 	
+	
+	
 	@GetMapping("/ownArticle/{id}")
 	public String ownArticle(@PathVariable("id") String id, Model model) {
 		List<ArticleListView> ownArticle = iAService.queryOwnArticle(id);
@@ -106,5 +108,34 @@ public class ArticleController {
 					   @RequestParam Integer boardId) {
 		iAService.hideArticle(articleId);
 		return "redirect:/forum/showAofB/"+boardId;
+	}
+	
+	@GetMapping("/article/{articleId}")
+	public String modifyform(@PathVariable("articleId") Integer articleId, Model model,
+							@RequestParam("boardId") Integer boardId) {
+		Article aBean = iAService.queryArticle(articleId);
+		Board bBean = iBService.queryBoard(boardId);
+		model.addAttribute("aBean",aBean);
+		model.addAttribute("bBean",bBean);
+		return "forum/updateArticle";
+	}
+	@PostMapping("/article/{articleId}")
+	public String modify(@PathVariable("articleId") Integer articleId,
+			@RequestParam("name") String name, 
+			@RequestParam("boardId") Integer boardId,
+			@RequestParam("category") String category, 
+			@RequestParam("title") String title, 
+			@RequestParam("detail") String detail,
+			@RequestParam("id") String id) {
+		Article aBean = new Article();
+		aBean.setArticleId(articleId);
+		aBean.setName(name);
+		aBean.setCategory(category);
+		aBean.setTitle(title);
+		aBean.setDetail(detail);
+		aBean.setBoardId(boardId);
+		aBean.setPublishTime(new Timestamp(System.currentTimeMillis()));
+		iAService.updateArticle(aBean);
+		return "redirect:/forum/ownArticle/"+id;
 	}
 }

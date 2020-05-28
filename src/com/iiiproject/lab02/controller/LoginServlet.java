@@ -49,7 +49,7 @@ public class LoginServlet {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session1 = request.getSession();
 		session1.invalidate();
-		return "index";
+		return "redirect:/";
 	
 	}
 	
@@ -162,7 +162,7 @@ public class LoginServlet {
 		// 如果 errorMsgMap是空的，表示沒有任何錯誤，準備交棒給下一隻程式
 		if (errorMsgMap.isEmpty()&&verify) {
 			
-			return "index";
+			return "redirect:/";
 		} else {
 			if(verify==false) {
 				errorMsgMap.put("robot", "請點選我不是機器人");

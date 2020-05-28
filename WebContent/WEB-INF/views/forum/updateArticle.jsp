@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>iiiPlay</title>
+<meta charset="UTF-8">
+<title>更新我的文章</title>
 <link rel="icon" href="<c:url value='/img/favicon.png'/>">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="<c:url value='/css/bootstrap.min.css'/>">
@@ -28,7 +27,6 @@
 <!-- style CSS -->
 <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
 </head>
-
 <body>
 	<!--::header part start::-->
 	<header class="main_menu home_menu">
@@ -93,12 +91,7 @@
 										<a class="dropdown-item" href="<c:url value='/forum/ownArticle/${MemberBean.id}'/>"> 我的文章</a> 
 									</div>
 									</li>
-<!-- 								<li class="nav-item"> -->
-<!-- 								<a class="nav-link" -->
-<!-- 									href="logOut"> -->
-<!-- 								<img width='50' height='50' src="data:image/jpg;base64,${mbPic}"> --!>
-<!-- 								</a> -->
-<!-- 								</li> -->
+
 								<li class="nav-item"><a class="nav-link"
 									href="logOut">Log Out</a></li>
 								 
@@ -133,20 +126,80 @@
 		</div>
 		
 	</header>
-	<!-- Header part end-->
-<script>
-  function signOut() {
-	  console.log('User signed out????.')
-    var auth2 = gapi.auth2.getAuthInstance();
-    auth2.signOut().then(function () {
-      console.log('User signed out.');
-    });
-    auth2.disconnect();
-  }
-</script>
+	
+	<script>
+		  function signOut() {
+			  console.log('User signed out????.')
+		    var auth2 = gapi.auth2.getAuthInstance();
+		    auth2.signOut().then(function () {
+		      console.log('User signed out.');
+		    });
+		    auth2.disconnect();
+		  }
+	</script>
+	
+	
+	<div class="container" style="margin-top: 100px; width: 60%">
+		<form method="post" action='<c:url value="/forum/article/${aBean.articleId}"/>' >
+
+			<fieldset>
+				<legend>更新文章資料</legend>
+				<div class="form-group">
+					<label for="name"><font color='red'>*</font>發文者名稱:</label> <input
+						type="text" class="form-control" id="name" name="name"
+						value="${MemberBean.name}" readonly> <input
+						type="hidden" class="form-control" id="id" name="id"
+						value="${MemberBean.id}"><font id="errorName"
+						color='red' size='-1'></font>
 
 
-	<!-- jquery plugins here-->
+				</div>
+				<div class="form-group">
+					<label for="boardName"><font color='red'>*</font>發文所在看板:</label> <input
+						type="text" class="form-control" id="boardName" name="boardName"
+						value="${bBean.boardName}" readonly><font
+						id="errorBoardName" color='red' size='-1'></font> <input
+						type="hidden" class="form-control" id="boardId" name="boardId"
+						value="${bBean.boardId}">
+
+
+				</div>
+				<div class="col-md-6 form-group">
+					<label for="category"><font color='red'>*</font>發文分類:</label> <select
+						class="form-control country_select" name="category"
+						id="category">
+						<option selected="selected" 
+							 value=''>${aBean.category}</option>
+						<option>情報</option>
+						<option>密技</option>
+						<option>問題</option>
+						<option>討論</option>
+						<option>閒聊</option>
+						<option>心得</option>
+						<option>其他</option>
+					</select> <font id="errorCategory" color='red' size='-1'></font>
+				</div>
+				<div class="col-md-6 form-group">
+					<label for="title"><font color='red'>*</font>發文標題:</label> <input
+						type="text" class="form-control" id="title" name="title"
+						value="${aBean.title}"> <font id="errorTitle" color='red' size='-1'></font>
+				</div>
+
+
+				<div class="col-md-12 form-group">
+					<label for="detail"><font color='red'>*</font>發表內文:</label>
+					<textarea class="form-control" name="detail" id="detail" rows="5"></textarea>
+					<font id="errorDetail" color='red' size='-1'></font>
+
+				</div>
+				<button type="submit" class="btn btn-dark">送出</button>
+
+			</fieldset>
+		</form>
+	</div>
+	
+	
+	<!-- jquery plugins here -->
 	<script src="<c:url value='/js/jquery-1.12.1.min.js'/>"></script>
 	<!-- popper js -->
 	<script src="<c:url value='/js/popper.min.js'/>"></script>
@@ -154,7 +207,7 @@
 	<script src="<c:url value='/js/bootstrap.min.js'/>"></script>
 	<!-- easing js -->
 	<script src="<c:url value='/js/jquery.magnific-popup.js'/>"></script>
- 	<!-- swiper js --> 
+	<!-- swiper js  -->
 	<script src="<c:url value='/js/swiper.min.js'/>"></script>
 	<!-- swiper js -->
 	<script src="<c:url value='/js/masonry.pkgd.js'/>"></script>
@@ -170,7 +223,5 @@
 	<script src="<c:url value='/js/jquery.form.js'/>"></script>
 	<script src="<c:url value='/js/jquery.validate.min.js'/>"></script>
 	<script src="<c:url value='/js/mail-script.js'/>"></script>
-	<!-- custom js -->
-	<script src="<c:url value='/js/custom.js'/>"></script>
 </body>
 </html>
