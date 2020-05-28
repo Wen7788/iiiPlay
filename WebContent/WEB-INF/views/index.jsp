@@ -12,33 +12,82 @@
 	
 	<!-- banner part start-->
 	
-	<section class="banner_part">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-lg-12">
-					<div class="banner_slider owl-carousel">
-						<div class="single_banner_slider">
-							<div class="row">
-								<div class="col-lg-5 col-md-8">
-									<div class="banner_text">
-										<div class="banner_text_iner">
-											<h1>商品or遊戲圖</h1>
-											<p>可以在這打介紹</p>
-											<a href="#" class="btn_2">按鈕</a>
-										</div>
-									</div>
-								</div>
-								<div class="banner_img d-none d-lg-block">
-									<img src="img/banner_img.png" alt="">
-								</div>
-							</div>
-						</div>
-					</div>
-<!-- 					<div class="slider-counter"></div> -->
-				</div>
-			</div>
-		</div>
-	</section>
+	   <section class="banner_part">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <div class="banner_slider owl-carousel">
+                        <div class="single_banner_slider">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-8">
+                                    <div class="banner_text">
+                                        <div class="banner_text_iner">
+                                            <h1>英雄聯盟</h1>
+                                            <p>歡迎來到「英雄聯盟」！「英雄聯盟」是一款獲獎無數，在全世界引起廣大風潮的 MOBA 類型遊戲</p>
+                                            <a href="#" class="btn_2">進入討論區</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="banner_img d-none d-lg-block">
+                                    <img src="img/banner/LoL.jpg" alt="">
+                                </div>
+                            </div>
+                        </div><div class="single_banner_slider">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-8">
+                                    <div class="banner_text">
+                                        <div class="banner_text_iner">
+                                            <h1>絕地求生</h1>
+                                            <p>PUBG是一款戰術競技遊戲，策略與槍法一樣重要，需要你隨時做出判斷，取得勝利，大吉大利</p>
+                                            <a href="#" class="btn_2">進入討論區</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="banner_img d-none d-lg-block">
+                                    <img src="img/banner/PUBG.jpg" alt="">
+                                </div>
+                            </div>
+                        </div><div class="single_banner_slider">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-8">
+                                    <div class="banner_text">
+                                        <div class="banner_text_iner">
+                                            <h1>動物森友會</h1>
+                                            <p>動物森友會是任天堂情報開發本部開發並由任天堂發行的社交模擬系列，
+                                                                                               遊戲中玩家生活在一個由擬人動物居住的村莊，展開各種活動。</p>
+                                            
+                                            <a href="#" class="btn_2">進入討論區</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="banner_img d-none d-lg-block">
+                                    <img src="img/banner/zoo.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="single_banner_slider">
+                            <div class="row">
+                                <div class="col-lg-5 col-md-8">
+                                    <div class="banner_text">
+                                        <div class="banner_text_iner">
+                                            <h1>Cloth $ Wood Sofa</h1>
+                                            <p>Incididunt ut labore et dolore magna aliqua quis ipsum
+                                                suspendisse ultrices gravida. Risus commodo viverra</p>
+                                            <a href="#" class="btn_2">buy now</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="banner_img d-none d-lg-block">
+                                    <img src="img/banner_img.png" alt="">
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                    <div class="slider-counter"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 	
 	<!-- banner part start-->
 	<!-- product_list start-->

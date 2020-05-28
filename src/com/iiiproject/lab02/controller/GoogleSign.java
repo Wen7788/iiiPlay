@@ -42,7 +42,7 @@ public class GoogleSign {
 		HttpSession session1 = request.getSession();
 		session1.invalidate();
 		
-		return "index";
+		return "redirect:/";
 	}
 	
 	
@@ -91,7 +91,7 @@ public class GoogleSign {
 				  session1.setAttribute("googleUser", googleUser);
 				  session1.setAttribute("googlePicture", pictureUrl);
 				  
-				  return "googleMember";
+				  return "redirect:/";
 			  }
 			  
 			  
@@ -108,10 +108,10 @@ public class GoogleSign {
 			  
 			  // Use or store profile information
 			  // ...
-			  return "index";
+			  return "redirect:/";
 			} else {
 			  System.out.println("Invalid ID token.");
-			  return "index";
+			  return "redirect:/";
 			}
 		
 		
