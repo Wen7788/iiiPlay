@@ -25,7 +25,7 @@ public class BoardService implements IBoardService {
 
 	@Override
 	public Boolean deleteBoard(Integer boardId) {
-		boolean resultBean = boardDao.deleteBoard(boardId);
+		Boolean resultBean = boardDao.deleteBoard(boardId);
 		return resultBean;
 	}
 

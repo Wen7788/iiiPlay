@@ -26,7 +26,7 @@ public class ArticleService implements IArticleService {
 	
 	@Override
 	public Boolean deleteArticle(Integer articleId) {
-		boolean resultBean = articleDao.deleteArticle(articleId);
+		Boolean resultBean = articleDao.deleteArticle(articleId);
 		return resultBean;
 	}
 	

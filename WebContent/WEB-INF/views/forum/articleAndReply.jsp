@@ -18,8 +18,8 @@
 				<div class="col-lg-8 posts-list">
 					<div class="single-post">
 						<div class="feature-img">
-<!-- 							<img class="img-fluid" -->
-<%-- 								src="data:image/jpg;base64,${mbPic}" alt=""> --%>
+							<!-- 							<img class="img-fluid" -->
+							<%-- 								src="" alt=""> --%>
 						</div>
 						<div class="blog_details">
 							<h2>【${aBean.category}】${aBean.title}</h2>
@@ -32,16 +32,30 @@
 							<div class="quote-wrapper">
 								<div class="quotes">${aBean.detail}</div>
 							</div>
-
+							<div id='articleId' style="display: none;">${aBean.articleId}</div>
+							<div id='userId' style="display: none;">${MemberBean.id}</div>
+							<div id='userName' style="display: none;">${MemberBean.name}</div>
+							
 						</div>
 					</div>
 					<div class="navigation-top">
 						<div class="d-sm-flex justify-content-between text-center">
-							<p class="like-info">
-								<span class="align-middle"><i class="far fa-heart"></i></span>
-								Lily and 4 people like this
-							</p>
-
+							<c:if test="${empty favo}">
+								<button type="button" class="genric-btn primary-border circle" id='favoBtn'>
+									<p class="like-info">
+										<span class="align-middle"><i class="far fa-heart"></i></span>
+										收藏
+									</p>
+								</button>
+							</c:if>
+							<c:if test="${!empty favo}">
+								<button type="button" class="genric-btn primary-border circle" id='non-favoBtn'>
+									<p class="like-info">
+										<span class="align-middle"><i class="fas fa-heart"></i></span>
+										取消收藏
+									</p>
+								</button>
+							</c:if>
 						</div>
 					</div>
 					<div class="comments-area">
@@ -76,7 +90,7 @@
 							</div>
 							<c:set var="count" value="${vs.count}" />
 						</c:forEach>
-						
+
 						<c:choose>
 							<c:when test="${!empty count}">
 								<div class="col-sm-4 text-center my-2 my-sm-0">
@@ -88,10 +102,7 @@
 							</c:when>
 							<c:otherwise>
 								<div class="col-sm-4 text-center my-2 my-sm-0">
-									<h4 class="comment-count">
-										
-										目前尚無留言
-									</h4>
+									<h4 class="comment-count">目前尚無留言</h4>
 								</div>
 							</c:otherwise>
 						</c:choose>
@@ -149,6 +160,54 @@
 			}
 			return true;
 		}
+	</script>
+	
+	<script>
+		$(document).ready(function () {
+			var articleId = document.getElementById("articleId").innerHTML;
+			var userId = document.getElementById("userId").innerHTML;
+			var userName = document.getElementById("userName").innerHTML;
+			console.log(articleId);
+			console.log(userId);
+			$("#favoBtn").click(function(){
+				$.ajax({
+					type:"POST",
+					url:"<c:url value = '/forum/addFavo'/>",
+					data:{
+						"articleId":articleId,
+						"userId":userId,
+						"userName":userName
+					},
+					dataType:"json",
+					async:true,
+					success:function(){
+						alert("已將文章加入收藏!")
+					},
+					
+
+				})
+					
+			})
+
+			$("#non-favoBtn").click(function(){
+				$.ajax({
+					type:"POST",
+					url:"<c:url value = ''/>",
+					data:{
+						"articleid":articleId,
+						"userId":userId
+					},
+					dataType:"json",
+					async:true,
+					success:function(){
+						alert("已將文章取消收藏!")
+					}
+				});
+					
+			});
+			
+		});
+		
 	</script>
 
 </body>

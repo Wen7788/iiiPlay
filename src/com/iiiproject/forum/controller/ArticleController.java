@@ -15,19 +15,28 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.iiiproject.forum.model.Article;
 import com.iiiproject.forum.model.ArticleListView;
 import com.iiiproject.forum.model.Board;
 import com.iiiproject.forum.model.Click;
+import com.iiiproject.forum.model.FavoListView;
+import com.iiiproject.forum.model.MyFavoArticle;
 import com.iiiproject.forum.model.ReplyListView;
 import com.iiiproject.forum.service.IArticleService;
 import com.iiiproject.forum.service.IBoardService;
 import com.iiiproject.forum.service.IClickService;
+import com.iiiproject.forum.service.IMyFavoArticleService;
 import com.iiiproject.forum.service.IReplyService;
+import com.iiiproject.lab02.dao.IMemberDao;
+import com.iiiproject.lab02.model.MemberBean;
+import com.iiiproject.lab02.service.IMemberService;
 
 @Controller
 @RequestMapping("/forum")
+@SessionAttributes(value = {"MemberBean"})
 public class ArticleController {
 	
 	@Autowired
@@ -42,7 +51,14 @@ public class ArticleController {
 	@Autowired
 	IClickService iCService;
 	
+	@Autowired
+	IMyFavoArticleService iFService;
 	
+	@Autowired
+	IMemberDao iMDao;
+	
+	@Autowired
+	MyFavoArticle favoBean;
 	
 	@GetMapping("/ownArticle/{id}")
 	public String ownArticle(@PathVariable("id") String id, Model model) {
@@ -52,7 +68,7 @@ public class ArticleController {
 	}
 	
 	@GetMapping("/articleAndReply/{articleId}")
-	public String articleAndReply(@PathVariable("articleId") Integer articleId, Model model) {
+	public String articleAndReply(@PathVariable("articleId") Integer articleId, Model model, @SessionAttribute("MemberBean") MemberBean mb) {
 		Article aBean = iAService.queryArticle(articleId);
 		model.addAttribute("aBean", aBean);
 		List<ReplyListView> list = iRService.getReplyOfArticle(articleId);
@@ -66,6 +82,11 @@ public class ArticleController {
 		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 		click.setRecordDate(Date.valueOf(df.format(new Date(System.currentTimeMillis()))));
 		iCService.insertOrUpdate(click);
+		
+		FavoListView favo = iFService.isFavo(articleId, mb.getId());
+		System.out.println(mb.getId());
+		System.out.println("有抓到favoBean");
+		model.addAttribute("favo", favo);
 		
 		return "forum/articleAndReply";
 	}
@@ -137,5 +158,21 @@ public class ArticleController {
 		aBean.setPublishTime(new Timestamp(System.currentTimeMillis()));
 		iAService.updateArticle(aBean);
 		return "redirect:/forum/ownArticle/"+id;
+	}
+	
+	@PostMapping("/addFavo")
+	public String addFavo(@RequestParam("articleId") Integer articleId, 
+							@RequestParam("userId") String userId,
+							@RequestParam("userName") String userName) {
+		favoBean.setUserId(userId);
+		System.out.println("userId:"+userId);
+		favoBean.setUserName(userName);
+		System.out.println("userName: "+userName);
+		favoBean.setArticleId(articleId);
+		System.out.println("articleId: "+articleId);
+		favoBean.setFavoAddTime(new Timestamp(System.currentTimeMillis()));
+		iFService.addFavo(favoBean);
+		
+		return "redirect:/articleAndReply/"+articleId;
 	}
 }
