@@ -117,6 +117,8 @@
 								
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
 										<a class="dropdown-item" href="<c:url value='/googleMember'/>"> MemberUpdate</a> 
+										<a class="dropdown-item" href="<c:url value='/forum/ownArticle/${MemberBean.id}'/>"> 我的文章</a> 
+										
 									</div>
 									</li>
 

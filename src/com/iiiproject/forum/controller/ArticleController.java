@@ -105,9 +105,9 @@ public class ArticleController {
 	
 	@PostMapping("/articleStatus")
 	public String hide(@RequestParam Integer articleId,
-					   @RequestParam Integer boardId) {
+					   @RequestParam String id) {
 		iAService.hideArticle(articleId);
-		return "redirect:/forum/showAofB/"+boardId;
+		return "redirect:/forum/ownArticle/"+id;
 	}
 	
 	@GetMapping("/article/{articleId}")

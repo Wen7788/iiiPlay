@@ -50,8 +50,8 @@
 												<c:when test="${article.status==1}">
 													<input type="hidden" value="${article.articleId}"
 														name="articleId">
-													<input type="hidden" value="${article.boardId}"
-														name="boardId">
+													<input type="hidden" value="${article.id}"
+														name="id">
 													<button type="submit" class="genric-btn danger radius">
 														<font size='3'>隱藏</font>
 													</button>
@@ -59,8 +59,8 @@
 												<c:otherwise>
 													<input type="hidden" value="${article.articleId}"
 														name="articleId">
-													<input type="hidden" value="${article.boardId}"
-														name="boardId">
+													<input type="hidden" value="${article.id}"
+														name="id">
 													<button type="submit" class="genric-btn info radius">
 														<font size='3'>恢復</font>
 													</button>

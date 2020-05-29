@@ -15,9 +15,6 @@ Create Table Board(
 go
 
 
-
-
-
 if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'Article')
     drop table Article;
 go
@@ -35,19 +32,6 @@ Create Table Article(
 go
 
 
-
-
-
-if exists (select * from INFORMATION_SCHEMA.VIEWS where TABLE_NAME = 'BoardListView')
-    drop view BoardListView;
-go
-
-create view BoardListView as 
-  select b.*, (CASE WHEN bc.boardClickSum IS NULL THEN 0 ELSE bc.boardClickSum END) as boardclick
-  from Board as b
-  left join (select boardid, sum(clicksum) boardClickSum from ArticleListView group by boardid) as bc
-  on b.boardid = bc.boardid
-  go
 
 if exists (select * from INFORMATION_SCHEMA.VIEWS where TABLE_NAME = 'ArticleListView')
     drop view ArticleListView;
@@ -133,3 +117,42 @@ create table Click(
 )
 
 go
+
+
+if exists (select * from INFORMATION_SCHEMA.VIEWS where TABLE_NAME = 'BoardListView')
+    drop view BoardListView;
+go
+
+create view BoardListView as 
+  select b.*, (CASE WHEN bc.boardClickSum IS NULL THEN 0 ELSE bc.boardClickSum END) as boardclick
+  from Board as b
+  left join (select boardid, sum(clicksum) boardClickSum from ArticleListView group by boardid) as bc
+  on b.boardid = bc.boardid
+  go
+
+
+  if exists (select * from INFORMATION_SCHEMA.TABLES where TABLE_NAME = 'MyFavoArticle')
+    drop table MyFavoArticle;
+go
+
+Create table MyFavoArticle(
+	favoId int primary key identity (1000,1),
+	userId varchar,
+	userName nvarchar,
+	articleId int,
+	favoAddTime datetime,
+)
+go
+
+if exists (select * from INFORMATION_SCHEMA.VIEWS where TABLE_NAME = 'FavoListView')
+    drop view FavoListView;
+go
+
+
+create view FavoListView as 
+  select ma.favoId, ma.userId, ma.userName,ma.[favoAddTime],a.*
+  from [MyFavoArticle] as ma
+  left join ArticleListView as a 
+  on ma.articleId = a.articleid
+
+  go

@@ -208,29 +208,29 @@
 												<!-- 	<font size='3'>編輯</font> -->
 												<!-- 	</button> -->
 												<!-- 	</form> -->
-												<form method="post"
-													action="<c:url value='/forum/articleStatus'/>">
-													<c:choose>
-														<c:when test="${article.status==1}">
-															<input type="hidden" value="${article.articleId}"
-																name="articleId">
-															<input type="hidden" value="${bBean.boardId}"
-																name="boardId">
-															<button type="submit" class="genric-btn danger radius">
-																<font size='3'>隱藏</font>
-															</button>
-														</c:when>
-														<c:otherwise>
-															<input type="hidden" value="${article.articleId}"
-																name="articleId">
-															<input type="hidden" value="${bBean.boardId}"
-																name="boardId">
-															<button type="submit" class="genric-btn info radius">
-																<font size='3'>恢復</font>
-															</button>
-														</c:otherwise>
-													</c:choose>
-												</form>
+<!-- 												<form method="post" -->
+<%-- 													action="<c:url value='/forum/articleStatus'/>"> --%>
+<%-- 													<c:choose> --%>
+<%-- 														<c:when test="${article.status==1}"> --%>
+<%-- 															<input type="hidden" value="${article.articleId}" --%>
+<!-- 																name="articleId"> -->
+<%-- 															<input type="hidden" value="${bBean.boardId}" --%>
+<!-- 																name="boardId"> -->
+<!-- 															<button type="submit" class="genric-btn danger radius"> -->
+<!-- 																<font size='3'>隱藏</font> -->
+<!-- 															</button> -->
+<%-- 														</c:when> --%>
+<%-- 														<c:otherwise> --%>
+<%-- 															<input type="hidden" value="${article.articleId}" --%>
+<!-- 																name="articleId"> -->
+<%-- 															<input type="hidden" value="${bBean.boardId}" --%>
+<!-- 																name="boardId"> -->
+<!-- 															<button type="submit" class="genric-btn info radius"> -->
+<!-- 																<font size='3'>恢復</font> -->
+<!-- 															</button> -->
+<%-- 														</c:otherwise> --%>
+<%-- 													</c:choose> --%>
+<!-- 												</form> -->
 											</div>
 										</c:if>
 									</div>
