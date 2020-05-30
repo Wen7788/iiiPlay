@@ -11,6 +11,10 @@ public class HomeController {
 		return "index";
 	}
 	
+	@RequestMapping("/bs")
+	public String bsHome() {
+		return "BSindex";
+	}
 //	@RequestMapping("/top")
 //	public String top() {
 //		return "top";

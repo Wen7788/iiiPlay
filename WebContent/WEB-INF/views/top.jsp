@@ -80,7 +80,7 @@
 											href="<c:url value='/forum/showBoards'/>"> 討論區</a> 
 									</div></li>
 								<li class="nav-item">
-								   <a class="nav-link" href="#">後台管理</a>
+								   <a class="nav-link" href="<c:url value='/bs'/>">後台管理</a>
 								</li>
 								<c:if test="${empty MemberBean}">
 								<c:if test="${empty googleUser}">
@@ -96,7 +96,7 @@
 									aria-haspopup="true" aria-expanded="false"> ${MemberBean.id},Hello! </a>
 								
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-										<a class="dropdown-item" href="<c:url value='/MemberUpdate'/>"> MemberUpdate</a> 
+										<a class="dropdown-item" href="<c:url value='/MemberUpdate'/>"> 會員資料修改</a> 
 										<a class="dropdown-item" href="<c:url value='/forum/ownArticle/${MemberBean.id}'/>"> 我的文章</a> 
 									</div>
 									</li>
@@ -117,7 +117,7 @@
 									aria-haspopup="true" aria-expanded="false"> ${googleUser.name},Hello! </a>
 								
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-										<a class="dropdown-item" href="<c:url value='/googleMember'/>"> MemberUpdate</a> 
+										<a class="dropdown-item" href="<c:url value='/googleMember'/>"> 會員資料修改</a> 
 									</div>
 									</li>
 
