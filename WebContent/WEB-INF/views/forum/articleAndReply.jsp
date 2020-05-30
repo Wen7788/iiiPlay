@@ -34,28 +34,20 @@
 							</div>
 							<div id='articleId' style="display: none;">${aBean.articleId}</div>
 							<div id='userId' style="display: none;">${MemberBean.id}</div>
-							<div id='userName' style="display: none;">${MemberBean.name}</div>
 							
+
 						</div>
 					</div>
 					<div class="navigation-top">
 						<div class="d-sm-flex justify-content-between text-center">
-							<c:if test="${empty favo}">
-								<button type="button" class="genric-btn primary-border circle" id='favoBtn'>
-									<p class="like-info">
-										<span class="align-middle"><i class="far fa-heart"></i></span>
-										收藏
-									</p>
-								</button>
-							</c:if>
-							<c:if test="${!empty favo}">
-								<button type="button" class="genric-btn primary-border circle" id='non-favoBtn'>
-									<p class="like-info">
-										<span class="align-middle"><i class="fas fa-heart"></i></span>
-										取消收藏
-									</p>
-								</button>
-							</c:if>
+							
+							<p class="like-info" id='favoBtn'>
+								<a href="<c:url value='/forum/articleAndReply/${aBean.articleId}'/>"
+									class="genric-btn primary-border circle"> <i
+									id='shoucang' class="far fa-heart">收藏</i>
+								</a>
+							</p>
+								
 						</div>
 					</div>
 					<div class="comments-area">
@@ -161,52 +153,91 @@
 			return true;
 		}
 	</script>
-	
+
 	<script>
-		$(document).ready(function () {
-			var articleId = document.getElementById("articleId").innerHTML;
-			var userId = document.getElementById("userId").innerHTML;
-			var userName = document.getElementById("userName").innerHTML;
-			console.log(articleId);
-			console.log(userId);
-			$("#favoBtn").click(function(){
-				$.ajax({
-					type:"POST",
-					url:"<c:url value = '/forum/addFavo'/>",
-					data:{
-						"articleId":articleId,
-						"userId":userId,
-						"userName":userName
-					},
-					dataType:"json",
-					async:true,
-					success:function(){
-						alert("已將文章加入收藏!")
-					},
-					
+		var articleId = document.getElementById("articleId").innerHTML;
+		var userId = document.getElementById("userId").innerHTML;
+		
 
-				})
-					
-			})
+		function favoBtn(){
+			$("#shoucang").addClass('fas').removeClass('far');
+			$("#shoucang").text('取消收藏');
+			};
 
-			$("#non-favoBtn").click(function(){
-				$.ajax({
-					type:"POST",
-					url:"<c:url value = ''/>",
-					data:{
-						"articleid":articleId,
-						"userId":userId
-					},
-					dataType:"json",
-					async:true,
-					success:function(){
-						alert("已將文章取消收藏!")
-					}
-				});
-					
-			});
-			
+		function unFavoBtn(){
+			$("#shoucang").addClass('far').removeClass('fas');
+			$("#shoucang").text('收藏');
+			};
+
+		$("#favoBtn").click(function(){
+			if($("#shoucang").text()=='收藏'){
+				favoBtn();
+			}else{
+				unFavoBtn();
+			}
+			if($("#shoucang").text()=='收藏'){
+				deleFavoAjax(articleId, userId);
+			}else{
+				addFavoAjax(articleId, userId);
+			}
 		});
+
+		$(window).load(function(){
+			$.ajax({
+				type:"GET",
+				url:"<c:url value='/forum/checkFavo'/>",
+				async:true,	
+				contentType:"application/json",
+				dataType:"json",
+				data:{
+					"articleId":articleId,
+					"userId":userId
+				},
+				success:function(data){
+					if(data==1){
+						favoBtn();
+					}else{
+						unFavoBtn();
+					}
+				}
+			});
+		})
+	
+		function addFavoAjax(articleId, userId){
+			$.ajax({
+				type:"POST",
+				url:"<c:url value = '/forum/addFavo'/>",
+				async:true,
+				dataType:"json",
+				data:{
+					"articleId":articleId,
+					"userId":userId
+				},
+				success:function(req){
+					alert("已將文章加入收藏!");
+					console.log(req);
+				},					
+			})		
+		}
+
+		function deleFavoAjax(articleId, userId){
+			$.ajax({
+				type:"POST",
+				url:"<c:url value = '/forum/deleFavo'/>",
+				async:true,
+				dataType:"json",
+				data:{
+					"articleId":articleId,
+					"userId":userId
+				},
+				success:function(req){
+					alert("已將文章取消收藏!")
+					console.log(req);
+				},					
+			})		
+		}
+			
+		
 		
 	</script>
 

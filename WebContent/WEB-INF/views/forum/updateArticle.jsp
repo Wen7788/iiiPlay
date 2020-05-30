@@ -14,6 +14,7 @@
 <!-- animate CSS -->
 <link rel="stylesheet" href="<c:url value='/css/animate.css'/>">
 <!-- owl carousel CSS -->
+ <link rel="stylesheet" href="<c:url value='/css/nice-select.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/owl.carousel.min.css'/>">
 <!-- font awesome CSS -->
 <link rel="stylesheet" href="<c:url value='/css/all.css'/>">
@@ -25,6 +26,7 @@
 <!-- swiper CSS -->
 <link rel="stylesheet" href="<c:url value='/css/slick.css'/>">
 <!-- style CSS -->
+<link rel="stylesheet" href="<c:url value='/css/price_rangs.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
 </head>
 <body>
@@ -56,9 +58,10 @@
 									id="navbarDropdown_1" role="button" data-toggle="dropdown"
 									aria-haspopup="true" aria-expanded="false"> Play購物商城 </a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-										<a class="dropdown-item" href="category.html"> shop
-											category</a> <a class="dropdown-item" href="single-product.html">product
-											details</a>
+										<a class="dropdown-item" href="${pageContext.request.contextPath}/product/allproducts" > 購物去!</a> <a class="dropdown-item" href="${pageContext.request.contextPath}/product/Cart.do">
+										我的購物車
+											</a>
+											<a class="dropdown-item" href="${pageContext.request.contextPath}/product/findorder1" > 我的訂單</a>
 
 									</div></li>
 
@@ -71,7 +74,7 @@
 											href="<c:url value='/forum/showBoards'/>"> 討論區</a> 
 									</div></li>
 								<li class="nav-item">
-								   <a class="nav-link" href="#">後台管理</a>
+								   <a class="nav-link" href="<c:url value='/bs'/>">後台管理</a>
 								</li>
 								<c:if test="${empty MemberBean}">
 								<c:if test="${empty googleUser}">
@@ -87,11 +90,16 @@
 									aria-haspopup="true" aria-expanded="false"> ${MemberBean.id},Hello! </a>
 								
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-										<a class="dropdown-item" href="<c:url value='/MemberUpdate'/>"> MemberUpdate</a> 
+										<a class="dropdown-item" href="<c:url value='/MemberUpdate'/>"> 會員資料修改</a> 
 										<a class="dropdown-item" href="<c:url value='/forum/ownArticle/${MemberBean.id}'/>"> 我的文章</a> 
 									</div>
 									</li>
-
+<!-- 								<li class="nav-item"> -->
+<!-- 								<a class="nav-link" -->
+<!-- 									href="logOut"> -->
+<!-- 								<img width='50' height='50' src="data:image/jpg;base64,${mbPic}"> --!>
+<!-- 								</a> -->
+<!-- 								</li> -->
 								<li class="nav-item"><a class="nav-link"
 									href="logOut">Log Out</a></li>
 								 
@@ -103,7 +111,7 @@
 									aria-haspopup="true" aria-expanded="false"> ${googleUser.name},Hello! </a>
 								
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-										<a class="dropdown-item" href="<c:url value='/googleMember'/>"> MemberUpdate</a> 
+										<a class="dropdown-item" href="<c:url value='/googleMember'/>"> 會員資料修改</a> 
 									</div>
 									</li>
 
@@ -126,17 +134,17 @@
 		</div>
 		
 	</header>
-	
-	<script>
-		  function signOut() {
-			  console.log('User signed out????.')
-		    var auth2 = gapi.auth2.getAuthInstance();
-		    auth2.signOut().then(function () {
-		      console.log('User signed out.');
-		    });
-		    auth2.disconnect();
-		  }
-	</script>
+	<!-- Header part end-->
+<script>
+  function signOut() {
+	  console.log('User signed out????.')
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+    auth2.disconnect();
+  }
+</script>
 	
 	
 	<div class="container" style="margin-top: 100px; width: 60%">
@@ -199,7 +207,7 @@
 	</div>
 	
 	
-	<!-- jquery plugins here -->
+	<!-- jquery plugins here-->
 	<script src="<c:url value='/js/jquery-1.12.1.min.js'/>"></script>
 	<!-- popper js -->
 	<script src="<c:url value='/js/popper.min.js'/>"></script>
@@ -207,7 +215,7 @@
 	<script src="<c:url value='/js/bootstrap.min.js'/>"></script>
 	<!-- easing js -->
 	<script src="<c:url value='/js/jquery.magnific-popup.js'/>"></script>
-	<!-- swiper js  -->
+ 	<!-- swiper js --> 
 	<script src="<c:url value='/js/swiper.min.js'/>"></script>
 	<!-- swiper js -->
 	<script src="<c:url value='/js/masonry.pkgd.js'/>"></script>
@@ -223,5 +231,7 @@
 	<script src="<c:url value='/js/jquery.form.js'/>"></script>
 	<script src="<c:url value='/js/jquery.validate.min.js'/>"></script>
 	<script src="<c:url value='/js/mail-script.js'/>"></script>
+	 <script src="${pageContext.request.contextPath}/js/stellar.js"></script>
+	 <script src="${pageContext.request.contextPath}/js/price_rangs.js"></script>
 </body>
 </html>

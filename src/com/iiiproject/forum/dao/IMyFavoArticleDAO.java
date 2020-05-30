@@ -9,10 +9,10 @@ public interface IMyFavoArticleDAO {
 
 	MyFavoArticle addFavo(MyFavoArticle favoBean);
 
-	Boolean deleFavo(Integer favoId);
+	Boolean deleFavo(Integer articleId, String userId);
 
 	List<FavoListView> getOwnFavoArticle(String userId);
 
-	FavoListView isFavo(Integer articleId, String userId);
+	Integer isFavo(Integer articleId, String userId);
 
 }

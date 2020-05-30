@@ -137,8 +137,7 @@ go
 
 Create table MyFavoArticle(
 	favoId int primary key identity (1000,1),
-	userId varchar,
-	userName nvarchar,
+	userId varchar(255),
 	articleId int,
 	favoAddTime datetime,
 )
@@ -150,7 +149,7 @@ go
 
 
 create view FavoListView as 
-  select ma.favoId, ma.userId, ma.userName,ma.[favoAddTime],a.*
+  select ma.favoId, ma.userId,ma.[favoAddTime],a.*
   from [MyFavoArticle] as ma
   left join ArticleListView as a 
   on ma.articleId = a.articleid

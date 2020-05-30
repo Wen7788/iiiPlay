@@ -24,8 +24,8 @@ public class MyFavoArticleService implements IMyFavoArticleService {
 	}
 
 	@Override
-	public Boolean deleFavo(Integer favoId) {
-		Boolean deleFavo = myFavoArticleDao.deleFavo(favoId);
+	public Boolean deleFavo(Integer articleId, String userId) {
+		Boolean deleFavo = myFavoArticleDao.deleFavo(articleId, userId);
 		return deleFavo;
 	}
 
@@ -36,8 +36,8 @@ public class MyFavoArticleService implements IMyFavoArticleService {
 	}
 
 	@Override
-	public FavoListView isFavo(Integer articleId, String userId) {
-		FavoListView favo = myFavoArticleDao.isFavo(articleId, userId);
+	public Integer isFavo(Integer articleId, String userId) {
+		Integer favo = myFavoArticleDao.isFavo(articleId, userId);
 		return favo;
 	}
 

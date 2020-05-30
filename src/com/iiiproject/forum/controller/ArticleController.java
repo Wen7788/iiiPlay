@@ -6,7 +6,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,7 +39,6 @@ import com.iiiproject.lab02.service.IMemberService;
 
 @Controller
 @RequestMapping("/forum")
-@SessionAttributes(value = {"MemberBean"})
 public class ArticleController {
 	
 	@Autowired
@@ -55,20 +57,21 @@ public class ArticleController {
 	IMyFavoArticleService iFService;
 	
 	@Autowired
-	IMemberDao iMDao;
-	
-	@Autowired
 	MyFavoArticle favoBean;
 	
 	@GetMapping("/ownArticle/{id}")
 	public String ownArticle(@PathVariable("id") String id, Model model) {
 		List<ArticleListView> ownArticle = iAService.queryOwnArticle(id);
 		model.addAttribute("ownArticle", ownArticle);
+		
+		List<FavoListView> ownFavoArticle = iFService.getOwnFavoArticle(id);
+		
+		model.addAttribute("ownFavoArticle", ownFavoArticle);
 		return "forum/ownArticle";
 	}
 	
 	@GetMapping("/articleAndReply/{articleId}")
-	public String articleAndReply(@PathVariable("articleId") Integer articleId, Model model, @SessionAttribute("MemberBean") MemberBean mb) {
+	public String articleAndReply(@PathVariable("articleId") Integer articleId, Model model) {
 		Article aBean = iAService.queryArticle(articleId);
 		model.addAttribute("aBean", aBean);
 		List<ReplyListView> list = iRService.getReplyOfArticle(articleId);
@@ -83,10 +86,7 @@ public class ArticleController {
 		click.setRecordDate(Date.valueOf(df.format(new Date(System.currentTimeMillis()))));
 		iCService.insertOrUpdate(click);
 		
-		FavoListView favo = iFService.isFavo(articleId, mb.getId());
-		System.out.println(mb.getId());
-		System.out.println("有抓到favoBean");
-		model.addAttribute("favo", favo);
+		
 		
 		return "forum/articleAndReply";
 	}
@@ -160,19 +160,40 @@ public class ArticleController {
 		return "redirect:/forum/ownArticle/"+id;
 	}
 	
-	@PostMapping("/addFavo")
-	public String addFavo(@RequestParam("articleId") Integer articleId, 
-							@RequestParam("userId") String userId,
-							@RequestParam("userName") String userName) {
-		favoBean.setUserId(userId);
-		System.out.println("userId:"+userId);
-		favoBean.setUserName(userName);
-		System.out.println("userName: "+userName);
-		favoBean.setArticleId(articleId);
+	@GetMapping("/checkFavo")
+	public ResponseEntity<Integer> isFavo(@RequestParam("articleId") Integer articleId, 
+			@RequestParam("userId") String userId){
 		System.out.println("articleId: "+articleId);
-		favoBean.setFavoAddTime(new Timestamp(System.currentTimeMillis()));
-		iFService.addFavo(favoBean);
+		System.out.println("userId: "+userId);
+		Integer favo = iFService.isFavo(articleId, userId);
 		
-		return "redirect:/articleAndReply/"+articleId;
+		ResponseEntity<Integer> re = new ResponseEntity<Integer>(favo, HttpStatus.OK);
+		return re;
+	}
+	
+	@PostMapping("/addFavo")
+	public ResponseEntity<MyFavoArticle> addFavo(@RequestParam("articleId") Integer articleId, 
+							@RequestParam("userId") String userId) {
+		favoBean.setUserId(userId);
+		System.out.println("adduserId: "+userId);
+		
+		favoBean.setArticleId(articleId);
+		System.out.println("addarticleId: "+articleId);
+		favoBean.setFavoAddTime(new Timestamp(System.currentTimeMillis()));
+		MyFavoArticle addFavo = iFService.addFavo(favoBean);
+		
+		ResponseEntity<MyFavoArticle> re = new ResponseEntity<MyFavoArticle>(addFavo, HttpStatus.OK);
+		return re;
+	}
+	
+	@PostMapping("/deleFavo")
+	public ResponseEntity<Boolean> deleFavo(@RequestParam("articleId") Integer articleId, 
+			@RequestParam("userId") String userId){
+		System.out.println("deleuserId: "+userId);
+		System.out.println("delearticleId: "+articleId);
+		Boolean result = iFService.deleFavo(articleId, userId);
+		
+		ResponseEntity<Boolean> re = new ResponseEntity<Boolean>(result, HttpStatus.OK);
+		return re;
 	}
 }

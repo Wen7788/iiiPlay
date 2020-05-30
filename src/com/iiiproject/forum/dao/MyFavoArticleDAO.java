@@ -25,9 +25,13 @@ public class MyFavoArticleDAO implements IMyFavoArticleDAO {
 	}
 	
 	@Override
-	public Boolean deleFavo(Integer favoId) {
+	public Boolean deleFavo(Integer articleId, String userId) {
 		Session session = sessionFactory.getCurrentSession();
-		MyFavoArticle myFavoBean = session.get(MyFavoArticle.class, favoId);
+		String hql = "FROM MyFavoArticle where articleid=?1 and userId=?2";
+		Query<?> query = session.createQuery(hql);
+		query.setParameter(1, articleId);
+		query.setParameter(2, userId);
+		MyFavoArticle myFavoBean = (MyFavoArticle) query.uniqueResult();
 		if (myFavoBean!=null) {
 			session.delete(myFavoBean);
 			return true;
@@ -45,13 +49,17 @@ public class MyFavoArticleDAO implements IMyFavoArticleDAO {
 	}
 	
 	@Override
-	public FavoListView isFavo(Integer articleId, String userId) {
+	public Integer isFavo(Integer articleId, String userId) {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "FROM FavoListView where articleid=?1 and userId=?2";
-		Query<FavoListView> query = session.createQuery(hql, FavoListView.class);
+		Query<?> query = session.createQuery(hql);
 		query.setParameter(1, articleId);
 		query.setParameter(2, userId);
-		return query.uniqueResult();
-		
+		if (query.uniqueResult()!=null) {
+			System.out.println("有加入過收藏!");
+			return 1;
+		}
+		System.out.println("沒有加入過收藏!");
+		return 0;
 	}
 }

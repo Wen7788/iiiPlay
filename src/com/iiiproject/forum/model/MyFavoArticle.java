@@ -24,9 +24,7 @@ public class MyFavoArticle implements Serializable{
 	
 	@Column(name = "userId")
 	private String userId;
-	
-	@Column(name = "userName")
-	private String userName;
+
 	
 	@Column(name = "articleId")
 	private Integer articleId;
@@ -37,10 +35,9 @@ public class MyFavoArticle implements Serializable{
 	public MyFavoArticle() {
 	}
 
-	public MyFavoArticle(Integer favoId, String userId, String userName, Integer articleId, Timestamp favoAddTime) {
+	public MyFavoArticle(Integer favoId, String userId, Integer articleId, Timestamp favoAddTime) {
 		this.favoId = favoId;
 		this.userId = userId;
-		this.userName = userName;
 		this.articleId = articleId;
 		this.favoAddTime = favoAddTime;
 	}
@@ -61,13 +58,7 @@ public class MyFavoArticle implements Serializable{
 		this.userId = userId;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+	
 
 	public Integer getArticleId() {
 		return articleId;

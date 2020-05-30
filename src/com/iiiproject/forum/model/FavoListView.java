@@ -16,15 +16,12 @@ import org.springframework.stereotype.Component;
 public class FavoListView implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	@Column(name = "favoId")
 	private Integer favoId;
 	
-	@Id
 	@Column(name = "userId")
 	private String userId;
-	
-	@Column(name = "userName")
-	private String userName;
 	
 	@Column(name = "favoAddTime")
 	private Timestamp favoAddTime;
@@ -68,12 +65,11 @@ public class FavoListView implements Serializable{
 	public FavoListView() {
 	}
 
-	public FavoListView(Integer favoId, String userId, String userName, Timestamp favoAddTime, Integer articleId,
+	public FavoListView(Integer favoId, String userId, Timestamp favoAddTime, Integer articleId,
 			String authorId, String authorName, String category, String title, String detail, Timestamp publishTime,
 			Integer boardId, String boardName, Integer status, Integer replyCount, Integer clickSum) {
 		this.favoId = favoId;
 		this.userId = userId;
-		this.userName = userName;
 		this.favoAddTime = favoAddTime;
 		this.articleId = articleId;
 		this.authorId = authorId;
@@ -105,13 +101,7 @@ public class FavoListView implements Serializable{
 		this.userId = userId;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 
 	public Timestamp getFavoAddTime() {
 		return favoAddTime;
