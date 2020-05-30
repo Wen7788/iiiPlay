@@ -3,15 +3,20 @@ package com.iiiproject.lab02.controller;
 import java.io.IOException;
 import java.util.Base64;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.sound.midi.Soundbank;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,6 +30,44 @@ public class MemberUpdateServlet {
 	private static final long serialVersionUID = 1L;
 	@Autowired
 	private IMemberService mService;
+	
+	
+	@RequestMapping (value = "getAllMember")
+	public String getAllMember(Model model) {
+		List<MemberBean> list=mService.getAllMembers();
+		model.addAttribute("memberList", list);
+		return "member/memberList";
+		
+		
+		
+	}
+	
+	
+	@GetMapping (path="/status/{memberId}")
+	public String changeStatus(@PathVariable ("memberId")String memberId,HttpServletRequest request) {
+		
+
+		MemberBean updateMb = mService.select(memberId);
+		System.out.println("測試:"+memberId);
+		System.out.println(updateMb.getName());
+		Integer status=updateMb.getStatus();
+		System.out.println("status:"+status);
+		if (status==1) {
+			
+			updateMb.setStatus(100);
+			mService.updateMember(updateMb);
+		}
+		if (status==100) {
+			updateMb.setStatus(1);
+			mService.updateMember(updateMb);
+		}
+		
+		return "redirect:/getAllMember";
+	}
+	
+	
+	
+		
 
 	@RequestMapping(value = "updateMember.do", method = RequestMethod.POST)
 	protected String doPost(@RequestParam("changePic") MultipartFile multipartFile, HttpServletRequest request,

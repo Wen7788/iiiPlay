@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -69,7 +69,11 @@ public class InsertMemberServlet  {
 		String statusString = request.getParameter("status");
 		Integer status = Integer.valueOf(statusString);
 		System.out.println(status);
-		Timestamp registerTime = new java.sql.Timestamp(System.currentTimeMillis());
+		Timestamp time= new Timestamp(System.currentTimeMillis());//獲取系統當前時間 
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss ");
+		String timeStr = df.format(time); 
+		Timestamp timeSql = Timestamp.valueOf(timeStr); 
+		Timestamp registerTime = timeSql;
 		byte[] picture = multipartFile.getBytes();
 		
 		//進行必要的型態轉換，

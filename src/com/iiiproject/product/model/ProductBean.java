@@ -31,12 +31,29 @@ public class ProductBean implements Serializable {
 	private String category;
 	private byte[] pdimg;	
 	private String fileName; //圖檔名
-	private int price;
-	private int stock;
+	private Integer price;
+	private Integer stock;
 	private String companyName;
 	private Timestamp pdate;
 	private OrderItemBean itembean;
 	
+	
+	public ProductBean() {
+		
+	}
+	
+	public ProductBean(String productNo, String productName, String category, byte[] pdimg, int price, int stock,
+			String companyName, Timestamp pdate) {
+		super();
+		this.productNo = productNo;
+		this.productName = productName;
+		this.category = category;
+		this.pdimg = pdimg;
+		this.price = price;
+		this.stock = stock;
+		this.companyName = companyName;
+		this.pdate = pdate;
+	}
 	@Id
 	@Column(name="pdId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

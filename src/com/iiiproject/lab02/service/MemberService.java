@@ -4,6 +4,7 @@ import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.List;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.IllegalBlockSizeException;
@@ -72,12 +73,11 @@ public class MemberService implements IMemberService {
 
 	}
 
-//	@Override
-//	public List<MemberBean> getAllMembers() {
-//		//MemberHibernateDAO dao  = new MemberHibernateDAO();
-//		MemberDao dao = new MemberJdbcDao();
-//		return dao.getAllMembers();
-//	}
+	@Override
+	public List<MemberBean> getAllMembers() {
+		
+		return mDao.getAllMembers();
+	}
 //
 //	@Override
 //	public MemberBean getMember(int pk) {
@@ -119,6 +119,11 @@ public class MemberService implements IMemberService {
 	public MemberBean findByGoogleID(String googleId) {
 		// TODO Auto-generated method stub
 		return mDao.findByGoogleID(googleId);
+	}
+
+	@Override
+	public MemberBean select(String id) {
+		return mDao.select(id);
 	}
 
 	

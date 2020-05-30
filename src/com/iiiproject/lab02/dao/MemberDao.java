@@ -1,12 +1,16 @@
 package com.iiiproject.lab02.dao;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iiiproject.forum.model.ArticleListView;
 import com.iiiproject.lab02.dao.IMemberDao;
 import com.iiiproject.lab02.model.MemberBean;
 
@@ -57,37 +61,14 @@ public class MemberDao implements IMemberDao {
 		return count;
 	}
 
-//	@Override
-//	public List<MemberBean> getAllMembers() {
-//		List<MemberBean> list = new ArrayList<>();
-//		try {
-//			InitialContext context = new InitialContext();
-//			DataSource ds = (DataSource) context.lookup(resource);
-//			
-//			String sql = "SELECT * FROM Members";
-//			try (
-//				Connection con = ds.getConnection(); 
-//				PreparedStatement pstmt = con.prepareStatement(sql);
-//				ResultSet rs = pstmt.executeQuery();	
-//			) {
-//				while (rs.next()) {
-//					MemberBean mb = new MemberBean(
-//							rs.getInt(1),
-//							rs.getString(2), 
-//							rs.getString(3), 
-//							rs.getString(4)
-//					);
-//					list.add(mb);
-//				}
-//			} catch (Exception ex) {
-//				ex.printStackTrace();
-//			}
-//		} catch (Exception ex) {
-//			ex.printStackTrace();
-//		}
-//		return list;
-//	}
-//
+	@Override
+	public List<MemberBean> getAllMembers() {
+		Session session=factory.getCurrentSession();
+		Query<MemberBean> query = session.createQuery("FROM MemberBean", MemberBean.class);
+		return query.list();
+				
+		}
+
 	@Override
 	public MemberBean select(String id) {
 		MemberBean mb=null;
@@ -151,7 +132,7 @@ try {
 				result.setAge(mb.getAge());
 				result.setGames(mb.getGames());
 				result.setGender(mb.getGender());
-				
+				result.setStatus(mb.getStatus());
 				result.setPicture(mb.getPicture());
 //				
 				session.update(result);

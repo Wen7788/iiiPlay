@@ -25,7 +25,7 @@ public interface IMemberService {
 	
 	String resetCustomerPassword(String email);
 
-//	List<MemberBean> getAllMembers();
+	List<MemberBean> getAllMembers();
 //
 //	MemberBean getMember(int pk);
 //
@@ -34,6 +34,8 @@ public interface IMemberService {
 	int updateMember(MemberBean mb);
 	
 	MemberBean findByGoogleID(String googleId);
+	
+	MemberBean select(String id);
 	
 
 }

@@ -1,5 +1,7 @@
 package com.iiiproject.lab02.dao;
 
+import java.util.List;
+
 import com.iiiproject.lab02.model.MemberBean;
 
 public interface IMemberDao {
@@ -16,7 +18,7 @@ public interface IMemberDao {
 //
 	int updateMember(MemberBean mb);
 	int deleteMember(String id);
-//	List<MemberBean> getAllMembers();
+	List<MemberBean> getAllMembers();
 //
 //	MemberBean getMember(int pk);
 //
