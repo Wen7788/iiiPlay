@@ -3,6 +3,7 @@ package com.iiiproject.product.dao;
 
 
 import java.util.List;
+import java.util.Map;
 
 import com.iiiproject.product.model.ProductBean;
 
@@ -23,4 +24,6 @@ public interface IProductDao {
     List<ProductBean> category (String  com); //類型
 	Long allpdcount();
 	List<ProductBean> queryprice(int price1, int price2);
+//	List<ProductBean> getpdByPage(Map<String,Object> params);
+//	int getPdNums(ProductBean pd);
 }

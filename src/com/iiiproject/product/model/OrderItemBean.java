@@ -26,8 +26,10 @@ public class OrderItemBean {
 	@Column(name="itemId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Integer itemId;
-	@Column(name=" pdId")
-	Integer pdId;  //商品id  
+
+	@ManyToOne
+	@JoinColumn(name=" pdId")   
+	ProductBean pdId;  //商品id  
 //	@Column(name="orderId")
 //	int orderId;  //訂單編號
 	@Column(name="quantity")
@@ -46,9 +48,9 @@ public class OrderItemBean {
 		super();
 	}
 
-	public OrderItemBean(int pdId,  int quantity, int total) {
+	public OrderItemBean(  int quantity, int total) {
 		super();
-		this.pdId = pdId;
+		
 //		this.orderId = orderId;
 		this.quantity = quantity;
 		this.total = total;
@@ -62,14 +64,9 @@ public class OrderItemBean {
 		this.itemId = itemId;
 	}
 	
-	public int getPdId() {
-		return pdId;
-	}
+	
 
-	public void setPdId(int pdId) {
-		this.pdId = pdId;
-	}
-
+	
 //	public int getOrderId() {
 //		return orderId;
 //	}
@@ -77,6 +74,14 @@ public class OrderItemBean {
 //	public void setOrderId(int orderId) {
 //		this.orderId = orderId;
 //	}
+
+	public ProductBean getPdId() {
+		return pdId;
+	}
+
+	public void setPdId(ProductBean pdId) {
+		this.pdId = pdId;
+	}
 
 	public int getQuantity() {
 		return quantity;

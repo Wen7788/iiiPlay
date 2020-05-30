@@ -376,8 +376,15 @@ $(function(){
 				}, //引數值
 				type : "GET", //請求方式
 				success : function(req) {
-                alert("確定加入購物車?")
-					console.log(req);
+					if(window.confirm('確定加入購物車?')){
+						;
+							return true;
+							}else{
+						
+							return false;
+							}
+	  
+					},
         
 				},
 				complete : function() {

@@ -12,53 +12,7 @@
 <body>
 
 <jsp:include page="/WEB-INF/views/top.jsp"/>
-	<div class="rightContent">
-		<main class="home">
-			<div class="root">
-				當前位置:
-				<a href=".">首頁</a>
-				<code>&gt;</code>
-				購物流程
-			</div>
-			<div class="">
-				<div class="">
-
-					<img src="" alt="">
-					<span>
-						1.
-						<span class="">購物明細</span>
-					</span>
-				</div>
-
-
-				<div>
-					<img src="" alt="">
-					<span>
-						2.
-						<span class="">填寫收件資料</span>
-					</span>
-				</div>
-
-				<div>
-					<img src="" alt="">
-					<span>
-						3.
-						<span class="">再次確認訂單</span>
-					</span>
-				</div>
-
-
-
-				<div>
-					<img src="" alt="">
-					<span>
-						4.
-						<span class="">完成訂購</span>
-					</span>
-				</div>
-
-
-			</div>
+	
 
 <section class="cart_area padding_top">
     <div class="container">
@@ -71,82 +25,53 @@
                 <th scope="col">商品圖</th>
                 <th scope="col">商品名稱</th>
                 <th scope="col">商品價錢</th>
-                <th scope="col">數量</th>
+                  <th scope="col">商品數量</th>
                 <th scope="col">總額</th>
-                <th scope="col">刪除</th>
+                <th scope="col">詳情明細</th>
               </tr>
             </thead>
             	
    	
             	
-            	<c:forEach var="mem" varStatus="status" items="${cart.orderItems}">
+            	<c:forEach var="mem" varStatus="status" items="${oitem}">
             <tbody>                                                                                                                                                                                                                                                                   
               <tr>
            <td class="d-flex">
-			<img  width='130' class="single_product_item" src="Images.do/${mem.product.productId}" alt="" />
+			<img  width='130' class="single_product_item" src="<c:url value="/product/Images.do/${mem.pdId.productId}"/>" alt="" />
 		   
 		   </td>    
        
+      
                 <td>
                   <div class="media">
                     
                     <div class="media-body">
-                      <p>${mem.product.productName}</p>
+                      <p>${mem.pdId.productName}</p>
                     </div>
                   </div>
+             
                 </td>
-                <td>
-                  <h5>${mem.product.price}</h5>
-                </td>
-                <td>
-                  <div class="product_count">
-                      <input id="${mem.product.productId}" name="quantity" class="qt" value="${mem.num}" min="0" max="20" type="number">
-                       
-                  </div>
-                </td>
-                <td>
-                  <h5 class="subtotal">${mem.subtotal}</h5>
-                </td>
-                <td class="remove-pr">
-                <a href="${pageContext.request.contextPath}/product/remove.do/${mem.product.productId}" id="${mem.product.productId}" class="delete">刪除</a>
-			
-	            </td>
-              </tr>
-               </c:forEach>
-		<tr class="bottom_button">
-                <td>
-                 <div> 
-            <a id="clear1" class="btn_1" href="<c:url value="/product/CartServlet1.do"/>">清空購物車</a></div>  
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
             
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-               
                 <td>
-                  <h5>目前訂單總額</h5>
+                  <h5>${mem.pdId.price}</h5>
+                </td>
+              
+                 <td>
+                  <h5>${mem.quantity}</h5>
                 </td>
                 <td>
-                  <h3 id="total">$${cart.total}</h3>
+                  <h5 class="subtotal">${mem.total}</h5>
                 </td>
-              </tr>
-               
+                <td>
+                <a  class="btn_1" href="<c:url value="/product/findorder1"/>">訂單明細</a></div>
+                </td>
+
+               </c:forEach>
+
                </tbody>          
           </table>
            </form>
-		  <div class="checkout_btn_inner float-right">
-            <a class="btn_1" href="${pageContext.request.contextPath}/product/allproducts">繼續購物</a>
-            <a class="btn_1 checkout_btn_1" href="${pageContext.request.contextPath}/product/saveorder">結帳</a>
-          </div>
-        </div>
+		 
       </div>
       </div>
   </section>
@@ -160,26 +85,21 @@
 <script>
 	$(function() {
 		$(".delete").click(function() {
-			if(window.confirm('確定刪除?')){
-				;
-					return true;
-					}else{
-				
-					return false;
-					}
+			if (confirm("確認刪除?")) {
+			
 
-			},
+			}
+
 		});
 	})
 	$(function() {
 		$("#clear1").click(function() {
-			if(window.confirm('確定清除?')){
-				;
-					return true;
-					}else{
+			if (confirm("確認清除?")) {
 				
-					return false;
-					}
+	
+
+			}
+
 		});
 	})
 

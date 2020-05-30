@@ -8,6 +8,9 @@ import com.iiiproject.product.model.ProductBean;
 
 public interface IOrderservice {
 	public OrderBean saveorder(OrderBean order);
-	
+
+	public List<OrderBean> findorder(String uid);
+
+		List<OrderItemBean> findorderdetail(Integer orderId);
 
 }

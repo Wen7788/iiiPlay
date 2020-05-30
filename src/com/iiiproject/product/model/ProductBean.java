@@ -1,5 +1,6 @@
 package com.iiiproject.product.model;
 
+import java.beans.Transient;
 import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Timestamp;
@@ -34,6 +35,7 @@ public class ProductBean implements Serializable {
 	private int stock;
 	private String companyName;
 	private Timestamp pdate;
+	private OrderItemBean itembean;
 	
 	@Id
 	@Column(name="pdId")
@@ -113,5 +115,16 @@ public class ProductBean implements Serializable {
 	public void setPdate(Timestamp pdate) {
 		this.pdate = pdate;
 	}
+	
+	@javax.persistence.Transient
+	public OrderItemBean getItembean() {
+		return itembean;
+	}
+	@javax.persistence.Transient
+	public void setItembean(OrderItemBean itembean) {
+		this.itembean = itembean;
+	}
+	
+	
 	
 }

@@ -33,6 +33,29 @@ public class OrderDao implements IOrderDao {
 		
 		
 	}
+	
+	
+	@Override
+	public List<OrderBean> findorder(String uid) {
+		Session session = sessionFactory.getCurrentSession();
+		Query<OrderBean> queryorder =session.createQuery("from OrderBean where id=?0 ", OrderBean.class);
+		queryorder.setParameter(0, uid);
+	
+		return queryorder.list();
+	}
+	@Override
+	public List<OrderItemBean> findorderdetail(Integer orderId) {
+		Session session = sessionFactory.getCurrentSession();
+		Query<OrderItemBean> queryorderitem =session.createQuery("from OrderItemBean where FK_orderId=?0 ", OrderItemBean.class);
+		queryorderitem.setParameter(0, orderId);
+	
+		return queryorderitem.list();
+	}
+	
+
+	
+	
+	
 	@Override
 	public void saveorderItem(OrderItemBean Item) {
 		Session session = sessionFactory.getCurrentSession();

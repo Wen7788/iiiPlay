@@ -67,6 +67,7 @@
 										<a class="dropdown-item" href="${pageContext.request.contextPath}/product/allproducts" > 購物去!</a> <a class="dropdown-item" href="${pageContext.request.contextPath}/product/Cart.do">
 										我的購物車
 											</a>
+											<a class="dropdown-item" href="${pageContext.request.contextPath}/product/findorder1" > 我的訂單</a>
 
 									</div></li>
 
@@ -117,8 +118,6 @@
 								
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
 										<a class="dropdown-item" href="<c:url value='/googleMember'/>"> MemberUpdate</a> 
-										<a class="dropdown-item" href="<c:url value='/forum/ownArticle/${MemberBean.id}'/>"> 我的文章</a> 
-										
 									</div>
 									</li>
 

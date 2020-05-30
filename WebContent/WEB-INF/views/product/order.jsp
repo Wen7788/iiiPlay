@@ -21,13 +21,13 @@
             <h3>收件明細</h3>
             
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="first" name="name" value=""/>
-                <span class="placeholder" data-placeholder="收件人"></span>
+                <input type="text" class="form-control" id="first" name="name" value="" placeholder="收件人"/>
+                
               </div>
              
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="number" name="number" value=""/>
-                <span class="placeholder" data-placeholder="電話號碼"></span>
+                <input type="text" class="form-control" id="number" name="number" value="" placeholder="電話號碼"/>
+            
               </div>
                <div class="col-md-12 form-group">
                 <input type="text" class="form-control" id="company" name="address" placeholder="收件地址" value="" />

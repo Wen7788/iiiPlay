@@ -3,6 +3,7 @@
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -86,6 +87,17 @@ public class ProductDao implements IProductDao {
 		Query<ProductBean> query = session.createQuery("from ProductBean", ProductBean.class);
 		return query.list();
 	}
+	
+//	@Override
+//	public List<ProductBean> getpdByPage(Map<String,Object> params) {
+//		Session session = sessionFactory.getCurrentSession();
+//		Query<ProductBean> query = session.createQuery("from ProductBean", ProductBean.class);
+//		return query.list();
+//	}
+	
+	
+	
+	
 	@Override
 	public byte[] loadimage(int ProductId) {
 		Session session = sessionFactory.getCurrentSession();

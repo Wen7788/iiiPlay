@@ -1,8 +1,10 @@
 package com.iiiproject.product.controller;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,13 +13,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.iiiproject.lab02.model.MemberBean;
 import com.iiiproject.product.model.OrderBean;
 import com.iiiproject.product.model.OrderItem;
 import com.iiiproject.product.model.OrderItemBean;
+import com.iiiproject.product.model.ProductBean;
 import com.iiiproject.product.service.IOrderservice;
+import com.iiiproject.product.service.IProductBeanService;
 import com.iiiproject.product.service.ShoppingCart;
 
 
@@ -32,7 +38,8 @@ public class orderController {
 
 	@Autowired
 	IOrderservice odService;
-
+	@Autowired
+	IProductBeanService pdService;
 	@GetMapping("/saveorder")
 	public String saveorder(HttpServletRequest request,Model model) {
 		MemberBean user=(MemberBean)request.getSession().getAttribute("MemberBean");
@@ -56,7 +63,7 @@ public class orderController {
 		    orderItem.setQuantity(item.getNum());
 			orderItem.setTotal(item.getSubtotal());
 			orderItem.setProduct(item.getProduct());
-			orderItem.setPdId(item.getProduct().getProductId());
+			orderItem.setPdId(item.getProduct());
 
 			orderItem.setOrder(order); //新創建的訂單
 			
@@ -97,9 +104,8 @@ public class orderController {
 	     for (OrderItem item: cart.getOrderItems()) {
 		 OrderItemBean orderItem=new OrderItemBean();			
 		    orderItem.setQuantity(item.getNum());
-			orderItem.setTotal(item.getSubtotal());
-		
-			orderItem.setPdId(item.getProduct().getProductId());
+			orderItem.setTotal(item.getSubtotal());		
+			orderItem.setPdId(item.getProduct());
 //		    orderItem.setOrderId(order.getOrderId());  
 			
 			orderItem.setOrder(order); //新創建的訂單		
@@ -115,10 +121,36 @@ public class orderController {
 		   return"";
 
 	}
+
+	@GetMapping("/findorder1")
+	  public String findorder1(HttpServletRequest request,Model model) {
+		MemberBean user=(MemberBean)request.getSession().getAttribute("MemberBean");
+		String uid=  user.getId();
+
+		
+		List<OrderBean> orders = odService.findorder(uid);
 	
+		model.addAttribute("order" ,orders);
+		
+		
+		
+		return "product/myorder1";
 	
 
+	}
 	
+	
+	
+	@GetMapping("/findorder/{oid}")
+	  public String findorder(@PathVariable("oid") Integer oid ,HttpServletRequest request,Model model) {
+
+			List<OrderItemBean> orderitem = odService.findorderdetail(oid); 
+			model.addAttribute("oitem" , orderitem);
+
+		return "product/myorder";
+	
+
+	}
 	
 	
 }

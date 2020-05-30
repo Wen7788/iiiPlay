@@ -179,6 +179,30 @@
                  </div>
         </div>
      </div>
+     <div class="col-lg-12">
+                            <div class="pageination">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center">
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Previous">
+                                                <i class="ti-angle-double-left"></i>
+                                            </a>
+                                        </li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">5</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">6</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Next">
+                                                <i class="ti-angle-double-right"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
 </section> 
     <section class="product_list best_seller">
         <div class="container">
@@ -230,10 +254,10 @@
 	<script>
 	$(function(){
 	$(".btn_3").click(function() {
-		
+	
 		var pid = this.id;
            	$.ajax({
-				url : "ProductDetail.do/Cart.do", //請求的url地址
+				url : "<c:url value='/product/ProductDetail.do/Cart.do'/>", //請求的url地址
 				dataType : "json", //返回格式為json
 				async : true, //請求是否非同步，預設為非同步，這也是ajax重要特性
 				data : {
@@ -241,8 +265,13 @@
 				}, //引數值
 				type : "GET", //請求方式
 				success : function(req) {
-                alert("確定加入購物車?")
-					console.log(req);
+					if(window.confirm('確定加入購物車?')){
+					;
+						return true;
+						}else{
+					
+						return false;
+						}
   
 				},
 				complete : function() {

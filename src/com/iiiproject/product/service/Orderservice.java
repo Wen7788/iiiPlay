@@ -36,5 +36,13 @@ public class Orderservice implements IOrderservice {
 		return order;
 	}
 	
-
+	@Override
+	public List<OrderBean> findorder(String uid){
+		return hDao.findorder(uid);
+	}
+	
+	@Override
+	public List<OrderItemBean> findorderdetail(Integer orderId){
+	return hDao.findorderdetail(orderId);
+	}
 }
