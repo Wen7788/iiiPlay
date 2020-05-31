@@ -102,18 +102,19 @@
                 <div class="review_item">
                   <div class="media">
                     <div class="d-flex">
-                      <img width='45' src="data:image/jpg;base64,${mbPic}">
+                      <img height='75px' width='70px'
+	src='${pageContext.request.contextPath}/member/getImage/${rp.id}' alt='沒有圖片'>
                     </div>
                     <div class="media-body">
                     <input class="aaaa" type="text" name="pdId" value="${rp.pdId}" hidden="">
                       <h3>${rp.name}</h3>
                       <h4>${rp.replyDate}</h4>
+                  <h3>
+                   ${rp.detail}
+                 </h3>
                       <a class="reply_btn" href="#">Reply</a>
                     </div>
                   </div>
-                  <h4>
-                   ${rp.detail}
-                 </h4>
                 </div>
              </c:forEach>
               </div>
