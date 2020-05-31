@@ -8,6 +8,15 @@
 <meta charset="UTF-8">
 <title>iiiPlay-Forum</title>
 <link rel="icon" href="<c:url value='/img/favicon.png'/>">
+<style type="text/css">
+	#suggest{
+    	position:absolute;
+        background-color:#FFFFFF;
+        text-align: :left;
+        border: 1px solid #000000;
+        display: none;
+   }
+</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/top.jsp" />
@@ -23,7 +32,7 @@
 							<article class="blog_item">
 								<div class="blog_item_img">
 									<a href="<c:url value='/forum/showAofB/${board.boardId}'/>">
-									<img class="card-img rounded-0"
+										<img class="card-img rounded-0"
 										src="<c:url value='/forum/loadImg/${board.boardId}'/>" alt="">
 									</a>
 								</div>
@@ -33,19 +42,20 @@
 
 
 								<div class="blog_details">
-									<a class="d-inline-block" href="<c:url value='/forum/showAofB/${board.boardId}'/>">
+									<a class="d-inline-block"
+										href="<c:url value='/forum/showAofB/${board.boardId}'/>">
 										<h2>${board.boardName}</h2>
 									</a>
-<%-- 										<div class='passId' style="display: none;">${board.boardId}</div> --%>
-										<a href="<c:url value='#'/>">
-											<p class='random'>隨機文章</p>
-										</a>
-								
+									<%-- 										<div class='passId' style="display: none;">${board.boardId}</div> --%>
+									<a href="<c:url value='#'/>">
+										<p class='random'>隨機文章</p>
+									</a>
+
 									<ul class="blog-info-link">
-										<li><i class="fa fa-eye">瀏覽數:</i> </li>
+										<li><i class="fa fa-eye">瀏覽數:</i></li>
 										<li><i class="fa fa-newspaper">文章數:</i></li>
 									</ul>
-									
+
 								</div>
 							</article>
 						</c:forEach>
@@ -54,15 +64,16 @@
 
 				<div class="col-lg-4">
 					<div class="blog_right_sidebar">
-					
-					
 						<aside class="single_sidebar_widget search_widget">
+						
 							<form action="#">
 								<div class="form-group">
 									<div class="input-group mb-3">
-										<input type="text" class="form-control"
+										<input type="text" class="form-control" id='txtSearch' name='txtSearch'
 											placeholder='Search Keyword' onfocus="this.placeholder = ''"
 											onblur="this.placeholder = 'Search Keyword'">
+										
+             							<div id="suggest" style="width:200px"></div>
 										<div class="input-group-append">
 											<button class="btn" type="button">
 												<i class="ti-search"></i>
@@ -74,6 +85,7 @@
 									class="button rounded-0 primary-bg text-white w-100 btn_1"
 									type="submit">Search</button>
 							</form>
+							
 						</aside>
 
 
@@ -81,17 +93,20 @@
 						<aside class="single_sidebar_widget popular_post_widget">
 							<h3 class="widget_title">Recent Post</h3>
 							<c:forEach items="${last5Article}" var='last5Article'>
-							<div class="media post_item">
-								<a href="<c:url value='/forum/articleAndReply/${last5Article.articleId}'/>">
-								<img src="<c:url value='/img/${last5Article.category}.png'/>" alt="post">
-								</a>
-								<div class="media-body">
-									<a href="<c:url value='/forum/articleAndReply/${last5Article.articleId}'/>">
-										<h3>【${last5Article.category}】${last5Article.title}</h3>
+								<div class="media post_item">
+									<a
+										href="<c:url value='/forum/articleAndReply/${last5Article.articleId}'/>">
+										<img src="<c:url value='/img/${last5Article.category}.png'/>"
+										alt="post">
 									</a>
-									<p>${fn:substring(last5Article.publishTime, 0, 19)}</p>
+									<div class="media-body">
+										<a
+											href="<c:url value='/forum/articleAndReply/${last5Article.articleId}'/>">
+											<h3>【${last5Article.category}】${last5Article.title}</h3>
+										</a>
+										<p>${fn:substring(last5Article.publishTime, 0, 19)}</p>
+									</div>
 								</div>
-							</div>
 							</c:forEach>
 
 
@@ -103,46 +118,77 @@
 		</div>
 
 	</section>
-<script type="text/javascript">
-	window.onload = function(){
-		var xhr = new XMLHttpRequest();
-		xhr.open("GET", "<c:url value='/forum/showArticleCount'/>", true);
-		xhr.send();
-		xhr.onreadystatechange = function(){
-			if(xhr.readyState == 4 && xhr.status == 200){
-				var mapData = JSON.parse(xhr.responseText);
-				var clist = mapData.clist
-				var clist2 = mapData.clist2
-				for(var i=0; i<clist.length; i++){
-					var count = clist[i];
-					var count2 = clist2[i];
-					
-					var c = document.getElementsByClassName("fa-newspaper");
-					var c2 = document.getElementsByClassName("fa-eye");
-					c[i].innerHTML += ""+count;
-					c2[i].innerHTML += ""+count2;
+	<script type="text/javascript">
+		window.onload = function() {
+			var xhr = new XMLHttpRequest();
+			xhr.open("GET", "<c:url value='/forum/showArticleCount'/>", true);
+			xhr.send();
+			xhr.onreadystatechange = function() {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					var mapData = JSON.parse(xhr.responseText);
+					var clist = mapData.clist
+					var clist2 = mapData.clist2
+					for (var i = 0; i < clist.length; i++) {
+						var count = clist[i];
+						var count2 = clist2[i];
+
+						var c = document.getElementsByClassName("fa-newspaper");
+						var c2 = document.getElementsByClassName("fa-eye");
+						c[i].innerHTML += "" + count;
+						c2[i].innerHTML += "" + count2;
+					}
 				}
 			}
 		}
+
+
 		
-// 		var xhr2 = new XMLHttpRequest();
-// 		xhr2.open("GET", "<c:url value='/forum/randomArticle'/>", true);
-// 		xhr2.send();
-// 		xhr2.onreadystatechange = function(){
-// 			if(xhr.readyState == 4 && xhr.status == 200){
-// 				var randomAlistData = JSON.parse(xhr2.responseText);
-// 				var random = document.getElementsByClassName("random");
-// 				random.innerHTML += "【";
-				
-// 				for(var j=0; j<randomAlistData.length; j++){
-// 					var aBean = randomAlistData[j];
-// 					var random = document.getElementsByClassName("random");
-// 					random.innerHTML += aBean[j].category + "】" + aBean[j].title;
-// 				}
-// 			}
-// 		}
-	}
-</script>
+		$("#txtSearch").keyup(function(){
+			var keyword = this.value;
+			
+			$.ajax({
+				type:"GET",
+				url:"<c:url value='/forum/likeQuery'/>",
+				async:true,	
+				contentType:"application/json",
+				dataType:"json",
+				data:{
+					"title":keyword
+				},
+				success:function(listData){
+					$("#suggest").innerHTML="";
+					var content = "";
+					
+					
+					for (var i=0; i < listData.length; i++) {
+						content += "<option>"+listData[i].title+"</option>";
+						
+					}
+					document.getElementById("suggest").innerHTML = content;	
+					document.getElementById("suggest").style.display="block";
+				}
+			});
+		})
+		
+			
+			// 		var xhr2 = new XMLHttpRequest();
+			// 		xhr2.open("GET", "<c:url value='/forum/randomArticle'/>", true);
+			// 		xhr2.send();
+			// 		xhr2.onreadystatechange = function(){
+			// 			if(xhr.readyState == 4 && xhr.status == 200){
+			// 				var randomAlistData = JSON.parse(xhr2.responseText);
+			// 				var random = document.getElementsByClassName("random");
+			// 				random.innerHTML += "【";
+
+			// 				for(var j=0; j<randomAlistData.length; j++){
+			// 					var aBean = randomAlistData[j];
+			// 					var random = document.getElementsByClassName("random");
+			// 					random.innerHTML += aBean[j].category + "】" + aBean[j].title;
+			// 				}
+			// 			}
+			// 		}
+		
+	</script>
 
 
 </body>

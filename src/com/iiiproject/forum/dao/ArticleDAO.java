@@ -148,6 +148,16 @@ public class ArticleDAO implements IArticleDAO {
 		return query.list();
 	}
 	
+	@Override
+	public List<ArticleListView> likeQuery(String title){
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM ArticleListView WHERE title LIKE :title";
+		Query<ArticleListView> query = session.createQuery(hql, ArticleListView.class);
+		query.setParameter("title", "%"+title+"%");
+		
+		return query.list();
+	}
+	
 	
 	
 }

@@ -33,6 +33,6 @@ public interface IArticleService {
 	
 	List<ArticleListView> queryLast5Article();
 	
-	
+	List<ArticleListView> likeQuery(String title);
 
 }

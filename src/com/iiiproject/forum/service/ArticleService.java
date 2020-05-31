@@ -97,5 +97,11 @@ public class ArticleService implements IArticleService {
 		return last5Article;
 	}
 
+	@Override
+	public List<ArticleListView> likeQuery(String title) {
+		List<ArticleListView> titleLikeQuery = articleDao.likeQuery(title);
+		return titleLikeQuery;
+	}
+
 	
 }

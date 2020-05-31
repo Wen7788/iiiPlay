@@ -33,6 +33,8 @@ public interface IArticleDAO {
 
 	List<ArticleListView> queryLast5Article();
 
+	List<ArticleListView> likeQuery(String title);
+
 	
 
 }

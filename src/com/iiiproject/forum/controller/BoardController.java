@@ -50,6 +50,7 @@ public class BoardController {
 	
 	
 
+	
 //	@GetMapping("/randomArticle")
 //	public ResponseEntity<List<Article>> getRandomArticle() {
 //		Long allArticleCounts = iAService.getAllArticleCounts();
@@ -81,8 +82,14 @@ public class BoardController {
 //		return re;
 //	}
 
+	@GetMapping("/likeQuery")
+	public ResponseEntity<List<ArticleListView>> likeQuery(@RequestParam("title") String title){
+		List<ArticleListView> list = iAService.likeQuery(title);
+		ResponseEntity<List<ArticleListView>> re = new ResponseEntity<>(list, HttpStatus.OK);
+		return re;
+	}
 	
-	
+
 	@GetMapping("/showArticleCount")
 	public ResponseEntity<Map<String,List<?>>> showArticleCount() {
 		List<Board> boardSt1 = iBService.queryAllBoardStatus1();

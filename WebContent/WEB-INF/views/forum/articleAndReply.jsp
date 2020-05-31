@@ -59,7 +59,7 @@
 								<div class="single-comment justify-content-between d-flex">
 									<div class="user justify-content-between d-flex">
 										<div class="thumb">
-											<img src="data:image/jpg;base64,${mbPic}" alt="">
+											<img src="<c:url value='/member/getImage/${reply.id}'/>" alt="">
 										</div>
 										<div class="desc">
 											<p class="comment">${reply.replyDetail}</p>
