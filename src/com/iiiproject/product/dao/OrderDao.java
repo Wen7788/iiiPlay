@@ -63,8 +63,16 @@ public class OrderDao implements IOrderDao {
 		
 	}
 			
-			
-			
+	@Override
+	public OrderBean state(Integer orderId) {
+		Session session = sessionFactory.getCurrentSession();
+		Query<OrderBean> state =session.createQuery("from OrderBean where state=?0  ", OrderBean.class);
+		state.setParameter(0, orderId);
+	
+		return state.uniqueResult();
+	}		
+	
+	
 			
 	
 	

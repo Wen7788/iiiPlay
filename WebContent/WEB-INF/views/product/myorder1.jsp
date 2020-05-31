@@ -61,13 +61,19 @@
                   <h5>${mem.shippingAddress}</h5>
                 </td>
                 <td>
-                  <h5 class="subtotal">${mem.total}</h5>
+                  <h5 class="subtotal">$${mem.total}</h5>
                 </td>           
                 <td>
                 <a  class="btn_1" id="odd" href="<c:url value="/product/findorder/${mem.orderId}"/>">訂單明細</a></div>
                 </td>
                 <td>
-                   <a  class="btn_1" href="<c:url value="/product/findorder1"/>">付款</a></div>
+                     <c:if test="${mem.state==1}" >
+                     <a  class="btn_1" href="<c:url value="/product/findorder1"/>">付款</a>
+                     </c:if>
+                      <c:if test="${mem.state==2}" >
+                     <h5 class="subtotal">已付款</h5>
+                     </c:if>
+                
                 </td>
 <!--                 <td class="remove-pr"> -->
 <%--                 <a href="${pageContext.request.contextPath}/product/remove.do/${mem.pdId}" id="${mem.productId}" class="delete">結帳</a> --%>

@@ -96,7 +96,7 @@
                   </div>
                 </td>
                 <td>
-                  <h5>${mem.product.price}</h5>
+                  <h5>$${mem.product.price}</h5>
                 </td>
                 <td>
                   <div class="product_count">
@@ -105,10 +105,10 @@
                   </div>
                 </td>
                 <td>
-                  <h5 class="subtotal">${mem.subtotal}</h5>
+                  <h5 class="subtotal">$${mem.subtotal}</h5>
                 </td>
                 <td class="remove-pr">
-                <a href="${pageContext.request.contextPath}/product/remove.do/${mem.product.productId}" id="${mem.product.productId}" class="delete">刪除</a>
+                <a href="${pageContext.request.contextPath}/product/remove.do/${mem.product.productId}" id="${mem.product.productId}" class="btn_1 aaaa" style="width:120px">刪除</a>
 			
 	            </td>
               </tr>
@@ -144,7 +144,7 @@
            </form>
 		  <div class="checkout_btn_inner float-right">
             <a class="btn_1" href="${pageContext.request.contextPath}/product/allproducts">繼續購物</a>
-            <a class="btn_1 checkout_btn_1" href="${pageContext.request.contextPath}/product/saveorder">結帳</a>
+            <a class="btn_1 checkout_btn_1" href="${pageContext.request.contextPath}/product/saveorder">填寫收件資料</a>
           </div>
         </div>
       </div>
@@ -159,7 +159,7 @@
 
 <script>
 	$(function() {
-		$(".delete").click(function() {
+		$(".aaaa").click(function() {
 			if(window.confirm('確定刪除?')){
 				;
 					return true;
@@ -168,9 +168,9 @@
 					return false;
 					}
 
-			},
+			})
 		});
-	})
+	
 	$(function() {
 		$("#clear1").click(function() {
 			if(window.confirm('確定清除?')){
@@ -236,7 +236,7 @@
 							 sb= req.orderItems[i].subtotal
 							 console.log("money: " + sb) 
 							 sub=document.getElementsByClassName("subtotal");
-							 sub[i].innerHTML=sb;
+							 sub[i].innerHTML="$"+sb;
 
 							  }
 			

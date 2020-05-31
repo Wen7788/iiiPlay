@@ -38,8 +38,7 @@ public class orderController {
 
 	@Autowired
 	IOrderservice odService;
-	@Autowired
-	IProductBeanService pdService;
+
 	@GetMapping("/saveorder")
 	public String saveorder(HttpServletRequest request,Model model) {
 		MemberBean user=(MemberBean)request.getSession().getAttribute("MemberBean");
@@ -121,6 +120,51 @@ public class orderController {
 		   return"";
 
 	}
+	@GetMapping("/saveorder2")
+	public String saveorder2(HttpServletRequest request,Model model) {
+		MemberBean user=(MemberBean)request.getSession().getAttribute("MemberBean");
+		if(null==user) {
+			request.setAttribute("error", "請登錄後再下單");
+		
+		}	
+  //獲取購物車
+	ShoppingCart cart=(ShoppingCart)request.getSession().getAttribute("cart");
+		//創一個訂單對象
+		OrderBean order=new OrderBean();		
+		
+		order.setOrderDate(new Date());
+	    order.setTotal(cart.getTotal());
+		order.setState(1);
+		order.setId(user.getId()); //取得用戶id	
+		order.setEmail(request.getParameter("email"));
+		order.setName(request.getParameter("name"));
+		order.setPhone(request.getParameter("number"));
+		order.setShippingAddress(request.getParameter("address"));
+		 
+		
+
+		//遍歷一個個購物項
+		 Set<OrderItemBean>  set = new HashSet<OrderItemBean>();
+	     for (OrderItem item: cart.getOrderItems()) {
+		 OrderItemBean orderItem=new OrderItemBean();			
+		    orderItem.setQuantity(item.getNum());
+			orderItem.setTotal(item.getSubtotal());		
+			orderItem.setPdId(item.getProduct());
+//		    orderItem.setOrderId(order.getOrderId());  
+			
+			orderItem.setOrder(order); //新創建的訂單		
+//			order.getItems().add(orderItem); //訂單上所有的訂單項
+			set.add(orderItem);
+		
+	     }
+	     order.setItems(set);
+	     odService.saveorder(order);
+
+		cart.clearOrderItem();		
+		request.setAttribute("order", order);
+		   return"redirect:/product/findorder1";
+		   
+	}
 
 	@GetMapping("/findorder1")
 	  public String findorder1(HttpServletRequest request,Model model) {
@@ -151,6 +195,7 @@ public class orderController {
 	
 
 	}
+	
 	
 	
 }

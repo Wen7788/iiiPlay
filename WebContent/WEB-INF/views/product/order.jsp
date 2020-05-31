@@ -83,10 +83,17 @@
                     <span style="font-size:20px">$${order.total}</span>
                </td>
            </tr>  
+           
+            <tr>
+                 <td>  <input type="button"  class="btn_3" id="save" value="結帳" ></td> 
+                 <td >  <input type="button"  class="btn_3" id="save1" value="生成訂單" ></td>
+                 <td>
+                  
+           </tr>  
               </tbody>   
                 </table>
-             
-             <input type="button"  class="btn_3" id="save" value="結帳" >
+             <div></div>
+            
             </div>
           </div>
    
@@ -103,6 +110,16 @@ $(function(){
 	$("#save").click(function(){
  var formobj=document.getElementById("saveform");
  //formobj.action="/CartServlet.do";
+ //formobj.method="post";
+ formobj.submit();	
+});
+})
+
+
+$(function(){
+	$("#save1").click(function(){
+ var formobj=document.getElementById("saveform");
+ formobj.action="<c:url value='/product/saveorder2'/>";
  //formobj.method="post";
  formobj.submit();	
 });

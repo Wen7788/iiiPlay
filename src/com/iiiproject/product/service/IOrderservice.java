@@ -12,5 +12,5 @@ public interface IOrderservice {
 	public List<OrderBean> findorder(String uid);
 
 		List<OrderItemBean> findorderdetail(Integer orderId);
-
+		OrderBean state(Integer orderId);
 }

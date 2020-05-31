@@ -45,4 +45,10 @@ public class Orderservice implements IOrderservice {
 	public List<OrderItemBean> findorderdetail(Integer orderId){
 	return hDao.findorderdetail(orderId);
 	}
+	
+	@Override
+	public OrderBean state(Integer orderId){
+	return hDao.state(orderId);
+	}
+	
 }

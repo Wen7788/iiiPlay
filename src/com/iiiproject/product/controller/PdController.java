@@ -28,8 +28,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.iiiproject.product.model.OrderItem;
 import com.iiiproject.product.model.ProductBean;
+import com.iiiproject.product.model.ReplyBean;
 import com.iiiproject.product.service.IProductBeanService;
-
+import com.iiiproject.product.service.IReplyservice;
 import com.iiiproject.product.service.ShoppingCart;
 
 
@@ -45,6 +46,9 @@ public class PdController {
 
 	@Autowired
 	IProductBeanService pdService;
+	
+	@Autowired
+	IReplyservice iRService;
 
 	@GetMapping("/allproducts")
 	public String allproducts(Model model) {
@@ -152,10 +156,16 @@ public class PdController {
 	}
 
 	@GetMapping("/ProductDetail.do/{pid}")
-	public String detail(@PathVariable("pid") int pdId,Model model) {
+	public String detail(@PathVariable("pid") Integer pdId,Model model) {
 	
 		ProductBean pBean = pdService.select(pdId);
 		model.addAttribute("detail", pBean);
+		List<ReplyBean> list = iRService.getReplyPd(pdId);
+		model.addAttribute("rplist", list);
+		
+		
+		
+		
 		return "product/Shopdetail";
 	}
 	/*

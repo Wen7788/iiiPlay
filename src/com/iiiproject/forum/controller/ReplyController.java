@@ -33,4 +33,5 @@ public class ReplyController {
 		
 		return "redirect:/forum/articleAndReply/"+articleId;
 	}
+	
 }
