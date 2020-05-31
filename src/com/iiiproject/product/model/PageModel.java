@@ -1,4 +1,4 @@
-package com.iiiproject.product.model;
+  package com.iiiproject.product.model;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -30,6 +30,7 @@
 						<th scope="col">email</th>
 						<th scope="col">註冊時間</th>
 						<th scope="col">狀態</th>
+						<th scope="col">大頭貼</th>
 
 					</tr>
 				</thead>
@@ -39,7 +40,7 @@
 							<input type="hidden" value="${member.id}"
 								name="statusId">
 							<tr>
-
+								
 								<td>${member.pk}</td>
 								<td>${member.id}</td>
 								<td>${member.name}</td>
@@ -67,7 +68,11 @@
 								</c:if>
 <!-- 						</form> -->
 
-
+							<td>
+							<img height='75px' width='70px'
+	src='${pageContext.request.contextPath}/member/getImage/${member.id}' alt='沒有圖片'>
+	
+	</td>
 						</tr>
 
 					</c:forEach>
