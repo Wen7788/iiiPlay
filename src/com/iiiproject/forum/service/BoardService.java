@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.iiiproject.forum.dao.IBoardDAO;
 import com.iiiproject.forum.model.Board;
+import com.iiiproject.forum.model.BoardListView;
 
 @Service("boardService")
 @Transactional
@@ -63,5 +64,11 @@ public class BoardService implements IBoardService {
 	public Integer getBoardClick(Integer boardId) {
 		Integer boardClick = boardDao.getBoardClick(boardId);
 		return boardClick;
+	}
+
+	@Override
+	public List<BoardListView> queryHot5Board() {
+		List<BoardListView> queryHot5Board = boardDao.queryHot5Board();
+		return queryHot5Board;
 	}
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.iiiproject.forum.model.Board;
+import com.iiiproject.forum.model.BoardListView;
 
 @Repository("boardDao")
 public class BoardDAO implements IBoardDAO {
@@ -102,5 +103,12 @@ public class BoardDAO implements IBoardDAO {
 		return (Integer) query.uniqueResult();
 	}
 	
-	
+	@Override
+	public List<BoardListView> queryHot5Board(){
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "FROM BoardListView order by boardclick desc";
+		Query<BoardListView> query = session.createQuery(hql, BoardListView.class);
+		query.setMaxResults(5);
+		return query.list();
+	}
 }

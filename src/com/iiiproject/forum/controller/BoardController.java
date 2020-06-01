@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iiiproject.forum.model.Article;
 import com.iiiproject.forum.model.ArticleListView;
 import com.iiiproject.forum.model.Board;
+import com.iiiproject.forum.model.BoardListView;
 import com.iiiproject.forum.service.IArticleService;
 import com.iiiproject.forum.service.IBoardService;
 import com.iiiproject.forum.service.IClickService;
@@ -81,7 +82,9 @@ public class BoardController {
 //		ResponseEntity<List<Article>> re = new ResponseEntity<>(alist, HttpStatus.OK);
 //		return re;
 //	}
-
+	
+	
+	
 	@GetMapping("/likeQuery")
 	public ResponseEntity<List<ArticleListView>> likeQuery(@RequestParam("title") String title){
 		List<ArticleListView> list = iAService.likeQuery(title);
@@ -120,7 +123,10 @@ public class BoardController {
 		
 		List<ArticleListView> last5Article = iAService.queryLast5Article();
 		model.addAttribute("last5Article", last5Article);
-
+		
+		List<BoardListView> queryHot5Board = iBService.queryHot5Board();
+		model.addAttribute("queryHot5Board", queryHot5Board);
+		
 		return "forum/boardList";
 	}
 

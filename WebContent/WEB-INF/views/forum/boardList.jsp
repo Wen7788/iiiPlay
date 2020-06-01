@@ -6,16 +6,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>iiiPlay-Forum</title>
+<title>討論區</title>
 <link rel="icon" href="<c:url value='/img/favicon.png'/>">
 <style type="text/css">
-	#suggest{
+#suggestSelect{
     	position:absolute;
         background-color:#FFFFFF;
         text-align: :left;
         border: 1px solid #000000;
         display: none;
-   }
+        margin-top: 1px;
+        top:50px
+ }
 </style>
 </head>
 <body>
@@ -65,15 +67,17 @@
 				<div class="col-lg-4">
 					<div class="blog_right_sidebar">
 						<aside class="single_sidebar_widget search_widget">
-						
+
 							<form action="#">
 								<div class="form-group">
 									<div class="input-group mb-3">
-										<input type="text" class="form-control" id='txtSearch' name='txtSearch'
-											placeholder='Search Keyword' onfocus="this.placeholder = ''"
+										<input type="text" class="form-control" id='txtSearch' style="position: relative"
+											name='txtSearch' placeholder='Search Keyword' 
+											onfocus="this.placeholder = ''"
 											onblur="this.placeholder = 'Search Keyword'">
-										
-             							<div id="suggest" style="width:200px"></div>
+
+
+											<div id="suggestSelect" onmouseleave="hide()"></div>
 										<div class="input-group-append">
 											<button class="btn" type="button">
 												<i class="ti-search"></i>
@@ -85,13 +89,31 @@
 									class="button rounded-0 primary-bg text-white w-100 btn_1"
 									type="submit">Search</button>
 							</form>
-							
+
 						</aside>
 
-
+						<aside class="single_sidebar_widget popular_post_widget">
+							<h3 class="widget_title">熱門看板排行</h3>
+							<c:forEach items="${queryHot5Board}" var='hot5Board'>
+								<div class="media post_item">
+									<a
+										href="<c:url value='/forum/showAofB/${hot5Board.boardId}'/>">
+										<img src="<c:url value='/forum/loadImg/${hot5Board.boardId}'/>"
+										alt="post">
+									</a>
+								</div>
+									<div class="media-body">
+										<h3>
+											<a href="<c:url value='/forum/showAofB/${hot5Board.boardId}'/>">${hot5Board.boardName}</a>
+											<i class="fa fa-eye">瀏覽數:${hot5Board.boardClick}</i>
+										</h3>
+										
+									</div>
+							</c:forEach>
+						</aside>
 
 						<aside class="single_sidebar_widget popular_post_widget">
-							<h3 class="widget_title">Recent Post</h3>
+							<h3 class="widget_title">最新文章</h3>
 							<c:forEach items="${last5Article}" var='last5Article'>
 								<div class="media post_item">
 									<a
@@ -108,9 +130,6 @@
 									</div>
 								</div>
 							</c:forEach>
-
-
-
 						</aside>
 					</div>
 				</div>
@@ -141,53 +160,51 @@
 			}
 		}
 
-
-		
-		$("#txtSearch").keyup(function(){
-			var keyword = this.value;
+		$("#txtSearch").keyup(function() {
 			
+			var keyword = this.value;
 			$.ajax({
-				type:"GET",
-				url:"<c:url value='/forum/likeQuery'/>",
-				async:true,	
-				contentType:"application/json",
-				dataType:"json",
-				data:{
-					"title":keyword
+				type : "GET",
+				url : "<c:url value='/forum/likeQuery'/>",
+				async : true,
+				contentType : "application/json",
+				dataType : "json",
+				data : {
+				"title" : keyword
 				},
-				success:function(listData){
-					$("#suggest").innerHTML="";
+				success : function(listData) {
 					var content = "";
-					
-					
-					for (var i=0; i < listData.length; i++) {
-						content += "<option>"+listData[i].title+"</option>";
+					for (var i = 0; i < listData.length; i++) {
+						content += "<div><a href='<c:url value='/forum/articleAndReply/"+listData[i].articleId+"'/>'>"+listData[i].title+"</a></div>";
 						
 					}
-					document.getElementById("suggest").innerHTML = content;	
-					document.getElementById("suggest").style.display="block";
+					document.getElementById("suggestSelect").innerHTML = content;
+					$("#suggestSelect").css("display","block");
+					$("#suggestSelect").css("width",$(".input-group").width());
 				}
 			});
 		})
 		
-			
-			// 		var xhr2 = new XMLHttpRequest();
-			// 		xhr2.open("GET", "<c:url value='/forum/randomArticle'/>", true);
-			// 		xhr2.send();
-			// 		xhr2.onreadystatechange = function(){
-			// 			if(xhr.readyState == 4 && xhr.status == 200){
-			// 				var randomAlistData = JSON.parse(xhr2.responseText);
-			// 				var random = document.getElementsByClassName("random");
-			// 				random.innerHTML += "【";
+		function hide(){
+			$("#suggestSelect").css("display", "none")
+		}
 
-			// 				for(var j=0; j<randomAlistData.length; j++){
-			// 					var aBean = randomAlistData[j];
-			// 					var random = document.getElementsByClassName("random");
-			// 					random.innerHTML += aBean[j].category + "】" + aBean[j].title;
-			// 				}
-			// 			}
-			// 		}
-		
+		// 		var xhr2 = new XMLHttpRequest();
+		// 		xhr2.open("GET", "<c:url value='/forum/randomArticle'/>", true);
+		// 		xhr2.send();
+		// 		xhr2.onreadystatechange = function(){
+		// 			if(xhr.readyState == 4 && xhr.status == 200){
+		// 				var randomAlistData = JSON.parse(xhr2.responseText);
+		// 				var random = document.getElementsByClassName("random");
+		// 				random.innerHTML += "【";
+
+		// 				for(var j=0; j<randomAlistData.length; j++){
+		// 					var aBean = randomAlistData[j];
+		// 					var random = document.getElementsByClassName("random");
+		// 					random.innerHTML += aBean[j].category + "】" + aBean[j].title;
+		// 				}
+		// 			}
+		// 		}
 	</script>
 
 

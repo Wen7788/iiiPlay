@@ -208,12 +208,10 @@ margin-left: 0;
 					</a>
 						<ul class="sub-menu children dropdown-menu">
 							<li><i class="menu-icon fa fa-sign-in"></i><a
-								href="page-login.html">Login</a></li>
-							<li><i class="menu-icon fa fa-sign-in"></i><a
-								href="page-register.html">Register</a></li>
-							<li><i class="menu-icon fa fa-paper-plane"></i><a
-								href="pages-forget.html">Forget Pass</a></li>
+								href="<c:url value='/forum/showAllBoard'/>">看板維護清單</a></li>
+							
 						</ul></li>
+					<li class="active"><a href="<c:url value='/'/>">回前台 </a></li>
 				</ul>
 			</div>
 			<!-- /.navbar-collapse -->

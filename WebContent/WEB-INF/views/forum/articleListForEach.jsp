@@ -101,7 +101,7 @@
 <!-- 								</a> -->
 <!-- 								</li> -->
 								<li class="nav-item"><a class="nav-link"
-									href="logOut">Log Out</a></li>
+									href="<c:url value='/logOut'/>">Log Out</a></li>
 								 
 								 </c:if>
 								 <c:if test="${!empty googleUser}">
@@ -161,7 +161,6 @@
 				<div class="section-top-border">
 					<c:forEach items="${aOfB}" var="article" varStatus="vs">
 
-						<%-- 						<c:if test="${MemberBean.status!=2 && article.status==1 || MemberBean.status==2} "> --%>
 						<div class="col-lg-12">
 							<blockquote class="generic-blockquote">
 								<h1>
@@ -208,44 +207,14 @@
 										<c:if
 											test='${MemberBean.status == 2 || MemberBean.id == article.id}'>
 											<div class="text-right">
-												<%-- 	<form method="post" action="<c:url value='#'/>"> --%>
-												<%-- 	<input type="hidden" value="${article.articleId}" --%>
-												<!-- 	name="articleId"> <input type="hidden" -->
-												<%-- 	value="${bBean.boardId}" name="boardId"> --%>
-												<!-- 	<button type="submit" class="genric-btn info radius"> -->
-												<!-- 	<font size='3'>編輯</font> -->
-												<!-- 	</button> -->
-												<!-- 	</form> -->
-<!-- 												<form method="post" -->
-<%-- 													action="<c:url value='/forum/articleStatus'/>"> --%>
-<%-- 													<c:choose> --%>
-<%-- 														<c:when test="${article.status==1}"> --%>
-<%-- 															<input type="hidden" value="${article.articleId}" --%>
-<!-- 																name="articleId"> -->
-<%-- 															<input type="hidden" value="${bBean.boardId}" --%>
-<!-- 																name="boardId"> -->
-<!-- 															<button type="submit" class="genric-btn danger radius"> -->
-<!-- 																<font size='3'>隱藏</font> -->
-<!-- 															</button> -->
-<%-- 														</c:when> --%>
-<%-- 														<c:otherwise> --%>
-<%-- 															<input type="hidden" value="${article.articleId}" --%>
-<!-- 																name="articleId"> -->
-<%-- 															<input type="hidden" value="${bBean.boardId}" --%>
-<!-- 																name="boardId"> -->
-<!-- 															<button type="submit" class="genric-btn info radius"> -->
-<!-- 																<font size='3'>恢復</font> -->
-<!-- 															</button> -->
-<%-- 														</c:otherwise> --%>
-<%-- 													</c:choose> --%>
-<!-- 												</form> -->
+												
 											</div>
 										</c:if>
 									</div>
 								</div>
 							</blockquote>
 						</div>
-						<%-- 						</c:if> --%>
+											
 					</c:forEach>
 				</div>
 			</section>
@@ -282,7 +251,7 @@
 						</div>
 
 						<div class="col-md-6 form-group">
-							<label for="boardName1"><font color='red'>*</font>發文所在看板:</label>
+							<label for="boardName1">發文所在看板:</label>
 							<input type="text" class="form-control" id="boardName1"
 								name="boardName1" value="${bBean.boardName}" readonly><font
 								id="errorBoardName1" color='red' size='-1'></font> <input
@@ -340,30 +309,40 @@
 		CKEDITOR.replace('detail1');
 	</script>
 	
-	<script>
-// 		window.onload = function(){
-// 			var xhr = new XMLHttpRequest();
-// 			xhr.open("GET", " <c:url value='/forum/clickCount'/> ", true)
-// 			xhr.sent();
-// 			xhr.onreadystatechange = function(){
-// 				if(xhr.readyState == 4 && xhr.status == 200){
-// 					var clickCount = JSON.parse(xhr.responseText);
-// 				}
-// 			}
-		
-	</script>
+	
 	
 	<script>
 		function validate() {
-			if (document.getElementById("category1").value == ""
-					|| document.getElementById("title1").value == ""
-					|| document.getElementById("detail1").value == "") {
+			if (document.getElementById("name1").value == ""){
+				document.getElementById("errorName1").innerHTML = "此處是由登入後自動帶入使用者名稱，請進行登入!";
+				return false;
+			}else{
+				document.getElementById("errorName1").innerHTML = "";
+			}
+			if (document.getElementById("category1").value == ""){
 				document.getElementById("errorCategory1").innerHTML = "\"*\"為必填欄位，需進行填寫!";
+				return false;
+			}else{
+				document.getElementById("errorCategory1").innerHTML = "";
+			}
+			if(document.getElementById("title1").value == ""){
 				document.getElementById("errorTitle1").innerHTML = "\"*\"為必填欄位，需進行填寫!";
+				return false;
+			}else{
+				document.getElementById("errorTitle1").innerHTML = "";
+			}
+			if(document.getElementById("detail1").value == ""){
 				document.getElementById("errorDetail1").innerHTML = "\"*\"為必填欄位，需進行填寫!";
 				return false;
+			}else{
+				document.getElementById("errorDetail1").innerHTML = "";
 			}
-			return true;
+			if(document.getElementById("name1").value != "" &&
+			   document.getElementById("category1").value != "" &&
+			   document.getElementById("title1").value != "" &&
+			   document.getElementById("detail1").value != ""){
+				return true;
+			}
 		}
 	</script>
 

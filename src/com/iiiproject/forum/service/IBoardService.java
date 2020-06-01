@@ -3,6 +3,7 @@ package com.iiiproject.forum.service;
 import java.util.List;
 
 import com.iiiproject.forum.model.Board;
+import com.iiiproject.forum.model.BoardListView;
 
 public interface IBoardService {
 
@@ -22,5 +23,5 @@ public interface IBoardService {
 
 	Integer getBoardClick(Integer boardId);
 
-
+	List<BoardListView> queryHot5Board();
 }

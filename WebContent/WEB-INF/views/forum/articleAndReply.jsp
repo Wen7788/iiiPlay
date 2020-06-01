@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>iiiPlay-Article</title>
+<title>文章詳情</title>
 <link rel="icon" href="<c:url value='/img/favicon.png'/>">
 </head>
 <body>
@@ -100,7 +100,7 @@
 						</c:choose>
 
 						<div class="comment-form">
-							<h4>Leave a Reply</h4>
+							<h4>留個言吧</h4>
 							<form class="form-contact comment_form"
 								action="<c:url value='/forum/reply'/>" name="commentForm"
 								method="post" onsubmit="return(validate())">
@@ -144,13 +144,21 @@
 
 	<script>
 		function validate() {
-			if (document.getElementById("replyDetail").value == ""
-					|| document.getElementById("name").value == "") {
+			if (document.getElementById("replyDetail").value == "") {
 				document.getElementById("errorReplyDetail").innerHTML = "\"*\"為必填欄位，需進行填寫!";
-				document.getElementById("errorName").innerHTML = "\"*\"為必填欄位，需進行填寫!";
 				return false;
+			}else{
+				document.getElementById("errorReplyDetail").innerHTML ="";
 			}
-			return true;
+			if(document.getElementById("name").value == ""){
+				document.getElementById("errorName").innerHTML = "此處是由登入後自動帶入使用者名稱，請進行登入!";
+				return false;
+			}else{
+				document.getElementById("errorName").innerHTML ="";
+			}
+			if (document.getElementById("replyDetail").value != "" && document.getElementById("name").value != "") {
+				return true;
+			}
 		}
 	</script>
 
@@ -200,6 +208,7 @@
 						unFavoBtn();
 					}
 				}
+				
 			});
 		})
 	
@@ -216,7 +225,10 @@
 				success:function(req){
 					alert("已將文章加入收藏!");
 					console.log(req);
-				},					
+				},
+				error:function(req){
+					alert("請先進行登入才能使用收藏功能!");
+				}					
 			})		
 		}
 
@@ -233,7 +245,10 @@
 				success:function(req){
 					alert("已將文章取消收藏!")
 					console.log(req);
-				},					
+				},
+				error:function(req){
+					alert("請先進行登入才能使用取消收藏功能!");
+				}					
 			})		
 		}
 			

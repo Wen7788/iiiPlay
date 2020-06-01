@@ -3,6 +3,7 @@ package com.iiiproject.forum.dao;
 import java.util.List;
 
 import com.iiiproject.forum.model.Board;
+import com.iiiproject.forum.model.BoardListView;
 
 public interface IBoardDAO {
 
@@ -21,5 +22,7 @@ public interface IBoardDAO {
 	List<Board> queryAllBoardStatus1();
 
 	Integer getBoardClick(Integer boardId);
+
+	List<BoardListView> queryHot5Board();
 	
 }
