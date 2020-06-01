@@ -45,17 +45,17 @@ public class RetrieveImageServlet {
 					if (picture != null) {
 						
 						is = new ByteArrayInputStream(picture);
-					
+						
 						
 					}
-				
-					// 如果圖片的來源有問題，就送回預設圖片(/images/NoImage.png)	
-//					if (is == null) {
-//						
-//						
-//						is = getServletContext().getResourceAsStream(
-//								"/images/NoImage.png");
-//					}
+//				
+//					 如果圖片的來源有問題，就送回預設圖片(/images/NoImage.png)	
+					if (is == null) {
+						
+						
+						is = request.getServletContext().getResourceAsStream(
+								"/img/NoImage.png");
+					}
 
 			
 			

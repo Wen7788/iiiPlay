@@ -69,7 +69,7 @@
 <!-- 						</form> -->
 
 							<td>
-							<img height='75px' width='70px'
+							<img height='85px' width='85px'
 	src='${pageContext.request.contextPath}/member/getImage/${member.id}' alt='沒有圖片'>
 	
 	</td>
