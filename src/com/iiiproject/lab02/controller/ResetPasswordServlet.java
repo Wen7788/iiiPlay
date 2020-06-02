@@ -25,7 +25,7 @@ public class ResetPasswordServlet{
     private String port="587";
     private String email="ericeric4062@gmail.com";
     private String name="Administer";
-    private String pass="ab82423321";
+    private String pass="ab123830205";
     
  
      
