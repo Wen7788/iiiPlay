@@ -54,9 +54,9 @@ public class ResetPasswordServlet{
         			return "member/message";
         }
  
-        String content = "Hi, this is your new password: " + newPassword;
-        content += "\nNote: for security reason, "
-                + "you must change your password after logging in.";
+        String content = "你好，這是您的新密碼: " + newPassword;
+        content += "\nNote: 為了安全理由， "
+                + "登入後請修改密碼，此由iiiPlay系統自動發送，請勿回覆";
  
  
         try {
