@@ -48,10 +48,7 @@
 										href="<c:url value='/forum/showAofB/${board.boardId}'/>">
 										<h2>${board.boardName}</h2>
 									</a>
-									<%-- 										<div class='passId' style="display: none;">${board.boardId}</div> --%>
-									<a href="<c:url value='#'/>">
-										<p class='random'>隨機文章</p>
-									</a>
+									
 
 									<ul class="blog-info-link">
 										<li><i class="fa fa-eye">瀏覽數:</i></li>
@@ -189,22 +186,7 @@
 			$("#suggestSelect").css("display", "none")
 		}
 
-		// 		var xhr2 = new XMLHttpRequest();
-		// 		xhr2.open("GET", "<c:url value='/forum/randomArticle'/>", true);
-		// 		xhr2.send();
-		// 		xhr2.onreadystatechange = function(){
-		// 			if(xhr.readyState == 4 && xhr.status == 200){
-		// 				var randomAlistData = JSON.parse(xhr2.responseText);
-		// 				var random = document.getElementsByClassName("random");
-		// 				random.innerHTML += "【";
-
-		// 				for(var j=0; j<randomAlistData.length; j++){
-		// 					var aBean = randomAlistData[j];
-		// 					var random = document.getElementsByClassName("random");
-		// 					random.innerHTML += aBean[j].category + "】" + aBean[j].title;
-		// 				}
-		// 			}
-		// 		}
+		
 	</script>
 
 

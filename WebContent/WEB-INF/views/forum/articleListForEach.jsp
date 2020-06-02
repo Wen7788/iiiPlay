@@ -94,12 +94,7 @@
 										<a class="dropdown-item" href="<c:url value='/forum/ownArticle/${MemberBean.id}'/>"> 我的文章</a> 
 									</div>
 									</li>
-<!-- 								<li class="nav-item"> -->
-<!-- 								<a class="nav-link" -->
-<!-- 									href="logOut"> -->
-<!-- 								<img width='50' height='50' src="data:image/jpg;base64,${mbPic}"> --!>
-<!-- 								</a> -->
-<!-- 								</li> -->
+
 								<li class="nav-item"><a class="nav-link"
 									href="<c:url value='/logOut'/>">Log Out</a></li>
 								 
