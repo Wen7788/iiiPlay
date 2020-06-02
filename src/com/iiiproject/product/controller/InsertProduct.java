@@ -35,7 +35,7 @@ public class InsertProduct {
 	
 	@RequestMapping("/product/insert")
 	public String upload() {
-		return "product/InsertProduct";
+		return "member/ProductInsert";
 		
 		
 	}
