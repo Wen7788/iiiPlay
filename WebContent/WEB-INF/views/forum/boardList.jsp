@@ -68,7 +68,7 @@
 							<form action="#">
 								<div class="form-group">
 									<div class="input-group mb-3">
-										<input type="text" class="form-control" id='txtSearch' style="position: relative"
+										<input type="text" class="form-control" id='txtSearch' style="position: relative" autocomplete="off"
 											name='txtSearch' placeholder='Search Keyword' 
 											onfocus="this.placeholder = ''"
 											onblur="this.placeholder = 'Search Keyword'">
@@ -172,7 +172,7 @@
 				success : function(listData) {
 					var content = "";
 					for (var i = 0; i < listData.length; i++) {
-						content += "<div><a href='<c:url value='/forum/articleAndReply/"+listData[i].articleId+"'/>'>"+listData[i].title+"</a></div>";
+						content += "<p class='choose'><a href='<c:url value='/forum/articleAndReply/"+listData[i].articleId+"'/>'>"+listData[i].title+"</a></p>";
 						
 					}
 					document.getElementById("suggestSelect").innerHTML = content;
@@ -187,6 +187,15 @@
 		}
 
 		
+
+
+		$(document).ready(function(){
+			$(".choose").hover(function(){
+			    $(this).css("background-color", "#84C1FF");
+			}, function(){
+			    $(this).css("background-color", "none");
+			});
+		});
 	</script>
 
 

@@ -47,6 +47,7 @@ public class ReplyDAO implements IReplyDAO{
 		Reply resultBean = session.get(Reply.class, rBean.getReplyId());
 
 		if (resultBean != null) {
+			resultBean.setReplyId(rBean.getReplyId());
 			resultBean.setName(rBean.getName());
 			resultBean.setArticleId(rBean.getArticleId());
 			resultBean.setReplyDetail(rBean.getReplyDetail());

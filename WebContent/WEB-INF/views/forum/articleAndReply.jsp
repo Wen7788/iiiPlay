@@ -8,11 +8,34 @@
 <meta charset="UTF-8">
 <title>文章詳情</title>
 <link rel="icon" href="<c:url value='/img/favicon.png'/>">
+<style>
+#modifyForm{
+  display:none;
+}
+</style>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/top.jsp" />
-
-	<section class="blog_area single-post-area padding_top">
+	
+	 <!-- breadcrumb start-->
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h2></h2>
+                            <p> <span></span> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb start-->
+	
+	
+	<section class="blog_area single-post-area">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 posts-list">
@@ -53,7 +76,6 @@
 
 
 						<c:forEach items="${rOfA}" var="reply" varStatus="vs">
-
 							<div class="comment-list">
 								<div class="single-comment justify-content-between d-flex">
 									<div class="user justify-content-between d-flex">
@@ -70,10 +92,26 @@
 												</div>
 
 											</div>
-											<c:if
-												test="${MemberBean.id == reply.id || MemberBean.status == 2}">
-												<a href="#" class="genric-btn success circle">編輯留言</a>
-												<a href="#" class="genric-btn danger circle">刪除留言</a>
+											<c:if test="${MemberBean.id == reply.id || MemberBean.status == 2}">
+												<button class="genric-btn success circle" id="replyBtn">編輯留言</button>
+												<form class="form-contact comment_form" action="<c:url value='/forum/reply/${reply.replyId}'/>" id="modifyForm" method="post">
+													<div class="row">
+														<div class="col-12">
+															<div class="form-group">
+																<textarea class="form-control w-100" name="modifyDetail" cols="20" rows="5">${reply.replyDetail}</textarea>
+																<input class="form-control" name="modifyArticleId" type="hidden" value='${reply.articleId}'>
+																<input class="form-control" name="modifyName" type="hidden" value='${reply.name}'>
+
+															</div>
+														</div>
+														<div class="col-sm-6">
+															<div class="form-group">
+																<button type="submit" class="btn_3 button-contactForm">留言</button>
+															</div>
+														</div>
+													</div>
+												</form>
+												<a href="<c:url value='/forum/replyDelete/${reply.replyId}/${reply.articleId}'/>" class="genric-btn danger circle" onclick="onWarning()">刪除留言</a>
 											</c:if>
 										</div>
 									</div>
@@ -117,7 +155,7 @@
 									<div class="col-sm-6">
 										<div class="form-group">
 											<font color='red'>*</font> <input class="form-control"
-												name="name" id="name" type="text" value='${MemberBean.name}'
+												name="name" id="name" type="text" value='${MemberBean.name}' placeholder="使用者登入名稱"
 												readonly> <font id="errorName" color='red' size='-1'></font>
 										</div>
 									</div>
@@ -137,10 +175,23 @@
 	</section>
 
 	<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+	
 	<script type="text/javascript">
+	
 		CKEDITOR.replace('replyDetail');
+		CKEDITOR.replace('modifyDetail');
 	</script>
-
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#replyBtn").click(function() {
+			/* Act on the event */
+			$('#modifyForm').toggle();
+		});
+	});
+	</script>
+	
+	
 	<script>
 		function validate() {
 			if (document.getElementById("replyDetail").value == "") {
@@ -250,10 +301,12 @@
 				}					
 			})		
 		}
-			
-		
-		
-	</script>
 
+	</script>
+	<script type="text/javascript">
+	 function onWarning(){
+		 event.returnValue = confirm("確定真的要刪除???");
+	 }
+	</script>
 </body>
 </html>

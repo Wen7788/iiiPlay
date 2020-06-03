@@ -21,4 +21,6 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
          registry.addEndpoint("/chat");
          registry.addEndpoint("/chat").withSockJS();
     }
+    
+    
 }
