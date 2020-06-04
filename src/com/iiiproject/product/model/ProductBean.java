@@ -68,7 +68,7 @@ public class ProductBean implements Serializable {
 	}
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
-	@Column(name="pdimg")
+	@Column(name = "pdimg")
 	public byte[] getPdimg() {
 		return pdimg;
 	}
