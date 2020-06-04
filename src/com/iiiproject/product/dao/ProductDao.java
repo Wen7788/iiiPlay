@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.iiiproject.lab02.model.MemberBean;
 import com.iiiproject.product.model.ProductBean;
+
+
 
 
 
@@ -155,5 +158,27 @@ public class ProductDao implements IProductDao {
 		return query.list();
 		
 	}
+
+	@Override
+	public ProductBean updateProduct(ProductBean pb) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from ProductBean where pdId = :id";
+		Query<ProductBean> query= session.createQuery(hql,ProductBean.class);
+		query.setParameter("id", pb.getProductId());
+		ProductBean result = query.uniqueResult();
+		if(result!=null) {
+			
+		result.setPdimg1(pb.getPdimg1());
+		result.setPdimg2(pb.getPdimg2());
+		result.setPdimg3(pb.getPdimg3());
+		session.update(result);
+			
+		}
+		
+		
+		
+		return null;
+	}
+	
 	
 }

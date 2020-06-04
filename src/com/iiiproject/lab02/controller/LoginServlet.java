@@ -151,8 +151,8 @@ public class LoginServlet {
 			// decryptString(key, cipherText, iv) : 將密文還原為明文
 			String decodedPassword = CipherUtils.decryptString(key, codedPassword);
 			mb.setPassword(decodedPassword);
-			
-			session1.setAttribute("MemberBean", mb);
+			String user = mb.getId();
+			session1.setAttribute("user", mb);
 		} else {
 			// NG, userid與密碼的組合錯誤，放錯誤訊息"該帳號不存在或密碼錯誤"到 errorMsgMap 之內
 			// 對應的識別字串為 "LoginError"

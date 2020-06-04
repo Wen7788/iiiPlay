@@ -49,6 +49,9 @@ public class MemberService implements IMemberService {
 		// UserBean ub 內。
 		
 		MemberBean mb = mDao.select(id);
+		if(mb==null) {
+			return null;
+		}
 		String codedPassword = mb.getPassword();
 		System.out.println("資料庫加密"+codedPassword);
 

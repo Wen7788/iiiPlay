@@ -1,8 +1,8 @@
 package com.iiiproject.product.model;
 
-import java.beans.Transient;
+
 import java.io.Serializable;
-import java.sql.Blob;
+
 import java.sql.Timestamp;
 
 import javax.persistence.Basic;
@@ -19,7 +19,7 @@ import org.springframework.stereotype.Component;
 
 @Component("productBean")
 @Entity
-@Table(name="Products")
+@Table(name="products")
 public class ProductBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -30,19 +30,22 @@ public class ProductBean implements Serializable {
 	private String productName;
 	private String category;
 	private byte[] pdimg;	
+	private byte[] pdimg1;	
+	private byte[] pdimg2;
+	private byte[] pdimg3;	
 	private String fileName; //圖檔名
 	private Integer price;
 	private Integer stock;
 	private String companyName;
 	private Timestamp pdate;
 	private OrderItemBean itembean;
-	
+
 	
 	public ProductBean() {
 		
 	}
 	
-	public ProductBean(String productNo, String productName, String category, byte[] pdimg, int price, int stock,
+	public ProductBean(String productNo, String productName, String category, byte[] pdimg, Integer price, Integer stock,
 			String companyName, Timestamp pdate) {
 		super();
 		this.productNo = productNo;
@@ -65,6 +68,7 @@ public class ProductBean implements Serializable {
 	}
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
+	@Column(name="pdimg")
 	public byte[] getPdimg() {
 		return pdimg;
 	}
@@ -72,7 +76,31 @@ public class ProductBean implements Serializable {
 		this.pdimg = pdimg;
 	}
 	
-	
+	@Column(name="pdimg1")
+	public byte[] getPdimg1() {
+		return pdimg1;
+	}
+
+	public void setPdimg1(byte[] pdimg1) {
+		this.pdimg1 = pdimg1;
+	}
+	@Column(name="pdimg2")
+	public byte[] getPdimg2() {
+		return pdimg2;
+	}
+
+	public void setPdimg2(byte[] pdimg2) {
+		this.pdimg2 = pdimg2;
+	}
+	@Column(name="pdimg3")
+	public byte[] getPdimg3() {
+		return pdimg3;
+	}
+
+	public void setPdimg3(byte[] pdimg3) {
+		this.pdimg3 = pdimg3;
+	}
+
 	@Column(name="pdno")
 	public String getProductNo() {
 		return productNo;
@@ -98,17 +126,17 @@ public class ProductBean implements Serializable {
 		this.category = category;
 	}
 	@Column(name="price")
-	public int getPrice() {
+	public Integer getPrice() {
 		return price;
 	}
-	public void setPrice(int price) {
+	public void setPrice(Integer price) {
 		this.price = price;
 	}
 	@Column(name="stock")
-	public int getStock() {
+	public Integer getStock() {
 		return stock;
 	}
-	public void setStock(int stock) {
+	public void setStock(Integer stock) {
 		this.stock = stock;
 	}
 	@Column(name="companyId")
@@ -142,6 +170,7 @@ public class ProductBean implements Serializable {
 		this.itembean = itembean;
 	}
 	
-	
+
+
 	
 }

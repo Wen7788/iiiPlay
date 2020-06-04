@@ -95,5 +95,12 @@ public class ProductBeanService implements IProductBeanService {
 	public List<ProductBean> queryprice(int price1, int price2){
 		return hDao.queryprice(price1, price2);
 	}
+
+	@Override
+	public ProductBean updateProduct(ProductBean pb) {
+		return hDao.updateProduct(pb);
+		
+	}
+	
 	
 }

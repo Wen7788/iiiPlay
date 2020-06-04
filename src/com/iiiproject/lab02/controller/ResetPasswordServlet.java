@@ -24,7 +24,11 @@ public class ResetPasswordServlet{
     private String host="smtp.gmail.com";
     private String port="587";
     private String email="ericeric4062@gmail.com";
+<<<<<<< Updated upstream
     private String name="Administer";
+=======
+    private String name="iiiPlay Administer";
+>>>>>>> Stashed changes
     private String pass="ab123830205";
     
  
@@ -41,7 +45,7 @@ public class ResetPasswordServlet{
     	
     	
     	String recipient = request.getParameter("email");
-        String subject = "Your Password has been reset";
+        String subject = "您的iiiPlay密碼已被重置";
         
         
         
@@ -56,7 +60,13 @@ public class ResetPasswordServlet{
  
         String content = "你好，這是您的新密碼: " + newPassword;
         content += "\nNote: 為了安全理由， "
+<<<<<<< Updated upstream
                 + "登入後請修改密碼，此由iiiPlay系統自動發送，請勿回覆";
+=======
+                + "登入後請修改密碼"+"\r\n"+"此由iiiPlay系統自動發送，請勿回覆"
+        		
+                ;
+>>>>>>> Stashed changes
  
  
         try {

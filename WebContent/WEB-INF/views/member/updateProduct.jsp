@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -104,107 +104,7 @@ margin-left: 0;
 
 <body>
 	<!-- Left Panel -->
-	<aside id="left-panel" class="left-panel">
-		<nav class="navbar navbar-expand-sm navbar-default">
-			<div id="main-menu" class="main-menu collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.html"><i
-							class="menu-icon fa fa-laptop"></i>儀錶板 </a></li>
-					<li class="menu-title">會員管理</li>
-					<!-- /.menu-title -->
-					<li class="menu-item-has-children dropdown"><a href=""
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-cogs"></i>會員資料
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							
-							<li><i class="fa fa-file-word-o"></i><a
-								href="<c:url value='/getAllMember'/>">會員列表</a></li>
-						</ul></li>
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-table"></i>備用
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="fa fa-table"></i><a href="tables-basic.html">Basic
-									Table</a></li>
-							<li><i class="fa fa-table"></i><a href="tables-data.html">Data
-									Table</a></li>
-						</ul></li>
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-th"></i>備用
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-th"></i><a
-								href="forms-basic.html">Basic Form</a></li>
-							<li><i class="menu-icon fa fa-th"></i><a
-								href="forms-advanced.html">Advanced Form</a></li>
-						</ul></li>
-
-					<li class="menu-title">商品管理</li>
-					<!-- /.menu-title -->
-
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-tasks"></i>商品管理
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-fort-awesome"></i><a
-								href="font-fontawesome.html">商品上架</a></li>
-							<li><i class="menu-icon ti-themify-logo"></i><a
-								href="font-themify.html">訂單管理</a></li>
-						</ul></li>
-						
-					<li><a href="<c:url value='/backstage/SearchOrdersFinal'/>"> <i class="menu-icon ti-email"></i>訂單查詢</a></li>
-					
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-bar-chart"></i>圖表
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-line-chart"></i><a
-								href="charts-chartjs.html">Chart JS</a></li>
-							<li><i class="menu-icon fa fa-area-chart"></i><a
-								href="charts-flot.html">Flot Chart</a></li>
-							<li><i class="menu-icon fa fa-pie-chart"></i><a
-								href="charts-peity.html">Peity Chart</a></li>
-						</ul></li>
-
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-area-chart"></i>備用
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-map-o"></i><a
-								href="maps-gmap.html">Google Maps</a></li>
-							<li><i class="menu-icon fa fa-street-view"></i><a
-								href="maps-vector.html">Vector Maps</a></li>
-						</ul></li>
-					<li class="menu-title">討論區</li>
-					<!-- /.menu-title -->
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-glass"></i>看板管理
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-sign-in"></i><a
-								href="<c:url value='/forum/showAllBoard'/>">看板維護清單</a></li>
-							
-						</ul></li>
-					<li class="active"><a href="<c:url value='/'/>">回前台 </a></li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</nav>
-	</aside>
+	
 	<!-- /#left-panel -->
 	<!-- Right Panel -->
 	<div id="right-panel" class="right-panel">
@@ -222,88 +122,61 @@ margin-left: 0;
 		</header>
 		<!-- /#header -->
 		<!-- Content -->
-		
 		<section class="padding_top">
-		
-		<div class="table-responsive">
-		
+    <div class="container" >
+    <br>
+         <H1 style="text-align: center ">上架商品資料</H1>
+        <form action="<c:url value="/product/updateProduct.do"/>"  method='POST' enctype="multipart/form-data" >
+            <div class="form-group row">
+                <label for="id" class="col-sm-2 col-form-label">上架商品id</label>
+                <div class="col-sm-10">
+                  <input type="text" name="id" class="form-control" id="pdno" placeholder="Log001" value="${param.productId}">
+                  <font color='red' size='-1'>${error.pdno}</font>
+                </div>
+              </div>
+              
+              
+           
+                      
+                <div class="form-group row">
+                <label for="picture1" class="col-sm-2 col-form-label">產品圖片1</label>
+                <div class="col-sm-10">
+                  <input type="file" name="picture1" class="form-control" id="picture1">
+                  
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="picture2" class="col-sm-2 col-form-label">產品圖片2</label>
+                <div class="col-sm-10">
+                  <input type="file" name="picture2" class="form-control" id="picture2">
+                  
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="picture3" class="col-sm-2 col-form-label">產品圖片3</label>
+                <div class="col-sm-10">
+                  <input type="file" name="picture3" class="form-control" id="picture3">
+                  
+                </div>
+              </div>
+             
+              
+              
+          
+                <div style="margin: auto;">
+                <button type="submit" class="btn btn-primary">送出</button>
 
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th scope="col">會員編號</th>
-						<th scope="col">帳號</th>
-						<th scope="col">姓名</th>
-						<th scope="col">年齡</th>
-						<th scope="col">性別</th>
-						<th scope="col">email</th>
-						<th scope="col">註冊時間</th>
-						<th scope="col">狀態</th>
-						<th scope="col">大頭貼</th>
+                <button type="reset" class="btn btn-danger">清除</button>
+                </div>
+          </form>
 
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${memberList}" var="member">
-<%-- 						<form method="POST" action="<c:url value='/status/${member.id}'/>"> --%>
-							<input type="hidden" value="${member.id}"
-								name="statusId">
-							<tr>
-								
-								<td>${member.pk}</td>
-								<td>${member.id}</td>
-								<td>${member.name}</td>
-								<td>${member.age}</td>
-								<td>${member.gender}</td>
-								<td>${member.email}</td>
-								<td>${member.registerTime}</td>
-								<c:if test="${member.status==1}">
-									<td><a class="btn btn-primary"
-									href="<c:url value='/status/${member.id}'/>"
-									
-									>正常</a>
-									</td>
-								</c:if>
-								<c:if test="${member.status==2}">
-									<td><a class="btn btn-warning">管理員</a>
-									</td>
-								</c:if>
-								<c:if test="${member.status==100}">
-									<td><a class="btn btn-danger"
-									href="<c:url value='/status/${member.id}'/>"
-									
-									>停權</a>
-									</td>
-								</c:if>
-<!-- 						</form> -->
-
-							<td>
-							<img height='85px' width='85px'
-	src='${pageContext.request.contextPath}/member/getImage/${member.id}' alt='沒有圖片'>
-	
-	</td>
-						</tr>
-
-					</c:forEach>
-				</tbody>
-			</table>
-
-
-		</div>
+            </div>
+            
+  
 	</section>
 		<!-- /.content -->
 		<div class="clearfix"></div>
-		<!-- Footer -->
-		<footer class="site-footer">
-			<div class="footer-inner bg-white">
-				<div class="row">
-					<div class="col-sm-6">Copyright &copy; 2018 Ela Admin</div>
-					<div class="col-sm-6 text-right">
-						Designed by <a href="https://colorlib.com">Colorlib</a>
-					</div>
-				</div>
-			</div>
-		</footer>
+		
 		<!-- /.site-footer -->
 	</div>
 	<!-- /#right-panel -->

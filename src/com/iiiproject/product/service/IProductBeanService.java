@@ -18,4 +18,5 @@ public interface IProductBeanService {
 	 List<ProductBean> category (String  com); 
 	 public Long allpdcount();
 	 List<ProductBean> queryprice(int price1, int price2);
+     ProductBean updateProduct(ProductBean pb);
 }

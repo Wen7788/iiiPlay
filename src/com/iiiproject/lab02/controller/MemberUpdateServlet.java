@@ -43,6 +43,10 @@ public class MemberUpdateServlet {
 	}
 	
 	
+
+	
+	
+	
 	@GetMapping (path="/status/{memberId}")
 	public String changeStatus(@PathVariable ("memberId")String memberId,HttpServletRequest request) {
 		

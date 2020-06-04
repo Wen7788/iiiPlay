@@ -15,6 +15,10 @@ public class HomeController {
 	public String bsHome() {
 		return "BSindex";
 	}
+	@RequestMapping("/twitch")
+	public String twitch() {
+		return "member/twitch";
+	}
 //	@RequestMapping("/top")
 //	public String top() {
 //		return "top";
