@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.iiiproject.product.model.OrderBean;
+import com.iiiproject.product.model.ProductBean;
 
 
 
@@ -22,7 +23,7 @@ public class SearchOrderDaoImp implements SearchOrderDao {
 	@Autowired @Qualifier("sessionFactory")
 	private SessionFactory sessionFactory;
 	
-	
+	 
 	@Override
 	public List<OrderBean> SearchAllOrder(){
 		Session session = sessionFactory.getCurrentSession();
@@ -31,13 +32,25 @@ public class SearchOrderDaoImp implements SearchOrderDao {
 		return query.list();
 		
 	}
+	
+	@Override
+	public List<ProductBean> SearchAllPdId(){
+		Session session = sessionFactory.getCurrentSession();
+		Query<ProductBean> query2 = session.createQuery("from ProductBean",ProductBean.class);
+		return query2.list();
+	}
 
-
+//	@Override 
+//	public  ProductBean querypdname(Integer pdId) {
+//		Session session = sessionFactory.getCurrentSession();
+//		return session.get(ProductBean.class, pdId);
+//	}
 
 		
 	@Override
 	public OrderBean querySearchOrder(Integer orderId) {
 		Session session = sessionFactory.getCurrentSession();
+		// session.createSQLQuery("SELECT COUNT(*) FROM [Gamedb].[dbo].[MemberTest]");
 		return session.get(OrderBean.class, orderId);
 		
 	}

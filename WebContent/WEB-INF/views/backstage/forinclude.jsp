@@ -92,7 +92,7 @@ margin-left: 0;
 		<nav class="navbar navbar-expand-sm navbar-default">
 			<div id="main-menu" class="main-menu collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.html"><i
+					<li class="active"><a href="<c:url value='/bs'/>"><i
 							class="menu-icon fa fa-laptop"></i>儀錶板 </a></li>
 					<li class="menu-title">會員管理</li>
 					<!-- /.menu-title -->

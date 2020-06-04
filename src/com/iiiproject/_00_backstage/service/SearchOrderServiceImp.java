@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.iiiproject._00_backstage.dao.SearchOrderDaoImp;
 import com.iiiproject.product.model.OrderBean;
+import com.iiiproject.product.model.ProductBean;
 
 
 
@@ -21,10 +22,16 @@ public class SearchOrderServiceImp implements SearchOrderService {
 	@Autowired @Qualifier("dao")
 	private SearchOrderDaoImp dao;
 	
-	
+	@Override
 	public List<OrderBean> SearchAllOrder(){
 		List<OrderBean> elist = dao.SearchAllOrder();
 		return elist;
+	}
+	
+	@Override
+	public  List<ProductBean> SearchAllPdId(){
+		 List<ProductBean> elist2 = dao.SearchAllPdId();
+		 return elist2;
 	}
 	
 	@Override

@@ -26,10 +26,12 @@ public class SearchOrderController {
 	
 	@GetMapping("/SearchOrdersFinal")
 	public String SearchOrder(Model model) {
-		List<OrderBean> orders = ecpayService.SearchAllOrder();
-		model.addAttribute("orders" , orders);
-		return "backstage/SearchOrdersFinal";
-		
+		List<OrderBean> order = ecpayService.SearchAllOrder();
+		model.addAttribute("order" , order);
+		return "backstage/SearchOrdersFinal";		
 	}
+	
+	
+	
 	
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
+	 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,18 @@
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
 	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 	crossorigin="anonymous"></script>
+
+<style>
+th,td{
+text-align:center
+}
+
+
+
+</style>
+
+
+
 
 </head>
 
@@ -52,23 +65,26 @@
 											<th>編號</th>
 											<th>姓名</th>
 											<th>總金額</th>
-											<th>地址</th>
+											
 											<th>下單日期</th>
-											<th colspan='2'></th>
+											<th>狀態</th>
+											<th>付款日期</th>
+											
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var='member' items='${orders}' varStatus='vs'>
+										<c:forEach var='member' items='${order}' varStatus='vs'>
 											<tr>
 												<td>${member.orderId}</td>
 												<td>${member.name}</td>
 												<td>${member.total}</td>
-												<td>${member.shippingAddress}</td>
-												<td>${member.orderDate}</td>
-												<td><a href="<c:url value='/backstage/pay/${member.orderId}'/>"><button type="button"
-															class="btn btn-warning">結帳</button></a></td>
-												<td><a href=""><button type="button"
-															class="btn btn-primary">刪除</button></a></td>
+												
+												<td>${fn:substring(member.orderDate , 0 ,19)}</td>
+												<c:if test="${member.state == 1 }"><td>未付款</td></c:if>
+												<c:if test="${member.state == 2 }"><td>已付款</td></c:if>
+												<td>${fn:substring(member.payDate , 0 ,19)}</td>
+												
+												
 											</tr>					
 										</c:forEach>
 
