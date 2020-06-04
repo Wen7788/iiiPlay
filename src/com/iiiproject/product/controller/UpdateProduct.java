@@ -39,7 +39,7 @@ public class UpdateProduct {
 	
 	@RequestMapping(path="/update", method = RequestMethod.GET)
 	public String upload() {
-		return "member/updateProduct";
+		return "product/updateProduct";
 		
 		
 	}
@@ -55,9 +55,8 @@ public class UpdateProduct {
 							@RequestParam("picture2") MultipartFile multipartFile2,
 							@RequestParam("picture3") MultipartFile multipartFile3,
 							@RequestParam("id") int id,
-			
-			
-			HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
+		
+		HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, InvalidKeyException, NoSuchAlgorithmException, NoSuchPaddingException, IllegalBlockSizeException, BadPaddingException, InvalidAlgorithmParameterException {
 		
 		request.setCharacterEncoding("UTF-8"); 
 		
@@ -76,12 +75,8 @@ public class UpdateProduct {
 		pb.setPdimg2(pdimg2);
 		pb.setPdimg3(pdimg3);
 		pbs.updateProduct(pb);
-		
-		
-		
+
 		return "index";
-		
-	
-	
+
 }
 }

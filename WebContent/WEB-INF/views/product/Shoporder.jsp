@@ -76,11 +76,11 @@
                 <th scope="col">刪除</th>
               </tr>
             </thead>
-            	
-   	
-            	
+      
+      	<tbody>                                                                                                                                                                                                                                                                   
+	    
             	<c:forEach var="mem" varStatus="status" items="${cart.orderItems}">
-            <tbody>                                                                                                                                                                                                                                                                   
+            
               <tr>
            <td class="d-flex">
 			<img  width='130' class="single_product_item" src="Images.do/${mem.product.productId}" alt="" />
@@ -90,8 +90,8 @@
                 <td>
                   <div class="media">
                     
-                    <div class="media-body">
-                      <p>${mem.product.productName}</p>
+                    <div  class="media-body">
+                      <p id="pdn" class="pdd">${mem.product.productName}</p>
                     </div>
                   </div>
                 </td>
@@ -113,7 +113,24 @@
 	            </td>
               </tr>
                </c:forEach>
+		<tbody> 
+      	<c:if test="${empty cart.orderItems }">
 		<tr class="bottom_button">
+                <td>
+                 <div> 
+            <a id="clear1" class="btn_1" href="<c:url value="/product/CartServlet1.do"/>">清空購物車</a></div>  
+                </td>
+                <td></td>
+                <td></td>
+                <td><h4>購物車尚無商品</h4></td>
+                <td></td>
+                <td></td>
+            
+              </tr>
+             </c:if>
+      	  </tbody>
+             <c:if test="${not empty cart.orderItems}"> 
+          <tr class="bottom_button">
                 <td>
                  <div> 
             <a id="clear1" class="btn_1" href="<c:url value="/product/CartServlet1.do"/>">清空購物車</a></div>  
@@ -125,6 +142,7 @@
                 <td></td>
             
               </tr>
+           </c:if>
               <tr>
                 <td></td>
                 <td></td>
@@ -132,7 +150,7 @@
                 <td></td>
                
                 <td>
-                  <h5>目前訂單總額</h5>
+                  <h3>目前訂單總額</h3>
                 </td>
                 <td>
                   <h3 id="total">$${cart.total}</h3>
@@ -140,11 +158,12 @@
               </tr>
                
                </tbody>          
+      
           </table>
            </form>
 		  <div class="checkout_btn_inner float-right">
             <a class="btn_1" href="${pageContext.request.contextPath}/product/allproducts">繼續購物</a>
-            <a class="btn_1 checkout_btn_1" href="${pageContext.request.contextPath}/product/saveorder">填寫收件資料</a>
+            <a class="btn_1 checkout_btn_1" id="save" >填寫收件資料</a>
           </div>
         </div>
       </div>
@@ -160,6 +179,9 @@
 <script>
 	$(function() {
 		$(".aaaa").click(function() {
+
+
+
 			if(window.confirm('確定刪除?')){
 				;
 					return true;
@@ -171,6 +193,38 @@
 			})
 		});
 	
+	$(function() {
+		$(".checkout_btn_1").click(function() {
+
+
+ 			var pdn=document.getElementsByClassName("pdd");
+              
+
+                plength=pdn.length
+                console.log( plength)  
+                window.location.href
+                 if(plength>0){
+                	  window.location.href="${pageContext.request.contextPath}/product/saveorder"
+                
+                     }      
+             
+                 else if(plength==0){
+
+                     var a=confirm('購物車無商品,要去購物嗎') 
+                     if(a){
+                    	  window.location.href="${pageContext.request.contextPath}/product/allproducts"
+                       }else{
+           				
+       					return false;
+       					}
+
+                	 
+                     }
+             
+			})
+		});
+
+
 	$(function() {
 		$("#clear1").click(function() {
 			if(window.confirm('確定清除?')){

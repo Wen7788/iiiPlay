@@ -12,10 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
-import com.iiiproject.lab02.model.MemberBean;
 import com.iiiproject.product.model.ProductBean;
-
-
+import com.iiiproject.product.model.ProductBeanView;
 
 
 
@@ -104,9 +102,30 @@ public class ProductDao implements IProductDao {
 	@Override
 	public byte[] loadimage(int ProductId) {
 		Session session = sessionFactory.getCurrentSession();
+		System.out.println("有抓到123");
 		return session.get(ProductBean.class,ProductId).getPdimg();
 		
 	}
+	@Override
+	public byte[] loadimage1(int ProductId) {
+		Session session = sessionFactory.getCurrentSession();
+		System.out.println("有抓到");
+		return session.get(ProductBean.class,ProductId).getPdimg1();
+		
+	}
+	@Override
+	public byte[] loadimage2(int ProductId) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(ProductBean.class,ProductId).getPdimg2();
+		
+	}
+	@Override
+	public byte[] loadimage3(int ProductId) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(ProductBean.class,ProductId).getPdimg3();
+		
+	}
+	
 	@Override
 	public List<ProductBean> query(String num ,String content) {
 		Session session = sessionFactory.getCurrentSession();
@@ -158,6 +177,16 @@ public class ProductDao implements IProductDao {
 		return query.list();
 		
 	}
+	@Override
+	public List<ProductBeanView> selectHot() {
+		Session session = sessionFactory.getCurrentSession();
+		Query<ProductBeanView> query = session.createQuery("from ProductBeanView order by totalbuy desc ", ProductBeanView.class);
+		query.setFirstResult(0);
+		query.setMaxResults(6);
+
+		return query.list();
+	}
+
 
 	@Override
 	public ProductBean updateProduct(ProductBean pb) {
@@ -174,9 +203,7 @@ public class ProductDao implements IProductDao {
 		session.update(result);
 			
 		}
-		
-		
-		
+
 		return null;
 	}
 	

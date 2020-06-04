@@ -27,7 +27,7 @@
                 <th scope="col">商品價錢</th>
                   <th scope="col">商品數量</th>
                 <th scope="col">總額</th>
-                <th scope="col">詳情明細</th>
+               
               </tr>
             </thead>
             	
@@ -62,11 +62,25 @@
                 <td>
                   <h5 class="subtotal">${mem.total}</h5>
                 </td>
-                <td>
-                <a  class="btn_1" href="<c:url value="/product/findorder1"/>">訂單明細</a></div>
-                </td>
+         
 
                </c:forEach>
+      <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+
+      <td>
+  <a  class="btn_1" href="<c:url value="/product/findorder1"/>">上一頁</a>
+                </td>
+      
+      
+      
+      
+      </tr>
+     
+
 
                </tbody>          
           </table>

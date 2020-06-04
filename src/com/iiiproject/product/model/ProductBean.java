@@ -57,6 +57,8 @@ public class ProductBean implements Serializable {
 		this.companyName = companyName;
 		this.pdate = pdate;
 	}
+	
+	
 	@Id
 	@Column(name="pdId")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,14 +70,15 @@ public class ProductBean implements Serializable {
 	}
 	@Lob
 	@Basic(fetch = FetchType.LAZY)
-	@Column(name = "pdimg")
+	@Column(name="pdimg")
 	public byte[] getPdimg() {
 		return pdimg;
 	}
 	public void setPdimg(byte[] pdimg) {
 		this.pdimg = pdimg;
 	}
-	
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
 	@Column(name="pdimg1")
 	public byte[] getPdimg1() {
 		return pdimg1;
@@ -84,6 +87,8 @@ public class ProductBean implements Serializable {
 	public void setPdimg1(byte[] pdimg1) {
 		this.pdimg1 = pdimg1;
 	}
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
 	@Column(name="pdimg2")
 	public byte[] getPdimg2() {
 		return pdimg2;
@@ -92,6 +97,8 @@ public class ProductBean implements Serializable {
 	public void setPdimg2(byte[] pdimg2) {
 		this.pdimg2 = pdimg2;
 	}
+	@Lob
+	@Basic(fetch = FetchType.LAZY)
 	@Column(name="pdimg3")
 	public byte[] getPdimg3() {
 		return pdimg3;

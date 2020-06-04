@@ -2450,13 +2450,14 @@ function updateInputs (data) {
                  pd=req[i].productId
 				 pn=req[i].productName
 				 pc=req[i].price
-			
-				 
+
 				 div4+=div1+ div2+"<img class='detail1 src' width='150' id='"+pd+"'" +" src='/iiiPlay/product/Images.do/"+pd+"'"+"/>"
 				 +div3
 				 + "<h4 class='detail na' id='"+pd+"'"+">"+pn+ "</h4>"
 	             + "<h3 class='zzz'>"+"$"+pc+"</h3>"
-				 +"<input type='button'  class='btn_3' id='"+pd+"'"+" value='加入購物車'>"
+				 +"<input type='button'  class='btn_3' id='"+pd+"'"+" value='加入購物車'>"				
+				 +"<img class='add_cart ' width='30' id='"+pd+"'"+ "src='/iiiPlay/img/Love-1.png'/>"
+				 +"</span>"
 				 +"</div>"
 				 +"</div>"
 				 +"</div>"
@@ -2485,9 +2486,121 @@ function updateInputs (data) {
 						});
 					})
 					
+	
+
+			   //收藏
+					$(".add_cart").click(function() {
+ 		console.log("取消"+this.src)
+					if (this.src.indexOf("/iiiPlay/img/love-2.png")!=-1) {
+                    console.log("取消"+this.src)
+                    		
+					var pid = this.id;
+
+					if (window.confirm('確定取消收藏?')) {
+						this.src="/iiiPlay/img/Love-1.png"
+						$.ajax({
+							url : "/iiiPlay/product/deletcol", //請求的url地址
+							dataType : "json", //返回格式為json
+							async : true, //請求是否非同步，預設為非同步，這也是ajax重要特性
+							data : {
+								"pid" : pid
+							}, //引數值
+							type : "Get", //請求方式
+							success : function(req) {
+							
+							},
+							complete : function() {
+								//請求完成的處理
+							},
+							error : function() {
+								console.log("出錯了!")
+							}
+						});
+
+					} else {
+
+						return false;
+					}
+					
+				} else if(this.src.indexOf("/iiiPlay/img/love-3.png")!=-1){
+					console.log("收藏"+this.src)
+					var pid = this.id;
+					
+					if (window.confirm('確定要收藏嗎?')) {
+						;
+						this.src = "/iiiPlay/img/love-2.png"
+						$.ajax({
+							url : "/iiiPlay/product/addcol", //請求的url地址
+							dataType : "json", //返回格式為json
+							async : true, //請求是否非同步，預設為非同步，這也是ajax重要特性
+							type : "Get",
+							data : {
+								"pdId" : pid
+							}, //引數值
+							//請求方式
+							success : function(req) {
+
+							},
+							complete : function() {
+								//請求完成的處理
+							},
+							error : function() {
+								console.log("出錯了!")
+							}
+						});
+					} else {
+
+						return false;
+					}
+
+					}
+			})
+
+		
+	
+		 //收藏鍵效果
+		let list=document.querySelectorAll(".add_cart")
+
+		 for(i=0;i<list.length;i++){
+		 list[i].onmouseover=mouseOver; //事件繫結  重要 加 ()立即執行
+		 list[i].onmouseout=mouseOut;
+		}
+
+		 let a=document.querySelectorAll(".add_cart")
+
+		         function mouseOver() {
+                   
+		           this.class="aaa"
+		            if(this.class=="aaa"){
+		            	
+			 if(this.src.indexOf("/iiiPlay/img/love-2.png")!=-1){
+				
+				 }
+			 else if(this.src.indexOf("/iiiPlay/img/Love-1.png")!=-1)
+				{    console.log(this.src)
+		             this.src= "/iiiPlay/img/love-3.png"
+		         }
+			
+		             }
+		 }
+		         function mouseOut() {
+		            this.class="add_cart"
+		            if(this.class=="add_cart"){
+
+	                     if(this.src.indexOf("/iiiPlay/img/love-3.png")!=-1){
+
+	                    	 this.src="/iiiPlay/img/Love-1.png"
+	                         }
+
+		         }
+
+		         }			
+					
+					
 					$(function(){
 	$(".btn_3").click(function() {
-		
+		if (window.confirm('確定加入購物車?')) {
+			;
 		var pid = this.id;
            	$.ajax({
 				url : "/iiiPlay/product/ProductDetail.do/Cart.do", //請求的url地址
@@ -2510,11 +2623,12 @@ function updateInputs (data) {
 				}
 			});
 
+		} else {
+
+			return false;
+		}
 			})
 	})
-					
-					
-					
 
 		},
 		complete : function() {

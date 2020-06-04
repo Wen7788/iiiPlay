@@ -35,7 +35,7 @@ public class InsertProduct {
 	
 	@RequestMapping("/product/insert")
 	public String upload() {
-		return "member/ProductInsert";
+		return "product/InsertProduct";
 		
 		
 	}
@@ -66,12 +66,8 @@ public class InsertProduct {
 		Timestamp registerTime = timeSql;
 		byte[] pdimg = multipartFile.getBytes();
 		
-		
-		
 		ProductBean pb= new ProductBean(pdno,name,category,pdimg,price,stock,companyId,registerTime);
 		 
-		
-		pb.setPdimg(pdimg);
 		pbs.insert(pb);
 		
 		

@@ -49,7 +49,7 @@ public class RpController {
 	}
 	
 	@GetMapping("/replylist/{pdId}")
-	public String articleAndReply(@PathVariable("pdId") Integer pdId, Model model, @SessionAttribute("MemberBean") MemberBean mb) {
+	public String pdReply(@PathVariable("pdId") Integer pdId, Model model) {
 		
 		List<ReplyBean> list = iRService.getReplyPd(pdId);
 		model.addAttribute("rplist", list);
@@ -57,5 +57,19 @@ public class RpController {
 		
 		return "/product/Shopdetail";
 	}
+	@GetMapping("/replydel/{rid}")
+	public String dReply(HttpServletRequest request,@PathVariable("rid") Integer rid, Model model) {
+		
+		
+		Integer pdid=iRService.queryRp(rid).getPdId();
+		
+		
+	
+			iRService.deleteRp(rid);
+		
+
+		return "redirect:/product/ProductDetail.do/"+pdid;
+	}
+	
 	
 }

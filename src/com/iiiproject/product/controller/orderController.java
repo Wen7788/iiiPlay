@@ -120,6 +120,7 @@ public class orderController {
 		   return"";
 
 	}
+	
 	@GetMapping("/saveorder2")
 	public String saveorder2(HttpServletRequest request,Model model) {
 		MemberBean user=(MemberBean)request.getSession().getAttribute("MemberBean");

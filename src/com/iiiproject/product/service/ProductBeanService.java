@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.iiiproject.product.dao.ProductDao;
 import com.iiiproject.product.model.ProductBean;
+import com.iiiproject.product.model.ProductBeanView;
 
 @Service("ProductBeanService")
 @Transactional
@@ -95,12 +96,31 @@ public class ProductBeanService implements IProductBeanService {
 	public List<ProductBean> queryprice(int price1, int price2){
 		return hDao.queryprice(price1, price2);
 	}
+	@Override
+	public List<ProductBeanView> selectHot(){
+		return hDao.selectHot();
+	}
+	@Override
+	public byte[] loadimage1(int ProductId) {
+		// TODO Auto-generated method stub
+		return hDao.loadimage1(ProductId);
+	}
+	
+	@Override
+	public byte[] loadimage2(int ProductId) {
+		// TODO Auto-generated method stub
+		return hDao.loadimage2(ProductId);
+	}
+	@Override
+	public byte[] loadimage3(int ProductId) {
+		// TODO Auto-generated method stub
+		return hDao.loadimage3(ProductId);
+	}
 
 	@Override
 	public ProductBean updateProduct(ProductBean pb) {
 		return hDao.updateProduct(pb);
-		
-	}
-	
+
+}
 	
 }

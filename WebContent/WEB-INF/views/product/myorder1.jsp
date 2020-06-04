@@ -18,7 +18,8 @@
     <div class="container">
       <div class="cart_inner">
         <div class="table-responsive">
-         
+        <span> <img height='70px' width='70px'
+	         src='${pageContext.request.contextPath}/member/getImage/${MemberBean.id}' > </span><font style="font-size:30px ;font-family:Microsoft JhengHei;"> &nbsp ${MemberBean.id}的訂單</font>
           <table class="table">
             <thead>
               <tr>

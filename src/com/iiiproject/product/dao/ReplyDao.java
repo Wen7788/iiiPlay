@@ -49,7 +49,21 @@ public class ReplyDao implements IReplyDao {
 		return query.list();
 		
 	}
-	
-	
+	@Override
+	public Boolean deleteRp(Integer replyId) {
+		Session session = sessionFactory.getCurrentSession();
+		ReplyBean resultBean = session.get(ReplyBean.class, replyId);
+
+		if (resultBean != null) {
+			session.delete(resultBean);
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public ReplyBean queryRp(Integer replyId) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(ReplyBean.class, replyId);
+	}
 
 }

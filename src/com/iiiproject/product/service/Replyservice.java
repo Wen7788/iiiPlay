@@ -9,12 +9,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.iiiproject.forum.model.Reply;
-import com.iiiproject.forum.model.ReplyListView;
-import com.iiiproject.product.dao.OrderDao;
+
 import com.iiiproject.product.dao.ReplyDao;
-import com.iiiproject.product.model.OrderBean;
-import com.iiiproject.product.model.OrderItemBean;
+
 import com.iiiproject.product.model.ReplyBean;
 
 
@@ -45,6 +42,16 @@ public class Replyservice implements IReplyservice {
 		
 		
 		return list ;
+	}
+	@Override
+	public Boolean deleteRp(Integer replyId) {
+		Boolean deleterp = rDao.deleteRp(replyId);
+		return deleterp;
+	}
+	@Override
+	public ReplyBean queryRp(Integer replyId) {
+		ReplyBean queryBean = rDao.queryRp(replyId);
+		return queryBean;
 	}
 
 }

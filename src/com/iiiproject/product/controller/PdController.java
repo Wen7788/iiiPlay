@@ -2,6 +2,7 @@ package com.iiiproject.product.controller;
 
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,17 +22,22 @@ import org.springframework.ui.Model;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-
+import com.iiiproject.forum.model.ArticleListView;
+import com.iiiproject.forum.model.FavoListView;
+import com.iiiproject.lab02.model.MemberBean;
 import com.iiiproject.product.model.OrderItem;
 import com.iiiproject.product.model.ProductBean;
+import com.iiiproject.product.model.Productcollect;
 import com.iiiproject.product.model.ReplyBean;
+import com.iiiproject.product.service.IPdColservice;
 import com.iiiproject.product.service.IProductBeanService;
 import com.iiiproject.product.service.IReplyservice;
 import com.iiiproject.product.service.ShoppingCart;
+
 
 
 
@@ -49,6 +55,9 @@ public class PdController {
 	
 	@Autowired
 	IReplyservice iRService;
+	
+	@Autowired
+	IPdColservice pcService;
 
 	@GetMapping("/allproducts")
 	public String allproducts(Model model) {
@@ -56,6 +65,15 @@ public class PdController {
 		return "product/Shops2";
 
 	}
+	
+	
+	@GetMapping("/allhots")
+	public String allhots(Model model) {
+		model.addAttribute("memberList", pdService.selectHot());
+		return "product/Shops3";
+
+	}
+	
 
 	@GetMapping("/Cart.do")
 	public String order(HttpServletRequest request ,Model model) {
@@ -151,7 +169,7 @@ public class PdController {
 		
 		List<ProductBean> newpd = pdService.newpd();
 		model.addAttribute("memberList", newpd);
-		return "product/Shops2";
+		return "product/Shopsnew";
 		
 	}
 
@@ -168,16 +186,7 @@ public class PdController {
 		
 		return "product/Shopdetail";
 	}
-	/*
-	@GetMapping("/Query.do/{num}-{content}")
-	public String Query(@PathVariable("num") String num,@PathVariable("content") String content, Model model) {
 	
-		List<ProductBean> beans = pdService.query(num,content);
-		model.addAttribute("query", beans);
-		return "product/query";
-	}
-	*/
-
 
 	@GetMapping("/Querytype.do")
 	public String Querytype(@RequestParam("type") String type ,Model model) {
@@ -198,7 +207,7 @@ public class PdController {
 	
 	}
 	@GetMapping("/remove.do/Images.do/{pid}")
-	public void Images2(@PathVariable("pid") int pdId,ServletResponse response,Model model) throws IOException {
+	public void Images10(@PathVariable("pid") int pdId,ServletResponse response,Model model) throws IOException {
 		response.setContentType("image/jpeg");
 		byte[] image=pdService.loadimage(pdId);
 		ServletOutputStream outputStream=response.getOutputStream();
@@ -208,15 +217,49 @@ public class PdController {
 	
 	}
 	@GetMapping("/Images.do/{pid}")
-	public void Images1(@PathVariable("pid") int pdId,ServletResponse response,Model model) throws IOException {
+	public void Images0(@PathVariable("pid") int pdId,ServletResponse response,Model model) throws IOException {
 		response.setContentType("image/jpeg");
 		byte[] image=pdService.loadimage(pdId);
+		System.out.println("有抓到"+image);
 		ServletOutputStream outputStream=response.getOutputStream();
 		outputStream.write(image);
 		outputStream.close();
 		return ;
 	
 	}
+	@GetMapping("/Images.do1/{pid}")
+	public void Images1(@PathVariable("pid") int pdId,ServletResponse response,Model model) throws IOException {
+		response.setContentType("image/jpeg");
+		byte[] image1=pdService.loadimage1(pdId);
+		System.out.println("有抓到image1"+image1);
+		ServletOutputStream outputStream=response.getOutputStream();
+		outputStream.write(image1);
+		outputStream.close();
+		return ;
+	
+	}
+	@GetMapping("/Images.do2/{pid}")
+	public void Images2(@PathVariable("pid") int pdId,ServletResponse response,Model model) throws IOException {
+		response.setContentType("image/jpeg");
+		byte[] image2=pdService.loadimage2(pdId);
+		ServletOutputStream outputStream=response.getOutputStream();
+		outputStream.write(image2);
+		outputStream.close();
+		return ;
+	
+	}
+	@GetMapping("/Images.do3/{pid}")
+	public void Images3(@PathVariable("pid") int pdId,ServletResponse response,Model model) throws IOException {
+		response.setContentType("image/jpeg");
+		byte[] image3=pdService.loadimage3(pdId);
+		ServletOutputStream outputStream=response.getOutputStream();
+		outputStream.write(image3);
+		outputStream.close();
+		return ;
+	
+	}
+	
+	
 	@GetMapping("/type.do/{type}")
 	public String type(@PathVariable("type") String type, Model model) {
 	
@@ -259,15 +302,7 @@ public class PdController {
 	        
 
 	}
-	
 
-	@GetMapping("/price/{price1}-{price2}")
-	public String Query(@PathVariable("price1") int price1,@PathVariable("price2")  int price2, Model model) {
-	
-		List<ProductBean> beans = pdService.queryprice(price1,price2);
-		model.addAttribute("queryprice", beans);
-		return "product/query";
-	}
 	
 	@GetMapping(value =  "/price" ,produces = {"application/json"})
 	public ResponseEntity<List<ProductBean>> price(@RequestParam("price1") int price1,
@@ -279,6 +314,57 @@ public class PdController {
 		ResponseEntity<List<ProductBean>>re  = new ResponseEntity<>(qprice, HttpStatus.OK);
 		return re;
 	}
+	
+	@GetMapping("/addcol")
+	public ResponseEntity<Productcollect> addcol(HttpServletRequest request,@RequestParam("pdId") int productId) {
+		
+		MemberBean user=(MemberBean)request.getSession().getAttribute("MemberBean");
+		System.out.println(productId);
+		ProductBean pBean =new ProductBean();
+		pBean.setProductId(productId);
+		
+		Productcollect pdc =new Productcollect();
+		pdc.setMemberBean(user);
+        pdc.setPdBean(pBean);		 
+        pdc.setColdate(new Timestamp(System.currentTimeMillis()));       
+        Productcollect addcol =  pcService.addcol(pdc);
+        ResponseEntity<Productcollect> re = new ResponseEntity<Productcollect>(addcol, HttpStatus.OK);
+		return re;
+	}
+	
+	@GetMapping("/checkcol")
+	public ResponseEntity<Boolean> isFavo(HttpServletRequest request,@RequestParam("pdId") Integer productId){
+		MemberBean user=(MemberBean)request.getSession().getAttribute("MemberBean");
+	    Integer userId=user.getPk();
+		System.out.println("productId: "+productId);
+		System.out.println("userId: "+userId);
+		Boolean col = pcService.ifcol(productId, userId);
+		
+		ResponseEntity<Boolean> re = new ResponseEntity<Boolean>(col, HttpStatus.OK);
+		return re;
+	}
+	@GetMapping("/deletcol")
+	public ResponseEntity<Boolean> deleFavo(HttpServletRequest request,@RequestParam("pid") Integer productId){
+		MemberBean user=(MemberBean)request.getSession().getAttribute("MemberBean");
+		Integer userId=user.getPk();
+		System.out.println("deleuserId: "+userId);
+		System.out.println("pdid: "+productId);
+		Boolean result = pcService.delecol(productId, userId);
+		
+		ResponseEntity<Boolean> re = new ResponseEntity<Boolean>(result, HttpStatus.OK);
+		return re;
+	}
+	@GetMapping("/colpd")
+	public String colpd( HttpServletRequest request,Model model) {
+		MemberBean user=(MemberBean)request.getSession().getAttribute("MemberBean");
+		Integer userId=user.getPk();
+
+		List<Productcollect> colpd = pcService.getcol(userId);
+	 
+		model.addAttribute("colpd", colpd);
+		return "product/collect";
+	}
+	
 	
 	
 }
