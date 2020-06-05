@@ -103,109 +103,9 @@ margin-left: 0;
 </head>
 
 <body>
-	<!-- Left Panel -->
-	<aside id="left-panel" class="left-panel">
-		<nav class="navbar navbar-expand-sm navbar-default">
-			<div id="main-menu" class="main-menu collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="index.html"><i
-							class="menu-icon fa fa-laptop"></i>儀錶板 </a></li>
-					<li class="menu-title">會員管理</li>
-					<!-- /.menu-title -->
-					<li class="menu-item-has-children dropdown"><a href=""
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-cogs"></i>會員資料
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							
-							<li><i class="fa fa-file-word-o"></i><a
-								href="<c:url value='/getAllMember'/>">會員列表</a></li>
-						</ul></li>
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-table"></i>備用
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="fa fa-table"></i><a href="tables-basic.html">Basic
-									Table</a></li>
-							<li><i class="fa fa-table"></i><a href="tables-data.html">Data
-									Table</a></li>
-						</ul></li>
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-th"></i>備用
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-th"></i><a
-								href="forms-basic.html">Basic Form</a></li>
-							<li><i class="menu-icon fa fa-th"></i><a
-								href="forms-advanced.html">Advanced Form</a></li>
-						</ul></li>
-
-					<li class="menu-title">商品管理</li>
-					<!-- /.menu-title -->
-
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-tasks"></i>商品管理
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-fort-awesome"></i><a
-								href="font-fontawesome.html">商品上架</a></li>
-							<li><i class="menu-icon ti-themify-logo"></i><a
-								href="font-themify.html">訂單管理</a></li>
-						</ul></li>
-						
-					<li><a href="<c:url value='/backstage/SearchOrdersFinal'/>"> <i class="menu-icon ti-email"></i>訂單查詢</a></li>
-					
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-bar-chart"></i>圖表
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-line-chart"></i><a
-								href="charts-chartjs.html">Chart JS</a></li>
-							<li><i class="menu-icon fa fa-area-chart"></i><a
-								href="charts-flot.html">Flot Chart</a></li>
-							<li><i class="menu-icon fa fa-pie-chart"></i><a
-								href="charts-peity.html">Peity Chart</a></li>
-						</ul></li>
-
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-area-chart"></i>備用
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-map-o"></i><a
-								href="maps-gmap.html">Google Maps</a></li>
-							<li><i class="menu-icon fa fa-street-view"></i><a
-								href="maps-vector.html">Vector Maps</a></li>
-						</ul></li>
-					<li class="menu-title">討論區</li>
-					<!-- /.menu-title -->
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-glass"></i>看板管理
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-sign-in"></i><a
-								href="<c:url value='/forum/showAllBoard'/>">看板維護清單</a></li>
-							
-						</ul></li>
-					<li class="active"><a href="<c:url value='/'/>">回前台 </a></li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</nav>
-	</aside>
-	<!-- /#left-panel -->
+	
+		<jsp:include page="/WEB-INF/views/backstage/forinclude.jsp" />
+	
 	<!-- Right Panel -->
 	<div id="right-panel" class="right-panel">
 		<!-- Header-->
@@ -309,41 +209,7 @@ margin-left: 0;
 	<!-- /#right-panel -->
 
 	<!-- Scripts -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-	<script src="assets/js/main.js"></script>
-
-	<!--  Chart js -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
-
-	<!--Chartist Chart-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-	<script src="assets/js/init/weather-init.js"></script>
-
-	<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-	<script src="assets/js/init/fullcalendar-init.js"></script>
+	
 
 	<!--Local Stuff-->
 	<script>

@@ -29,31 +29,59 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<div class="container" style="margin-top: 100px; width: 60%">
-		<form:form method="post" modelAttribute="bBean"
-			enctype="multipart/form-data">
+<jsp:include page="/WEB-INF/views/backstage/forinclude.jsp" />
 
-			<fieldset>
-				<legend>更新看板資料</legend>
-				<div class="form-group">
-					<label for="exampleFormControlInput1">更新看板名稱:</label>
-					<form:input type="text" class="form-control"
-						id="exampleFormControlInput1" path='boardName'
-						value="${bBean.boardName}" />
+	<!-- /#left-panel -->
+	<!-- Right Panel -->
+	<div id="right-panel" class="right-panel">
 
+		<header id="header" class="header">
+			<div class="top-left">
+				<div class="navbar-header">
+					<a class="navbar-brand h1">後台管理系統</a> <a id="menuToggle"
+						class="menutoggle" style="text-align: left"> <i
+						class="fa fa-bars"></i></a>
 				</div>
-				<div class="form-group">
-					<label for="exampleFormControlInput1">更新看板圖為:</label>
-					<form:input type="file" class="form-control-file"
-						id="exampleFormControlFile1" path='boardImg'
-						value="${bBean.boardImg}" />
+			</div>
 
+
+		</header>
+		<!-- /#header -->
+		<!-- Content -->
+		<div class="content">
+			<!-- Animated -->
+			<div class="animated fadeIn">
+				<!-- Widgets  -->
+				<div class="row">
+					<div class="container" style="margin-top: 100px; width: 60%">
+						<form:form method="post" modelAttribute="bBean"
+							enctype="multipart/form-data">
+
+							<fieldset>
+								<legend>更新看板資料</legend>
+								<div class="form-group">
+									<label for="exampleFormControlInput1">更新看板名稱:</label>
+									<form:input type="text" class="form-control"
+										id="exampleFormControlInput1" path='boardName'
+										value="${bBean.boardName}" />
+
+								</div>
+								<div class="form-group">
+									<label for="exampleFormControlInput1">更新看板圖為:</label>
+									<form:input type="file" class="form-control-file"
+										id="exampleFormControlFile1" path='boardImg'
+										value="${bBean.boardImg}" />
+
+								</div>
+
+								<button type="submit" class="btn btn-dark">送出</button>
+
+							</fieldset>
+						</form:form>
+					</div>
 				</div>
-				
-				<button type="submit" class="btn btn-dark">送出</button>
-
-			</fieldset>
-		</form:form>
+			</div>
+		</div>
 	</div>
 </body>
 </html>

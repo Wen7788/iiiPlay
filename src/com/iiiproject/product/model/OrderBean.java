@@ -59,7 +59,11 @@ public class OrderBean {
 	
 	
 	public OrderBean(Integer orderId, String id,String name, int total, String shippingAddress, String email,
+<<<<<<< Updated upstream
 			String phone, Date orderDate, Integer state , Date payDate) {
+=======
+			String phone, Date orderDate, Integer state ,Date payDate) {
+>>>>>>> Stashed changes
 		super();
 		this.orderId = orderId;
 		this.id = id;
@@ -71,6 +75,10 @@ public class OrderBean {
 		this.orderDate = orderDate;
 		this.state = state;
 		this.payDate = payDate;
+<<<<<<< Updated upstream
+=======
+		
+>>>>>>> Stashed changes
 	}
 
 	public Integer getOrderId() {

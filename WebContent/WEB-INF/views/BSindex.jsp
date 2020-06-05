@@ -102,7 +102,7 @@
 
 		var options = {
 			title : '男女消費佔比',
-			pieHole : 0.7,
+			pieHole : 0.4,
 		};
 
 		var chart = new google.visualization.PieChart(document
@@ -133,7 +133,7 @@
 	}
 </script>
 
-  <script type="text/javascript">
+<script type="text/javascript">
       google.charts.load('current', {'packages':['bar']});
       google.charts.setOnLoadCallback(drawChart);
 
@@ -282,132 +282,13 @@
 </head>
 
 <body>
-	<!-- Left Panel -->
-	<aside id="left-panel" class="left-panel">
-		<nav class="navbar navbar-expand-sm navbar-default">
-			<div id="main-menu" class="main-menu collapse navbar-collapse">
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="<c:url value='/bs'/>"><i
-							class="menu-icon fa fa-laptop"></i>儀錶板 </a></li>
-							
-							
-							
-							
-					<li class="menu-title">會員管理</li>
-					<!-- /.menu-title -->
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-cogs"></i>會員資料
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="fa fa-puzzle-piece"></i><a
-								href="ui-buttons.html">Buttons</a></li>
-							<li><i class="fa fa-id-badge"></i><a href="ui-badges.html">Badges</a></li>
-							<li><i class="fa fa-bars"></i><a href="ui-tabs.html">Tabs</a></li>
 
-							<li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Cards</a></li>
-							<li><i class="fa fa-exclamation-triangle"></i><a
-								href="ui-alerts.html">Alerts</a></li>
-							<li><i class="fa fa-spinner"></i><a
-								href="ui-progressbar.html">Progress Bars</a></li>
-							<li><i class="fa fa-fire"></i><a href="ui-modals.html">Modals</a></li>
-							<li><i class="fa fa-book"></i><a href="ui-switches.html">Switches</a></li>
-							<li><i class="fa fa-th"></i><a href="ui-grids.html">Grids</a></li>
-							<li><i class="fa fa-file-word-o"></i><a
-								href="ui-typgraphy.html">Typography</a></li>
-						</ul></li>
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-table"></i>備用
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="fa fa-table"></i><a href="tables-basic.html">Basic
-									Table</a></li>
-							<li><i class="fa fa-table"></i><a href="tables-data.html">Data
-									Table</a></li>
-						</ul></li>
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-th"></i>備用
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-th"></i><a
-								href="forms-basic.html">Basic Form</a></li>
-							<li><i class="menu-icon fa fa-th"></i><a
-								href="forms-advanced.html">Advanced Form</a></li>
-						</ul></li>
+	<jsp:include page="/WEB-INF/views/backstage/forinclude.jsp" />
 
-					<li class="menu-title">商品管理</li>
-					<!-- /.menu-title -->
-
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-tasks"></i>商品上下架
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-fort-awesome"></i><a
-								href="font-fontawesome.html">商品補貨</a></li>
-							<li><i class="menu-icon ti-themify-logo"></i><a
-								href="font-themify.html">訂單管理</a></li>
-						</ul></li>
-
-					<li><a href="<c:url value='/backstage/SearchOrdersFinal'/>">
-							<i class="menu-icon ti-email"></i>訂單查詢
-					</a></li>
-
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-bar-chart"></i>圖表
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-line-chart"></i><a
-								href="charts-chartjs.html">Chart JS</a></li>
-							<li><i class="menu-icon fa fa-area-chart"></i><a
-								href="charts-flot.html">Flot Chart</a></li>
-							<li><i class="menu-icon fa fa-pie-chart"></i><a
-								href="charts-peity.html">Peity Chart</a></li>
-						</ul></li>
-
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-area-chart"></i>備用
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-map-o"></i><a
-								href="maps-gmap.html">Google Maps</a></li>
-							<li><i class="menu-icon fa fa-street-view"></i><a
-								href="maps-vector.html">Vector Maps</a></li>
-						</ul></li>
-					<li class="menu-title">討論區</li>
-					<!-- /.menu-title -->
-					<li class="menu-item-has-children dropdown"><a href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"> <i
-							class="menu-icon fa fa-glass"></i>看板管理
-					</a>
-						<ul class="sub-menu children dropdown-menu">
-							<li><i class="menu-icon fa fa-sign-in"></i><a
-								href="page-login.html">Login</a></li>
-							<li><i class="menu-icon fa fa-sign-in"></i><a
-								href="page-register.html">Register</a></li>
-							<li><i class="menu-icon fa fa-paper-plane"></i><a
-								href="pages-forget.html">Forget Pass</a></li>
-						</ul></li>
-				</ul>
-			</div>
-			<!-- /.navbar-collapse -->
-		</nav>
-	</aside>
 	<!-- /#left-panel -->
 	<!-- Right Panel -->
 	<div id="right-panel" class="right-panel">
-		<!-- Header-->
+
 		<header id="header" class="header">
 			<div class="top-left">
 				<div class="navbar-header">
@@ -426,6 +307,7 @@
 			<div class="animated fadeIn">
 				<!-- Widgets  -->
 				<div class="row">
+
 					<div class="col-lg-3 col-md-6">
 						<div class="card">
 							<div class="card-body">
@@ -520,82 +402,65 @@
 					</div>
 					<!-- /# column -->
 				</div>
-				
-				
-				
-				
-				
 
 
-				<div class="content">
-					<div class="animated fadeIn">
-						<div class="row">
-							<div class="col-lg-6">
-								<div class="card">
-									<div class="card-body">
-										<h3 class="mb-3">男女消費佔比</h3>
-										<div id="donutchart" style="width: 100%; height: 500px;"></div>
-									</div>
-								</div>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="card">
+							<div class="card-body">
+								<h3 class="mb-3">男女消費佔比</h3>
+								<div id="donutchart" style="width: 100%; height: 500px;"></div>
 							</div>
+						</div>
+					</div>
 
-							<div class="col-lg-6">
-								<div class="card">
-									<div class="card-body">
-										<h3 class="mb-3">男女會員佔比</h3>
-										<div id="piechart" style="width: 100%; height: 500px;"></div>
-									</div>
-								</div>
+					<div class="col-lg-6">
+						<div class="card">
+							<div class="card-body">
+								<h3 class="mb-3">男女會員佔比</h3>
+								<div id="piechart" style="width: 100%; height: 500px;"></div>
 							</div>
-
-
-
 						</div>
 					</div>
 				</div>
 
 
-
-
-
-				<!-- Content -->
-				
-
-							<div class="row">
-								<div class="col-lg-12" >
-									<div class="card" >
-										<div class="card-body">
-											<h1 >每季成交量</h1>
-										</div>
-										<div id="columnchart_material" style="width: 100%; height: 500px;margin: 30px"></div>
-										<!-- /.row -->
-										<div class="card-body"></div>
-									</div>
-								</div>
-								<!-- /# column -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+								<h1>每季成交量</h1>
 							</div>
+							<div id="columnchart_material"
+								style="width: 100%; height: 500px; margin: 30px"></div>
+							<!-- /.row -->
+							<div class="card-body"></div>
+						</div>
+					</div>
+					<!-- /# column -->
+				</div>
 
-							
-								<div class="row">
-								<div class="col-lg-12" >
-									<div class="card" >
-										<div class="card-body">
-											<h1 >看板點擊數統計</h1>
-										</div>
-										<div id="barchart_material" style="width: 100%; height: 500px;"></div>
-										<!-- /.row -->
-										<div class="card-body"></div>
-									</div>
-								</div>
-								<!-- /# column -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="card">
+							<div class="card-body">
+								<h1>看板點擊數統計</h1>
 							</div>
-							
-					
-				
+							<div id="barchart_material" style="width: 100%; height: 500px;"></div>
+							<!-- /.row -->
+							<div class="card-body"></div>
+						</div>
+					</div>
+					<!-- /# column -->
+				</div>
+
+
+
 			</div>
 			<!-- .animated -->
 		</div>
 		<!-- /.content -->
+		
 		<div class="clearfix"></div>
 		<!-- Footer -->
 		<footer class="site-footer">
@@ -612,44 +477,7 @@
 	</div>
 	<!-- /#right-panel -->
 
-	<!-- Scripts -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-	<script src="assets/js/main.js"></script>
-
-	<!--  Chart js -->
-	<script
-		src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
-
-	<!--Chartist Chart-->
-	<script
-		src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
-
-	<script
-		src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-	<script src="assets/js/init/weather-init.js"></script>
-
-	<script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
-	<script src="assets/js/init/fullcalendar-init.js"></script>
-
-	<!--Local Stuff-->
 	
+
 </body>
 </html>

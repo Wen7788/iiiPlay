@@ -12,17 +12,7 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-	integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-	crossorigin="anonymous"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-	crossorigin="anonymous"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-	integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-	crossorigin="anonymous"></script>
+
 
 <style>
 th,td{
@@ -40,12 +30,22 @@ text-align:center
 
 
 <body>
-	<div class="divleft">
+	
 		<jsp:include page="/WEB-INF/views/backstage/forinclude.jsp" />
-	</div>
+	
 
 	<div id="right-panel" class="right-panel">
+		<header id="header" class="header">
+			<div class="top-left">
+				<div class="navbar-header">
+					<a class="navbar-brand h1">後台管理系統</a> <a id="menuToggle"
+						class="menutoggle" style="text-align: left"> <i
+						class="fa fa-bars"></i></a>
+				</div>
+			</div>
 
+
+		</header>
 
 		<div class="content">
 			<div class="animated fadeIn">
@@ -114,28 +114,7 @@ text-align:center
 			</div>
 		</footer>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
-	<script src="<c:url value='/assets/js/main.js'/>"></script>
-
-
-	<script src="<c:url value='/assets/js/lib/data-table/datatables.min.js'/>"></script>
-	<script src="<c:url value='/assets/js/lib/data-table/dataTables.bootstrap.min.js'/>"></script>
-	<script src="<c:url value='/assets/js/lib/data-table/dataTables.buttons.min.js'/>"></script>
-	<script src="<c:url value='/assets/js/lib/data-table/buttons.bootstrap.min.js'/>"></script>
-	<script src="<c:url value='/assets/js/lib/data-table/jszip.min.js'/>"></script>
-	<script src="<c:url value='/assets/js/lib/data-table/vfs_fonts.js'/>"></script>
-	<script src="<c:url value='/assets/js/lib/data-table/buttons.html5.min.js'/>"></script>
-	<script src="<c:url value='/assets/js/lib/data-table/buttons.print.min.js'/>"></script>
-	<script src="<c:url value='/assets/js/lib/data-table/buttons.colVis.min.js'/>"></script>
-	<script src="<c:url value='/assets/js/init/datatables-init.js'/>"></script>
-
+	
 
 	<script type="text/javascript">
 		$(document).ready(function() {
