@@ -117,7 +117,7 @@ public class orderController {
 
 		cart.clearOrderItem();		
 		request.setAttribute("order", order);
-		   return"";
+		   return"redirect:/backstage/pay/"+order.getOrderId();
 
 	}
 	

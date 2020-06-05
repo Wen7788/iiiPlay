@@ -119,8 +119,7 @@ margin-left: 0;
 						<ul class="sub-menu children dropdown-menu">
 							<li><i class="menu-icon fa fa-fort-awesome"></i><a
 								href="<c:url value='/product/insert'/>">商品上架</a></li>
-							<li><i class="menu-icon ti-themify-logo"></i><a
-								href="font-themify.html">訂單管理</a></li>
+							
 						</ul></li>
 						
 					<li><a href="<c:url value='/backstage/SearchOrdersFinal'/>"> <i class="menu-icon ti-email"></i>訂單查詢</a></li>
