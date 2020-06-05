@@ -39,6 +39,7 @@ public class ProductBean implements Serializable {
 	private String companyName;
 	private Timestamp pdate;
 	private OrderItemBean itembean;
+	private String pdEname;
 
 	
 	public ProductBean() {
@@ -46,7 +47,7 @@ public class ProductBean implements Serializable {
 	}
 	
 	public ProductBean(String productNo, String productName, String category, byte[] pdimg, Integer price, Integer stock,
-			String companyName, Timestamp pdate) {
+			String companyName, Timestamp pdate ) {
 		super();
 		this.productNo = productNo;
 		this.productName = productName;
@@ -57,6 +58,20 @@ public class ProductBean implements Serializable {
 		this.companyName = companyName;
 		this.pdate = pdate;
 	}
+	public ProductBean(String productNo, String productName, String category, byte[] pdimg, Integer price, Integer stock,
+			String companyName, Timestamp pdate , String pdEname) {
+		super();
+		this.productNo = productNo;
+		this.productName = productName;
+		this.category = category;
+		this.pdimg = pdimg;
+		this.price = price;
+		this.stock = stock;
+		this.companyName = companyName;
+		this.pdate = pdate;
+		this.pdEname = pdEname;
+	}
+	
 	
 	
 	@Id
@@ -175,6 +190,16 @@ public class ProductBean implements Serializable {
 	@javax.persistence.Transient
 	public void setItembean(OrderItemBean itembean) {
 		this.itembean = itembean;
+	}
+	
+	@Column(name = "pdEname")
+	public String getPdEname() {
+		return pdEname;
+	}
+	
+	
+	public void setPdEname(String pdEname) {
+		this.pdEname = pdEname;
 	}
 	
 

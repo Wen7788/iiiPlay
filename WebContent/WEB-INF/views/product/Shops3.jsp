@@ -159,7 +159,7 @@
 
 							<div class="col-lg-4 col-sm-6">
 								
-								<div class="single_product_item"  id="div1">
+								<div class="single_product_item"  id="">
 							
 									<img id="hott" style='position:absolute ;right:20%; '  width='70' src="<c:url value="/img/HOT.png"/>" alt="收藏">
 									

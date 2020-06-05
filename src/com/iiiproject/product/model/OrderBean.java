@@ -42,6 +42,8 @@ public class OrderBean {
 	Date  orderDate; //訂單生成日期 
 	@Column(name="state")
 	Integer state ;//訂單狀態	
+	@Column(name = "payDate")
+	Date payDate;
 
 
 	@javax.persistence.Transient
@@ -57,7 +59,7 @@ public class OrderBean {
 	
 	
 	public OrderBean(Integer orderId, String id,String name, int total, String shippingAddress, String email,
-			String phone, Date orderDate, Integer state) {
+			String phone, Date orderDate, Integer state , Date payDate) {
 		super();
 		this.orderId = orderId;
 		this.id = id;
@@ -68,7 +70,7 @@ public class OrderBean {
 		this.phone = phone;
 		this.orderDate = orderDate;
 		this.state = state;
-		
+		this.payDate = payDate;
 	}
 
 	public Integer getOrderId() {
@@ -78,6 +80,16 @@ public class OrderBean {
 		this.orderId = orderId;
 	}
 	
+
+	public Date getPayDate() {
+		return payDate;
+	}
+
+
+	public void setPayDate(Date payDate) {
+		this.payDate = payDate;
+	}
+
 
 	public String getId() {
 		return id;

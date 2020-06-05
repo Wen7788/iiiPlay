@@ -14,10 +14,13 @@
 <link rel="stylesheet" href="<c:url value='/css/bootstrap.min.css'/>">
 <!-- animate CSS -->
 <link rel="stylesheet" href="<c:url value='/css/animate.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/lightslider.min.css'/>">
 <!-- owl carousel CSS -->
  <link rel="stylesheet" href="<c:url value='/css/nice-select.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/owl.carousel.min.css'/>">
+
 <!-- font awesome CSS -->
+
 <link rel="stylesheet" href="<c:url value='/css/all.css'/>">
 <!-- flaticon CSS -->
 <link rel="stylesheet" href="<c:url value='/css/flaticon.css'/>">
@@ -29,6 +32,7 @@
 <!-- style CSS -->
 <link rel="stylesheet" href="<c:url value='/css/price_rangs.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/owl.carousel.min.css'/>">
 </head>
 
 
@@ -68,7 +72,7 @@
 										我的購物車
 											</a>
 											<a class="dropdown-item" href="${pageContext.request.contextPath}/product/findorder1" > 我的訂單</a>
-
+                                             <a class="dropdown-item" href="${pageContext.request.contextPath}/product/colpd" > 我的收藏</a>
 									</div></li>
 
 								<li class="nav-item dropdown"><a
@@ -162,14 +166,18 @@
 	<!-- easing js -->
 	<script src="<c:url value='/js/jquery.magnific-popup.js'/>"></script>
  	<!-- swiper js --> 
+    <script src="${pageContext.request.contextPath}/js/lightslider.min.js"></script>
 	<script src="<c:url value='/js/swiper.min.js'/>"></script>
 	<!-- swiper js -->
+	
 	<script src="<c:url value='/js/masonry.pkgd.js'/>"></script>
 	<!-- particles js -->
 	<script src="<c:url value='/js/owl.carousel.min.js'/>"></script>
 	<script src="<c:url value='/js/jquery.nice-select.min.js'/>"></script>
 	<!-- slick js -->
+
 	<script src="<c:url value='/js/slick.min.js'/>"></script>
+	 <script src="${pageContext.request.contextPath}/js/swiper.jquery.js"></script>
 	<script src="<c:url value='/js/jquery.counterup.min.js'/>"></script>
 	<script src="<c:url value='/js/waypoints.min.js'/>"></script>
 	<script src="<c:url value='/js/contact.js'/>"></script>
@@ -179,7 +187,8 @@
 	<script src="<c:url value='/js/mail-script.js'/>"></script>
 	 <script src="${pageContext.request.contextPath}/js/stellar.js"></script>
 	 <script src="${pageContext.request.contextPath}/js/price_rangs.js"></script>
-	<!-- custom js -->
-	<script src="<c:url value='/js/custom.js'/>"></script>
+	<!-- custom js -->	
+	<script src="${pageContext.request.contextPath}/js/theme.js"></script>
+<script src="<c:url value='/js/custom.js'/>"></script>
 </body>
 </html>

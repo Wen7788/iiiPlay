@@ -121,19 +121,7 @@
       </ul>
        
 <!--         <div class="tab-content" id="myTabContent"> -->
-             <c:if test="${empty rplist }">
-             <div class="col-lg-6">
-              <div class="comment_list">
-             <div class="comment_list">
-             <br>
-               <br>
-              <br>
-             <h4>此產品尚無評論</h4>
-          </div>
-           </div>
-            </div>
-           
-           </c:if>
+   
         <div class="tab-content" id="myTabContent">
           <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
           <div class="table-responsive">
@@ -207,6 +195,60 @@
             </table>
           </div>
         </div>
+        
+        
+        
+                  <c:if test="${empty rplist }">
+              <div class="tab-pane fade show active" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+          <div class="row">
+            
+             <div class="col-lg-6">
+              <div class="comment_list">
+             <div class="comment_list">
+             <br>
+               <br>
+              <br>
+             <h4>此產品尚無評論</h4>
+          </div>
+           </div>
+            </div>
+           <div class="col-lg-6">
+              <div class="review_box">
+    
+                <h4>Post a comment</h4>
+                <form id="rpform" action="<c:url value='/product/reply'/>" method="post" id=""
+                  novalidate="novalidate">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="name" name="name" placeholder="名稱 "/>
+                   <input class="aaaa" type="text" name="pId" value="${detail.productId}" hidden="">
+                     <input class="aaaa" type="text" name="pId" value="${detail.productId}" hidden="">
+                    </div>
+               
+               
+                  </div>
+           
+                  
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <textarea class="form-control" name="replyDetail" id="message" rows="1"
+                        placeholder="您的評論"></textarea>
+                    </div>
+                  </div>
+                  <div  class="col-md-12 text-right">
+                    <button type="submit" value="submit"  class="genric-btn primary circle arrow" id="rep">
+                                                               傳送
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+         
+         </div>
+            </div  >
+            
+           </c:if>
+            <c:if test="${not empty rplist}">
           <div class="tab-pane fade show active" id="contact" role="tabpanel" aria-labelledby="contact-tab">
           <div class="row">
 
@@ -282,6 +324,7 @@
             </div>
           </div>
           </div>
+         </c:if>
           </div>
         </div>
     

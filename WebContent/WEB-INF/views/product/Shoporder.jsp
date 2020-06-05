@@ -12,53 +12,10 @@
 <body>
 
 <jsp:include page="/WEB-INF/views/top.jsp"/>
-	<div class="rightContent">
-		<main class="home">
-			<div class="root">
-				當前位置:
-				<a href=".">首頁</a>
-				<code>&gt;</code>
-				購物流程
-			</div>
-			<div class="">
-				<div class="">
-
-					<img src="" alt="">
-					<span>
-						1.
-						<span class="">購物明細</span>
-					</span>
-				</div>
+	
 
 
-				<div>
-					<img src="" alt="">
-					<span>
-						2.
-						<span class="">填寫收件資料</span>
-					</span>
-				</div>
-
-				<div>
-					<img src="" alt="">
-					<span>
-						3.
-						<span class="">再次確認訂單</span>
-					</span>
-				</div>
-
-
-
-				<div>
-					<img src="" alt="">
-					<span>
-						4.
-						<span class="">完成訂購</span>
-					</span>
-				</div>
-
-
-			</div>
+			
 
 <section class="cart_area padding_top">
     <div class="container">
