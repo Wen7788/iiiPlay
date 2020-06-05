@@ -12,12 +12,25 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/top.jsp" />
-<section class="padding_top">
+    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h2></h2>
+                            <p> <span></span> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 <div align="center">
     <br/>
     <h3>${message}</h3>
     <br/>
 </div>
-</section>
+
 </body>
 </html>

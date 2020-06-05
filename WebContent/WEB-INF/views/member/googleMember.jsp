@@ -21,7 +21,20 @@
 </head>
 <body style="background: #f2f2f2">
 	<jsp:include page="/WEB-INF/views/top.jsp" />
-	<section class="padding_top">
+	    <section class="breadcrumb breadcrumb_bg">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="breadcrumb_iner">
+                        <div class="breadcrumb_iner_item">
+                            <h2></h2>
+                            <p> <span></span> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 		<div class="container">
 			<br>
 			<H1 style="text-align: center">Google會員基本資料</H1>
@@ -74,7 +87,7 @@
 
 			</form>
 		</div>
-	</section>
+
 
 </body>
 </html>
