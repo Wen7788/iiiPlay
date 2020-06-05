@@ -40,19 +40,13 @@ public class ProductBean implements Serializable {
 	private Timestamp pdate;
 	private OrderItemBean itembean;
 	private String pdEname;
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 	
 	public ProductBean() {
 		
 	}
 	
 	public ProductBean(String productNo, String productName, String category, byte[] pdimg, Integer price, Integer stock,
-<<<<<<< Updated upstream
-			String companyName, Timestamp pdate ) {
-=======
 			String companyName, Timestamp pdate ,String pdEname ) {
 		super();
 		this.productNo = productNo;
@@ -68,7 +62,7 @@ public class ProductBean implements Serializable {
 	
 	public ProductBean(String productNo, String productName, String category, byte[] pdimg, Integer price, Integer stock,
 			String companyName, Timestamp pdate  ) {
->>>>>>> Stashed changes
+
 		super();
 		this.productNo = productNo;
 		this.productName = productName;
@@ -89,19 +83,7 @@ public class ProductBean implements Serializable {
 		this.pdEname = pdEname;
 
 	}
-	public ProductBean(String productNo, String productName, String category, byte[] pdimg, Integer price, Integer stock,
-			String companyName, Timestamp pdate , String pdEname) {
-		super();
-		this.productNo = productNo;
-		this.productName = productName;
-		this.category = category;
-		this.pdimg = pdimg;
-		this.price = price;
-		this.stock = stock;
-		this.companyName = companyName;
-		this.pdate = pdate;
-		this.pdEname = pdEname;
-	}
+	
 	
 	
 	
@@ -223,15 +205,7 @@ public class ProductBean implements Serializable {
 		this.itembean = itembean;
 	}
 	
-	@Column(name = "pdEname")
-	public String getPdEname() {
-		return pdEname;
-	}
 	
-	
-	public void setPdEname(String pdEname) {
-		this.pdEname = pdEname;
-	}
 	
 
 

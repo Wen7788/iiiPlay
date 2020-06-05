@@ -10,6 +10,7 @@ import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBr
 import org.springframework.web.socket.config.annotation.StompEndpointRegistry;
 import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerConfigurer;
 import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
+import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
 import javax.servlet.http.HttpSession;
 import java.util.Map;
@@ -26,20 +27,19 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/greeting").setHandshakeHandler(new DefaultHandshakeHandler() {
-
-			// Get sessionId from request and set it in Map attributes
-			public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
-					Map<String, Object> attributes) throws Exception {
-				if (request instanceof ServletServerHttpRequest) {
-					ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
-					HttpSession session = servletRequest.getServletRequest().getSession();
-					attributes.put("sessionId", session.getId());
-				}
-				return true;
-			}
-		}).withSockJS();
+		registry.addEndpoint("/notify");
+		registry.addEndpoint("/notify").withSockJS();
 	}
 
-	
+	// Get sessionId from request and set it in Map attributes
+	public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
+			Map<String, Object> attributes) throws Exception {
+		if (request instanceof ServletServerHttpRequest) {
+			ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
+			HttpSession session = servletRequest.getServletRequest().getSession();
+			attributes.put("sessionId", session.getId());
+		}
+		return true;
+	}
+
 }

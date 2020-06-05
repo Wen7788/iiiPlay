@@ -17,13 +17,10 @@
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/openjdk-11.x86_64">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11">
 		<attributes>
-<<<<<<< Updated upstream
-			<attribute name="owner.project.facets" value="java"/>
-=======
+			<attribute name="module" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
->>>>>>> Stashed changes
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>

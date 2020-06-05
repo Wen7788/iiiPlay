@@ -26,11 +26,13 @@ import com.iiiproject.forum.model.ArticleListView;
 import com.iiiproject.forum.model.Board;
 import com.iiiproject.forum.model.Click;
 import com.iiiproject.forum.model.FavoListView;
+import com.iiiproject.forum.model.Message;
 import com.iiiproject.forum.model.MyFavoArticle;
 import com.iiiproject.forum.model.ReplyListView;
 import com.iiiproject.forum.service.IArticleService;
 import com.iiiproject.forum.service.IBoardService;
 import com.iiiproject.forum.service.IClickService;
+import com.iiiproject.forum.service.IMessageService;
 import com.iiiproject.forum.service.IMyFavoArticleService;
 import com.iiiproject.forum.service.IReplyService;
 import com.iiiproject.lab02.dao.IMemberDao;
@@ -55,6 +57,9 @@ public class ArticleController {
 	
 	@Autowired
 	IMyFavoArticleService iFService;
+	
+	@Autowired
+	IMessageService iMService;
 	
 	@Autowired
 	MyFavoArticle favoBean;
@@ -181,6 +186,11 @@ public class ArticleController {
 		System.out.println("addarticleId: "+articleId);
 		favoBean.setFavoAddTime(new Timestamp(System.currentTimeMillis()));
 		MyFavoArticle addFavo = iFService.addFavo(favoBean);
+		
+		Message message = new Message();
+		
+		
+		
 		
 		ResponseEntity<MyFavoArticle> re = new ResponseEntity<MyFavoArticle>(addFavo, HttpStatus.OK);
 		return re;

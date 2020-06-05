@@ -14,26 +14,19 @@ import com.iiiproject._00_backstage.service.CountMemberService;
 import com.iiiproject._00_backstage.service.CountMouseService;
 import com.iiiproject._00_backstage.service.CountOtherThreeService;
 import com.iiiproject._00_backstage.service.TestService;
-<<<<<<< Updated upstream
 import com.iiiproject.forum.service.IArticleService;
 import com.iiiproject.product.service.IProductBeanService;
-=======
-import com.iiiproject._00_backstage.service.TestServiceImp;
-import com.iiiproject.forum.service.IArticleService;
 
->>>>>>> Stashed changes
+
 
 @Controller
 public class HomeController {
 
 	@Autowired
-<<<<<<< Updated upstream
 	IProductBeanService pdService;
 	
 
 	@Autowired
-=======
->>>>>>> Stashed changes
 	CountMemberService memberService;
 	
 	@Autowired
@@ -48,22 +41,15 @@ public class HomeController {
 	@Autowired
 	TestService testService;
 	
-<<<<<<< Updated upstream
+
 	@Autowired 
 	CountOtherThreeService  CountOtherThreeService;
-=======
-	@Autowired
-	CountOtherThreeService CountOtherThreeService;
-	
->>>>>>> Stashed changes
+
 	@Autowired
 	CountCompanyService countCompanyService;
 	
 	
-<<<<<<< Updated upstream
-=======
-	
->>>>>>> Stashed changes
+
 	@RequestMapping("/")
 	public String home(Model model) {
 		
@@ -73,14 +59,9 @@ public class HomeController {
 		return "index";
 	
 	
-<<<<<<< Updated upstream
+
 	}
-=======
-	
-	
-	
-	
->>>>>>> Stashed changes
+
 	@RequestMapping("/bs")
 	public String bsHome(Model model) {
 		
@@ -249,14 +230,12 @@ public class HomeController {
 	}
 	
 	
-<<<<<<< Updated upstream
+
 	@RequestMapping("/twitch")
 	public String twitch() {
 		return "member/twitch";
 	}
-=======
->>>>>>> Stashed changes
-	
+
 //	@RequestMapping("/top")
 //	public String top() {
 //		return "top";
