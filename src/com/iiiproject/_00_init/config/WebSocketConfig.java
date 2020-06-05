@@ -18,14 +18,28 @@ import java.util.Map;
 @EnableWebSocketMessageBroker
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
-    @Override
-    public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableSimpleBroker("/queue/");
-        config.setApplicationDestinationPrefixes("/app");
-    }
+	@Override
+	public void configureMessageBroker(MessageBrokerRegistry config) {
+		config.enableSimpleBroker("/topic/", "/queue/");
+		config.setApplicationDestinationPrefixes("/app");
+	}
 
-    @Override
-    public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/notify").withSockJS();
-    }
+	@Override
+	public void registerStompEndpoints(StompEndpointRegistry registry) {
+		registry.addEndpoint("/greeting").setHandshakeHandler(new DefaultHandshakeHandler() {
+
+			// Get sessionId from request and set it in Map attributes
+			public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
+					Map<String, Object> attributes) throws Exception {
+				if (request instanceof ServletServerHttpRequest) {
+					ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
+					HttpSession session = servletRequest.getServletRequest().getSession();
+					attributes.put("sessionId", session.getId());
+				}
+				return true;
+			}
+		}).withSockJS();
+	}
+
+	
 }
