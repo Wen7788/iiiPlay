@@ -57,7 +57,7 @@ public class EcpayController {
 		//欄位加總用count
 		
 
-	    payStateService.updatepaydate(oBean.getOrderId());
+	    
 		
 		
 		
@@ -84,6 +84,7 @@ public class EcpayController {
 		obj.setNeedExtraPaidInfo("N");
 		obj.setClientBackURL("http://localhost:8080/iiiPlay/backstage/SearchOrdersFinal");
 		
+		payStateService.updatepaydate(oBean.getOrderId());
 		
 		
 //		obj.setClientBackURL

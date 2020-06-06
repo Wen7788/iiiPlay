@@ -51,7 +51,8 @@ public class OrderBean {
 	private MemberBean user;
 
 	//查詢訂單的同時還需要獲取訂單項
-	@OneToMany(mappedBy ="order", cascade =CascadeType.ALL, fetch = FetchType.EAGER )	
+	@OneToMany(mappedBy ="order", cascade =CascadeType.ALL , fetch = FetchType.EAGER )	
+
 	Set<OrderItemBean> items = new LinkedHashSet<>();
 	
 	public OrderBean() {
@@ -62,7 +63,6 @@ public class OrderBean {
 	public OrderBean(Integer orderId, String id,String name, int total, String shippingAddress, String email,
 
 			String phone, Date orderDate, Integer state ,Date payDate) {
-
 		super();
 		this.orderId = orderId;
 		this.id = id;

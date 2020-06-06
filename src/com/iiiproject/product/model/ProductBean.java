@@ -47,6 +47,7 @@ public class ProductBean implements Serializable {
 	}
 	
 	public ProductBean(String productNo, String productName, String category, byte[] pdimg, Integer price, Integer stock,
+
 			String companyName, Timestamp pdate ,String pdEname ) {
 		super();
 		this.productNo = productNo;
@@ -75,6 +76,7 @@ public class ProductBean implements Serializable {
 		
 	}
 	
+
 	@Column(name = "pdEname")
 	public String getPdEname() {
 		return pdEname;
@@ -84,6 +86,7 @@ public class ProductBean implements Serializable {
 
 	}
 	
+
 	
 	
 	

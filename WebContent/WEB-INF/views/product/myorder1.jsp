@@ -69,7 +69,7 @@
                 </td>
                 <td>
                      <c:if test="${mem.state==1}" >
-                     <a  class="btn_1" href="<c:url value="/backstage/pay/${mem.orderId}"/>">付款</a>
+                     <a  class="btn_1" href="<c:url value="/backstage/pay/${mem.orderId }"/>">付款</a>
                      </c:if>
                       <c:if test="${mem.state==2}" >
                      <h5 class="subtotal">已付款</h5>

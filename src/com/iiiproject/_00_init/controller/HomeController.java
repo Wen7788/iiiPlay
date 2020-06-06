@@ -44,9 +44,10 @@ public class HomeController {
 
 	@Autowired 
 	CountOtherThreeService  CountOtherThreeService;
-
+	
 	@Autowired
 	CountCompanyService countCompanyService;
+
 	
 	
 
@@ -58,10 +59,7 @@ public class HomeController {
 		
 		return "index";
 	
-	
-
 	}
-
 	@RequestMapping("/bs")
 	public String bsHome(Model model) {
 		
@@ -226,6 +224,8 @@ public class HomeController {
 		Long countY44 = countCompanyService.getYuet4();
 		model.addAttribute("countY44",countY44);
 		
+		
+		
 		return "BSindex";
 	}
 	
@@ -235,6 +235,7 @@ public class HomeController {
 	public String twitch() {
 		return "member/twitch";
 	}
+
 
 //	@RequestMapping("/top")
 //	public String top() {
