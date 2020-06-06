@@ -57,7 +57,8 @@ public class WebAppJavaConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		LoginCheckInterceptor loginCheckInterceptor= new  LoginCheckInterceptor();
-	    registry.addInterceptor(loginCheckInterceptor).addPathPatterns(new String[] {"/product/colpd","/product/checkcol","/product/findorder1","/product/saveorder","/product/reply"});
+	    registry.addInterceptor(loginCheckInterceptor).addPathPatterns(new String[] {"/product/colpd","/product/checkcol","/product/findorder1","/product/saveorder","/product/reply"
+	    		                                                              ,"/forum/addFavo","/forum/deleFavo"});
 	 
 //	    Register admin interceptor with multiple path patterns  
 //	      registry.addInterceptor(loginCheckInterceptor)

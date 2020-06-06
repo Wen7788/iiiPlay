@@ -174,16 +174,14 @@
 										<c:choose>
 											<c:when test="${fn:length(article.detail)>20}">
 												<p>
-													<font size='5'>${fn:substring(article.detail, 0, 20)}<br>...(<a
-														href="<c:url value='/forum/articleAndReply/${article.articleId}'/>">繼續閱讀</a>)
+													<font size='5'>${fn:substring(article.detail, 0, 20)}...
+<%-- 													(<a href="<c:url value='/forum/articleAndReply/${article.articleId}'/>">繼續閱讀</a>) --%>
 													</font>
 												</p>
 											</c:when>
 											<c:otherwise>
 												<p>
-													<font size='5'>${article.detail}<br>(<a
-														href="<c:url value='/forum/articleAndReply/${article.articleId}'/>">繼續閱讀</a>)
-													</font>
+													<font size='5'>${article.detail}</font>
 												</p>
 											</c:otherwise>
 										</c:choose>

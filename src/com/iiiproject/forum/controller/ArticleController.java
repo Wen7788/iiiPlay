@@ -4,7 +4,10 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -91,6 +94,23 @@ public class ArticleController {
 		click.setRecordDate(Date.valueOf(df.format(new Date(System.currentTimeMillis()))));
 		iCService.insertOrUpdate(click);
 		
+		
+		List<Click> dayClickTop5 = iAService.dayClickTop5(new Date(System.currentTimeMillis()));
+		
+		List<Article> alist = new ArrayList<>();
+		Map<String, Object> map = new HashMap<>();
+		for (Click c : dayClickTop5) {
+			
+			System.out.println("aId:"+c.getArticleId());
+			Article queryArticle = iAService.queryArticle(c.getArticleId());
+			alist.add(queryArticle);
+		}
+		map.put("dayClickTop5",dayClickTop5);
+		map.put("alist",alist);
+		model.addAttribute("map", map);
+		
+		List<ReplyListView> last5Reply = iRService.getLast5Reply();
+		model.addAttribute("last5Reply", last5Reply);
 		
 		
 		return "forum/articleAndReply";

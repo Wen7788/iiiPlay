@@ -24,4 +24,8 @@ public interface IBoardService {
 	Integer getBoardClick(Integer boardId);
 
 	List<BoardListView> queryHot5Board();
+	
+	Long getAllBoardCount();
+	
+	List<BoardListView> getRandom3Board();
 }

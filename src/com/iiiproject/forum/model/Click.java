@@ -26,7 +26,7 @@ public class Click implements Serializable{
 	@Column(name = "articleid")
 	private Integer articleId;
 	
-	@Column(name = "count")
+	@Column(name = "ccount")
 	private Integer count;
 	
 	@Column(name = "createtime")

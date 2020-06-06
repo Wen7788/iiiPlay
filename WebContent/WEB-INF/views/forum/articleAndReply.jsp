@@ -170,9 +170,59 @@
 						</div>
 					</div>
 				</div>
+				<div class="col-lg-4">
+					<div class="blog_right_sidebar">
+						<aside class="single_sidebar_widget popular_post_widget">
+							<h3 class="widget_title">當日文章瀏覽數排行</h3>
+							<c:forEach items="${map.alist}" var='topABean'>
+								<div class="media post_item">
+									<a
+										href="<c:url value='/forum/articleAndReply/${topABean.articleId}'/>">
+										<img src="<c:url value='/img/${topABean.category}.png'/>"
+										alt="post">
+									</a>
+									<div class="media-body">
+										<a
+											href="<c:url value='/forum/articleAndReply/${topABean.articleId}'/>">
+											<h3>【${topABean.category}】${topABean.title}</h3>
+										</a>
+										<p>發文時間:${fn:substring(topABean.publishTime, 0, 19)}</p>
+										<c:forEach items="${map.dayClickTop5}" var='topClick'>
+										<c:if test="${topABean.articleId==topClick.articleId}">
+										<p>當日瀏覽數:${topClick.count}</p>
+										</c:if>
+										</c:forEach>
+									</div>
+								</div>
+							</c:forEach>
+						</aside>
+					
+				
+				
+						<aside class="single_sidebar_widget popular_post_widget">
+							<h3 class="widget_title">最新留言</h3>
+							<c:forEach items="${last5Reply}" var='last5Reply'>
+								<div class="media post_item">
+									
+									<div class="media-body">
+										回覆的文章:<a
+											href="<c:url value='/forum/articleAndReply/${last5Reply.articleId}'/>">
+											<h3>${last5Reply.title}</h3>
+										</a>
+										
+										<p><font color='red'>${last5Reply.name}</font>對這篇文章說了什麼:${last5Reply.replyDetail}</p>
+										<p>留言時間:${fn:substring(last5Reply.replyTime, 0, 19)}</p>
+										
+									</div>
+								</div>
+							</c:forEach>
+						</aside>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
+	
 
 	<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 	

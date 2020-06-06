@@ -11,8 +11,8 @@
 </head>
 <body>
 
-	<section class="product_list best_seller padding_top section_padding">
-		<div class="container">
+	<section class="product_list best_seller padding_top">
+		<div class="container" >
 			<div class="row justify-content-center">
 				<div class="col-lg-12">
 					<div class="section_tittle text-center">
@@ -60,7 +60,7 @@
 														name="articleId">
 													<input type="hidden" value="${article.id}" name="id">
 													<button type="submit" class="genric-btn info radius">
-														<font size='3'>恢復</font>
+														<font size='3'>顯示</font>
 													</button>
 												</c:otherwise>
 											</c:choose>
@@ -122,8 +122,8 @@
 			</div>
 		</div>
 	</section>
-
 <jsp:include page="/WEB-INF/views/top.jsp" />
+
 	
 
 	<script>

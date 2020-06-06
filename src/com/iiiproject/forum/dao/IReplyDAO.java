@@ -19,4 +19,6 @@ public interface IReplyDAO {
 
 	Long getReplyOfArticleCounts(Integer articleId);
 
+	List<ReplyListView> getLast5Reply();
+
 }

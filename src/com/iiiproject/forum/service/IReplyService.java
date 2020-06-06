@@ -18,5 +18,7 @@ public interface IReplyService {
 	List<ReplyListView> getReplyOfArticle(Integer articleId);
 
 	Long getReplyOfArticleCounts(Integer articleId);
+	
+	List<ReplyListView> getLast5Reply();
 
 }

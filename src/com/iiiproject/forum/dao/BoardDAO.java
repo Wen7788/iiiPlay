@@ -111,4 +111,19 @@ public class BoardDAO implements IBoardDAO {
 		query.setMaxResults(5);
 		return query.list();
 	}
+	
+	@Override
+	public Long getAllBoardCount() {
+		Session session = sessionFactory.getCurrentSession();
+		Query<Long> query = session.createQuery("SELECT COUNT(*) FROM BoardListView", Long.class);
+		return query.uniqueResult();
+	}
+	
+	@Override
+	public List<BoardListView> getRandom3Board(){
+		Session session = sessionFactory.getCurrentSession();
+		Query<BoardListView> query = session.createQuery("FROM BoardListView ORDER BY NEWID()", BoardListView.class);
+		query.setMaxResults(5);
+		return query.list();
+	}
 }

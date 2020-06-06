@@ -61,8 +61,7 @@
 							<tr>
 								<th scope="col">看板編號</th>
 								<th scope="col">看板名稱</th>
-								<th scope="col">瀏覽次數</th>
-								<th scope="col">看板文章數</th>
+								
 								<th scope="col">看板圖</th>
 								<th scope="col">看板狀態</th>
 								<th scope="col">修改資料欄</th>
@@ -75,8 +74,7 @@
 								<tr>
 									<th scope="row">${board.boardId}</th>
 									<td>${board.boardName}</td>
-									<td>瀏覽次數未完成</td>
-									<td>看板文章數未完成</td>
+									
 									<td><img width='80' height='40'
 										src='loadImg/${board.boardId}' /></td>
 									<td><c:choose>
@@ -98,7 +96,7 @@
 												<c:otherwise>
 													<input type="hidden" value="${board.boardId}"
 														name="boardId">
-													<button type="submit" class="btn btn-light">恢復</button>
+													<button type="submit" class="btn btn-light">顯示</button>
 												</c:otherwise>
 											</c:choose>
 										</form>

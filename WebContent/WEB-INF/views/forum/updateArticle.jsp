@@ -196,7 +196,7 @@
 
 				<div class="col-md-12 form-group">
 					<label for="detail"><font color='red'>*</font>發表內文:</label>
-					<textarea class="form-control" name="detail" id="detail" rows="5"></textarea>
+					<textarea class="form-control" name="detail" id="detail" rows="5">${aBean.detail}</textarea>
 					<font id="errorDetail" color='red' size='-1'></font>
 
 				</div>
@@ -206,6 +206,13 @@
 		</form>
 	</div>
 	
+	<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+	
+	<script type="text/javascript">
+	
+		CKEDITOR.replace('detail');
+		
+	</script>
 	
 	<!-- jquery plugins here-->
 	<script src="<c:url value='/js/jquery-1.12.1.min.js'/>"></script>

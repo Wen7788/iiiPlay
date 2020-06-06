@@ -71,4 +71,16 @@ public class BoardService implements IBoardService {
 		List<BoardListView> queryHot5Board = boardDao.queryHot5Board();
 		return queryHot5Board;
 	}
+
+	@Override
+	public Long getAllBoardCount() {
+		Long allBoardCount = boardDao.getAllBoardCount();
+		return allBoardCount;
+	}
+
+	@Override
+	public List<BoardListView> getRandom3Board() {
+		List<BoardListView> random3Board = boardDao.getRandom3Board();
+		return random3Board;
+	}
 }

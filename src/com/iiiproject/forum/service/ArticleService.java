@@ -1,5 +1,6 @@
 package com.iiiproject.forum.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.iiiproject.forum.dao.IArticleDAO;
 import com.iiiproject.forum.model.Article;
 import com.iiiproject.forum.model.ArticleListView;
+import com.iiiproject.forum.model.Click;
 
 @Service("articleService")
 @Transactional
@@ -101,6 +103,12 @@ public class ArticleService implements IArticleService {
 	public List<ArticleListView> likeQuery(String title) {
 		List<ArticleListView> titleLikeQuery = articleDao.likeQuery(title);
 		return titleLikeQuery;
+	}
+
+	@Override
+	public List<Click> dayClickTop5(Date today) {
+		List<Click> dayClickTop5 = articleDao.dayClickTop5(today);
+		return dayClickTop5;
 	}
 
 	

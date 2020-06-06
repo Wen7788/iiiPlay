@@ -52,37 +52,6 @@ public class BoardController {
 	
 
 	
-//	@GetMapping("/randomArticle")
-//	public ResponseEntity<List<Article>> getRandomArticle() {
-//		Long allArticleCounts = iAService.getAllArticleCounts();
-//		System.out.println(allArticleCounts);
-//		Integer randomId = Integer.valueOf((int) (Math.random() * allArticleCounts + 1000));
-//		System.out.println("初取亂數:"+randomId);
-//		List<Board> boardSt1 = iBService.queryAllBoardStatus1();
-//		
-//		List<Article> alist = new ArrayList<>();
-//		Article aBean = null;
-//		for (Board b : boardSt1) {
-//			List<ArticleListView> aOfB = iAService.queryArticleOfBoard(b.getBoardId());
-//			for (ArticleListView a : aOfB) {
-//				while (randomId!= a.getArticleId()) {
-//					randomId = Integer.valueOf((int) (Math.random() * allArticleCounts + 1000));
-//					System.out.println("清單文章ID:"+a.getArticleId());
-//					System.out.println("亂數文章ID:"+randomId);
-//				}
-//				if (randomId == a.getArticleId()) {
-//					aBean = iAService.queryArticle(randomId);
-//					alist.add(aBean);
-//				}
-//			}
-//			randomId = Integer.valueOf((int) (Math.random() * allArticleCounts + 1000));
-//
-//		}
-//		
-//		ResponseEntity<List<Article>> re = new ResponseEntity<>(alist, HttpStatus.OK);
-//		return re;
-//	}
-	
 	
 	
 	@GetMapping("/likeQuery")
@@ -134,6 +103,8 @@ public class BoardController {
 	public String showBoardList(Model model) {
 		List<Board> boards = iBService.queryAllBoard();
 		model.addAttribute("boards", boards);
+		
+		
 		return "forum/boardListMaintain";
 	}
 

@@ -46,7 +46,7 @@ left join MemberTest as m
 on a.name = m.name
 left join (SELECT articleid, count(*) replynum from reply group by articleid) as rn
 on a.articleid = rn.articleid
-left join (select articleid, SUM([count]) clicksum from Click group by articleid) as cs
+left join (select articleid, SUM([ccount]) clicksum from Click group by articleid) as cs
 on a.articleid = cs.articleid
 GO
 
@@ -110,7 +110,7 @@ go
 create table Click(
 	clickid int primary key identity(1,1),
 	articleid int,
-	[count] int,
+	[ccount] int,
 	createtime datetime,
 	updatetime datetime,
 	recorddate date,

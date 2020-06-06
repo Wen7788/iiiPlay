@@ -14,7 +14,9 @@ import com.iiiproject._00_backstage.service.CountMemberService;
 import com.iiiproject._00_backstage.service.CountMouseService;
 import com.iiiproject._00_backstage.service.CountOtherThreeService;
 import com.iiiproject._00_backstage.service.TestService;
+import com.iiiproject.forum.model.BoardListView;
 import com.iiiproject.forum.service.IArticleService;
+import com.iiiproject.forum.service.IBoardService;
 import com.iiiproject.product.service.IProductBeanService;
 
 
@@ -49,13 +51,16 @@ public class HomeController {
 	CountCompanyService countCompanyService;
 
 	
-	
+	@Autowired
+	IBoardService iBservice;
 
 	@RequestMapping("/")
 	public String home(Model model) {
 		
 		model.addAttribute("memberList", pdService.selectHot());
-	
+		
+		List<BoardListView> random3Board = iBservice.getRandom3Board();
+		model.addAttribute("random3Board", random3Board);
 		
 		return "index";
 	

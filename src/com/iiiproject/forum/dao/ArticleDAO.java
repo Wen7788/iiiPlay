@@ -1,5 +1,6 @@
 package com.iiiproject.forum.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.iiiproject.forum.model.Article;
 import com.iiiproject.forum.model.ArticleListView;
+import com.iiiproject.forum.model.Click;
 import com.iiiproject.forum.service.IArticleService;
 
 @Repository("articleDao")
@@ -158,6 +160,14 @@ public class ArticleDAO implements IArticleDAO {
 		return query.list();
 	}
 	
-	
+	@Override
+	public List<Click> dayClickTop5(Date today) {
+		Session session = sessionFactory.getCurrentSession();
+		String hql = "from Click where recorddate =?1 order by ccount desc";
+		Query<Click> query = session.createQuery(hql, Click.class);
+		query.setParameter(1, today);
+		query.setMaxResults(5);
+		return query.list();
+	}
 	
 }

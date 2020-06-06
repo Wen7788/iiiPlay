@@ -53,4 +53,10 @@ public class ReplyService implements IReplyService {
 		Long rCount = replyDao.getReplyOfArticleCounts(articleId);
 		return rCount;
 	}
+
+	@Override
+	public List<ReplyListView> getLast5Reply() {
+		List<ReplyListView> last5Reply = replyDao.getLast5Reply();
+		return last5Reply;
+	}
 }

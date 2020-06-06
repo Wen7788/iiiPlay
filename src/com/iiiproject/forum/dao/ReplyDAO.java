@@ -78,4 +78,12 @@ public class ReplyDAO implements IReplyDAO{
 		query.setParameter(1, articleId);
 		return (Long) query.uniqueResult();
 	}
+	
+	@Override
+	public List<ReplyListView> getLast5Reply(){
+		Session session = sessionFactory.getCurrentSession();
+		Query<ReplyListView> query = session.createQuery("FROM ReplyListView order by replytime desc", ReplyListView.class);
+		query.setMaxResults(5);
+		return query.list();
+	}
 }

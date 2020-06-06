@@ -1,9 +1,11 @@
 package com.iiiproject.forum.dao;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.iiiproject.forum.model.Article;
 import com.iiiproject.forum.model.ArticleListView;
+import com.iiiproject.forum.model.Click;
 
 public interface IArticleDAO {
 
@@ -34,6 +36,8 @@ public interface IArticleDAO {
 	List<ArticleListView> queryLast5Article();
 
 	List<ArticleListView> likeQuery(String title);
+
+	List<Click> dayClickTop5(Date today);
 
 	
 
