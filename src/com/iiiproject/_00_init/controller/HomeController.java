@@ -20,7 +20,6 @@ import com.iiiproject.forum.service.IBoardService;
 import com.iiiproject.product.service.IProductBeanService;
 
 
-
 @Controller
 public class HomeController {
 
@@ -46,13 +45,16 @@ public class HomeController {
 
 	@Autowired 
 	CountOtherThreeService  CountOtherThreeService;
+
 	
+
 	@Autowired
 	CountCompanyService countCompanyService;
 
-	
+
 	@Autowired
 	IBoardService iBservice;
+
 
 	@RequestMapping("/")
 	public String home(Model model) {
@@ -65,6 +67,7 @@ public class HomeController {
 		return "index";
 	
 	}
+
 	@RequestMapping("/bs")
 	public String bsHome(Model model) {
 		
@@ -234,7 +237,7 @@ public class HomeController {
 		return "BSindex";
 	}
 	
-	
+
 
 	@RequestMapping("/twitch")
 	public String twitch() {

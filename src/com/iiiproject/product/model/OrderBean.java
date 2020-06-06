@@ -63,6 +63,7 @@ public class OrderBean {
 	public OrderBean(Integer orderId, String id,String name, int total, String shippingAddress, String email,
 
 			String phone, Date orderDate, Integer state ,Date payDate) {
+
 		super();
 		this.orderId = orderId;
 		this.id = id;

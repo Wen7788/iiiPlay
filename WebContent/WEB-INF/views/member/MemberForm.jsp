@@ -68,7 +68,7 @@ window.onload = function() {
          <H1 style="text-align: center ">加入會員</H1>
         <form action="insertMember.do"  method='POST' enctype="multipart/form-data" >
             <div class="form-group row">
-                <label for="id" class="col-sm-2 col-form-label">帳號</label>
+                <label for="id" class="col-sm-2 col-form-label">*帳號</label>
                 <div class="col-sm-10">
                   <input type="text" name="id" class="form-control" id="id" placeholder="abc123456" value="${param.id}">
                   <font color='red' size='-1'>${error.id}</font>
@@ -81,7 +81,7 @@ window.onload = function() {
 						</div>
 					
             <div class="form-group row">
-              <label for="password" class="col-sm-2 col-form-label">密碼</label>
+              <label for="password" class="col-sm-2 col-form-label">*密碼</label>
               
               <div class="col-sm-10">
                 <input type="password" name="password" class="form-control" id="password" placeholder="Password" value="${param.password}" >
@@ -89,7 +89,7 @@ window.onload = function() {
               </div>
             </div>
              <div class="form-group row">
-              <label for="password" class="col-sm-2 col-form-label">密碼確認</label>
+              <label for="password" class="col-sm-2 col-form-label">*密碼確認</label>
               
               <div class="col-sm-10">
                 <input type="password" name="checkPassword" class="form-control" id="checkPassword" placeholder="Password" value="" >
@@ -99,7 +99,7 @@ window.onload = function() {
             
                       
               <div class="form-group row">
-                <label for="name" class="col-sm-2 col-form-label">姓名</label>
+                <label for="name" class="col-sm-2 col-form-label">*姓名</label>
                 <div class="col-sm-10">
                   <input type="text" name="name" class="form-control" id="name" placeholder="王曉明" value="${param.name}">
                   <font color='red' size='-1'>${error.name}</font>
@@ -113,14 +113,14 @@ window.onload = function() {
                 </div>
               </div>
               <div class="form-group row">
-                <label for="email" class="col-sm-2 col-form-label">E-mail</label>
+                <label for="email" class="col-sm-2 col-form-label">*E-mail</label>
                 <div class="col-sm-10">
                   <input type="text" name="email" class="form-control" id="email" placeholder="email@example.com" value="${param.email}">
                   <font color='red' size='-1'>${error.email}</font>
                 </div>
               </div>
               <div class="form-group row">
-                <label for="age" class="col-sm-2 col-form-label">年齡</label>
+                <label for="age" class="col-sm-2 col-form-label">*年齡</label>
                 
                 <div class="col-sm-10">
                   <input type="text" name="age" class="form-control" id="age" placeholder="20" value="${param.age}">
@@ -143,14 +143,24 @@ window.onload = function() {
                 <div class="col-sm-10">
                     
                     <label>
-                        <input type="checkbox" name="games" value="LOL" checked>LOL
+                        <input type="checkbox" name="games" value="LOL" checked>英雄聯盟
                     </label>
                     <label>
-                        <input type="checkbox" name="games" value="PUBG">PUBG
+                        <input type="checkbox" name="games" value="PUBG">絕地求生
                     </label>
                     <label>
-                        <input type="checkbox" name="games" value="CSGO">CSGO
+                        <input type="checkbox" name="games" value="WOW">魔獸世界
                     </label>
+                    <label>
+                        <input type="checkbox" name="games" value="animal">動物森友會
+                    </label>
+                    <label>
+                        <input type="checkbox" name="games" value="FG">鬥陣特攻
+                    </label>
+                    <label>
+                        <input type="checkbox" name="games" value="LOLm">傳說對決
+                    </label>
+                
                     <input type="hidden" name="status"  value="1" >
                 </div>
                 <br>

@@ -146,15 +146,24 @@
                 <label for="gender" class="col-sm-2 col-form-label">喜歡的遊戲</label>
                 <div class="col-sm-10">
                     
-                    <label>
-                        <input type="checkbox" name="games" value="LOL" id="gameLOL" disabled >LOL
-                    </label>
-                    <label>
-                        <input type="checkbox" name="games" value="PUBG" id="gamePUBG" disabled>PUBG
-                    </label>
-                    <label>
-                        <input type="checkbox" name="games" value="CSGO" id="gameCSGO" disabled>CSGO
-                    </label>
+                   <label> <input type="checkbox" name="games" value="LOL"
+							id="gameLOL">英雄聯盟
+						</label> 
+						<label> <input type="checkbox" name="games" value="PUBG"
+							id="gamePUBG">絕地求生
+						</label> 
+						<label> <input type="checkbox" name="games" value="FG"
+							id="gameFG">鬥陣特攻
+						</label>
+						<label> <input type="checkbox" name="games" value="Animal"
+							id="gameAnimal">動物森友會
+						</label>
+						<label> <input type="checkbox" name="games" value="LOLm"
+							id="gameLOLm">傳說對決
+						</label>
+						<label> <input type="checkbox" name="games" value="WOW"
+							id="gameWOW">魔獸世界
+						</label>
                 </div>
                 <br>
                 

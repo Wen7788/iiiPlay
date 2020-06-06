@@ -69,10 +69,9 @@
 				<div class="col-lg-6 col-md-6">
 					<div class="login_part_text text-center">
 						<div class="login_part_text_iner">
-							<h2>New to our Shop?</h2>
-							<p>There are advances being made in science and technology
-								everyday, and a good example of this is the</p>
-							<a href="register" class="btn_3">Create an Account</a>
+							<h2>第一次來到我們網站嗎?</h2>
+							<p>立即成為會員得到最新的遊戲消息和熱門商品的資訊</p>
+							<a href="register" class="btn_3">加入會員</a>
 						</div>
 					</div>
 				</div>
@@ -80,7 +79,7 @@
 					<div class="login_part_form">
 						<div class="login_part_form_iner">
 							<h3>
-								Welcome Back ! <br> Please Sign in now
+								歡迎光臨 玩家 ! <br> 立即登入
 							</h3>
 							<form class="row contact_form" action="checkLogin.do"
 								method="post" novalidate="novalidate">
@@ -109,8 +108,8 @@
 										<span class="txt3" style="color: red">${error.robot}</span><br>
 									</div>
 									<button type="submit" value="submit" class="btn_3">
-										log in</button>
-									<a class="lost_pass" href="forget">forget password?</a>
+										登入</button>
+									<a class="lost_pass" href="forget">忘記密碼?</a>
 								</div>
 							</form>
 						</div>

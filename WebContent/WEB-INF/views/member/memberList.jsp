@@ -139,6 +139,7 @@ margin-left: 0;
 						<th scope="col">email</th>
 						<th scope="col">註冊時間</th>
 						<th scope="col">狀態</th>
+						<th scope="col">操作欄</th>
 						<th scope="col">大頭貼</th>
 
 					</tr>
@@ -159,7 +160,7 @@ margin-left: 0;
 								<td>${member.registerTime}</td>
 								<c:if test="${member.status==1}">
 									<td><a class="btn btn-primary"
-									href="<c:url value='/status/${member.id}'/>"
+								
 									
 									>正常</a>
 									</td>
@@ -170,11 +171,16 @@ margin-left: 0;
 								</c:if>
 								<c:if test="${member.status==100}">
 									<td><a class="btn btn-danger"
-									href="<c:url value='/status/${member.id}'/>"
+									
 									
 									>停權</a>
 									</td>
 								</c:if>
+								<td><a class="btn btn-primary"
+									href="<c:url value='/status/${member.id}'/>"
+									
+									>變更狀態</a>
+									</td>
 <!-- 						</form> -->
 
 							<td>

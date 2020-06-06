@@ -28,22 +28,40 @@
 			if (str.indexOf("PUBG") != -1) {
 				document.getElementById("gamePUBG").checked = true;
 			}
-			if (str.indexOf("CSGO") != -1) {
-				document.getElementById("gameCSGO").checked = true;
+			if (str.indexOf("FG") != -1) {
+				document.getElementById("gameFG").checked = true;
+			}
+			if (str.indexOf("animal") != -1) {
+				document.getElementById("gameAnimal").checked = true;
+			}
+			if (str.indexOf("WOW") != -1) {
+				document.getElementById("gameWOW").checked = true;
+			}
+			if (str.indexOf("LOLm") != -1) {
+				document.getElementById("gameLOLm").checked = true;
 			}
 		}
 		if ("${MemberBean.gender}" == "female") {
 			document.getElementById("genderFemale").checked = true;
 			var str = "${MemberBean.games}"
-			if (str.indexOf("LOL") != -1) {
-				document.getElementById("gameLOL").checked = true;
-			}
-			if (str.indexOf("PUBG") != -1) {
-				document.getElementById("gamePUBG").checked = true;
-			}
-			if (str.indexOf("CSGO") != -1) {
-				document.getElementById("gameCSGO").checked = true;
-			}
+				if (str.indexOf("LOL") != -1) {
+					document.getElementById("gameLOL").checked = true;
+				}
+				if (str.indexOf("PUBG") != -1) {
+					document.getElementById("gamePUBG").checked = true;
+				}
+				if (str.indexOf("FG") != -1) {
+					document.getElementById("gameFG").checked = true;
+				}
+				if (str.indexOf("animal") != -1) {
+					document.getElementById("gameAnimal").checked = true;
+				}
+				if (str.indexOf("WOW") != -1) {
+					document.getElementById("gameWOW").checked = true;
+				}
+				if (str.indexOf("LOLm") != -1) {
+					document.getElementById("gameLOLm").checked = true;
+				}
 		}
 	}
 </script>
@@ -139,6 +157,15 @@
 								color='red' size='-1'>${error.password}</font>
 						</div>
 					</div>
+					<div class="form-group row">
+              <label for="password" class="col-sm-2 col-form-label">密碼確認</label>
+              
+              <div class="col-sm-10">
+                <input type="password" name="checkPassword" class="form-control" id="checkPassword" placeholder="Password" value="${MemberBean.password}" >
+                <font color='red' size='-1'>${error.password}</font>
+              </div>
+            </div>
+					
 				</c:if>
 
 				<div class="form-group row">
@@ -182,11 +209,22 @@
 					<div class="col-sm-10">
 
 						<label> <input type="checkbox" name="games" value="LOL"
-							id="gameLOL">LOL
-						</label> <label> <input type="checkbox" name="games" value="PUBG"
-							id="gamePUBG">PUBG
-						</label> <label> <input type="checkbox" name="games" value="CSGO"
-							id="gameCSGO">CSGO
+							id="gameLOL">英雄聯盟
+						</label> 
+						<label> <input type="checkbox" name="games" value="PUBG"
+							id="gamePUBG">絕地求生
+						</label> 
+						<label> <input type="checkbox" name="games" value="FG"
+							id="gameFG">鬥陣特攻
+						</label>
+						<label> <input type="checkbox" name="games" value="Animal"
+							id="gameAnimal">動物森友會
+						</label>
+						<label> <input type="checkbox" name="games" value="LOLm"
+							id="gameLOLm">傳說對決
+						</label>
+						<label> <input type="checkbox" name="games" value="WOW"
+							id="gameWOW">魔獸世界
 						</label>
 					</div>
 					<br> <br> <br>

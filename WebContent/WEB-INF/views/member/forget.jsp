@@ -31,20 +31,28 @@
         </div>
     </section>
     <div align="center">
-        <h2>Reset Your Password</h2>
+        <h2>重設您的密碼</h2>
         <p>
-        Please enter your login email, we'll send a new random password to your inbox:
+       請輸入您註冊時填寫的帳號與信箱
         </p>
          
         <form id="resetForm" action="sendEmail" method="post">
             <table>
+                  <tr>
+                    
+                    <td>帳號:</td>
+                    <td><input type="text" name="id" id="id" size="20"></td>
+                </tr>
                 <tr>
+                    
                     <td>Email:</td>
                     <td><input type="text" name="email" id="email" size="20"></td>
                 </tr>
                 <tr>
+                <br>
                     <td colspan="2" align="center">
-                        <button type="submit">Send me new password</button>
+                    <br>
+                        <button type="submit">寄送郵件</button>
                     </td>
                 </tr>    
             </table>

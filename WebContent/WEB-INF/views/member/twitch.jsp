@@ -15,15 +15,15 @@
 
 body {
 
-    background: url(https://lolstatic-a.akamaihd.net/lolkit/1.1.6/resources/images/bg-default.jpg) no-repeat center;
-    background-attachment: fixed;
-    margin: 0;
-}
+background: url(https://lolstatic-a.akamaihd.net/lolkit/1.1.6/resources/images/bg-default.jpg) no-repeat center; 
+background-attachment: fixed; 
+margin: 20; 
+}  
 
 .container{
     background: rgba(0, 0, 0, 0.1);
     min-height: 100vh;
-    padding-top: 30px;
+    padding-top: 100px;
 }
 
 .intro{
@@ -67,7 +67,14 @@ body {
     margin-bottom: 10px;
 }</style>
 <body>
-
+<!-- 	--header-- -->
+		<jsp:include page="/WEB-INF/views/top.jsp" />
+	
+<!-- 	--header-- -->
+	  
+	  
+	  
+	  
 <section class="padding_top">
     <div class="container">
         <div class="row">
