@@ -85,6 +85,13 @@ public class ArticleDAO implements IArticleDAO {
 	}
 	
 	@Override
+	public ArticleListView getArticle(Integer articleId) {
+		Session session = sessionFactory.getCurrentSession();
+		return session.get(ArticleListView.class, articleId);
+	}
+	
+	
+	@Override
 	public List<ArticleListView> queryAllArticle() {
 		Session session = sessionFactory.getCurrentSession();
 		Query<ArticleListView> query = session.createQuery("FROM ArticleListView ORDER BY publishtime DESC", ArticleListView.class);

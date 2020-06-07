@@ -39,6 +39,8 @@ public interface IArticleDAO {
 
 	List<Click> dayClickTop5(Date today);
 
+	ArticleListView getArticle(Integer articleId);
+
 	
 
 }

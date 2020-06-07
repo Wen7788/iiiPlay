@@ -19,12 +19,9 @@ public class MessageDAO implements IMessageDAO {
 	@Override
 	public Message saveMsg(Message msgBean) {
 		Session session = sessionFactory.getCurrentSession();
-		Message message = session.get(Message.class, msgBean.getMsgId());
-		if (message==null) {
-			session.save(msgBean);
-			return msgBean;
-		}
-		return null;
+		session.save(msgBean);
+		return msgBean;
+		
 	}
 	
 	

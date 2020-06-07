@@ -39,4 +39,6 @@ public interface IArticleService {
 	
 	List<Click> dayClickTop5(Date today);
 
+	ArticleListView getArticle(Integer articleId);
+
 }

@@ -17,7 +17,7 @@ import java.util.Map;
 
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
+public class WebSocketSendToUserConfig implements WebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry config) {
@@ -27,19 +27,19 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/notify");
-		registry.addEndpoint("/notify").withSockJS();
-	}
+		registry.addEndpoint("/greeting").setHandshakeHandler(new DefaultHandshakeHandler() {
 
-	// Get sessionId from request and set it in Map attributes
-	public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
-			Map<String, Object> attributes) throws Exception {
-		if (request instanceof ServletServerHttpRequest) {
-			ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
-			HttpSession session = servletRequest.getServletRequest().getSession();
-			attributes.put("sessionId", session.getId());
-		}
-		return true;
+            //Get sessionId from request and set it in Map attributes
+            @SuppressWarnings("unused")
+			public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
+                                             Map<String, String> attributes) throws Exception {
+                if (request instanceof ServletServerHttpRequest) {
+                    ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
+                    HttpSession session = servletRequest.getServletRequest().getSession();
+                    attributes.put("sessionId", session.getId());
+                }
+                return true;
+            }}).withSockJS();
 	}
-
+		
 }

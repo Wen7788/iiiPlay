@@ -111,5 +111,11 @@ public class ArticleService implements IArticleService {
 		return dayClickTop5;
 	}
 
+	@Override
+	public ArticleListView getArticle(Integer articleId) {
+		ArticleListView article = articleDao.getArticle(articleId);
+		return article;
+	}
+
 	
 }

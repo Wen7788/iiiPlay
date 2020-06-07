@@ -82,14 +82,16 @@
 										<a class="dropdown-item"
 											href="<c:url value='/forum/showBoards'/>"> 討論區</a> 
 									</div></li>
+								<c:if test="${MemberBean.status==2}">
 								<li class="nav-item">
 								   <a class="nav-link" href="<c:url value='/bs'/>">後台管理</a>
 								</li>
+								</c:if>
 								<c:if test="${empty MemberBean}">
 								<c:if test="${empty googleUser}">
 								
 								<li class="nav-item"><a class="nav-link"
-									href="<c:url value='/login.do'/>">LOG IN/REGISTER</a></li>
+									href="<c:url value='/login.do'/>">登入/註冊</a></li>
 								 </c:if>
 								 </c:if>
 								 <c:if test="${!empty MemberBean}">
@@ -113,7 +115,7 @@
 <!-- 								</a> -->
 <!-- 								</li> -->
 								<li class="nav-item"><a class="nav-link"
-									href="<c:url value='/logOut'/>">Log Out</a></li>
+									href="<c:url value='/logOut'/>">登出</a></li>
 								 
 								 </c:if>
 								 <c:if test="${!empty googleUser}">

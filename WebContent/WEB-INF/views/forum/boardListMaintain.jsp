@@ -91,12 +91,12 @@
 												<c:when test="${board.status==1}">
 													<input type="hidden" value="${board.boardId}"
 														name="boardId">
-													<button type="submit" class="btn btn-light">隱藏</button>
+													<button type="submit" class="btn btn-warning">隱藏</button>
 												</c:when>
 												<c:otherwise>
 													<input type="hidden" value="${board.boardId}"
 														name="boardId">
-													<button type="submit" class="btn btn-light">顯示</button>
+													<button type="submit" class="btn btn-primary">顯示</button>
 												</c:otherwise>
 											</c:choose>
 										</form>
@@ -104,7 +104,7 @@
 
 									<td><a class='deletelink'
 										href="<c:url value='/forum/boardDelete/${board.boardId}'/>">
-											<button type="button" class="btn btn-light"
+											<button type="button" class="btn btn-danger"
 												onclick="onWarning()">徹底刪除</button>
 									</a></td>
 								</tr>

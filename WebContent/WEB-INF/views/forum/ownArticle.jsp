@@ -74,54 +74,58 @@
 			</div>
 		</div>
 	</section>
-	<section class="product_list best_seller section_padding">
-		<div class="container">
-			<div class="row justify-content-center">
-				<div class="col-lg-12">
-					<div class="section_tittle text-center">
-						<h2>我的收藏</h2>
-					</div>
-				</div>
-			</div>
-			<div class="row align-items-center justify-content-between">
-				<div class="col-lg-12">
-					<div class="best_product_slider owl-carousel">
-						<c:forEach items="${ownFavoArticle}" var="favoArticle" varStatus="vs">
-							<div class="single_product_item">
-							
-								<a
-									href="<c:url value='/forum/articleAndReply/${favoArticle.articleId}'/>">
-									<img src="<c:url value='/img/${favoArticle.category}.png'/>"
-									alt="">
-								</a>
-								<div class="single_product_text">
+	<section class="product_list section_padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="section_tittle text-center">
+                        <h2>我的收藏 </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="product_list_slider owl-carousel">
+                        <div class="single_product_list_slider">
+                            <div class="row align-items-center justify-content-between">
+                                <c:forEach items="${ownFavoArticle}" var="favoArticle" varStatus="vs">
+                                <div class="col-lg-3 col-sm-6">
+                                    <div class="single_product_item">
+                                        <a
+											href="<c:url value='/forum/articleAndReply/${favoArticle.articleId}'/>">
+											<img src="<c:url value='/img/${favoArticle.category}.png'/>"
+											alt="">
+										</a>
+                                        <div class="single_product_text">
+                                            <h4>【${favoArticle.category}】${favoArticle.title}</h4>
 
-									<h4>【${favoArticle.category}】${favoArticle.title}</h4>
+											<h3>${fn:substring(favoArticle.publishTime, 0, 19)}</h3>
+                                            
+                                        </div>
+                                        <div class="navigation-top">
+											<div class="d-sm-flex justify-content-between text-center">
+												<div id='userId' style="display: none;">${favoArticle.userId}</div>
+												<p class="like-info favoBtn" id='${favoArticle.articleId}'>
+													<a href="<c:url value='/forum/ownArticle/${favoArticle.userId}'/>" class="genric-btn primary-border circle"> 
+													<i
+														id='shoucang' class="fas fa-heart">取消收藏</i>
+													</a>
+												</p>
+		
+											</div>
+										</div>
+                                    </div>
+                                </div>
+                              	</c:forEach>
+                            <div id='userId' style="display: none;">${MemberBean.id}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+         </div>
+      </div>
+    </section>
 
-									<h3>${fn:substring(favoArticle.publishTime, 0, 19)}</h3>
-
-								</div>
-								<div class="navigation-top">
-									<div class="d-sm-flex justify-content-between text-center">
-										<div id='userId' style="display: none;">${favoArticle.userId}</div>
-										<p class="like-info favoBtn" id='${favoArticle.articleId}'>
-											<a href="<c:url value='/forum/ownArticle/${favoArticle.userId}'/>" class="genric-btn primary-border circle"> 
-											<i
-												id='shoucang' class="fas fa-heart">取消收藏</i>
-											</a>
-										</p>
-
-									</div>
-								</div>
-							</div>
-							
-						</c:forEach>
-						<div id='userId' style="display: none;">${MemberBean.id}</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
 <jsp:include page="/WEB-INF/views/top.jsp" />
 
 	

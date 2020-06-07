@@ -65,6 +65,9 @@ public class ArticleController {
 	IMessageService iMService;
 	
 	@Autowired
+	IMemberService mService;
+	
+	@Autowired
 	MyFavoArticle favoBean;
 	
 	@GetMapping("/ownArticle/{id}")
@@ -208,9 +211,16 @@ public class ArticleController {
 		MyFavoArticle addFavo = iFService.addFavo(favoBean);
 		
 		Message message = new Message();
-		
-		
-		
+		ArticleListView article = iAService.getArticle(articleId);
+		MemberBean member = mService.select(userId);
+		message.setMsgUrl(member.getName()+"已將您的"+article.getTitle()+"文章加入收藏");
+		message.setMsgTime(String.valueOf(new Timestamp(System.currentTimeMillis())));
+		message.setUserId(userId);
+		message.setUserName(member.getName());
+		message.setArticleId(articleId);
+		message.setAuthorId(article.getId());
+		message.setReadStatus(0);
+		iMService.saveMsg(message);
 		
 		ResponseEntity<MyFavoArticle> re = new ResponseEntity<MyFavoArticle>(addFavo, HttpStatus.OK);
 		return re;

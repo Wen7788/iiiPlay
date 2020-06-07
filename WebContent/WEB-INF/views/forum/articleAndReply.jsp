@@ -212,7 +212,7 @@
 										
 										<p><font color='red'>${last5Reply.name}</font>對這篇文章說了什麼:${last5Reply.replyDetail}</p>
 										<p>留言時間:${fn:substring(last5Reply.replyTime, 0, 19)}</p>
-										
+										<hr>
 									</div>
 								</div>
 							</c:forEach>
@@ -228,8 +228,10 @@
 	
 	<script type="text/javascript">
 	
-		CKEDITOR.replace('replyDetail');
-		CKEDITOR.replace('modifyDetail');
+		var replyEditor = CKEDITOR.replace('replyDetail');
+		var modifyEditor = CKEDITOR.replace('modifyDetail');
+
+		
 	</script>
 	
 	<script type="text/javascript">
@@ -352,6 +354,33 @@
 			})		
 		}
 
+	</script>
+	
+	<script>
+	function connect() {
+	    var socket = new WebSocket('ws://localhost:8080/greeting');
+	    ws = Stomp.over(socket);
+
+	    ws.connect({}, function(frame) {
+	        ws.subscribe("/user/queue/errors", function(message) {
+	            alert("Error " + message.body);
+	        });
+
+	        ws.subscribe("/user/queue/reply", function(message) {
+	            alert("Message " + message.body);
+	        });
+	    }, function(error) {
+	        alert("STOMP error " + error);
+	    });
+	}
+
+	function disconnect() {
+	    if (ws != null) {
+	        ws.close();
+	    }
+	    setConnected(false);
+	    console.log("Disconnected");
+	}
 	</script>
 	<script type="text/javascript">
 	 function onWarning(){

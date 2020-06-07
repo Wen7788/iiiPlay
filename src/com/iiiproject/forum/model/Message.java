@@ -23,8 +23,8 @@ public class Message implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer msgId;
 	
-	@Column(name = "msg")
-	private String msg;
+	@Column(name = "msgUrl")
+	private String msgUrl;
 	
 	@JsonFormat(pattern = "yyyy-MM-dd hh:mm:ss")
 	@Column(name = "msgTime")
@@ -45,23 +45,22 @@ public class Message implements Serializable{
 	@Column(name = "readStatus")
 	private Integer readStatus;
 	
-	@Column(name = "msgUrl")
-	private String msgUrl;
+	
 	
 	public Message() {
 	}
 
-	public Message(Integer msgId, String msg, String msgTime, String userId, String userName, Integer articleId,
-			String authorId, Integer readStatus, String msgUrl) {
+	public Message(Integer msgId, String msgUrl, String msgTime, String userId, String userName, Integer articleId,
+			String authorId, Integer readStatus) {
 		this.msgId = msgId;
-		this.msg = msg;
+		this.msgUrl = msgUrl;
 		this.msgTime = msgTime;
 		this.userId = userId;
 		this.userName = userName;
 		this.articleId = articleId;
 		this.authorId = authorId;
 		this.readStatus = readStatus;
-		this.msgUrl = msgUrl;
+		
 	}
 
 	public Integer getMsgId() {
@@ -70,14 +69,6 @@ public class Message implements Serializable{
 
 	public void setMsgId(Integer msgId) {
 		this.msgId = msgId;
-	}
-
-	public String getMsg() {
-		return msg;
-	}
-
-	public void setMsg(String msg) {
-		this.msg = msg;
 	}
 
 	public String getUserId() {

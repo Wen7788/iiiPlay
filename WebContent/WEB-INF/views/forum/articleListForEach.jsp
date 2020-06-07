@@ -288,6 +288,7 @@
 						</div>
 
 						<div class="modal-footer">
+							<button type="button" id="help" class="btn btn-warning" onclick='input()'>一鍵輸入</button>
 							<button type="submit" id="btn" class="btn btn-outline-success">文章已填寫好，請讓大家看看吧!</button>
 						</div>
 
@@ -299,7 +300,12 @@
 
 	<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 	<script type="text/javascript">
-		CKEDITOR.replace('detail1');
+		var ckEditor = CKEDITOR.replace('detail1');
+
+		function input(){
+			document.getElementById("title1").value = "測試標題";
+			ckEditor.setData("測試內文");
+		}
  	</script>
 	
 	
@@ -338,6 +344,8 @@
 			}
 		}
 	</script>
+	
+	
 
 	<!-- jquery plugins here-->
 	<script src="<c:url value='/js/jquery-1.12.1.min.js'/>"></script>
