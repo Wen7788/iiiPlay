@@ -46,183 +46,9 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css"
 	rel="stylesheet" />
-<script type="text/javascript"
-	src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-	google.charts.load('current', {
-		'packages' : [ 'corechart' ]
-	});
-	google.charts.setOnLoadCallback(drawChart);
-
-	function drawChart() {
-		var data = google.visualization.arrayToDataTable([
-
-		[ 'Month', '滑鼠', '鍵盤' ,'耳機','滑鼠墊'], 
-		[ '01', ${countm1},  ${listK[0]} ,${listE[0]}, ${listM[0]}],
-		[ '02', ${countm2},  ${listK[1]} , ${listE[1]} , ${listM[1]}], 
-		[ '03', ${countm3},  ${listK[2]} , ${listE[2]} , ${listM[2]}], 
-		[ '04', ${countm4},  ${listK[3]} , ${listE[3]} , ${listM[3]}],
-		[ '05', ${countm5},  ${listK[4]} , ${listE[4]} , ${listM[4]}], 
-		[ '06', ${countm6},  ${listK[5]} , ${listE[5]} , ${listM[5]}], 
-		[ '07', ${countm7},  ${listK[6]} , ${listE[6]} , ${listM[6]}],
-		[ '08', ${countm8},  ${listK[7]} , ${listE[7]} , ${listM[7]}], 
-		[ '09', ${countm9},  ${listK[8]} , ${listE[8]} , ${listM[8]}], 
-		[ '10', ${countm10}, ${listK[9]} , ${listE[9]} , ${listM[9]}],
-		[ '11', ${countm11}, ${listK[10]} ,${listE[10]} ,${listM[10]}], 
-		[ '12', ${countm12}, ${countK12} ,${countM12} ,${countE12}] ]);
-		var options = {
-			title : '',
-			hAxis : {
-				title : 'Month',
-				titleTextStyle : {
-					color : '#333'
-				}
-			},
-			vAxis : {
-				minValue : 0
-			}
-		};
-
-		var chart = new google.visualization.AreaChart(document
-				.getElementById('chart_div2'));
-		chart.draw(data, options);
-	}
-</script>
-<script type="text/javascript">
-	google.charts.load("current", {
-		packages : [ "corechart" ]
-	});
-	google.charts.setOnLoadCallback(drawChart);
-	function drawChart() {
-		var data = google.visualization.arrayToDataTable([
-				[ 'Member', 'cost' ], 
-				[ '男性消費總數', ${countMm}], 
-				[ '女性消費總數', ${countFf}],
-				 ]);
-
-		var options = {
-			title : '男女消費佔比',
-			pieHole : 0.4,
-		};
-
-		var chart = new google.visualization.PieChart(document
-				.getElementById('donutchart'));
-		chart.draw(data, options);
-	}
-</script>
-<script type="text/javascript">
-	google.charts.load('current', {'packages' : [ 'corechart' ]});
-	google.charts.setOnLoadCallback(drawChart);
-
-	function drawChart() {
-
-		var data = google.visualization.arrayToDataTable([
-				[ 'Member', 'number' ], 
-				[ '男性會員', ${countMale}], 
-				[ '女性會員', ${countFemale}],
-				 ]);
-
-		var options = {
-			title : 'My Daily Activities'
-		};
-
-		var chart = new google.visualization.PieChart(document
-				.getElementById('piechart'));
-
-		chart.draw(data, options);
-	}
-</script>
-
-<script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['', '羅技', '雷蛇', '曜越'],
-          ['第一季', ${countL11}, ${countR11}, ${countY11}],
-          ['第二季', ${countL22}, ${countR22}, ${countY22}],
-          ['第三季', ${countL33}, ${countR33}, ${countY33}],
-          ['第四季', ${countL44}, ${countR44}, ${countY44}]  ]);
 
 
 
-// 		 function drawChart() {
-//         var data = google.visualization.arrayToDataTable([
-//           ['Year', 'Sales', 'Expenses', 'Profit'],
-//           ['2014', ${countL11}, ${countR11}, ${countY11}],
-//           ['2015', ${countL22}, ${countR22},  ${countY22}],
-//           ['2016', ${countL33}, ${countR33}, 300],
-//           ['2017', ${countL44}, ${countR44}, 350]     ]);
-
-
-
-        var options = {
-          chart: {
-            title: '',
-            subtitle: '',
-          }
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
-    </script>
-
-
-<script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawVisualization);
-
-      function drawVisualization() {
-        // Some raw data (not necessarily accurate)
-        var data = google.visualization.arrayToDataTable([
-          ['',            '羅技',      '雷蛇',       '曜越'],
-          ['第一季', ${countL11}, ${countR11}, ${countY11}],
-          ['第二季', ${countL22}, ${countR22}, ${countY22}],
-          ['第三季', ${countL33}, ${countR33}, ${countY33}],
-          ['第四季',  ${countL44},${countL44}, ${countL44}]
-        ]);
-
-        var options = {
-          title : 'Monthly Coffee Production by Country',
-          vAxis: {title: 'Cups'},
-          hAxis: {title: 'Month'},
-          seriesType: 'bars',
-          series: {5: {type: 'line'}}        };
-
-        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script>
-
-
-
-<script type="text/javascript">
-      google.charts.load('current', {'packages':['bar']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['', 'Sales', 'Expenses', 'Profit', 'Sales', 'Expenses', 'Profit', 'Sales', 'Expenses', 'Profit'],
-          [' ', 1000, 400, 200, 1000, 400, 200, 1000, 400, 200],
-         
-        ]);
-
-        var options = {
-          chart: {
-            title: '',
-            subtitle: '',
-          },
-          bars: 'horizontal' // Required for Material Bar Charts.
-        };
-
-        var chart = new google.charts.Bar(document.getElementById('barchart_material'));
-
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-      }
-    </script>
 
 
 <style>
@@ -268,7 +94,7 @@
 }
 
 .h1 {
-	font-family: Microsoft Yahei;
+	font-family: Arial;
 	height: 40px;
 	font-weight: bold;
 	font-size: 32px;
@@ -278,6 +104,21 @@
 .i {
 	margin-left: 0;
 }
+
+.title {
+	font-size: 24px;
+	background-color: #272727; 
+	font-family: Arial;
+	letter-spacing: 3px;
+	border-radius: 5px;
+	color: #FFFFFF;
+}
+
+.top{
+   font-size:20px;
+}
+
+
 </style>
 </head>
 
@@ -289,10 +130,10 @@
 	<!-- Right Panel -->
 	<div id="right-panel" class="right-panel">
 
-		<header id="header" class="header">
+		<header id="header" class="header" style="background-color: #3C3C3C ">
 			<div class="top-left">
-				<div class="navbar-header">
-					<a class="navbar-brand h1">後台管理系統</a> <a id="menuToggle"
+				<div class="navbar-header" style="background-color: #3C3C3C ">
+					<a class="navbar-brand h1" style="color: #FFFFFF ">後台管理系統</a> <a id="menuToggle"
 						class="menutoggle" style="text-align: left"> <i
 						class="fa fa-bars"></i></a>
 				</div>
@@ -320,7 +161,7 @@
 											<div class="stat-text">
 												<span class="count">${countsale}</span>
 											</div>
-											<div class="stat-heading">總營業額</div>
+											<div class="stat-heading"><a class="top">總營業額</a></div>
 										</div>
 									</div>
 								</div>
@@ -340,7 +181,7 @@
 											<div class="stat-text">
 												<span class="count">${countorder}</span>
 											</div>
-											<div class="stat-heading">總訂單數</div>
+											<div class="stat-heading"><a class="top">總訂單數</a></div>
 										</div>
 									</div>
 								</div>
@@ -360,7 +201,7 @@
 											<div class="stat-text">
 												<span class="count">${countarticle}</span>
 											</div>
-											<div class="stat-heading">總文章數</div>
+											<div class="stat-heading"><a class="top">總文章數</a></div>
 										</div>
 									</div>
 								</div>
@@ -380,7 +221,7 @@
 											<div class="stat-text">
 												<span class="count">${cmember}</span>
 											</div>
-											<div class="stat-heading">總會員數</div>
+											<div class="stat-heading"><a class="top">總會員數</a></div>
 										</div>
 									</div>
 								</div>
@@ -392,10 +233,10 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
-							<div class="card-body">
-								<h1>每月成交量</h1>
+							<div class="card-body" style="text-align: center">
+								<a class="title" style="color: white">每月成交量</a>
 							</div>
-							<div id="chart_div2" style="width: 100%; height: 600px;"></div>
+							<div id="chart_div2"></div>
 							<!-- /.row -->
 							<div class="card-body"></div>
 						</div>
@@ -407,8 +248,8 @@
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="card">
-							<div class="card-body">
-								<h3 class="mb-3">男女消費佔比</h3>
+							<div class="card-body" style="text-align: center">
+								<a class="title" style="color: white">男女消費佔比</a>
 								<div id="donutchart" style="width: 100%; height: 500px;"></div>
 							</div>
 						</div>
@@ -416,8 +257,8 @@
 
 					<div class="col-lg-6">
 						<div class="card">
-							<div class="card-body">
-								<h3 class="mb-3">男女會員佔比</h3>
+							<div class="card-body" style="text-align: center">
+								<a class="title" style="color: white">男女會員佔比</a>
 								<div id="piechart" style="width: 100%; height: 500px;"></div>
 							</div>
 						</div>
@@ -428,11 +269,10 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="card">
-							<div class="card-body">
-								<h1>每季成交量</h1>
+							<div class="card-body" style="text-align: center">
+								<a class="title" style="color: white">每季成交量</a>
 							</div>
-							<div id="columnchart_material"
-								style="width: 100%; height: 500px; margin: 30px"></div>
+							<div id="columnchart_material"></div>
 							<!-- /.row -->
 							<div class="card-body"></div>
 						</div>
@@ -440,19 +280,7 @@
 					<!-- /# column -->
 				</div>
 
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="card">
-							<div class="card-body">
-								<h1>看板點擊數統計</h1>
-							</div>
-							<div id="barchart_material" style="width: 100%; height: 500px;"></div>
-							<!-- /.row -->
-							<div class="card-body"></div>
-						</div>
-					</div>
-					<!-- /# column -->
-				</div>
+
 
 
 
@@ -460,7 +288,7 @@
 			<!-- .animated -->
 		</div>
 		<!-- /.content -->
-		
+
 		<div class="clearfix"></div>
 		<!-- Footer -->
 		<footer class="site-footer">
@@ -477,7 +305,145 @@
 	</div>
 	<!-- /#right-panel -->
 
-	
+
+
+	<script type="text/javascript"
+		src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript">
+	google.charts.load('current', {
+		'packages' : [ 'corechart' ]
+	});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+
+		[ 'Month', '滑鼠', '鍵盤' ,'耳機','滑鼠墊'], 
+		[ '01', ${countm1},  ${listK[0]} ,${listE[0]}, ${listM[0]}],
+		[ '02', ${countm2},  ${listK[1]} , ${listE[1]} , ${listM[1]}], 
+		[ '03', ${countm3},  ${listK[2]} , ${listE[2]} , ${listM[2]}], 
+		[ '04', ${countm4},  ${listK[3]} , ${listE[3]} , ${listM[3]}],
+		[ '05', ${countm5},  ${listK[4]} , ${listE[4]} , ${listM[4]}], 
+		[ '06', ${countm6},  ${listK[5]} , ${listE[5]} , ${listM[5]}], 
+		[ '07', ${countm7},  ${listK[6]} , ${listE[6]} , ${listM[6]}],
+		[ '08', ${countm8},  ${listK[7]} , ${listE[7]} , ${listM[7]}], 
+		[ '09', ${countm9},  ${listK[8]} , ${listE[8]} , ${listM[8]}], 
+		[ '10', ${countm10}, ${listK[9]} , ${listE[9]} , ${listM[9]}],
+		[ '11', ${countm11}, ${listK[10]} ,${listE[10]} ,${listM[10]}], 
+		[ '12', ${countm12} , ${countK12} ,${countM12} ,${countE12}] ]);
+		var options = {
+			title : '',
+			hAxis : {
+				title : '月份',
+				titleTextStyle : {
+					color : '#333'
+				}
+			},
+			vAxis : {
+				minValue : 0
+			},
+			height : 600 , 
+			fontSize : 24,
+			legend : {position :'top' , alignment : 'center'}
+					
+				
+		};
+
+		
+
+		var chart = new google.visualization.AreaChart(document
+				.getElementById('chart_div2'));
+		chart.draw(data, options);
+	}
+</script>
+	<script type="text/javascript">
+	google.charts.load("current", {
+		packages : [ "corechart" ]
+	});
+	google.charts.setOnLoadCallback(drawChart);
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+				[ 'Member', 'cost' ], 
+				[ '男性消費總數', ${countMm}], 
+				[ '女性消費總數', ${countFf}],
+				 ]);
+
+		var options = {
+			title : '',
+			pieHole : 0.4,
+			fontSize : 20,
+			colors : ['#6495ED','#F08080'],
+			legend : {position :'top' , alignment : 'center'}
+		};
+
+		var chart = new google.visualization.PieChart(document
+				.getElementById('donutchart'));
+		chart.draw(data, options);
+	}
+</script>
+	<script type="text/javascript">
+	google.charts.load('current', {'packages' : [ 'corechart' ]});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+
+		var data = google.visualization.arrayToDataTable([
+				[ 'Member', 'number' ], 
+				[ '男性會員', ${countMale}], 
+				[ '女性會員', ${countFemale}],
+				 ]);
+
+		var options = {
+			title : '',
+			fontSize : 20,
+			colors : ['#6495ED','#F08080'],
+			legend : {position :'top' , alignment : 'center'}
+		};
+
+		var chart = new google.visualization.PieChart(document
+				.getElementById('piechart'));
+
+		chart.draw(data, options);
+	}
+</script>
+
+	<script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['', '羅技', '雷蛇', '曜越'],
+          ['第一季', ${countL11}, ${countR11}, ${countY11}],
+          ['第二季', ${countL22}, ${countR22}, ${countY22}],
+          ['第三季', ${countL33}, ${countR33}, ${countY33}],
+          ['第四季', ${countL44}, ${countR44}, ${countY44}]  ]);
+
+
+
+        var options = {
+        	height : 600 ,
+        	width : '90%',
+        	legend : {position :'left' , alignment : 'center'},
+            fontSize : 24,
+            chartArea:{left:200,right:200},
+          chart: { 	
+            title: '',
+            subtitle: '',         
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+
+
+
+
+
+
 
 </body>
 </html>

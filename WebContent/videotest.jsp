@@ -5,9 +5,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<%-- <link rel="stylesheet" href="<c:url value='/css/video.css'/>"/> --%>
+
+<style>
+.video{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	overflow:hidden;
+	height:100vh;
+	
+}
+
+</style>
+
+
+
 </head>
 <body>
-	<div>
+	<div class="video">
 		<video autoplay muted loop  >
 			<source src="video/backgroundvideo.mp4" type="video/mp4" />
 		</video>

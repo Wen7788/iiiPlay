@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.iiiproject._00_backstage.service.CountCompanyService;
@@ -52,8 +53,13 @@ public class HomeController {
 	CountCompanyService countCompanyService;
 
 
+
 	@Autowired
 	IBoardService iBservice;
+
+
+	@Autowired
+	IBoardService iboardservice;
 
 
 	@RequestMapping("/")
@@ -102,6 +108,12 @@ public class HomeController {
 		
 		
 		
+//		Integer B;
+//		for(int i=1 ; i<10 ; i++) {
+//			B = iboardservice.getBoardClick(i);
+//			return B.toString();
+//		}
+		
 		
 		
 //			List<Long> list = new ArrayList<>();
@@ -112,6 +124,7 @@ public class HomeController {
 //				System.out.println("測試"+e);
 //			}
 //			model.addAttribute("list" , list);
+		
 		
 		
 		
