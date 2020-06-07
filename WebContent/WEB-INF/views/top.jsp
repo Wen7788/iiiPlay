@@ -82,6 +82,9 @@
 										<a class="dropdown-item"
 											href="<c:url value='/forum/showBoards'/>"> 討論區</a> 
 									</div></li>
+									<li class="nav-item">
+								   <a class="nav-link" href="<c:url value='/twitch'/>">遊戲影片</a>
+								</li>
 								<c:if test="${MemberBean.status==2}">
 								<li class="nav-item">
 								   <a class="nav-link" href="<c:url value='/bs'/>">後台管理</a>
