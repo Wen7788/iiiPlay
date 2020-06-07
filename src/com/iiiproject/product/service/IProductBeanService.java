@@ -1,7 +1,9 @@
 package com.iiiproject.product.service;
 
 import java.util.List;
+import java.util.Map;
 
+import com.iiiproject.product.model.LikeBean;
 import com.iiiproject.product.model.ProductBean;
 import com.iiiproject.product.model.ProductBeanView;
 
@@ -17,6 +19,7 @@ public interface IProductBeanService {
 	 List<ProductBean> type (String type); //類型
 	 List<ProductBean> category (String  com); 
 	 public Long allpdcount();
+	 Long typepdcount(String type);
 	 List<ProductBean> queryprice(int price1, int price2);
 	 List<ProductBeanView> selectHot();
 	 byte[] loadimage(int ProductId);
@@ -24,4 +27,8 @@ public interface IProductBeanService {
 		byte[] loadimage2(int ProductId);
 		byte[] loadimage1(int ProductId);
 	ProductBean updateProduct(ProductBean pb);
+	List<Map>  maylike(String userId); //可能喜歡
+	List<ProductBean> category1(Object object);
+	Long catepdcount(String cate); //廠牌
+
 }

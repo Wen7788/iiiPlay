@@ -21,20 +21,21 @@
             <h3>收件明細</h3>
             
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="first" name="name" value="" placeholder="收件人"/>
-                
+            <input type="text" class="form-control" id="first" name="name" value="${param.name}" placeholder="收件人(必填)" onblur="checkName()"/>  
+                  <font color='red' id="first1" size='-1'></font> 
               </div>
              
               <div class="col-md-6 form-group p_star">
-                <input type="text" class="form-control" id="number" name="number" value="" placeholder="電話號碼"/>
-            
+                <input type="text" class="form-control" id="number" name="number" value="${param.number}" placeholder="電話號碼(必填)"onblur="checknum()"/>
+                 <font color='red' id="number1" size='-1'></font> 
               </div>
                <div class="col-md-12 form-group">
-                <input type="text" class="form-control" id="company" name="address" placeholder="收件地址" value="" />
-             
+                <input type="text" class="form-control" id="address" name="address" placeholder="收件地址(必填)" value="${param.address}" onblur="checkadr()"/>
+                  <font color='red' id="address1" size='-1'></font>
               </div>
               <div class="col-md-12 form-group">
-                <input type="text" class="form-control" id="company" name="email" placeholder="電子郵件" value="" />
+                <input type="text" class="form-control" id="" name="email" placeholder="電子郵件" value="${param.email}" />
+              <font color='red' id="" size='-1'></font>
               </div>
           
            
@@ -106,12 +107,68 @@
 </body>
 
 <script>
+
+
+ function checkName() {
+           
+            let spanName = document.getElementById("first1");
+            let theName = document.querySelector("#first");
+            let theNameVal = theName.value;
+            let theNameLen = theNameVal.length;
+          
+            if (theNameVal == "") {
+                spanName.innerHTML = "名稱不能為空"
+            } 
+
+            }
+
+ function checknum() {
+     
+     let spanName = document.getElementById("number1");
+     let theName = document.querySelector("#number");
+     let theNameVal = theName.value;
+     let theNameLen = theNameVal.length;
+   
+     if (theNameVal == "") {
+         spanName.innerHTML = "電話不能為空"
+     } 
+
+     }
+ function checkadr() {
+     
+     let spanName = document.getElementById("address1");
+     let theName = document.querySelector("#address");
+     let theNameVal = theName.value;
+     let theNameLen = theNameVal.length;
+   
+     if (theNameVal == "") {
+         spanName.innerHTML = "地址不能為空"
+     } 
+
+     }
+
+ </script>
+
+
+
+
+
+
+<script>
 $(function(){
 	$("#save").click(function(){
  var formobj=document.getElementById("saveform");
- //formobj.action="/CartServlet.do";
- //formobj.method="post";
- formobj.submit();	
+ var id = document.getElementById("first");
+ var num = document.getElementById("number");
+ var adr = document.getElementById("address");
+ if (id.value == "" || num.value == ""|| num.value == "") {
+     alert("請輸入完整資訊");
+ } else {
+	 var formobj=document.getElementById("saveform");
+
+	 formobj.submit();	
+ }
+
 });
 })
 
@@ -121,9 +178,19 @@ $(function(){
  var formobj=document.getElementById("saveform");
  formobj.action="<c:url value='/product/saveorder2'/>";
  //formobj.method="post";
- formobj.submit();	
-});
+ var id = document.getElementById("first");
+ var num = document.getElementById("number");
+ var adr = document.getElementById("address");
+ if (id.value == "" || num.value == ""|| num.value == "") {
+     alert("請輸入完整資訊");
+ } else {
+	 var formobj=document.getElementById("saveform");
+	 formobj.action="<c:url value='/product/saveorder2'/>";
+	 formobj.submit();	
+ }
+	});
 })
+
 </script>
 
 

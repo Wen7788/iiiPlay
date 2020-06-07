@@ -45,6 +45,7 @@ public class RpController {
 		rBean.setReplyDate(new Timestamp(System.currentTimeMillis()));
 		iRService.insertReply(rBean);
 		
+	
 		return "redirect:/product/ProductDetail.do/"+pId;
 	}
 	

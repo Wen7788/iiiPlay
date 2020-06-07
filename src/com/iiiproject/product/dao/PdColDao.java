@@ -79,10 +79,10 @@ Productcollect.class);
 		query.setParameter(2, userId);
 
 		if (query.uniqueResult() != null) {
-			System.out.println("有加入過收藏!");
+			
 			return true;
 		}
-		System.out.println("沒有加入過收藏!");
+		
 		return false;
 	}
 }

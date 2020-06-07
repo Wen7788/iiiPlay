@@ -20,7 +20,6 @@
  <link rel="stylesheet" href="<c:url value='/css/nice-select.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/owl.carousel.min.css'/>">
 
-<!-- font awesome CSS -->
 
 <link rel="stylesheet" href="<c:url value='/css/all.css'/>">
 <!-- flaticon CSS -->
@@ -72,8 +71,7 @@
 										<a class="dropdown-item" href="${pageContext.request.contextPath}/product/allproducts" > 購物去!</a> <a class="dropdown-item" href="${pageContext.request.contextPath}/product/Cart.do">
 										我的購物車
 											</a>
-											<a class="dropdown-item" href="${pageContext.request.contextPath}/product/findorder1" > 我的訂單</a>
-                                             <a class="dropdown-item" href="${pageContext.request.contextPath}/product/colpd" > 我的收藏</a>
+											
 									</div></li>
 
 								<li class="nav-item dropdown"><a
@@ -84,16 +82,14 @@
 										<a class="dropdown-item"
 											href="<c:url value='/forum/showBoards'/>"> 討論區</a> 
 									</div></li>
-									<c:if test="${MemberBean.status==2}">
 								<li class="nav-item">
 								   <a class="nav-link" href="<c:url value='/bs'/>">後台管理</a>
 								</li>
-								</c:if>
 								<c:if test="${empty MemberBean}">
 								<c:if test="${empty googleUser}">
 								
 								<li class="nav-item"><a class="nav-link"
-									href="<c:url value='/login.do'/>">登入/註冊</a></li>
+									href="<c:url value='/login.do'/>">LOG IN/REGISTER</a></li>
 								 </c:if>
 								 </c:if>
 								 <c:if test="${!empty MemberBean}">
@@ -104,7 +100,10 @@
 								
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
 										<a class="dropdown-item" href="<c:url value='/MemberUpdate'/>"> 會員資料修改</a> 
+								
 										<a class="dropdown-item" href="<c:url value='/forum/ownArticle/${MemberBean.id}'/>"> 我的文章</a> 
+								<a class="dropdown-item" href="${pageContext.request.contextPath}/product/findorder1" > 我的訂單</a>
+                                             <a class="dropdown-item" href="${pageContext.request.contextPath}/product/colpd" > 收藏商品</a>
 									</div>
 									</li>
 <!-- 								<li class="nav-item"> -->
@@ -114,7 +113,7 @@
 <!-- 								</a> -->
 <!-- 								</li> -->
 								<li class="nav-item"><a class="nav-link"
-									href="<c:url value='/logOut'/>">登出</a></li>
+									href="<c:url value='/logOut'/>">Log Out</a></li>
 								 
 								 </c:if>
 								 <c:if test="${!empty googleUser}">
@@ -131,7 +130,7 @@
 								<li class="nav-item">
 									<a class="nav-link"
 										href="<c:url value='/googleLogOut'/>" 
-										onclick="signOut();"  >登出</a>
+										onclick="signOut();"  >Log Out</a>
 								</li>
 								
 								 

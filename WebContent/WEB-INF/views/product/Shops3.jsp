@@ -38,7 +38,7 @@
 
 									<li>
 										<a id="hot" href="<c:url value="/product/allhots"/>">熱銷專區</a>
-										<span>(6)</span></span>
+										<span>(6)</span>
 									</li>
 
 								</ul>
@@ -96,7 +96,7 @@
 						</aside>
 						<aside class="left_widgets p_filter_widgets price_rangs_aside">
 							<div class="l_w_title">
-								<h3>Price Filter</h3>
+								<h3>價錢查詢 </h3>
 							</div>
 							<div class="widgets_inner">
 								<div class="range_item">
@@ -125,7 +125,7 @@
 								<div class="single_product_menu">
 									<p>
 										<span id="all1"></span>
-										Prodict Found
+										項商品
 									</p>
 								</div>
 								<div class="single_product_menu d-flex">
@@ -176,7 +176,7 @@
 									</div>
 								</div>
 							</div>
-
+               <c:set var="count" value="${status.count}"/>
 						</c:forEach>
 
 
@@ -185,43 +185,21 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-12">
-			<div class="pageination">
-				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center">
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Previous">
-								<i class="ti-angle-double-left"></i>
-							</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">1</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">2</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">3</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">4</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">5</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">6</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Next">
-								<i class="ti-angle-double-right"></i>
-							</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</div>
+		<p>
+										<span id="all2" style="display: none">${count}</span>
+									                       
+									</p>
 	</section>
+
+
+
+
+<script>
+	sub = document.getElementById("all2");
+	sub2 = document.getElementById("all1");
+    sub1= sub.innerHTML
+    sub2.innerHTML="("+sub1+")"
+    </script>
 
 
 	<script>
@@ -401,42 +379,6 @@
 				hot.style.display="inline"	
 							});
 		})
-// 		//收藏
-// 		$(function() {
-
-// 			$(".add_cart").click(function() {
-// 				if (this.src = "<c:url value='/img/Love-1.png'/>") {
-// 					var pid = this.id;
-// 					this.src = "<c:url value='/img/love-2.png'/>"
-// 					if (window.confirm('確定要收藏嗎?')) {
-// 						;
-// 						$.ajax({
-// 							url : "<c:url value='/product/addcol'/>", //請求的url地址
-// 							dataType : "json", //返回格式為json
-// 							async : true, //請求是否非同步，預設為非同步，這也是ajax重要特性
-// 							type : "Get",
-// 							data : {
-// 								"pdId" : pid
-// 							}, //引數值
-// 							//請求方式
-// 							success : function(req) {
-
-// 							},
-// 							complete : function() {
-// 								//請求完成的處理
-// 							},
-// 							error : function() {
-// 								console.log("出錯了!")
-// 							}
-// 						});
-// 					} else {
-
-// 						return false;
-// 					}
-// 				}
-// 			})
-
-// 		})
 
 		window.onload = function() {
 			$.ajax({
@@ -447,9 +389,9 @@
 				success : function(req) {
 
 					sub = document.getElementById("all");
-					sub1 = document.getElementById("all1");
+				
 					sub.innerHTML = "(" + req + ")"
-					sub1.innerHTML = "(" + req + ")"
+				
 				},
 				complete : function() {
 					//請求完成的處理
@@ -499,7 +441,12 @@
 		         }
 	</script>
 
-
+<script>
+	sub = document.getElementById("all2");
+	sub2 = document.getElementById("all1");
+    sub1= sub.innerHTML
+    sub2.innerHTML="("+sub1+")"
+    </script>
 </body>
 </html>
 

@@ -53,15 +53,15 @@
 								<ul class="list">
 									<li>
 										<a href="<c:url value="/product/category.do/羅技"/>">羅技Logitech</a>
-										<span>(8)</span>
+										<span id="typeL"></span>
 									</li>
 									<li>
 										<a href="<c:url value="/product/category.do/曜越"/>">曜越TTeSports</a>
-										<span>(7)</span>
+										<span id="typet"></span>
 									</li>
 									<li class="active">
 										<a href="<c:url value="/product/category.do/雷蛇"/>">雷蛇Razer</a>
-										<span>(6)</span>
+										<span id="typer"></span>
 									</li>
 
 								</ul>
@@ -76,19 +76,19 @@
 								<ul class="list">
 									<li>
 										<a href="<c:url value="/product/type.do/滑鼠"/>">滑鼠</a>
-										<span>(7)</span>
+										<span id="typem"></span>
 									</li>
 									<li>
 										<a href="<c:url value="/product/type.do/鍵盤"/>">鍵盤</a>
-										<span>(5)</span>
+										<span id="typek"></span>
 									</li>
 									<li class="active">
 										<a href="<c:url value="/product/type.do/耳機"/>">耳機</a>
-										<span>(4)</span>
+										<span id="typee"></span>
 									</li>
 									<li>
 										<a href="<c:url value="/product/type.do/滑鼠墊"/>">滑鼠墊</a>
-										<span>(5)</span>
+										<span id="typeq"></span>
 									</li>
 
 								</ul>
@@ -96,7 +96,7 @@
 						</aside>
 						<aside class="left_widgets p_filter_widgets price_rangs_aside">
 							<div class="l_w_title">
-								<h3>Price Filter</h3>
+								<h3>價錢查詢 </h3>
 							</div>
 							<div class="widgets_inner">
 								<div class="range_item">
@@ -122,9 +122,19 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="product_top_bar d-flex justify-content-between align-items-center">
-								
+								<div class="single_product_menu">
+									<p>
+										<span id="all1">${count}</span>
+									                        項商品
+									</p>
+								</div>
 								<div class="single_product_menu d-flex">
-									
+									<h5>short by :</h5>
+									<select>
+										<option data-display="Select">name</option>
+										<option value="1">price</option>
+										<option value="2">product</option>
+									</select>
 								</div>
 
 								<form action="<c:url value="/product/Querytype.do"/>" class="form-inline my-2 my-lg-0">
@@ -143,15 +153,16 @@
 						</div>
 					</div>
 
+
 					<div class="row align-items-center latest_product_inner" id="div">
 
 						<c:forEach var="mem" varStatus="status" items="${memberList}">
 
 							<div class="col-lg-4 col-sm-6">
-								
-								<div class="single_product_item"  id="div1">
-							
-							      
+
+								<div class="single_product_item" id="div1">
+
+
 									<img class="detail1 src" id="${mem.productId}" width='150' src="<c:url value="/product/Images.do/${mem.productId}"/>" alt="">
 
 									<div class="single_product_text">
@@ -165,51 +176,19 @@
 									</div>
 								</div>
 							</div>
-
+                           <c:set var="count" value="${status.count}"/>
 						</c:forEach>
 
-
+                                     <p>
+										<span id="all2" style="display: none">${count}</span>
+									                       
+									</p>
 					</div>
 
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-12">
-			<div class="pageination">
-				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center">
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Previous">
-								<i class="ti-angle-double-left"></i>
-							</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">1</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">2</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">3</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">4</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">5</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">6</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Next">
-								<i class="ti-angle-double-right"></i>
-							</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</div>
+	
 	</section>
 
 
@@ -241,16 +220,20 @@
 	</script>
 
 
+
+	
+
+
+
+
 	<script>
 		//加入購物車
 		$(function() {
 			$(".btn_3")
-					.click(
-							function() {
+					.click(function() {
 								var pid = this.id;
 								if (window.confirm('確定加入購物車?')) {
 									;
-
 									$.ajax({
 												url : "<c:url value='/product/ProductDetail.do/Cart.do'/>", //請求的url地址
 												dataType : "json", //返回格式為json
@@ -279,6 +262,8 @@
 							})
 		})
 
+
+         //顯示收藏過的商品
 		$(window).load(function() {
 			var pdId = document.getElementsByClassName("pid");
 			var love = document.getElementsByClassName("add_cart");
@@ -311,6 +296,7 @@
 			}
 		})
 
+		//收藏
 		$(function() {
 
 			$(".add_cart").click(function() {
@@ -394,9 +380,165 @@
 				success : function(req) {
 
 					sub = document.getElementById("all");
-					sub1 = document.getElementById("all1");
+			
 					sub.innerHTML = "(" + req + ")"
-					sub1.innerHTML = "(" + req + ")"
+				
+				},
+				complete : function() {
+					//請求完成的處理
+				},
+				error : function() {
+					console.log("出錯了!")
+				}
+			});
+
+
+			$.ajax({
+				url : "<c:url value='/product/showtypecount'/>", //請求的url地址
+				dataType : "json", //返回格式為json
+				async : true, //請求是否非同步，預設為非同步，這也是ajax重要特性
+				type : "GET", //請求方式
+				  tradition:true,
+				data:{
+                         "type" :"滑鼠"
+					
+					},
+				success : function(req) {
+                     console.log("type"+req)
+                     sub = document.getElementById("typem");
+                     sub.innerHTML = "(" + req + ")"
+				},
+				complete : function() {
+					//請求完成的處理
+				},
+				error : function() {
+					console.log("出錯了!")
+				}
+			});
+			$.ajax({
+				url : "<c:url value='/product/showtypecount'/>", //請求的url地址
+				dataType : "json", //返回格式為json
+				async : true, //請求是否非同步，預設為非同步，這也是ajax重要特性
+				type : "GET", //請求方式
+				  tradition:true,
+				data:{
+                         "type" :"鍵盤"
+					
+					},
+				success : function(req) {
+                     console.log("type"+req)
+                     sub = document.getElementById("typek");
+                     sub.innerHTML = "(" + req + ")"
+				},
+				complete : function() {
+					//請求完成的處理
+				},
+				error : function() {
+					console.log("出錯了!")
+				}
+			});
+			$.ajax({
+				url : "<c:url value='/product/showtypecount'/>", //請求的url地址
+				dataType : "json", //返回格式為json
+				async : true, //請求是否非同步，預設為非同步，這也是ajax重要特性
+				type : "GET", //請求方式
+				  tradition:true,
+				data:{
+                         "type" :"耳機"
+					
+					},
+				success : function(req) {
+                     console.log("type"+req)
+                     sub = document.getElementById("typee");
+                     sub.innerHTML = "(" + req + ")"
+				},
+				complete : function() {
+					//請求完成的處理
+				},
+				error : function() {
+					console.log("出錯了!")
+				}
+			});
+			$.ajax({
+				url : "<c:url value='/product/showtypecount'/>", //請求的url地址
+				dataType : "json", //返回格式為json
+				async : true, //請求是否非同步，預設為非同步，這也是ajax重要特性
+				type : "GET", //請求方式
+				  tradition:true,
+				data:{
+                         "type" :"滑鼠墊"
+					
+					},
+				success : function(req) {
+                     console.log("type"+req)
+                     sub = document.getElementById("typeq");
+                     sub.innerHTML = "(" + req + ")"
+				},
+				complete : function() {
+					//請求完成的處理
+				},
+				error : function() {
+					console.log("出錯了!")
+				}
+			});
+			$.ajax({
+				url : "<c:url value='/product/showcatecount'/>", //請求的url地址
+				dataType : "json", //返回格式為json
+				async : true, //請求是否非同步，預設為非同步，這也是ajax重要特性
+				type : "GET", //請求方式
+				  tradition:true,
+				data:{
+                         "cate" :"羅技"
+					
+					},
+				success : function(req) {
+                    
+                     sub = document.getElementById("typeL");
+                     sub.innerHTML = "(" + req + ")"
+				},
+				complete : function() {
+					//請求完成的處理
+				},
+				error : function() {
+					console.log("出錯了!")
+				}
+			});
+			$.ajax({
+				url : "<c:url value='/product/showcatecount'/>", //請求的url地址
+				dataType : "json", //返回格式為json
+				async : true, //請求是否非同步，預設為非同步，這也是ajax重要特性
+				type : "GET", //請求方式
+				  tradition:true,
+				data:{
+                         "cate" :"曜越"
+					
+					},
+				success : function(req) {
+                    
+                     sub = document.getElementById("typet");
+                     sub.innerHTML = "(" + req + ")"
+				},
+				complete : function() {
+					//請求完成的處理
+				},
+				error : function() {
+					console.log("出錯了!")
+				}
+			});
+			$.ajax({
+				url : "<c:url value='/product/showcatecount'/>", //請求的url地址
+				dataType : "json", //返回格式為json
+				async : true, //請求是否非同步，預設為非同步，這也是ajax重要特性
+				type : "GET", //請求方式
+				  tradition:true,
+				data:{
+                         "cate" :"雷蛇"
+					
+					},
+				success : function(req) {
+                    
+                     sub = document.getElementById("typer");
+                     sub.innerHTML = "(" + req + ")"
 				},
 				complete : function() {
 					//請求完成的處理
@@ -448,6 +590,14 @@
 			         }
 	</script>
 
+
+	
+	<script>
+	sub = document.getElementById("all2");
+	sub2 = document.getElementById("all1");
+    sub1= sub.innerHTML
+    sub2.innerHTML="("+sub1+")"
+    </script>
 
 </body>
 </html>

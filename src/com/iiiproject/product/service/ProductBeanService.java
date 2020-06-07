@@ -3,6 +3,7 @@ package com.iiiproject.product.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.iiiproject.product.dao.ProductDao;
+import com.iiiproject.product.model.LikeBean;
 import com.iiiproject.product.model.ProductBean;
 import com.iiiproject.product.model.ProductBeanView;
 
@@ -90,6 +92,14 @@ public class ProductBeanService implements IProductBeanService {
 	public Long allpdcount() {
 	return hDao.allpdcount();
 	}
+	@Override
+	public Long typepdcount(String type) {
+	return hDao.typepdcount(type);
+	}
+	@Override
+	public Long catepdcount(String cate) {
+	return hDao.catepdcount(cate);
+	}
 	
 	
 	@Override
@@ -122,5 +132,17 @@ public class ProductBeanService implements IProductBeanService {
 		return hDao.updateProduct(pb);
 
 }
+	
+	@Override
+	public List<Map> maylike(String userId) {
+		return hDao.maylike(userId);
+
+}
+	
+	@Override
+	public List<ProductBean> category1(Object object) {
+		// TODO Auto-generated method stub
+		return hDao.category1(object);
+	}
 	
 }

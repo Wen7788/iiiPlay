@@ -96,7 +96,7 @@
 						</aside>
 						<aside class="left_widgets p_filter_widgets price_rangs_aside">
 							<div class="l_w_title">
-								<h3>Price Filter</h3>
+								<h3>價錢查詢 </h3>
 							</div>
 							<div class="widgets_inner">
 								<div class="range_item">
@@ -125,7 +125,7 @@
 								<div class="single_product_menu">
 									<p>
 										<span id="all1"></span>
-										Prodict Found
+										項商品
 									</p>
 								</div>
 								<div class="single_product_menu d-flex">
@@ -158,11 +158,11 @@
 						<c:forEach var="mem" varStatus="status" items="${memberList}">
 
 							<div class="col-lg-4 col-sm-6">
-								
-								<div class="single_product_item"  id="div1">
-							
-									<img id="hott" style='position:absolute ;right:20%; '  width='60' src="<c:url value="/img/NEW.png"/>" alt="收藏">
-									
+
+								<div class="single_product_item" id="div1">
+
+									<img id="hott" style='position: absolute; right: 20%;' width='60' src="<c:url value="/img/NEW.png"/>" alt="收藏">
+
 									<img class="detail1 src" id="${mem.productId}" width='150' src="<c:url value="/product/Images.do/${mem.productId}"/>" alt="">
 
 									<div class="single_product_text">
@@ -176,7 +176,7 @@
 									</div>
 								</div>
 							</div>
-
+                       <c:set var="count" value="${status.count}"/>
 						</c:forEach>
 
 
@@ -185,44 +185,21 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-lg-12">
-			<div class="pageination">
-				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center">
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Previous">
-								<i class="ti-angle-double-left"></i>
-							</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">1</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">2</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">3</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">4</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">5</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#">6</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link" href="#" aria-label="Next">
-								<i class="ti-angle-double-right"></i>
-							</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</div>
+		<p>
+			<span id="all2" style="display: none">${count}</span>
+
+		</p>
 	</section>
 
+
+   
+	<script>
+	//顯示商品數量
+	sub = document.getElementById("all2");
+	sub2 = document.getElementById("all1");
+    sub1= sub.innerHTML
+    sub2.innerHTML="("+sub1+")"
+    </script>
 
 	<script>
 		//進入詳情
@@ -447,9 +424,9 @@
 				success : function(req) {
 
 					sub = document.getElementById("all");
-					sub1 = document.getElementById("all1");
+					
 					sub.innerHTML = "(" + req + ")"
-					sub1.innerHTML = "(" + req + ")"
+			
 				},
 				complete : function() {
 					//請求完成的處理

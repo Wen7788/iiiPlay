@@ -6,6 +6,30 @@
 <meta charset="UTF-8">
 <title>iiiPlay</title>
 <link rel="icon" href="<c:url value='/img/favicon.png'/>">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="<c:url value='/css/bootstrap.min.css'/>">
+<!-- animate CSS -->
+<link rel="stylesheet" href="<c:url value='/css/animate.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/lightslider.min.css'/>">
+<!-- owl carousel CSS -->
+ <link rel="stylesheet" href="<c:url value='/css/nice-select.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/owl.carousel.min.css'/>">
+
+<!-- font awesome CSS -->
+
+<link rel="stylesheet" href="<c:url value='/css/all.css'/>">
+<!-- flaticon CSS -->
+<link rel="stylesheet" href="<c:url value='/css/flaticon.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/themify-icons.css'/>">
+<!-- font awesome CSS -->
+<link rel="stylesheet" href="<c:url value='/css/magnific-popup.css'/>">
+<!-- swiper CSS -->
+<link rel="stylesheet" href="<c:url value='/css/slick.css'/>">
+<!-- style CSS -->
+<link rel="stylesheet" href="<c:url value='/css/price_rangs.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/style.css'/>">
+<link rel="stylesheet" href="<c:url value='/css/owl.carousel.min.css'/>">
+
 </head>
 <body>
 

@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.ServletRequest;
@@ -29,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.iiiproject.forum.model.ArticleListView;
 import com.iiiproject.forum.model.FavoListView;
 import com.iiiproject.lab02.model.MemberBean;
+import com.iiiproject.product.model.LikeBean;
 import com.iiiproject.product.model.OrderItem;
 import com.iiiproject.product.model.ProductBean;
 import com.iiiproject.product.model.Productcollect;
@@ -289,12 +293,12 @@ public class PdController {
 			ResponseEntity<Long> re  = new ResponseEntity<>(acount, HttpStatus.OK);
 			return re;
 	}
-	@GetMapping( value ="/showallcount1" )
-	public ResponseEntity<Long> showallcount1() {
+	@GetMapping( value ="/showtypecount" )
+	public ResponseEntity<Long> showtypecount(@RequestParam("type") String type) {
 	
 		     Long acount=null;
 
-			acount=(long) 5;
+			acount=pdService.typepdcount(type);
 			
 			
 			ResponseEntity<Long> re  = new ResponseEntity<>(acount, HttpStatus.OK);
@@ -302,6 +306,20 @@ public class PdController {
 	        
 
 	}
+	@GetMapping( value ="/showcatecount" )
+	public ResponseEntity<Long> showcatecount(@RequestParam("cate") String cate) {
+	
+		     Long acount=null;
+
+			acount=pdService.catepdcount(cate);
+			
+			
+			ResponseEntity<Long> re  = new ResponseEntity<>(acount, HttpStatus.OK);
+			return re;
+	        
+
+	}
+
 
 	
 	@GetMapping(value =  "/price" ,produces = {"application/json"})
@@ -336,8 +354,7 @@ public class PdController {
 	public ResponseEntity<Boolean> isFavo(HttpServletRequest request,@RequestParam("pdId") Integer productId){
 		MemberBean user=(MemberBean)request.getSession().getAttribute("MemberBean");
 	    Integer userId=user.getPk();
-		System.out.println("productId: "+productId);
-		System.out.println("userId: "+userId);
+	
 		Boolean col = pcService.ifcol(productId, userId);
 		
 		ResponseEntity<Boolean> re = new ResponseEntity<Boolean>(col, HttpStatus.OK);
@@ -358,13 +375,25 @@ public class PdController {
 	public String colpd( HttpServletRequest request,Model model) {
 		MemberBean user=(MemberBean)request.getSession().getAttribute("MemberBean");
 		Integer userId=user.getPk();
-
+		String uId=user.getId();
 		List<Productcollect> colpd = pcService.getcol(userId);
 	 
 		model.addAttribute("colpd", colpd);
+		
+
+		  List<Map> like = pdService.maylike(uId);
+		  
+		  System.out.println("like"+like);
+          
+           
+		  System.out.println("pBean1111"+String.valueOf(like.get(0).get("0")));
+		  List<ProductBean>	pBean =pdService.category(String.valueOf(like.get(0).get("0")) );
+			
+
+				model.addAttribute("like", pBean);
+	 
 		return "product/collect";
 	}
-	
 	
 	
 }

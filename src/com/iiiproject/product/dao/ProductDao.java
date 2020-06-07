@@ -7,11 +7,13 @@ import java.util.Map;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
+import com.iiiproject.product.model.LikeBean;
 import com.iiiproject.product.model.ProductBean;
 import com.iiiproject.product.model.ProductBeanView;
 
@@ -167,6 +169,24 @@ public class ProductDao implements IProductDao {
 		return (Long)query.uniqueResult();
 	}
 	
+	@Override
+	public Long typepdcount(String type) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("SELECT COUNT(pdId) FROM ProductBean where category=?1 ");
+		query.setParameter(1, type);
+		
+		return (Long)query.uniqueResult();
+	}
+	@Override
+	public Long catepdcount(String cate) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("SELECT COUNT(pdId) FROM ProductBean where companyId=?1 ");
+		query.setParameter(1, cate);
+		
+		return (Long)query.uniqueResult();
+	}
+	
+	
 	
 	@Override
 	public List<ProductBean> queryprice(int price1 ,int price2) {
@@ -206,6 +226,23 @@ public class ProductDao implements IProductDao {
 
 		return null;
 	}
+	@Override
+	public List<Map> maylike(String userId){
+		Session session = sessionFactory.getCurrentSession(); 
+		
+		String hql = "select new map (companyId,count(pdId) as total) from LikeBean where id=?1 GROUP by companyId order by total desc";
+		 List<Map> list= session.createQuery(hql,Map.class). setParameter(1, userId).setFirstResult(0).	setMaxResults(1).list();	
+
+		return list;
+	}
+	     
+	@Override
+	public List<ProductBean> category1(Object object) {
+		Session session = sessionFactory.getCurrentSession();
+		Query<ProductBean> query = session.createQuery("from ProductBean where companyId=?0", ProductBean.class);
+		query.setParameter(0,  object);
+		return query.list();
+	} 
 	
 	
 }
