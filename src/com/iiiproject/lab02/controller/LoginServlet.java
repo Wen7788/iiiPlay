@@ -31,7 +31,7 @@ import com.iiiproject.lab02.service.IMemberService;
 public class LoginServlet {
 	@Autowired
 	private IMemberService mService;
-	private static final long serialVersionUID = 1L;
+	
 	
 	@RequestMapping(value={"login.do","forum/login.do"})
 	
@@ -67,7 +67,7 @@ public class LoginServlet {
 		// 1. 讀取使用者輸入資料(<Input>標籤內的name屬性分別為 userId與pswd
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
-		String rm = request.getParameter("remember");
+		String rm = request.getParameter("rm");
 		System.out.println(rm);
 		String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
 		System.out.println(gRecaptchaResponse);

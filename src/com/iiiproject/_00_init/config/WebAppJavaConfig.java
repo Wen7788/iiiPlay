@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.orm.hibernate5.support.OpenSessionInViewInterceptor;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -15,6 +14,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 import com.iiiproject.lab02.controller.LoginCheckInterceptor;
+import com.iiiproject.lab02.filter.FindUserPassword;
 
 @Configuration
 @EnableWebMvc
@@ -59,7 +59,11 @@ public class WebAppJavaConfig implements WebMvcConfigurer {
 		LoginCheckInterceptor loginCheckInterceptor= new  LoginCheckInterceptor();
 	    registry.addInterceptor(loginCheckInterceptor).addPathPatterns(new String[] {"/product/colpd","/product/checkcol","/product/findorder1","/product/saveorder","/product/reply"
 	    		                                                              ,"/forum/addFavo","/forum/deleFavo"});
-	 
+	    FindUserPassword findUserPassword= new FindUserPassword();
+	    registry.addInterceptor(findUserPassword).addPathPatterns("/login.do");
+	    
+	    
+	    
 //	    Register admin interceptor with multiple path patterns  
 //	      registry.addInterceptor(loginCheckInterceptor)
 //	              .addPathPatterns(new String[] { "/admin", "/admin/*" });

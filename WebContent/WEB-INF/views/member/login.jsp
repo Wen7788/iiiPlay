@@ -85,21 +85,30 @@
 								method="post" novalidate="novalidate">
 								<div class="col-md-12 form-group p_star">
 									<input type="text" class="form-control" id="name" name="id"
-										value="" placeholder="UserID">
+										value="${sessionScope.user}" placeholder="UserID">
 								</div>
 								<div class="col-md-12 form-group p_star">
 									<input type="password" class="form-control" id="password"
-										name="password" value="" placeholder="Password">
+										name="password" value="${sessionScope.password}" placeholder="Password">
 								</div>
 								<div class="g-recaptcha"
 									data-sitekey="6Lf19vgUAAAAAGHjPZkTQ2OPJJ2NHEKfteHdELf4"></div>
 
 								<div class="col-md-12 form-group">
-<!-- 									<div class="creat_account d-flex align-items-center"> -->
+									<div class="creat_account d-flex align-items-center">
 
-<!-- 										<input type="checkbox" id="f-option" name="selector"> -->
-<!-- 										<label for="f-option">Remember me</label> -->
-<!-- 									</div> -->
+										<input type="checkbox" id="rm" name="rm">
+										<label for="f-option">Remember me</label>
+									</div>
+									
+									<script>
+										
+										if(${sessionScope.rememberMe}!=null){
+											document.getElementById("rm").checked=true;
+											}
+
+
+									</script>
 									<br>
 									<div class="g-signin2" data-onsuccess="onSignIn"
 										data-theme="dark"></div>
