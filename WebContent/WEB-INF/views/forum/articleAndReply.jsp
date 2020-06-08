@@ -72,6 +72,38 @@
 								
 						</div>
 					</div>
+					<div class="comment-form">
+							<h4>留個言吧</h4>
+							<form class="form-contact comment_form"
+								action="<c:url value='/forum/reply'/>" name="commentForm"
+								method="post" onsubmit="return(validate())">
+								<div class="row">
+									<div class="col-12">
+										<div class="form-group">
+											<font color='red'>*</font>
+											<textarea class="form-control w-100" name="replyDetail"
+												id="replyDetail" cols="20" rows="5" placeholder="你想說什麼..."></textarea>
+											<font id="errorReplyDetail" color='red' size='-1'></font> <input
+												class="form-control" name="articleId" id="articleId"
+												type="hidden" value='${aBean.articleId}'>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<font color='red'>*</font> <input class="form-control"
+												name="name" id="name" type="text" value='${MemberBean.name}' placeholder="使用者登入名稱"
+												readonly> <font id="errorName" color='red' size='-1'></font>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="form-group">
+											<button type="submit" class="btn_3 button-contactForm">留言</button>
+										</div>
+									</div>
+								</div>
+
+							</form>
+						</div>
 					<div class="comments-area">
 
 
@@ -98,7 +130,7 @@
 													<div class="row">
 														<div class="col-12">
 															<div class="form-group">
-																<textarea class="form-control w-100" name="modifyDetail" cols="20" rows="5">${reply.replyDetail}</textarea>
+																<textarea class="form-control w-100" name="modifyDetail" cols="10" rows="3">${reply.replyDetail}</textarea>
 																<input class="form-control" name="modifyArticleId" type="hidden" value='${reply.articleId}'>
 																<input class="form-control" name="modifyName" type="hidden" value='${reply.name}'>
 
@@ -136,38 +168,7 @@
 							</c:otherwise>
 						</c:choose>
 
-						<div class="comment-form">
-							<h4>留個言吧</h4>
-							<form class="form-contact comment_form"
-								action="<c:url value='/forum/reply'/>" name="commentForm"
-								method="post" onsubmit="return(validate())">
-								<div class="row">
-									<div class="col-12">
-										<div class="form-group">
-											<font color='red'>*</font>
-											<textarea class="form-control w-100" name="replyDetail"
-												id="replyDetail" cols="30" rows="9" placeholder="你想說什麼..."></textarea>
-											<font id="errorReplyDetail" color='red' size='-1'></font> <input
-												class="form-control" name="articleId" id="articleId"
-												type="hidden" value='${aBean.articleId}'>
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<font color='red'>*</font> <input class="form-control"
-												name="name" id="name" type="text" value='${MemberBean.name}' placeholder="使用者登入名稱"
-												readonly> <font id="errorName" color='red' size='-1'></font>
-										</div>
-									</div>
-									<div class="col-sm-6">
-										<div class="form-group">
-											<button type="submit" class="btn_3 button-contactForm">留言</button>
-										</div>
-									</div>
-								</div>
-
-							</form>
-						</div>
+						
 					</div>
 				</div>
 				<div class="col-lg-4">
@@ -355,6 +356,9 @@
 		}
 
 	</script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.3.0/sockjs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.js"></script>
 	
 	<script>
 	function connect() {

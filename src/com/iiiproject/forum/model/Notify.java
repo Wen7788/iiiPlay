@@ -13,10 +13,10 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-@Component("message")
+@Component("notify")
 @Entity
-@Table(name = "Message")
-public class Message implements Serializable{
+@Table(name = "Notify")
+public class Notify implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id @Column(name = "msgId")
@@ -30,11 +30,8 @@ public class Message implements Serializable{
 	@Column(name = "msgTime")
 	private String msgTime;
 	
-	@Column(name = "userId")
-	private String userId;
-	
-	@Column(name = "userName")
-	private String userName;
+	@Column(name = "msg")
+	private String msg;
 	
 	@Column(name = "articleId")
 	private Integer articleId;
@@ -47,20 +44,27 @@ public class Message implements Serializable{
 	
 	
 	
-	public Message() {
+	public Notify() {
 	}
 
-	public Message(Integer msgId, String msgUrl, String msgTime, String userId, String userName, Integer articleId,
+	public Notify(Integer msgId, String msgUrl, String msgTime, String msg, Integer articleId,
 			String authorId, Integer readStatus) {
 		this.msgId = msgId;
 		this.msgUrl = msgUrl;
 		this.msgTime = msgTime;
-		this.userId = userId;
-		this.userName = userName;
+		this.msg = msg;
 		this.articleId = articleId;
 		this.authorId = authorId;
 		this.readStatus = readStatus;
 		
+	}
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
 	}
 
 	public Integer getMsgId() {
@@ -71,21 +75,7 @@ public class Message implements Serializable{
 		this.msgId = msgId;
 	}
 
-	public String getUserId() {
-		return userId;
-	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 
 	public Integer getArticleId() {
 		return articleId;

@@ -172,12 +172,22 @@
 				success : function(listData) {
 					var content = "";
 					for (var i = 0; i < listData.length; i++) {
-						content += "<p class='choose'><a href='<c:url value='/forum/articleAndReply/"+listData[i].articleId+"'/>'>"+listData[i].title+"</a></p>";
+						content += "<p class='choose'><a href='<c:url value='/forum/articleAndReply/"+listData[i].articleId+"'/>'>"+"<font color='red'>"+listData[i].boardName+":</font>"+listData[i].title+"</a></p>";
 						
 					}
 					document.getElementById("suggestSelect").innerHTML = content;
 					$("#suggestSelect").css("display","block");
 					$("#suggestSelect").css("width",$(".input-group").width());
+
+					$(document).ready(function(){
+						$(".choose").mouseover(function(){
+						    $(this).css("background-color", "#84C1FF");
+						})
+						$(".choose").mouseout(function(){
+						    $(this).css("background-color", "transparent");
+						})
+
+					});
 				}
 			});
 		})
@@ -186,16 +196,6 @@
 			$("#suggestSelect").css("display", "none")
 		}
 
-		
-
-
-		$(document).ready(function(){
-			$(".choose").hover(function(){
-			    $(this).css("background-color", "#84C1FF");
-			}, function(){
-			    $(this).css("background-color", "none");
-			});
-		});
 	</script>
 
 

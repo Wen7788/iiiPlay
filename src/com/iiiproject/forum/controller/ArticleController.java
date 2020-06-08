@@ -29,7 +29,7 @@ import com.iiiproject.forum.model.ArticleListView;
 import com.iiiproject.forum.model.Board;
 import com.iiiproject.forum.model.Click;
 import com.iiiproject.forum.model.FavoListView;
-import com.iiiproject.forum.model.Message;
+import com.iiiproject.forum.model.Notify;
 import com.iiiproject.forum.model.MyFavoArticle;
 import com.iiiproject.forum.model.ReplyListView;
 import com.iiiproject.forum.service.IArticleService;
@@ -121,7 +121,7 @@ public class ArticleController {
 	
 	@GetMapping("/showAofB/{boardId}")
 	public String showArticleOfBoard(Model model, @PathVariable Integer boardId) {
-		List<ArticleListView> list = iAService.queryArticleOfBoard(boardId);
+		List<ArticleListView> list = iAService.queryArticleOfBoardStatus1(boardId);
 		model.addAttribute("aOfB", list);
 		Board bBean = iBService.queryBoard(boardId);
 		model.addAttribute("bBean", bBean);
@@ -210,13 +210,13 @@ public class ArticleController {
 		favoBean.setFavoAddTime(new Timestamp(System.currentTimeMillis()));
 		MyFavoArticle addFavo = iFService.addFavo(favoBean);
 		
-		Message message = new Message();
+		Notify message = new Notify();
 		ArticleListView article = iAService.getArticle(articleId);
 		MemberBean member = mService.select(userId);
-		message.setMsgUrl(member.getName()+"已將您的"+article.getTitle()+"文章加入收藏");
+		message.setMsg(member.getName()+"已將您的"+article.getTitle()+"文章加入收藏");
+		message.setMsgUrl("/forum");
 		message.setMsgTime(String.valueOf(new Timestamp(System.currentTimeMillis())));
-		message.setUserId(userId);
-		message.setUserName(member.getName());
+		
 		message.setArticleId(articleId);
 		message.setAuthorId(article.getId());
 		message.setReadStatus(0);

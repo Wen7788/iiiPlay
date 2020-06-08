@@ -73,7 +73,7 @@
 							<c:forEach items='${boards}' var='board' varStatus='vs'>
 								<tr>
 									<th scope="row">${board.boardId}</th>
-									<td>${board.boardName}</td>
+									<td><a href="<c:url value='/forum/showAofB/${board.boardId}'/>"><font color="white">${board.boardName}</font></a></td>
 									
 									<td><img width='80' height='40'
 										src='loadImg/${board.boardId}' /></td>
