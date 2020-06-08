@@ -117,9 +117,7 @@
 <!-- 								<img width='50' height='50' src="data:image/jpg;base64,${mbPic}"> --!>
 <!-- 								</a> -->
 <!-- 								</li> -->
-								<li class="nav-item"><a class="nav-link"
-									href="<c:url value='/logOut'/>">登出</a></li>
-								 
+ 
 								 </c:if>
 								 <c:if test="${!empty googleUser}">
 								<li class="nav-item dropdown"><a
@@ -138,8 +136,14 @@
 										onclick="signOut();"  >Log Out</a>
 								</li>
 								
-								 
+							
 								 </c:if>
+								 	 
+								<li class="nav-item" style="height:100px">
+									<a class="nav-link" style="height:100px"
+										href="${pageContext.request.contextPath}/product/Cart.do" ><img class="" style="position:absolute;top:20px" height=50px  width='50' id="${mem.productId}" src="<c:url value="/img/shopcar.png"/>" alt="收藏"></a>
+								</li>
+								
 							</ul>
 						</div>
 						<div class="hearer_icon d-flex">
