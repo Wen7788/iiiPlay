@@ -502,6 +502,19 @@ ul {
   color: #fff;
 }
 
+
+.btn_11 {
+  display: inline-block;
+  padding: 9px 42px;
+  border-radius: 50px;
+  background-color: 	#46A3FF;
+  font-size: 15px;
+  font-weight: 700;
+  color: #333;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
 /* line 38, ../../01 cl html template/03_jun 2019/188_Aranoz shop_html/sass/_button.scss */
 .btn_3 {
   display: inline-block;

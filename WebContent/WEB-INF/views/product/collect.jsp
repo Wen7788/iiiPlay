@@ -202,7 +202,9 @@
 										<h3 class="zzz">$${mem.price}</h3>
 
 										<input type="button" class="btn_3" id="${mem.productId}" value="加入購物車">
-
+                                        <span>
+											<img class="add_cart  add_cart1"  style="width:30px ; height:30px ;display:inline;" id="${mem.productId}" src="<c:url value="/img/Love-1.png"/>" alt="收藏">
+										</span>
 									</div>
 
 								

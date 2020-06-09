@@ -144,8 +144,8 @@
 
 						
 								<div class="single_product_item" id="div1">
-								<img id="hott" width='20'  height="55"  src="<c:url value="/img/HOT.png"/>" alt="收藏">
-									<img class="detail1 src" id="${mem.productId}"  src="<c:url value="/product/Images.do/${mem.productId}"/>" alt="">
+								<img id="hott" style='position:absolute ;right:20%;width:70px ; height:26.11px  '  src="<c:url value="/img/HOT.png"/>" alt="收藏">
+									<img class="detail1 src" id="${mem.productId}" style="width:150px ; height:150px "  src="<c:url value="/product/Images.do/${mem.productId}"/>" alt="">
 
 									<div class="single_product_text">
 										<h4 class="detail na" id="${mem.productId}">${mem.productName}</h4>
