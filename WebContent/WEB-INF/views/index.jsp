@@ -34,7 +34,7 @@
 <body>
 
 	<!-- banner part start-->
-
+	
 	<section class="banner_part">
 		<div class="container">
 			<div class="row align-items-center">
