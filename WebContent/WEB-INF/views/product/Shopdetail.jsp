@@ -78,19 +78,21 @@
             <h2>$${detail.price}</h2>
             <ul class="list">
               <li>               
-                 <a href="#">  <span>類型</span>${detail.category}</a>
+               <span>類型</span>  <a href="#">  ${detail.category}</a>
               </li>
               <li>
-                <a href="#"> <span>庫存</span>${detail.stock}</a>
+            <span >庫存</span>    <a href="#" id="stock"> ${detail.stock}</a>
               </li>
             </ul>
-            <p>
-              First replenish living. Creepeth image image. Creeping can't, won't called.
-              Two fruitful let days signs sea together all land fly subdue
+            <p style="font-family:Microsoft JhengHei">
+              主要按鍵採用台灣Zippy微動開關，可達6000萬次點擊壽命
+            滾輪使用日本ALPS編碼器，具備明確段落感與一流品質
+               採用先進Pixart PMW3389高階光學引擎，高達16,000 dpi真實解析度
+
             </p>
             <div class="card_area d-flex justify-content-between align-items-center">
               <div class="product_count">
-           <input id="qt" name="quantity" class="form-control" value="1" min="0" max="20" type="number">
+           <input id="qt" name="quantity" class="form-control" value="1" min="0" max="20" type="number" onchange="check()">
 
                 	<input class="aaaa" type="text" name="pid" value="${detail.productId}" hidden="">
               </div>
@@ -111,11 +113,11 @@
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
           <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-            aria-selected="false">Specification</a>
+            aria-selected="false">商品規格</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active"  id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
-            aria-selected="true">Comments</a>
+            aria-selected="true">評論區</a>
         </li>
        
       </ul>
@@ -215,12 +217,12 @@
            <div class="col-lg-6">
               <div class="review_box">
     
-                <h4>Post a comment</h4>
+                <h4>留言</h4>
                 <form id="rpform" action="<c:url value='/product/reply'/>" method="post" id=""
                   novalidate="novalidate">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <input type="text" class="form-control" id="name" name="name" placeholder="名稱 "/>
+                      <input type="text" class="form-control" id="name" name="name" placeholder="暱稱 "/>
                    <input class="aaaa" type="text" name="pId" value="${detail.productId}" hidden="">
                      <input class="aaaa" type="text" name="pId" value="${detail.productId}" hidden="">
                     </div>
@@ -294,7 +296,7 @@
             <div class="col-lg-6">
               <div class="review_box">
     
-                <h4>Post a comment</h4>
+                <h4>留言</h4>
                 <form id="rpform" action="<c:url value='/product/reply'/>" method="post" id=""
                   novalidate="novalidate">
                   <div class="col-md-12">
@@ -330,6 +332,7 @@
     
 
   </section>
+  
 </body>
 
 <script>
@@ -341,6 +344,44 @@ formobj.submit();
 	
 });
 })
+</script>
+
+
+<script>
+$(function(){
+	$("#btnId").click(function(){
+ var formobj=document.getElementById("myform");
+
+formobj.submit();	
+	
+});
+})
+</script>
+
+
+<script>
+
+
+function check() {
+    
+	var qt=document.getElementById("qt");
+	var st=document.getElementById("stock");
+	       stock=st.innerHTML
+	      console.log(stock)
+	    qtv=qt.value
+              ss=parseInt(stock)
+		    console.log( ss)
+	 
+	 
+	    if(qtv>ss){
+	       alert("超過庫存量")
+	       qt.value=1
+	        }
+
+    }
+
+
+
 </script>
 
 <script>

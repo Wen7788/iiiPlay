@@ -2,16 +2,16 @@ package com.iiiproject.forum.dao;
 
 import java.util.List;
 
-import com.iiiproject.forum.model.Message;
+import com.iiiproject.forum.model.Notify;
 
 public interface IMessageDAO {
 
-	Message saveMsg(Message msgBean);
+	Notify saveMsg(Notify msgBean);
 
-	Message getMsg(Integer msgId);
+	Notify getMsg(Integer msgId);
 
-	Message updateStatus(Integer msgId);
+	Notify updateStatus(Integer msgId);
 
-	List<Message> getMyMsg(Integer authorId);
+	List<Notify> getMyMsg(Integer authorId);
 
 }

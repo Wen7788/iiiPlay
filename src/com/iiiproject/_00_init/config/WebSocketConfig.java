@@ -12,12 +12,17 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 import org.springframework.web.socket.server.support.DefaultHandshakeHandler;
 import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
 
+import com.iiiproject._00_init.model.MyPrincipal;
+import com.iiiproject.lab02.model.MemberBean;
+
 import javax.servlet.http.HttpSession;
+
+import java.security.Principal;
 import java.util.Map;
 
 @Configuration
 @EnableWebSocketMessageBroker
-public class WebSocketSendToUserConfig implements WebSocketMessageBrokerConfigurer {
+public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry config) {
@@ -27,19 +32,19 @@ public class WebSocketSendToUserConfig implements WebSocketMessageBrokerConfigur
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/greeting").setHandshakeHandler(new DefaultHandshakeHandler() {
-
-            //Get sessionId from request and set it in Map attributes
-            @SuppressWarnings("unused")
-			public boolean beforeHandshake(ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler,
-                                             Map<String, String> attributes) throws Exception {
-                if (request instanceof ServletServerHttpRequest) {
-                    ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
-                    HttpSession session = servletRequest.getServletRequest().getSession();
-                    attributes.put("sessionId", session.getId());
-                }
-                return true;
-            }}).withSockJS();
+		registry.addEndpoint("/greeting")
+		.addInterceptors(new HttpSessionHandshakeInterceptor())
+		.setHandshakeHandler(new DefaultHandshakeHandler(){
+            @Override
+            protected Principal determineUser(ServerHttpRequest request, WebSocketHandler wsHandler, Map<String, Object> attributes) {
+                String userId = "-1";
+                if (attributes.containsKey("MemberBean")) {
+					userId = ((MemberBean) attributes.get("MemberBean")).getId().toString();
+				}
+            	return new MyPrincipal(userId);	
+            }
+        })
+		.withSockJS();
 	}
 		
 }

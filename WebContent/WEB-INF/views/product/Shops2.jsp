@@ -8,6 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>aranoz</title>
 
+
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/top.jsp" />
@@ -128,6 +130,9 @@
 									                        項商品
 									</p>
 								</div>
+						<div style="float: right; cursor: pointer;">
+        <span class="glyphicon glyphicon-shopping-cart my-cart-icon"><span class="badge badge-notify my-cart-badge"></span></span>
+      </div>
 								<div class="single_product_menu d-flex">
 									<h5>short by :</h5>
 									<select>
@@ -136,7 +141,7 @@
 										<option value="2">product</option>
 									</select>
 								</div>
-
+                
 								<form action="<c:url value="/product/Querytype.do"/>" class="form-inline my-2 my-lg-0">
 									<div class="single_product_menu d-flex">
 										<div class="input-group">
@@ -192,6 +197,9 @@
 	</section>
 
 
+
+
+
 	<script>
 		//進入詳情
 		$(function() {
@@ -220,8 +228,6 @@
 	</script>
 
 
-
-	
 
 
 

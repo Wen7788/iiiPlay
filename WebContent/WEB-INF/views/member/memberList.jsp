@@ -88,7 +88,7 @@
 
 			<th style="text-align: center">狀態</th>
 			<th style="text-align: center" >操作欄</th>
-			<th style="text-align: center" width='80'>大頭貼</th>
+			<th style="text-align: center" width='90'>大頭貼</th>
 		</tr>
 		</thead>
 		<tbody>
