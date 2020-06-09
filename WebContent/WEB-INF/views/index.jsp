@@ -30,11 +30,40 @@
 <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/owl.carousel.min.css'/>">
 
+<style>
+.video{
+	position:absolute;
+	top:0;
+	left:0;
+/* 	min-width:100%; */
+	overflow:hidden;
+/* 	min-height:100%; */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	background-size: cover;
+}
+
+</style>
+
 </head>
 <body>
 
 	<!-- banner part start-->
 	
+<<<<<<< Updated upstream
+=======
+	
+	<section>
+	<div class="video">
+		<video autoplay muted loop  >
+			<source src="video/backgroundvideo.mp4" type="video/mp4" />
+		</video>
+	</div>
+	</section>
+
+>>>>>>> Stashed changes
 	<section class="banner_part">
 		<div class="container">
 			<div class="row align-items-center">
@@ -120,6 +149,9 @@
 
 	<!-- banner part start-->
 	<!-- product_list start-->
+	
+	
+	
 	
 	<section class="product_list best_seller">
 		

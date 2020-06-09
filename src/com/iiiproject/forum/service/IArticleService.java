@@ -28,6 +28,8 @@ public interface IArticleService {
 	List<ArticleListView> queryArticleOfBoard(Integer boardId);
 
 	Long getAllArticleCounts();
+	
+	Long getTodayAllArticleCounts();
 
 	Long getOwnArticleCounts(String id);
 

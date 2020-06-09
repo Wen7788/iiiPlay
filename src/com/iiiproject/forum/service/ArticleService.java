@@ -82,6 +82,12 @@ public class ArticleService implements IArticleService {
 	}
 	
 	@Override
+	public Long getTodayAllArticleCounts() {
+		Long todayCounts = articleDao.getTodayAllArticleCounts();
+		return todayCounts;	
+	}
+	
+	@Override
 	public Long getOwnArticleCounts(String id) {
 		Long ownCounts = articleDao.getOwnArticleCounts(id);
 		return ownCounts;

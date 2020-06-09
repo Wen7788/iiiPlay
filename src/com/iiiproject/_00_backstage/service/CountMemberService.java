@@ -10,5 +10,5 @@ public interface CountMemberService {
 	Long getMemberCount();
 	Long getSaleCount();
 	Long getOrderCount();
-	Long getMouse5();
+//	Long getMouse5();
 }

@@ -137,14 +137,14 @@ public class HomeController {
 		model.addAttribute("countsale", countsale);
 		
 		
-		Long countarticle = ArticleService.getAllArticleCounts();
+		Long countarticle = ArticleService.getTodayAllArticleCounts();
 		model.addAttribute("countarticle",countarticle);
 		
 		Long countorder = memberService.getOrderCount();
 		model.addAttribute("countorder",countorder);
 		
-		Long countM5 = memberService.getMouse5();
-		model.addAttribute("countM5",countM5);
+//		Long countM5 = memberService.getMouse5();
+//		model.addAttribute("countM5",countM5);
 		
 		Long countm1 = countMouseService.getMouse1();
 		model.addAttribute("countm1",countm1);

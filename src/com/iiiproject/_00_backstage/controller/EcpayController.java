@@ -21,6 +21,7 @@ import com.iiiproject._00_backstage.service.SearchOrderService;
 import com.iiiproject.product.model.OrderBean;
 import com.iiiproject.product.model.OrderItemBean;
 import com.iiiproject.product.model.ProductBean;
+import com.sun.mail.iap.Response;
 
 import ecpay.payment.integration.AllInOne;
 import ecpay.payment.integration.domain.AioCheckOutALL;
@@ -54,14 +55,7 @@ public class EcpayController {
 		 	String Item = product.getPdEname();
 			itemName += Item.trim().replaceAll("\\s+","") +"#" ; 
 		}
-		//欄位加總用count
-		
-
-	    
-		
-		
-		
-		
+		//欄位加總用count	
 		
 		AllInOne all = new AllInOne("");
 		
@@ -82,9 +76,11 @@ public class EcpayController {
 		obj.setItemName(itemName);
 		obj.setReturnURL("http://211.23.128.214:5000");
 		obj.setNeedExtraPaidInfo("N");
-		obj.setClientBackURL("http://localhost:8080/iiiPlay/backstage/SearchOrdersFinal");
+		obj.setClientBackURL("http://localhost:8080/iiiPlay/backstage/updatepaydate/"+ orderId);
 		
-		payStateService.updatepaydate(oBean.getOrderId());
+		
+//		payStateService.updatepaydate(oBean.getOrderId());
+//		payStateService.updatepaydate(oBean.getOrderId());
 		
 		
 //		obj.setClientBackURL
@@ -97,6 +93,12 @@ public class EcpayController {
 		
 		
 	
+	}
+	@RequestMapping("/updatepaydate/{orderId}")
+	public String updatepaydate(HttpServletRequest request,@PathVariable("orderId") Integer orderId)throws Exception {
+		OrderBean oBean = ecpayService.querySearchOrder(orderId);
+		payStateService.updatepaydate(oBean.getOrderId());
+		return "redirect:/product/allproducts" ; 
 	}
 }
 

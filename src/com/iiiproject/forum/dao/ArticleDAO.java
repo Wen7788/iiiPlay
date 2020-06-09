@@ -133,6 +133,13 @@ public class ArticleDAO implements IArticleDAO {
 	}
 	
 	@Override
+	public Long getTodayAllArticleCounts() {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("SELECT COUNT(*) FROM ArticleListView where DateDiff(dd,publishtime,getdate())=0");
+		return (Long) query.uniqueResult();
+	}
+	
+	@Override
 	public Long getOwnArticleCounts(String id) {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery("SELECT COUNT(*) FROM ArticleListView WHERE id =?1");

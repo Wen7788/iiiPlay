@@ -107,18 +107,16 @@
 
 .title {
 	font-size: 24px;
-	background-color: #272727; 
+	background-color: #272727;
 	font-family: Arial;
 	letter-spacing: 3px;
 	border-radius: 5px;
 	color: #FFFFFF;
 }
 
-.top{
-   font-size:20px;
+.top {
+	font-size: 20px;
 }
-
-
 </style>
 </head>
 
@@ -130,10 +128,10 @@
 	<!-- Right Panel -->
 	<div id="right-panel" class="right-panel">
 
-		<header id="header" class="header" style="background-color: #3C3C3C ">
+		<header id="header" class="header">
 			<div class="top-left">
-				<div class="navbar-header" style="background-color: #3C3C3C ">
-					<a class="navbar-brand h1" style="color: #FFFFFF ">後台管理系統</a> <a id="menuToggle"
+				<div class="navbar-header">
+					<a class="navbar-brand h1">後台管理系統</a> <a id="menuToggle"
 						class="menutoggle" style="text-align: left"> <i
 						class="fa fa-bars"></i></a>
 				</div>
@@ -161,7 +159,9 @@
 											<div class="stat-text">
 												<span class="count">${countsale}</span>
 											</div>
-											<div class="stat-heading"><a class="top">總營業額</a></div>
+											<div class="stat-heading">
+												<a class="top">今日營業額</a>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -181,7 +181,9 @@
 											<div class="stat-text">
 												<span class="count">${countorder}</span>
 											</div>
-											<div class="stat-heading"><a class="top">總訂單數</a></div>
+											<div class="stat-heading">
+												<a class="top">今日訂單數</a>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -201,7 +203,9 @@
 											<div class="stat-text">
 												<span class="count">${countarticle}</span>
 											</div>
-											<div class="stat-heading"><a class="top">總文章數</a></div>
+											<div class="stat-heading">
+												<a class="top">今日文章數</a>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -221,7 +225,9 @@
 											<div class="stat-text">
 												<span class="count">${cmember}</span>
 											</div>
-											<div class="stat-heading"><a class="top">總會員數</a></div>
+											<div class="stat-heading">
+												<a class="top">新增會員數</a>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -272,7 +278,7 @@
 							<div class="card-body" style="text-align: center">
 								<a class="title" style="color: white">每季成交量</a>
 							</div>
-							<div id="columnchart_material"></div>
+							<div id="columnchart_material" style="margin: 50px"></div>
 							<!-- /.row -->
 							<div class="card-body"></div>
 						</div>
@@ -319,7 +325,7 @@
 		var data = google.visualization.arrayToDataTable([
 
 		[ 'Month', '滑鼠', '鍵盤' ,'耳機','滑鼠墊'], 
-		[ '01', ${countm1},  ${listK[0]} ,${listE[0]}, ${listM[0]}],
+		[ '01', ${countm1},  ${listK[0]} , ${listE[0]} , ${listM[0]}],
 		[ '02', ${countm2},  ${listK[1]} , ${listE[1]} , ${listM[1]}], 
 		[ '03', ${countm3},  ${listK[2]} , ${listE[2]} , ${listM[2]}], 
 		[ '04', ${countm4},  ${listK[3]} , ${listE[3]} , ${listM[3]}],
@@ -335,12 +341,15 @@
 			title : '',
 			hAxis : {
 				title : '月份',
+
 				titleTextStyle : {
 					color : '#333'
 				}
 			},
 			vAxis : {
-				minValue : 0
+				minValue : 0,
+				format: 'currency', 
+				//圖表貨幣單位
 			},
 			height : 600 , 
 			fontSize : 24,
@@ -422,15 +431,31 @@
 
 
         var options = {
-        	height : 600 ,
-        	width : '90%',
+        	height : 500 ,
+
         	legend : {position :'left' , alignment : 'center'},
             fontSize : 24,
             chartArea:{left:200,right:200},
           chart: { 	
             title: '',
-            subtitle: '',         
-          }
+            subtitle: '',   
+             
+          },
+          vAxis : {
+        	 
+        	  textStyle: {
+        		  fontSize : 24,
+        		  //直欄字體大小
+        	  },
+			},
+			  hAxis : {
+		        	 
+	        	  textStyle: {
+	        		  fontSize : 24,
+	        		  //橫列字體大小
+	        	  },
+				},
+			
         };
 
         var chart = new google.charts.Bar(document.getElementById('columnchart_material'));

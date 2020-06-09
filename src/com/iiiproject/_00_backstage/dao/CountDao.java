@@ -8,6 +8,6 @@ public interface CountDao {
 	
 	Long getOrderCount();
 	
-	Long getMouse5();
+//	Long getMouse5();
 	
 }

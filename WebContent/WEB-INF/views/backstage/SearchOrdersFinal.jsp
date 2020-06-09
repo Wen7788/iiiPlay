@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>訂單查詢</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -53,7 +53,7 @@ text-align:center
 					<div class="col-md-12">
 						<div class="card">
 							<div class="card-header">
-								<strong class="card-title">Data Table</strong>
+								<strong class="card-title">訂單查詢</strong>
 							</div>
 			
 							<div class="card-body">
@@ -61,13 +61,13 @@ text-align:center
 									class="table table-striped table-bordered">
 									<thead>
 										<tr>
-											<th>編號</th>
-											<th>姓名</th>
-											<th>總金額</th>
+											<th style="text-align: center">編號</th>
+											<th style="text-align: center">姓名</th>
+											<th style="text-align: center">總金額</th>
 											
-											<th>下單日期</th>
-											<th>狀態</th>
-											<th>付款日期</th>
+											<th style="text-align: center">下單日期</th>
+											<th style="text-align: center">狀態</th>
+											<th style="text-align: center">付款日期</th>
 											
 										</tr>
 									</thead>

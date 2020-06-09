@@ -18,7 +18,7 @@ public class CountMemberSaleDaoImp implements CountMemberSaleDao{
 	public Long getMaleSale() {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery
-		("select sum(total) from CountMemberSaleBean where  gender ='male'");
+		("select isnull(sum(total),0) from CountMemberSaleBean where  gender ='male'");
 		return (Long) query.uniqueResult();
 	}
 	
@@ -26,7 +26,7 @@ public class CountMemberSaleDaoImp implements CountMemberSaleDao{
 	public Long getFemaleSale() {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery
-		("select sum(total) from CountMemberSaleBean where  gender ='female'");
+		("select  isnull(sum(total),0) from CountMemberSaleBean where  gender ='female'");
 		return (Long) query.uniqueResult();
 	}
 	
@@ -34,7 +34,7 @@ public class CountMemberSaleDaoImp implements CountMemberSaleDao{
 	public Long getAllSale() {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery
-		("select sum(total) from CountMemberSaleBean ");
+		("select isnull(sum(total),0) from CountMemberSaleBean ");
 		return (Long) query.uniqueResult();
 		
 	}
@@ -43,16 +43,15 @@ public class CountMemberSaleDaoImp implements CountMemberSaleDao{
 	public Long getMale() {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery
-		("select count(gender) from MemberBean where gender = 'male'");
+		("select isnull(count(gender),0) from MemberBean where gender = 'male'");
 		return (Long) query.uniqueResult();
-		
 	}
 	
 	@Override 
 	public Long getFemale() {
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery
-		("select count(gender) from MemberBean where gender = 'female'");
+		("select isnull(count(gender),0) from MemberBean where gender = 'female'");
 		return (Long) query.uniqueResult();
 		
 	}

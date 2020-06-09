@@ -36,12 +36,12 @@ public class CountMemberServiceImp implements CountMemberService {
 		
 	}
 	
-	@Override
-	public Long getMouse5() {
-		Long countM5 = dao.getMouse5();
-		return countM5;
-		
-	}
+//	@Override
+//	public Long getMouse5() {
+//		Long countM5 = dao.getMouse5();
+//		return countM5;
+//		
+//	}
 	
 	
 }

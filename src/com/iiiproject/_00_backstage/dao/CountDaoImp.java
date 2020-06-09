@@ -25,32 +25,32 @@ public class CountDaoImp implements CountDao {
 	@Override
 	public Long getMemberCount() {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("select count(*) from MemberBean");
+		Query query = session.createQuery("select count(*) from MemberBean where DateDiff(dd,registerTime,getdate())=0");
 		return (Long) query.uniqueResult();
 	}
 	
 	@Override
 	public Long getSaleCount() {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("select sum(total) from OrderBean");
+		Query query = session.createQuery("select isnull(sum(total),0) from OrderBean where DateDiff(dd,orderDate,getdate())=0");
 		return (Long) query.uniqueResult();
 	}
 	
 	@Override
 	public Long getOrderCount() {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("select count(*) from OrderBean");
+		Query query = session.createQuery("select count(*) from OrderBean where DateDiff(dd,orderDate,getdate())=0");
 		return (Long) query.uniqueResult();
 	}
 	
-	@Override
-	public Long getMouse5() {
-		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery
-		("select sum(total) from CountOrderBean where orderDate between '2020-05-01' and '2020-06-01'and category ='鍵盤'");
-		System.out.println((Long) query.uniqueResult());
-		return (Long) query.uniqueResult();
-	}
+//	@Override
+//	public Long getMouse5() {
+//		Session session = sessionFactory.getCurrentSession();
+//		Query query = session.createQuery
+//		("select sum(total) from CountOrderBean where orderDate between '2020-05-01' and '2020-06-01'and category ='鍵盤'");
+//		System.out.println((Long) query.uniqueResult());
+//		return (Long) query.uniqueResult();
+//	}
 	
 //	select sum(total)   from ordercount3 where orderDate between '2020-05-01' and '2020-06-01' and  category ='鍵盤'
 
