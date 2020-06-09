@@ -161,10 +161,18 @@
 						<font size="5">發佈文章</font>
 					</button>
 				</h1>
-
+				
 				<div class="section-top-border">
+					<c:if test="${empty aOfB}">
+					<div class="col-lg-12">
+							<blockquote class="generic-blockquote">
+								<h1>尚未有任何文章，可以進行發文!</h1>
+							</blockquote>
+					</div>
+					</c:if>
+					<c:if test="${!empty aOfB}">
 					<c:forEach items="${aOfB}" var="article" varStatus="vs">
-
+						
 						<div class="col-lg-12">
 							<blockquote class="generic-blockquote">
 								<h1>
@@ -174,7 +182,7 @@
 								<div class="row">
 									<div class="col-md-3">
 										<a
-											href="<c:url value='/forum/articleAndReply/${article.articleId}'/>"><img
+											href="<c:url value='/forum/articleAndReply/${article.articleId}'/>"><img style="width: 200%"
 											src="<c:url value='/img/${article.category}.png'/>"
 											class="img-fluid"></a>
 									</div>
@@ -218,6 +226,9 @@
 						</div>
 											
 					</c:forEach>
+					</c:if>
+					
+					
 				</div>
 			</section>
 		</div>

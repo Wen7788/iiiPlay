@@ -20,6 +20,10 @@
 					</div>
 				</div>
 			</div>
+			<c:if test="${empty ownArticle}">
+			<h1>${MemberBean.name}，你還沒有發文過喔!</h1>
+			</c:if>
+			<c:if test="${!empty ownArticle}">
 			<div class="row align-items-center justify-content-between">
 				<div class="col-lg-12">
 					<div class="best_product_slider owl-carousel">
@@ -72,6 +76,7 @@
 					</div>
 				</div>
 			</div>
+			</c:if>
 		</div>
 	</section>
 	<section class="product_list section_padding">
@@ -83,6 +88,10 @@
                     </div>
                 </div>
             </div>
+            <c:if test="${empty ownFavoArticle}">
+			<h1>${MemberBean.name}，你還沒有任何收藏文章喔!</h1>
+			</c:if>
+			<c:if test="${!empty ownFavoArticle}">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="product_list_slider owl-carousel">
@@ -123,6 +132,7 @@
                 </div>
             </div>
          </div>
+         </c:if>
       </div>
     </section>
 

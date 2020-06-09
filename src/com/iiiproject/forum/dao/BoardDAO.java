@@ -90,7 +90,7 @@ public class BoardDAO implements IBoardDAO {
 	@Override
 	public List<Board> queryAllBoardStatus1() {
 		Session session = sessionFactory.getCurrentSession();
-		Query<Board> query = session.createQuery("From Board WHERE status =?1 ORDER BY boardid", Board.class);
+		Query<Board> query = session.createQuery("From Board WHERE status =?1 ORDER BY boardid DESC", Board.class);
 		query.setParameter(1, 1);
 		return query.list();
 	}

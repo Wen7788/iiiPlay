@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -35,7 +36,7 @@ import com.iiiproject.forum.model.ReplyListView;
 import com.iiiproject.forum.service.IArticleService;
 import com.iiiproject.forum.service.IBoardService;
 import com.iiiproject.forum.service.IClickService;
-import com.iiiproject.forum.service.IMessageService;
+import com.iiiproject.forum.service.INotifyService;
 import com.iiiproject.forum.service.IMyFavoArticleService;
 import com.iiiproject.forum.service.IReplyService;
 import com.iiiproject.lab02.dao.IMemberDao;
@@ -62,7 +63,7 @@ public class ArticleController {
 	IMyFavoArticleService iFService;
 	
 	@Autowired
-	IMessageService iMService;
+	INotifyService iMService;
 	
 	@Autowired
 	IMemberService mService;
@@ -214,13 +215,14 @@ public class ArticleController {
 		ArticleListView article = iAService.getArticle(articleId);
 		MemberBean member = mService.select(userId);
 		message.setMsg(member.getName()+"已將您的"+article.getTitle()+"文章加入收藏");
-		message.setMsgUrl("/forum");
+		message.setMsgUrl("/forum/articleAndReply/"+articleId);
 		message.setMsgTime(String.valueOf(new Timestamp(System.currentTimeMillis())));
 		
 		message.setArticleId(articleId);
 		message.setAuthorId(article.getId());
 		message.setReadStatus(0);
 		iMService.saveMsg(message);
+		iMService.sendNotice(message);
 		
 		ResponseEntity<MyFavoArticle> re = new ResponseEntity<MyFavoArticle>(addFavo, HttpStatus.OK);
 		return re;
@@ -236,4 +238,10 @@ public class ArticleController {
 		ResponseEntity<Boolean> re = new ResponseEntity<Boolean>(result, HttpStatus.OK);
 		return re;
 	}
+	
+//	@GetMapping("/message/")
+//	@ResponseBody
+//	public List<Notify> getMyMsg(){
+//		iMService.getMyMsg(authorId);
+//	}
 }
