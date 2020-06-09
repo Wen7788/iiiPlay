@@ -34,11 +34,6 @@
 <link rel="stylesheet" href="<c:url value='/css/style.css'/>">
 <link rel="stylesheet" href="<c:url value='/css/owl.carousel.min.css'/>">
 </head>
-
-
-
-
-
 <body>
 	<!--::header part start::-->
 	<header class="main_menu home_menu">
@@ -136,7 +131,7 @@
 								<li class="nav-item">
 									<a class="nav-link"
 										href="<c:url value='/googleLogOut'/>" 
-										onclick="signOut();"  >Log Out</a>
+										onclick="signOut();"  >登出</a>
 								</li>
 								
 							

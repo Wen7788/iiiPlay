@@ -72,6 +72,9 @@
 										<a class="dropdown-item"
 											href="<c:url value='/forum/showBoards'/>"> 討論區</a> 
 									</div></li>
+									<li class="nav-item">
+								   <a class="nav-link" href="<c:url value='/twitch'/>">遊戲影片</a>
+								</li>
 								<c:if test="${MemberBean.status==2}">
 								<li class="nav-item">
 								   <a class="nav-link" href="<c:url value='/bs'/>">後台管理</a>
@@ -98,15 +101,16 @@
                                              <a class="dropdown-item" href="${pageContext.request.contextPath}/product/colpd" > 收藏商品</a>
 									</div>
 									</li>
+									<li class="nav-item"><a class="nav-link"
+									href="<c:url value='/logOut'/>">登出</a></li>
+								 
 <!-- 								<li class="nav-item"> -->
 <!-- 								<a class="nav-link" -->
 <!-- 									href="logOut"> -->
 <!-- 								<img width='50' height='50' src="data:image/jpg;base64,${mbPic}"> --!>
 <!-- 								</a> -->
 <!-- 								</li> -->
-								<li class="nav-item"><a class="nav-link"
-									href="<c:url value='/logOut'/>">登出</a></li>
-								 
+ 
 								 </c:if>
 								 <c:if test="${!empty googleUser}">
 								<li class="nav-item dropdown"><a
@@ -122,11 +126,17 @@
 								<li class="nav-item">
 									<a class="nav-link"
 										href="<c:url value='/googleLogOut'/>" 
-										onclick="signOut();"  >Log Out</a>
+										onclick="signOut();"  >登出</a>
 								</li>
 								
-								 
+							
 								 </c:if>
+								 	 
+								<li class="nav-item" style="height:100px">
+									<a class="nav-link" style="height:100px"
+										href="${pageContext.request.contextPath}/product/Cart.do" ><img class="" style="position:absolute;top:20px" height=50px  width='50' id="${mem.productId}" src="<c:url value="/img/shopcar.png"/>" alt="收藏"></a>
+								</li>
+								
 							</ul>
 						</div>
 						<div class="hearer_icon d-flex">

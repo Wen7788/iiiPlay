@@ -64,13 +64,12 @@
 						<div class="d-sm-flex justify-content-between text-center">
 							
 							<p class="like-info" id='favoBtn'>
-								<a href="<c:url value='/forum/articleAndReply/${aBean.articleId}'/>"
-									class="genric-btn primary-border circle"> 
-<!-- 									<button class="genric-btn primary-border circle"> -->
-									<i
-									id='shoucang' class="far fa-heart">收藏</i>
-<!-- 									</button> -->
-								</a>
+<%-- 								<a href="<c:url value='/forum/articleAndReply/${aBean.articleId}'/>" --%>
+<!-- 									class="genric-btn primary-border circle">  -->
+									<button class="genric-btn primary-border circle">
+									<i id='shoucang' class="far fa-heart">收藏</i>
+									</button>
+<!-- 								</a> -->
 							</p>
 								
 						</div>
@@ -274,27 +273,33 @@
 		
 
 		function favoBtn(){
-			$("#shoucang").addClass('fas').removeClass('far');
-			$("#shoucang").text('取消收藏');
-			};
-
+			if(userId!=""){
+				$("#shoucang").addClass('fas').removeClass('far');
+				$("#shoucang").text('取消收藏');
+			}
+		};
+			
 		function unFavoBtn(){
-			$("#shoucang").addClass('far').removeClass('fas');
-			$("#shoucang").text('收藏');
-			};
+			if(userId!=""){
+				$("#shoucang").addClass('far').removeClass('fas');
+				$("#shoucang").text('收藏');
+			}
+		};
 
 		$("#favoBtn").click(function(){
 			
 			if($("#shoucang").text()=='收藏'){
+				addFavoAjax(articleId, userId);
 				favoBtn();
 			}else{
+				deleFavoAjax(articleId, userId);
 				unFavoBtn();
 			}
-			if($("#shoucang").text()=='收藏'){
-				deleFavoAjax(articleId, userId);
-			}else{
-				addFavoAjax(articleId, userId);
-			}
+// 			if($("#shoucang").text()=='收藏'){
+// 				deleFavoAjax(articleId, userId);
+// 			}else{
+// 				addFavoAjax(articleId, userId);
+// 			}
 		});
 
 		
