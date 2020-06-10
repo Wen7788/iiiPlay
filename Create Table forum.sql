@@ -155,3 +155,5 @@ create view FavoListView as
   on ma.articleId = a.articleid
 
   go
+
+

@@ -211,18 +211,18 @@ public class ArticleController {
 		favoBean.setFavoAddTime(new Timestamp(System.currentTimeMillis()));
 		MyFavoArticle addFavo = iFService.addFavo(favoBean);
 		
-		Notify message = new Notify();
-		ArticleListView article = iAService.getArticle(articleId);
-		MemberBean member = mService.select(userId);
-		message.setMsg(member.getName()+"已將您的"+article.getTitle()+"文章加入收藏");
-		message.setMsgUrl("/forum/articleAndReply/"+articleId);
-		message.setMsgTime(String.valueOf(new Timestamp(System.currentTimeMillis())));
-		
-		message.setArticleId(articleId);
-		message.setAuthorId(article.getId());
-		message.setReadStatus(0);
-		iMService.saveMsg(message);
-		iMService.sendNotice(message);
+//		Notify message = new Notify();
+//		ArticleListView article = iAService.getArticle(articleId);
+//		MemberBean member = mService.select(userId);
+//		message.setMsg(member.getName()+"已將您的"+article.getTitle()+"文章加入收藏");
+//		message.setMsgUrl("/forum/articleAndReply/"+articleId);
+//		message.setMsgTime(String.valueOf(new Timestamp(System.currentTimeMillis())));
+//		
+//		message.setArticleId(articleId);
+//		message.setAuthorId(article.getId());
+//		message.setReadStatus(0);
+//		iMService.saveMsg(message);
+//		iMService.sendNotice(message);
 		
 		ResponseEntity<MyFavoArticle> re = new ResponseEntity<MyFavoArticle>(addFavo, HttpStatus.OK);
 		return re;

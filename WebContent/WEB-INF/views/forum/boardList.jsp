@@ -172,7 +172,7 @@
 				success : function(listData) {
 					var content = "";
 					for (var i = 0; i < listData.length; i++) {
-						content += "<p class='choose'><a href='<c:url value='/forum/articleAndReply/"+listData[i].articleId+"'/>'>"+"<font color='red'>"+listData[i].boardName+":</font>"+listData[i].title+"</a></p>";
+						content += "<p class='choose'><a href='<c:url value='/forum/articleAndReply/"+listData[i].articleId+"'/>'>"+"<font color='red'>"+listData[i].boardName+": </font>"+listData[i].title+"</a></p>";
 						
 					}
 					document.getElementById("suggestSelect").innerHTML = content;
