@@ -186,8 +186,17 @@
 					</div>
 				</div>
 			</div>
+			
+		
+			
+			
+			
 			<div class="row align-items-center justify-content-between">
 				<div class="col-lg-12">
+				<c:if test="${empty like}">
+            <h1>你還沒購買過任何商品，所以無法給予推薦!</h1>
+            </c:if>
+				<c:if test="${!empty like}">
 					<div class="best_product_slider owl-carousel">
             
 						<c:forEach var="mem" varStatus="status" items="${like}">
@@ -212,7 +221,7 @@
 							
 						</c:forEach>
                   </div>
-
+</c:if>
 					</div>
 				</div>
 			</div>

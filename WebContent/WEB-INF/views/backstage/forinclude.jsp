@@ -186,10 +186,10 @@
 					</a></li>
 					
 					
-					<li><a style="color: #FFFFFF ; font-size:18px"
-						href="<c:url value='/backstage/NewsPaper'/>"> <i
-							class="menu-icon ti-email" style="color: #FFFFFF"></i>電子報
-					</a></li>
+<!-- 					<li><a style="color: #FFFFFF ; font-size:18px" -->
+<%-- 						href="<c:url value='/backstage/NewsPaper'/>"> <i --%>
+<!-- 							class="menu-icon ti-email" style="color: #FFFFFF"></i>電子報 -->
+<!-- 					</a></li> -->
 
 
 

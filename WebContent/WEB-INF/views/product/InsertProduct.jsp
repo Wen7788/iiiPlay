@@ -102,6 +102,19 @@
                 <button type="submit" class="btn btn-primary">送出</button>
 
                 <button type="reset" class="btn btn-danger">清除</button>
+                 <button type="button" id="insert" class="btn btn-primary">一鍵新增</button>
+                			<script type="text/javascript">
+						document.getElementById("insert").onclick = test;
+
+						function test() {
+							document.getElementById("pdname").value = "羅技滑鼠666"
+							document.getElementById("pdno").value = "Log666"
+							document.getElementById("price").value = "999"
+							document.getElementById("stock").value = "30"
+								document.getElementById("email").value="sean406@outlook.com"
+									document.getElementById("age").value="26"
+						}
+					</script>
                 </div>
           </form>
 

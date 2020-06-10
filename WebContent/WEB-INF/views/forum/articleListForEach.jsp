@@ -333,8 +333,8 @@
 		var ckEditor = CKEDITOR.replace('detail1');
 
 		function input(){
-			document.getElementById("title1").value = "測試標題";
-			ckEditor.setData("測試內文");
+			document.getElementById("title1").value = "那些一直抱怨被撞的人";
+			ckEditor.setData("很直白的告訴你們，當你覺得自己被撞時，反過來別人也可能認為你擋道甚至是你也撞到他");
 		}
  	</script>
 	

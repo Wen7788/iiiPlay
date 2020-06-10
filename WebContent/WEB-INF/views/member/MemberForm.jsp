@@ -170,6 +170,19 @@ window.onload = function() {
                 <button type="submit" class="btn btn-primary">送出</button>
 
                 <button type="reset" class="btn btn-danger">清除</button>
+                <button type="button" id="insert" class="btn btn-primary">一鍵新增</button>
+					<script type="text/javascript">
+						document.getElementById("insert").onclick = test;
+
+						function test() {
+							document.getElementById("id").value = "sean406"
+							document.getElementById("name").value = "陳大明"
+							document.getElementById("password").value = "eeit113"
+							document.getElementById("checkPassword").value = "eeit113"
+								document.getElementById("email").value="sean406@outlook.com"
+									document.getElementById("age").value="26"
+						}
+					</script>
                 </div>
 
             </div>
