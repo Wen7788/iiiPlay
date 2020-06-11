@@ -34,10 +34,11 @@
                   <font color='red' id="address1" size='-1'></font>
               </div>
               <div class="col-md-12 form-group">
-                <input type="text" class="form-control" id="" name="email" placeholder="電子郵件" value="${param.email}" />
+                <input type="text" class="form-control" id="email" name="email" placeholder="電子郵件" value="${param.email}" />
               <font color='red' id="" size='-1'></font>
+              
               </div>
-          
+            <input type="button"  class="btn_5" id="insert" value="一鍵輸入" >
            
           </div>
           	
@@ -105,6 +106,21 @@
 	</section>
 	 </form>
 </body>
+
+
+<script>
+
+$(function(){
+$("#insert").click(function() {
+      
+	document.getElementById("first").value="詹姆斯"
+	document.getElementById("number").value="0912769856"
+	document.getElementById("address").value="台北市大安區師大路"
+	document.getElementById("email").value="futommy0228366023abc@gmail.com"
+})
+})
+
+</script>
 
 <script>
 
