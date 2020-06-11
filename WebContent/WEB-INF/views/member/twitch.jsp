@@ -21,11 +21,11 @@ background-attachment: fixed;
 margin: 20; 
 }  
 
-.container{
-    background: rgba(0, 0, 0, 0.1);
-    min-height: 100vh;
-    padding-top: 100px;
-}
+/* .container{ */
+/*     background: rgba(0, 0, 0, 0.1); */
+/*     min-height: 100vh; */
+/*     padding-top: 100px; */
+/* } */
 
 .intro{
     color: white;

@@ -37,7 +37,7 @@
 <body>
 	<!--::header part start::-->
 	<header class="main_menu home_menu">
-		<div class="container">
+		<div class="container" style="background-color: white ; border-radius:8px">
 			<div class="row align-items-center">
 				<div class="col-lg-12">
 					<nav class="navbar navbar-expand-lg navbar-light">
