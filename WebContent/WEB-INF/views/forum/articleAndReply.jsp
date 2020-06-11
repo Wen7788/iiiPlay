@@ -117,7 +117,7 @@
 											<img src="<c:url value='/member/getImage/${reply.id}'/>" alt="">
 										</div>
 										<div class="desc">
-											<p class="comment">${reply.replyDetail}</p>
+											
 											<div class="d-flex justify-content-between">
 												<div class="d-flex align-items-center">
 													<h5>${reply.name}</h5>
@@ -126,6 +126,8 @@
 												</div>
 
 											</div>
+											<p class="comment">${reply.replyDetail}</p>
+											
 											<c:if test="${MemberBean.id == reply.id || MemberBean.status == 2}">
 												<button class="genric-btn success circle" id="replyBtn">編輯留言</button>
 												<form class="form-contact comment_form" action="<c:url value='/forum/reply/${reply.replyId}'/>" id="modifyForm" method="post">
@@ -176,7 +178,7 @@
 				<div class="col-lg-4">
 					<div class="blog_right_sidebar">
 						<aside class="single_sidebar_widget popular_post_widget">
-							<h3 class="widget_title">當日文章瀏覽數排行</h3>
+							<h3 class="widget_title">當日熱門文章排行</h3>
 							<c:forEach items="${map.alist}" var='topABean'>
 								<div class="media post_item">
 									<a
@@ -249,7 +251,7 @@
 	
 	<script>
 		function validate() {
-			if (document.getElementById("replyDetail").value == "") {
+			if (replyEditor.getData() == "") {
 				document.getElementById("errorReplyDetail").innerHTML = "\"*\"為必填欄位，需進行填寫!";
 				return false;
 			}else{

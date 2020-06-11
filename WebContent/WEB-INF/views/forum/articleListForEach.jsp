@@ -360,7 +360,7 @@
 			}else{
 				document.getElementById("errorTitle1").innerHTML = "";
 			}
-			if(document.getElementById("detail1").value == ""){
+			if(ckEditor.getData() == ""){
 				document.getElementById("errorDetail1").innerHTML = "\"*\"為必填欄位，需進行填寫!";
 				return false;
 			}else{
@@ -369,7 +369,7 @@
 			if(document.getElementById("name1").value != "" &&
 			   document.getElementById("category1").value != "" &&
 			   document.getElementById("title1").value != "" &&
-			   document.getElementById("detail1").value != ""){
+			   ckEditor.getData() == ""){
 				return true;
 			}
 		}

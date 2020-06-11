@@ -32,6 +32,36 @@
 	location.href="<c:url value='/'/>"
 }
 </script>
+
+<script>
+function keyFunction() {
+	
+	if (event.keyCode==72) {
+		//按下h
+		document.getElementById("name").value="host520"
+			document.getElementById("passworde").value="eeit113"
+		return false;
+	} else if (event.keyCode==73) {
+		//按下i
+		document.getElementById("name").value="iu406"
+			document.getElementById("password").value="eeit113"
+		return false;
+	} else if (event.keyCode==76) {
+		//按下l
+			document.getElementById("name").value="lebron23"
+			document.getElementById("password").value="kingjames"
+		return false;
+	} else if (event.keyCode==83) {
+		//按下s
+			document.getElementById("name").value="sean406"
+			document.getElementById("password").value="eeit113"
+		
+	}
+}
+document.onkeydown=keyFunction;
+</script>
+
+
 <title>iiiPlay Login</title>
 <script src="https://www.google.com/recaptcha/api.js"></script>
 <link rel="icon" href="img/favicon.png">
